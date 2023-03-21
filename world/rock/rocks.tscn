@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://hyvt1e0rb5ep"]
+
+[ext_resource type="PackedScene" uid="uid://8ti13pxr5tqo" path="res://world/rock/rocks.blend" id="1_vs08q"]
+[ext_resource type="Script" path="res://world/rock/rocks.gd" id="2_jvm0w"]
+
+[node name="Rocks" instance=ExtResource("1_vs08q")]
+script = ExtResource("2_jvm0w")
+
+[node name="rock-small-01" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)

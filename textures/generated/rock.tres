@@ -1,0 +1,14 @@
+[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://uc378nxbatfg"]
+
+[ext_resource type="Texture2D" uid="uid://bdyw0wy5oh8cd" path="res://textures/generated/rock_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://4r2r3edal4o3" path="res://textures/generated/rock_normal.png" id="3"]
+
+[resource]
+albedo_texture = ExtResource("1")
+normal_enabled = true
+normal_texture = ExtResource("3")
+heightmap_scale = 25.0
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+uv1_triplanar = true

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://db6p5o83l27ud"]
+
+[ext_resource type="PackedScene" uid="uid://b4wbjukwuv8gh" path="res://world/ship/bob.tscn" id="1_fbhxb"]
+[ext_resource type="PackedScene" uid="uid://hyvt1e0rb5ep" path="res://world/rock/rocks.tscn" id="2_da7el"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kyf66"]
+sky_material = SubResource("ProceduralSkyMaterial_1g1qc")
+
+[sub_resource type="Environment" id="Environment_gyq2f"]
+background_mode = 2
+sky = SubResource("Sky_kyf66")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gyq2f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="bob" parent="." instance=ExtResource("1_fbhxb")]
+
+[node name="Rocks" parent="." instance=ExtResource("2_da7el")]
