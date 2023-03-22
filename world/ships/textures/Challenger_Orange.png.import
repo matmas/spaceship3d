@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dogth0iginws1"
-path.s3tc="res://.godot/imported/Bob_Orange.png-892ee0335573dc791d6ceb7f3c50eff0.s3tc.ctex"
+uid="uid://gaqfhu7w6fpf"
+path.s3tc="res://.godot/imported/Challenger_Orange.png-251c676e34d0f16a86d5cf499605b0da.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://world/ship/textures/Bob_Orange.png"
-dest_files=["res://.godot/imported/Bob_Orange.png-892ee0335573dc791d6ceb7f3c50eff0.s3tc.ctex"]
+source_file="res://world/ships/textures/Challenger_Orange.png"
+dest_files=["res://.godot/imported/Challenger_Orange.png-251c676e34d0f16a86d5cf499605b0da.s3tc.ctex"]
 
 [params]
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4wbjukwuv8gh"]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://world/ship/bob.blend" id="1_1oewq"]
-[ext_resource type="Script" path="res://world/ship/bob.gd" id="2_8481p"]
-[ext_resource type="PackedScene" uid="uid://c7qmea4hlshj0" path="res://world/ship/engine.tscn" id="2_m2qdx"]
+[ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://world/ships/bob.blend" id="1_1oewq"]
+[ext_resource type="PackedScene" uid="uid://c7qmea4hlshj0" path="res://world/ships/engine.tscn" id="2_m2qdx"]
 
 [sub_resource type="ConvexPolygonShape3D" id="6"]
 points = PackedVector3Array(4.06111, -0.148882, -0.433703, -1.86069, -0.373801, -1.74946, -1.85096, -0.260179, -1.74606, -5.16331, -0.381003, -0.549682, -2.78381, 0.141206, -0.491693, 2.59886, 0.123796, -1.50676, 5.27981, -0.381003, -0.955871, -2.5986, 0.123833, -1.50682, 2.78454, 0.141206, -0.491562, 1.86117, -0.373771, -1.74938, 4.06111, -0.381003, -0.433703, -5.28011, -0.264917, -0.95574, 1.72742, 0.0752344, -1.74189, -4.06039, -0.381003, -0.433703, 5.27981, -0.264917, -0.607672, -1.72744, 0.0752017, -1.74178, -5.28011, -0.381003, -0.95574, 2.95923, 0.141206, -0.89775, 5.27981, -0.264917, -0.955871, -4.06039, -0.148882, -0.433703, -2.9585, 0.141206, -0.89775, -5.28011, -0.264917, -0.607672, 1.60337, 0.129057, -0.464741, 2.61088, -0.0909662, -1.59376, -2.61016, -0.0909662, -1.59376, 5.163, -0.381003, -0.549552, -1.60339, 0.129014, -0.464853, 3.48556, 0.0141558, -1.28834, -3.48541, 0.014175, -1.28836, 5.04723, -0.381003, -1.01373, -5.04754, -0.381003, -1.01373, -3.82885, -0.148882, -1.30368, 3.82854, -0.148882, -1.30368, 5.27981, -0.381003, -0.607672, -5.28011, -0.381003, -0.607672)
@@ -27,7 +26,6 @@ gravity_scale = 0.0
 can_sleep = false
 linear_damp = 5.0
 angular_damp = 5.0
-script = ExtResource("2_8481p")
 
 [node name="CollisionShape6" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("6")
@@ -58,8 +56,3 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -1, 0, 0
 
 [node name="EngineFrontL" parent="." index="10" instance=ExtResource("2_m2qdx")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1, 0, 0.193533)
-
-[node name="CameraPivot" type="Node3D" parent="." index="11"]
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot" index="0"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.21466, -8)

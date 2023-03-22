@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbbeneootigx6"]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource type="PackedScene" uid="uid://b4wbjukwuv8gh" path="res://world/ship/bob.tscn" id="1_fbhxb"]
+[ext_resource type="PackedScene" path="res://world/ships/bob.tscn" id="1_fbhxb"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
-[ext_resource type="PackedScene" uid="uid://cibj8cfe4fql5" path="res://world/ship/challenger.tscn" id="3_ybngj"]
+[ext_resource type="Script" path="res://world/ships/ship_player.gd" id="2_gg6nq"]
+[ext_resource type="PackedScene" path="res://world/ships/challenger.tscn" id="3_ybngj"]
+[ext_resource type="Script" path="res://world/ships/ship_npc.gd" id="5_mkyuj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -26,9 +28,16 @@ environment = SubResource("Environment_gyq2f")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="bob" parent="." instance=ExtResource("1_fbhxb")]
+[node name="Bob" parent="." instance=ExtResource("1_fbhxb")]
+script = ExtResource("2_gg6nq")
+
+[node name="CameraPivot" type="Node3D" parent="Bob"]
+
+[node name="Camera3D" type="Camera3D" parent="Bob/CameraPivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.21466, -8)
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
 
 [node name="Challenger" parent="." instance=ExtResource("3_ybngj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
+script = ExtResource("5_mkyuj")
