@@ -7,4 +7,49 @@
 script = ExtResource("2_jvm0w")
 
 [node name="rock-small-01" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5456, 95.2929, -66.2268)
+mass = 37773.1
+
+[node name="rock-medium-01" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74.5881, 41.7453, -96.2572)
+mass = 318087.0
+
+[node name="rock-small-02" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.6253, 8.45094, 27.4222)
+mass = 63415.4
+
+[node name="rock-large-01" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8661, 23.477, 72.9423)
+mass = 1.08142e+06
+
+[node name="rock-medium-03" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7218, -26.725, -6.80258)
+mass = 269132.0
+
+[node name="rock-small-04" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54865, -84.926, -91.3979)
+mass = 42232.2
+
+[node name="rock-medium-02" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.2571, 9.95968, -11.2181)
+mass = 336131.0
+
+[node name="rock-small-03" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.5962, 1.04865, 39.5996)
+mass = 74508.5
+
+[node name="rock-large-02" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3373, -70.2611, 38.1708)
+mass = 810415.0
+
+[node name="rock-medium-04" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.0334, -80.9193, 23.2505)
+mass = 386458.0
+
+[node name="rock-large-03" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.3031, -27.8469, -29.4779)
+mass = 3.77967e+06
+
+[node name="rock-small-05" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.14, -88.6176, -88.3608)
+mass = 14096.6

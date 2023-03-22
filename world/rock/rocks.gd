@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 # Adapted Volume.zip from https://github.com/godotengine/godot-proposals/issues/2293
@@ -5,12 +6,13 @@ var DEFAULT_DENSITY = 3500  # kg per cubic meters
 
 
 func _ready():
+	RandomSeed._ready()  # autoloads are not initialized when running as @tool
 	_randomize_children_postions()
 
 	var time1 = Time.get_ticks_msec()
-	_calculate_children_masses()
-	var time2 = Time.get_ticks_msec()
-	print("Mass calculation took ", time2 - time1, "ms")
+	if _calculate_children_masses() > 0:
+		var time2 = Time.get_ticks_msec()
+		print("Mass calculation took ", time2 - time1, "ms.")
 
 
 func _randomize_children_postions():
@@ -25,17 +27,23 @@ func _randomize_children_postions():
 
 
 func _calculate_children_masses():
+	var total_mass_calculated := 0.0
 	for child in get_children():
 		if child is RigidBody3D:
-			_calculate_mass(child as RigidBody3D)
+			total_mass_calculated += _calculate_mass(child as RigidBody3D)
+	return total_mass_calculated
 
 
 func _calculate_mass(rigid_body: RigidBody3D):
+	var total_mass_calculated := 0.0
 	for child in rigid_body.get_children():
 		if child is MeshInstance3D:
 			var mesh_instance := child as MeshInstance3D
-			var volume := _calculate_mesh_volume(mesh_instance.mesh)
-			rigid_body.mass = volume * DEFAULT_DENSITY
+			if rigid_body.mass == 1:
+				var volume := _calculate_mesh_volume(mesh_instance.mesh)
+				rigid_body.mass = volume * DEFAULT_DENSITY
+				total_mass_calculated += rigid_body.mass
+	return total_mass_calculated
 
 
 func _calculate_mesh_volume(mesh: ArrayMesh) -> float:

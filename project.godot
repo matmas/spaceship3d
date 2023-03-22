@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Quit="*res://singletons/quit.gd"
 FpsMonitor="*res://singletons/fps_monitor.gd"
 Signals="*res://singletons/signals.gd"
+RandomSeed="*res://singletons/random_seed.gd"
 
 [input]
 
