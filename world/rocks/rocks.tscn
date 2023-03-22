@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://hyvt1e0rb5ep"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://8ti13pxr5tqo" path="res://world/rock/rocks.blend" id="1_vs08q"]
-[ext_resource type="Script" path="res://world/rock/rocks.gd" id="2_jvm0w"]
+[ext_resource type="PackedScene" uid="uid://8ti13pxr5tqo" path="res://world/rocks/rocks.blend" id="1_vs08q"]
+[ext_resource type="Script" path="res://world/rocks/rocks.gd" id="2_jvm0w"]
 
 [node name="Rocks" instance=ExtResource("1_vs08q")]
 script = ExtResource("2_jvm0w")
