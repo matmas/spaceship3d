@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var camera_pivot := $CameraPivot
+@onready var ship = get_parent()
 
 var steering_direction := Vector2()
 
@@ -11,8 +12,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	var ship = get_parent()
-
 	ship.apply_central_impulse(
 		ship.global_transform.basis * Vector3(
 			Input.get_axis("move_right", "move_left") * 50,
