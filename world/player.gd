@@ -1,23 +1,17 @@
 extends Node3D
 
-@onready var ship := $Ship
-@onready var camera_pivot := $Ship/CameraPivot
-@onready var engine_rear_left := $Ship/EngineRearL
-@onready var engine_rear_right := $Ship/EngineRearR
-@onready var engine_front_left := $Ship/EngineFrontL
-@onready var engine_front_right := $Ship/EngineFrontR
+@onready var camera_pivot := $CameraPivot
 
 var steering_direction := Vector2()
-var previous_linear_velocity := Vector3()
+
 
 func _ready():
 	Signals.steering_direction_changed.connect(func(d): steering_direction = d)
 
-	# We need to change particle velocities independently
-	for particles in [engine_rear_left, engine_rear_right, engine_front_left, engine_front_right]:
-		particles.process_material = particles.process_material.duplicate()
 
 func _physics_process(delta):
+	var ship = get_parent()
+
 	ship.apply_central_impulse(
 		ship.global_transform.basis * Vector3(
 			Input.get_axis("move_right", "move_left") * 50,
@@ -28,25 +22,8 @@ func _physics_process(delta):
 	ship.apply_torque_impulse(ship.global_transform.basis * Vector3(steering_direction.y * 0.1, -steering_direction.x, Input.get_axis("roll_left", "roll_right")) * delta * 20)
 
 	var local_linear_velocity = ship.global_transform.basis.inverse() * ship.linear_velocity
-	var linear_accel = local_linear_velocity - previous_linear_velocity
 
 	camera_pivot.position = local_linear_velocity * delta * -10
 	camera_pivot.rotation_order = EULER_ORDER_XYZ
 	camera_pivot.rotation = ship.angular_velocity * delta * -10
 
-	var pos_linear_accel := Vector3(max(0, linear_accel.x), max(0, linear_accel.y), max(0, linear_accel.z))
-	var neg_linear_accel := Vector3(min(0, linear_accel.x), min(0, linear_accel.y), min(0, linear_accel.z))
-
-	set_engine_power(engine_rear_left, pos_linear_accel.z - neg_linear_accel.x + abs(linear_accel.y))
-	set_engine_power(engine_rear_right, pos_linear_accel.z + pos_linear_accel.x + abs(linear_accel.y))
-	set_engine_power(engine_front_left, -neg_linear_accel.z - neg_linear_accel.x + abs(linear_accel.y))
-	set_engine_power(engine_front_right, -neg_linear_accel.z + pos_linear_accel.x + abs(linear_accel.y))
-
-	for particles in [engine_front_left, engine_front_right]:
-		particles.emitting = particles.process_material.initial_velocity_max > 0.1
-
-	previous_linear_velocity = local_linear_velocity
-
-func set_engine_power(engine, value):
-	engine.process_material.initial_velocity_min = value * 10
-	engine.process_material.initial_velocity_max = value * 10

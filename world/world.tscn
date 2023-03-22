@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://brk176a1m0icx"]
+[gd_scene load_steps=9 format=3 uid="uid://brk176a1m0icx"]
 
+[ext_resource type="PackedScene" uid="uid://bnpbg401y66fu" path="res://world/ships/bob.tscn" id="2_75csh"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://x55h4ged4gsv" path="res://world/npc.tscn" id="3_3cqi8"]
+[ext_resource type="PackedScene" uid="uid://cqnm543srba2b" path="res://world/ships/challenger.tscn" id="4_2affa"]
 [ext_resource type="PackedScene" uid="uid://ban0bjhjmj3o3" path="res://world/player.tscn" id="6_vdjps"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
@@ -28,6 +30,10 @@ shadow_enabled = true
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
 
-[node name="Player" parent="." instance=ExtResource("6_vdjps")]
+[node name="Bob" parent="." instance=ExtResource("2_75csh")]
 
-[node name="Npc" parent="." instance=ExtResource("3_3cqi8")]
+[node name="Player" parent="Bob" instance=ExtResource("6_vdjps")]
+
+[node name="Challenger" parent="." instance=ExtResource("4_2affa")]
+
+[node name="Npc" parent="Challenger" instance=ExtResource("3_3cqi8")]

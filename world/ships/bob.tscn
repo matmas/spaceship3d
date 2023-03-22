@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://bnpbg401y66fu"]
 
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://world/ships/bob.blend" id="1_1oewq"]
+[ext_resource type="Script" path="res://world/ships/ship.gd" id="2_7jk12"]
 [ext_resource type="PackedScene" uid="uid://c7qmea4hlshj0" path="res://world/ships/engine.tscn" id="2_m2qdx"]
 
 [sub_resource type="ConvexPolygonShape3D" id="6"]
@@ -26,6 +27,7 @@ gravity_scale = 0.0
 can_sleep = false
 linear_damp = 5.0
 angular_damp = 5.0
+script = ExtResource("2_7jk12")
 
 [node name="CollisionShape6" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("6")
