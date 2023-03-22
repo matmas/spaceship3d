@@ -14,9 +14,9 @@ func _ready():
 		particles.process_material = particles.process_material.duplicate()
 
 
-func _process(delta):
+func _physics_process(delta):
 	var local_linear_velocity = global_transform.basis.inverse() * linear_velocity
-	var linear_accel = local_linear_velocity - previous_linear_velocity
+	var linear_accel = (local_linear_velocity - previous_linear_velocity) * delta
 
 	var pos_linear_accel := Vector3(max(0, linear_accel.x), max(0, linear_accel.y), max(0, linear_accel.z))
 	var neg_linear_accel := Vector3(min(0, linear_accel.x), min(0, linear_accel.y), min(0, linear_accel.z))
@@ -33,5 +33,5 @@ func _process(delta):
 
 
 func set_engine_power(engine, value):
-	engine.process_material.initial_velocity_min = value * 10
-	engine.process_material.initial_velocity_max = value * 10
+	engine.process_material.initial_velocity_min = value * 500
+	engine.process_material.initial_velocity_max = value * 500
