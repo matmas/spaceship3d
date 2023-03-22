@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://dbbeneootigx6"]
 
 [ext_resource type="PackedScene" uid="uid://b4wbjukwuv8gh" path="res://world/ship/bob.tscn" id="1_fbhxb"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
+[ext_resource type="PackedScene" uid="uid://cibj8cfe4fql5" path="res://world/ship/challenger.tscn" id="3_ybngj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,3 +29,6 @@ shadow_enabled = true
 [node name="bob" parent="." instance=ExtResource("1_fbhxb")]
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
+
+[node name="Challenger" parent="." instance=ExtResource("3_ybngj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
