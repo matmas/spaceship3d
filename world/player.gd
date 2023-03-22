@@ -7,6 +7,7 @@ var steering_direction := Vector2()
 
 func _ready():
 	Signals.steering_direction_changed.connect(func(d): steering_direction = d)
+	camera_pivot.rotation_order = EULER_ORDER_XYZ
 
 
 func _physics_process(delta):
@@ -24,6 +25,4 @@ func _physics_process(delta):
 	var local_linear_velocity = ship.global_transform.basis.inverse() * ship.linear_velocity
 
 	camera_pivot.position = local_linear_velocity * delta * -10
-	camera_pivot.rotation_order = EULER_ORDER_XYZ
 	camera_pivot.rotation = ship.angular_velocity * delta * -10
-
