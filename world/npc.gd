@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var ship := get_parent()
+@onready var ship: RigidBody3D = get_parent()
 
 
 func _ready():
@@ -13,3 +13,4 @@ func _ready():
 
 func _physics_process(delta):
 	pass
+#	ship.apply_torque_impulse()

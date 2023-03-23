@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://brk176a1m0icx"]
 
-[ext_resource type="PackedScene" uid="uid://bnpbg401y66fu" path="res://world/ships/bob.tscn" id="2_75csh"]
+[ext_resource type="PackedScene" uid="uid://8vtiiinibdsn" path="res://world/ships/bob.tscn" id="2_75csh"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://x55h4ged4gsv" path="res://world/npc.tscn" id="3_3cqi8"]
-[ext_resource type="PackedScene" uid="uid://cqnm543srba2b" path="res://world/ships/challenger.tscn" id="4_2affa"]
+[ext_resource type="PackedScene" uid="uid://g3h2e3e45n6g" path="res://world/ships/challenger.tscn" id="4_2affa"]
 [ext_resource type="PackedScene" uid="uid://ban0bjhjmj3o3" path="res://world/player.tscn" id="6_vdjps"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]

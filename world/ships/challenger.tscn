@@ -1,26 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqnm543srba2b"]
+[gd_scene load_steps=4 format=3 uid="uid://g3h2e3e45n6g"]
 
 [ext_resource type="PackedScene" uid="uid://dunynvbxapgnk" path="res://world/ships/challenger.blend" id="1_hjkej"]
-[ext_resource type="Script" path="res://world/ships/ship.gd" id="2_j6ygg"]
-[ext_resource type="PackedScene" uid="uid://c7qmea4hlshj0" path="res://world/ships/engine.tscn" id="2_rbi65"]
+[ext_resource type="PackedScene" uid="uid://cxb4vxqscuh1w" path="res://world/ships/engines/engines.tscn" id="3_q5a0k"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmryw"]
 points = PackedVector3Array(-0.509897, -0.173615, -3.05192, -2.28837, -0.661415, -2.57659, -5.25111, -0.167107, -2.16104, -1.09998, 2.2006, -3.04394, 0.508868, -0.173615, -3.05192, -1.00335, -0.821451, -1.49538, -2.28837, -0.661415, 0.375049, 2.28734, -0.661415, -2.57659, -5.25111, -0.167107, -1.88003, -5.25111, -0.131905, -2.16104, -1.09998, 2.2006, -2.96522, 1.09895, 2.2006, -3.04394, 5.25111, -0.167107, -2.16104, -1.00335, -0.821451, 3.3795, 1.00232, -0.821451, -1.49538, 2.28734, -0.661415, 0.375049, -5.25111, -0.131905, -1.88003, -0.666156, -0.797194, 5.92057, -0.666156, 0.00298673, 7.12833, 1.09895, 2.2006, -2.96522, 5.25111, -0.131905, -2.16104, 5.25111, -0.167107, -1.88003, 1.00232, -0.821451, 3.3795, 0.665127, -0.797194, 5.92057, 0.665127, 0.00298673, 7.12833, 5.25111, -0.131905, -1.88003)
 
 [node name="Challenger" instance=ExtResource("1_hjkej")]
-script = ExtResource("2_j6ygg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("ConvexPolygonShape3D_gmryw")
 
-[node name="EngineRearL" parent="." index="2" instance=ExtResource("2_rbi65")]
+[node name="Engines" parent="." index="2" instance=ExtResource("3_q5a0k")]
+
+[node name="EngineRearL" parent="Engines" index="0"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.3, 0, -2)
 
-[node name="EngineRearR" parent="." index="3" instance=ExtResource("2_rbi65")]
+[node name="EngineRearR" parent="Engines" index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.3, 0, -2)
 
-[node name="EngineFrontL" parent="." index="4" instance=ExtResource("2_rbi65")]
+[node name="EngineFrontR" parent="Engines" index="2"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1.7, -0.1, 1.7)
 
-[node name="EngineFrontR" parent="." index="5" instance=ExtResource("2_rbi65")]
+[node name="EngineFrontL" parent="Engines" index="3"]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -1.7, -0.1, 1.7)
+
+[editable path="Engines"]
