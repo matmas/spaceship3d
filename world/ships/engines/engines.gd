@@ -17,7 +17,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	var local_linear_velocity = ship.global_transform.basis.inverse() * ship.linear_velocity
+	var linear_velocity = ship.linear_velocity if ship is RigidBody3D else ship.velocity
+	var local_linear_velocity = ship.global_transform.basis.inverse() * linear_velocity
 	var linear_accel = (local_linear_velocity - previous_linear_velocity) * delta
 	var pos_linear_accel := Vector3(max(0, linear_accel.x), max(0, linear_accel.y), max(0, linear_accel.z))
 	var neg_linear_accel := Vector3(min(0, linear_accel.x), min(0, linear_accel.y), min(0, linear_accel.z))
