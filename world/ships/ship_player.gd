@@ -29,11 +29,11 @@ func _physics_process(delta):
 #	move_and_slide()
 
 	var angular_acceleration: Vector3 = Vector3(
-		-steering_direction.y,
-		steering_direction.x,
-		-Input.get_axis("roll_left", "roll_right"),
+		steering_direction.y,
+		-steering_direction.x,
+		Input.get_axis("roll_left", "roll_right"),
 	)
-	apply_torque(global_transform.basis * (angular_acceleration * -Vector3(60, 600, 600) * delta))
+	apply_torque(global_transform.basis * (angular_acceleration * Vector3(60, 600, 600) * delta))
 #	angular_velocity += angular_acceleration * delta
 #	angular_velocity *= DAMPING_FACTOR ** (delta * 60)
 #	rotate_object_local(Vector3.RIGHT, angular_acceleration.x * -delta)
