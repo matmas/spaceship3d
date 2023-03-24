@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bob.blend-43dd4599bd4f42dbd0e3c56934f48ab2.sc
 
 [params]
 
-nodes/root_type="CharacterBody3D"
+nodes/root_type="RigidBody3D"
 nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
