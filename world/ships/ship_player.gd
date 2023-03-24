@@ -23,7 +23,7 @@ func _physics_process(delta):
 		Input.get_axis("move_down", "move_up"),
 		Input.get_axis("move_backward", "move_forward"),
 	).normalized() * Vector3(50, 50, 100)
-	apply_central_impulse(linear_acceleration * delta)
+	apply_central_force(linear_acceleration * delta * 60)
 #	velocity += linear_acceleration * delta
 #	velocity *= DAMPING_FACTOR ** (delta * 60)
 #	move_and_slide()
@@ -33,7 +33,7 @@ func _physics_process(delta):
 		steering_direction.x,
 		-Input.get_axis("roll_left", "roll_right"),
 	)
-	apply_torque_impulse(global_transform.basis * (angular_acceleration * -Vector3(2, 20, 20) * delta))
+	apply_torque(global_transform.basis * (angular_acceleration * -Vector3(60, 600, 600) * delta))
 #	angular_velocity += angular_acceleration * delta
 #	angular_velocity *= DAMPING_FACTOR ** (delta * 60)
 #	rotate_object_local(Vector3.RIGHT, angular_acceleration.x * -delta)
