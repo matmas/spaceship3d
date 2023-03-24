@@ -1,4 +1,5 @@
-extends CharacterBody3D
+extends RigidBody3D
+#extends CharacterBody3D
 
 
 func _ready():
