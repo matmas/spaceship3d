@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var ship: RigidBody3D = get_parent()
+@onready var ship: CharacterBody3D = get_parent()
 
 @onready var engine_rear_left := $EngineRearL
 @onready var engine_rear_right := $EngineRearR
@@ -17,7 +17,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	var local_linear_velocity = ship.global_transform.basis.inverse() * ship.linear_velocity
+	var local_linear_velocity = ship.global_transform.basis.inverse() * ship.velocity
 	var linear_accel = (local_linear_velocity - previous_linear_velocity) * delta
 	var pos_linear_accel := Vector3(max(0, linear_accel.x), max(0, linear_accel.y), max(0, linear_accel.z))
 	var neg_linear_accel := Vector3(min(0, linear_accel.x), min(0, linear_accel.y), min(0, linear_accel.z))
