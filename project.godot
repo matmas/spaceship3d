@@ -22,6 +22,10 @@ FpsMonitor="*res://singletons/fps_monitor.gd"
 Signals="*res://singletons/signals.gd"
 RandomSeed="*res://singletons/random_seed.gd"
 
+[display]
+
+window/size/mode=2
+
 [input]
 
 move_right={
