@@ -15,4 +15,3 @@ func _ready():
 func _physics_process(_delta):
 	point_at(player.global_position)
 	match_roll_with(player)
-	move_to_position(player.global_transform * Vector3(0, 0, 20))

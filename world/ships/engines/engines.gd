@@ -16,7 +16,7 @@ func _ready():
 		particles.process_material = particles.process_material.duplicate()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var linear_velocity = ship.linear_velocity if ship is RigidBody3D else ship.velocity
 	var local_linear_velocity = ship.global_transform.basis.inverse() * linear_velocity
 	var linear_accel = (local_linear_velocity - previous_linear_velocity) * 0.016

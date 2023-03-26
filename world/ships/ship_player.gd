@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends "res://world/ships/ship.gd"
 
 var steering_direction := Vector2()
 
@@ -6,14 +6,11 @@ var steering_direction := Vector2()
 #var angular_velocity := Vector3()
 
 func _ready():
+	super._ready()
 	Signals.steering_direction_changed.connect(func(d): steering_direction = d)
-	can_sleep = false
-	gravity_scale = 0
-	linear_damp = 5
-	angular_damp = 5
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var linear_acceleration: Vector3 = global_transform.basis * Vector3(
 		Input.get_axis("move_right", "move_left"),
 		Input.get_axis("move_down", "move_up"),

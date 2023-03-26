@@ -12,12 +12,12 @@ func _ready():
 	current_global_transform = target.global_transform
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	previous_global_transform = current_global_transform
 	current_global_transform = target.global_transform
 
 
-func _process(delta):
+func _process(_delta):
 	global_transform = target.global_transform
 	var f := Engine.get_physics_interpolation_fraction()
 	global_transform = previous_global_transform.interpolate_with(current_global_transform, f)
