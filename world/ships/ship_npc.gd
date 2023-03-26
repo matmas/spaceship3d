@@ -39,10 +39,6 @@ func move_to_position(target_position: Vector3):
 	self.apply_central_force(correction * 4)
 
 
-func move_to(target: Node3D):
-	return move_to_position(target.global_position)
-
-
 func _physics_process(_delta):
 	point_at(player.global_position)
 	match_roll_with(player)
