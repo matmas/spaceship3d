@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://8vtiiinibdsn"]
+[gd_scene load_steps=10 format=3 uid="uid://b20jbco7ld7or"]
 
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://world/ships/bob.blend" id="1_1oewq"]
+[ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_60k5j"]
 [ext_resource type="PackedScene" uid="uid://cxb4vxqscuh1w" path="res://world/ships/engines/engines.tscn" id="3_u7cyd"]
 
 [sub_resource type="ConvexPolygonShape3D" id="6"]
@@ -23,6 +24,14 @@ points = PackedVector3Array(0.348048, 0.721279, -1.88415, -0.580232, -0.845018, 
 
 [node name="Bob" instance=ExtResource("1_1oewq")]
 
+[node name="Bob" parent="." index="0"]
+script = ExtResource("2_60k5j")
+
+[node name="CameraPosition" type="Node3D" parent="Bob" index="0"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.215, -8)
+
+[node name="Engines" parent="Bob" index="1" instance=ExtResource("3_u7cyd")]
+
 [node name="CollisionShape6" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("6")
 
@@ -40,5 +49,3 @@ shape = SubResource("10")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." index="6"]
 shape = SubResource("11")
-
-[node name="Engines" parent="." index="7" instance=ExtResource("3_u7cyd")]
