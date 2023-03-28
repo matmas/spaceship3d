@@ -27,4 +27,4 @@ func _input(event):
 			cursor_position = (cursor_position - viewport_center) * i + viewport_center
 		position = cursor_position
 		var steering_direction = (cursor_position - viewport_center) / viewport_radius
-		Signals.emit_signal("steering_direction_changed", steering_direction)
+		Signals.steering_direction_changed.emit(steering_direction)

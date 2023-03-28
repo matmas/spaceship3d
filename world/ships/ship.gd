@@ -27,6 +27,6 @@ func match_roll_with(target: Node3D):
 	return correction.length() < 0.2
 
 
-func move_to_position(target_position: Vector3):
+func move_to_position(target_position: Vector3, max_accel = 100):
 	var correction := target_position - global_position
-	self.apply_central_force(correction * 4)
+	self.apply_central_force(correction.normalized() * min(correction.length() * linear_damp, max_accel))
