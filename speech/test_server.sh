@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
 script_dir=$(dirname "$(realpath $0)")
-virtualenv_dir="$script_dir/.venv"
+project_root=$(dirname "$script_dir")
+virtualenv_dir="$project_root/.venv"
 
 if [ ! -d "$virtualenv_dir" ]; then
     python -m venv "$virtualenv_dir"
