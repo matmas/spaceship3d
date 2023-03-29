@@ -10,7 +10,7 @@ func _ready():
 	)
 	await get_tree().create_timer(5).timeout
 	Signals.talk.emit("p347", "Hello?")
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(0.3).timeout
 	Signals.talk.emit("p347", "Are you still there?")
 	await get_tree().create_timer(10).timeout
 	Signals.talk.emit("p335", "This is getting weird...")
