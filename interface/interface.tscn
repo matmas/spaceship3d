@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://trlph81jl5xe"]
+[gd_scene load_steps=6 format=3 uid="uid://trlph81jl5xe"]
 
 [ext_resource type="Script" path="res://interface/crosshair.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bewl13bwbqrot" path="res://interface/crosshairs.png" id="2"]
 [ext_resource type="Script" path="res://interface/subtitles.gd" id="3_twb4b"]
+[ext_resource type="Script" path="res://interface/speech.gd" id="4_lai4d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m37r4"]
 font_size = 30
@@ -31,3 +32,6 @@ horizontal_alignment = 1
 script = ExtResource("3_twb4b")
 
 [node name="Timer" type="Timer" parent="Subtitles"]
+
+[node name="Speech" type="AudioStreamPlayer" parent="."]
+script = ExtResource("4_lai4d")

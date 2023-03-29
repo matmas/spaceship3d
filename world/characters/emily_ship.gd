@@ -1,7 +1,5 @@
 extends "res://world/characters/ship.gd"
 
-@onready var player: Node3D = $"../../Player/Bob"
-
 
 func _ready():
 	super._ready()
@@ -19,6 +17,7 @@ func _ready():
 
 
 func _physics_process(_delta):
+	var player := Globals.player
 	point_at(player.global_position)
 	match_roll_with(player)
 	move_to_position(player.global_transform * Vector3(0, 0, 20))

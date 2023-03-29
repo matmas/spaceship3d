@@ -6,6 +6,7 @@ var steering_direction := Vector2()
 #var angular_velocity := Vector3()
 
 func _ready():
+	Globals.player = self
 	super._ready()
 	Signals.steering_direction_changed.connect(func(d): steering_direction = d)
 

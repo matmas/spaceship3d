@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://deb5vwg1mtl38"]
+
+[ext_resource type="PackedScene" path="res://world/characters/ships/challenger.tscn" id="1_88h2s"]
+[ext_resource type="Script" path="res://world/characters/emily_ship.gd" id="2_s4o6l"]
+
+[node name="Emily" type="Node"]
+
+[node name="Challenger" parent="." instance=ExtResource("1_88h2s")]
+script = ExtResource("2_s4o6l")

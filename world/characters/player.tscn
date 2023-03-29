@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://world/characters/player_ship.gd" id="2_e4fxp"]
 [ext_resource type="Script" path="res://world/characters/player_camera.gd" id="3_u3f4f"]
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node"]
 
 [node name="Bob" parent="." instance=ExtResource("1_3ds87")]
 script = ExtResource("2_e4fxp")

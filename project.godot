@@ -21,6 +21,7 @@ Quit="*res://singletons/quit.gd"
 FpsMonitor="*res://singletons/fps_monitor.gd"
 Signals="*res://singletons/signals.gd"
 RandomSeed="*res://singletons/random_seed.gd"
+Globals="*res://singletons/globals.gd"
 
 [display]
 

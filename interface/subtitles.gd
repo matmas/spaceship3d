@@ -6,7 +6,6 @@ extends Label
 const PAUSE_SECONDS = 4
 const CHARACTERS_PER_SECOND = 25.0
 
-# Use coqui-ai to test: tts-server --model_name tts_models/en/vctk/vits
 var SPEAKER_COLORS = {
 	"p226": Color.LIGHT_SKY_BLUE,  # young male
 	"p227": Color.DARK_VIOLET,  # female
