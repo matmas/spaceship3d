@@ -1,13 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://brk176a1m0icx"]
+[gd_scene load_steps=8 format=3 uid="uid://brk176a1m0icx"]
 
-[ext_resource type="PackedScene" uid="uid://b20jbco7ld7or" path="res://world/ships/bob.tscn" id="2_75csh"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
-[ext_resource type="Script" path="res://world/ships/ship_player.gd" id="3_r5rye"]
-[ext_resource type="PackedScene" uid="uid://g3h2e3e45n6g" path="res://world/ships/challenger.tscn" id="4_2affa"]
-[ext_resource type="Script" path="res://world/ships/ship_npc.gd" id="5_g87dr"]
-[ext_resource type="PackedScene" uid="uid://745m1suxqsl1" path="res://world/ships/dispatcher.tscn" id="6_qc87m"]
-[ext_resource type="Script" path="res://world/ships/ship_enemy.gd" id="7_ffdjq"]
-[ext_resource type="Script" path="res://world/camera.gd" id="7_j5rgi"]
+[ext_resource type="PackedScene" uid="uid://cj2qckw18fj48" path="res://world/characters/player.tscn" id="2_yd5yb"]
+[ext_resource type="PackedScene" uid="uid://cmja4bpbg2opt" path="res://world/characters/npc.tscn" id="3_ra1xe"]
+[ext_resource type="PackedScene" uid="uid://dwix1dq32oa8m" path="res://world/characters/enemy.tscn" id="4_in4dj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -33,14 +29,8 @@ shadow_enabled = true
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
 
-[node name="Bob" parent="." instance=ExtResource("2_75csh")]
-script = ExtResource("3_r5rye")
+[node name="Player" parent="." instance=ExtResource("2_yd5yb")]
 
-[node name="Challenger" parent="." instance=ExtResource("4_2affa")]
-script = ExtResource("5_g87dr")
+[node name="Npc" parent="." instance=ExtResource("3_ra1xe")]
 
-[node name="Dispatcher" parent="." instance=ExtResource("6_qc87m")]
-script = ExtResource("7_ffdjq")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-script = ExtResource("7_j5rgi")
+[node name="Enemy" parent="." instance=ExtResource("4_in4dj")]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd0jni6c8bpc2"]
+
+[ext_resource type="PackedScene" uid="uid://b20jbco7ld7or" path="res://world/characters/ships/bob.tscn" id="1_3ds87"]
+[ext_resource type="Script" path="res://world/characters/player_ship.gd" id="2_e4fxp"]
+[ext_resource type="Script" path="res://world/characters/player_camera.gd" id="3_u3f4f"]
+
+[node name="Player" type="Node3D"]
+
+[node name="Bob" parent="." instance=ExtResource("1_3ds87")]
+script = ExtResource("2_e4fxp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+script = ExtResource("3_u3f4f")

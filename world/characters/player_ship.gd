@@ -1,4 +1,4 @@
-extends "res://world/ships/ship.gd"
+extends "res://world/characters/ship.gd"
 
 var steering_direction := Vector2()
 

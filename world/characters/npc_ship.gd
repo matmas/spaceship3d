@@ -1,6 +1,6 @@
-extends "res://world/ships/ship.gd"
+extends "res://world/characters/ship.gd"
 
-@onready var player: Node3D = $"../Bob"
+@onready var player: Node3D = $"../../Player/Bob"
 
 
 func _ready():

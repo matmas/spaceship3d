@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cpaqivmcfh6w7"
-path="res://.godot/imported/dispatcher.blend-c4f9d8fb5a76ef5ae94afb2771ac561b.scn"
+uid="uid://dunynvbxapgnk"
+path="res://.godot/imported/challenger.blend-864ff933f52838b40123588dddaa19e6.scn"
 
 [deps]
 
-source_file="res://world/ships/dispatcher.blend"
-dest_files=["res://.godot/imported/dispatcher.blend-c4f9d8fb5a76ef5ae94afb2771ac561b.scn"]
+source_file="res://world/characters/ships/challenger.blend"
+dest_files=["res://.godot/imported/challenger.blend-864ff933f52838b40123588dddaa19e6.scn"]
 
 [params]
 

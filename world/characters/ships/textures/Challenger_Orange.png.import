@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dogth0iginws1"
-path.s3tc="res://.godot/imported/Bob_Orange.png-a350e1083c4322ca3a79d9c4e0521ad5.s3tc.ctex"
-path.etc2="res://.godot/imported/Bob_Orange.png-a350e1083c4322ca3a79d9c4e0521ad5.etc2.ctex"
+uid="uid://gaqfhu7w6fpf"
+path.s3tc="res://.godot/imported/Challenger_Orange.png-c947fa73644cfc2939b3789bfba35efd.s3tc.ctex"
+path.etc2="res://.godot/imported/Challenger_Orange.png-c947fa73644cfc2939b3789bfba35efd.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://world/ships/textures/Bob_Orange.png"
-dest_files=["res://.godot/imported/Bob_Orange.png-a350e1083c4322ca3a79d9c4e0521ad5.s3tc.ctex", "res://.godot/imported/Bob_Orange.png-a350e1083c4322ca3a79d9c4e0521ad5.etc2.ctex"]
+source_file="res://world/characters/ships/textures/Challenger_Orange.png"
+dest_files=["res://.godot/imported/Challenger_Orange.png-c947fa73644cfc2939b3789bfba35efd.s3tc.ctex", "res://.godot/imported/Challenger_Orange.png-c947fa73644cfc2939b3789bfba35efd.etc2.ctex"]
 
 [params]
 
