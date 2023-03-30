@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dgg8gd7pv5ls4"]
 
+[ext_resource type="PackedScene" uid="uid://dbwo2jy3bdskj" path="res://world/characters/player/player.tscn" id="2_2nl84"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
-[ext_resource type="PackedScene" uid="uid://bd0jni6c8bpc2" path="res://world/characters/player.tscn" id="2_yd5yb"]
-[ext_resource type="PackedScene" path="res://world/characters/guide/guide.tscn" id="3_6ask7"]
+[ext_resource type="PackedScene" uid="uid://sliyxuy8brys" path="res://world/characters/guide/guide.tscn" id="3_6ask7"]
 [ext_resource type="PackedScene" uid="uid://djim47lr5srek" path="res://world/characters/enemy/enemy.tscn" id="4_nj140"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
@@ -29,7 +29,7 @@ shadow_enabled = true
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
 
-[node name="Player" parent="." instance=ExtResource("2_yd5yb")]
+[node name="Player" parent="." instance=ExtResource("2_2nl84")]
 
 [node name="Guide" parent="." instance=ExtResource("3_6ask7")]
 
