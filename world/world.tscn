@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgg8gd7pv5ls4"]
+[gd_scene load_steps=9 format=3 uid="uid://dgg8gd7pv5ls4"]
 
+[ext_resource type="PackedScene" uid="uid://bgbox7t0bcnah" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
 [ext_resource type="PackedScene" uid="uid://dbwo2jy3bdskj" path="res://world/characters/player/player.tscn" id="2_2nl84"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://sliyxuy8brys" path="res://world/characters/guide/guide.tscn" id="3_6ask7"]
@@ -23,9 +24,7 @@ glow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gyq2f")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
+[node name="DirectionalLight" parent="." instance=ExtResource("1_n62dy")]
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
 

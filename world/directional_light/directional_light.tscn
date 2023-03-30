@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgbox7t0bcnah"]
+
+[ext_resource type="Shader" path="res://world/directional_light/lens_flare.gdshader" id="1_50w50"]
+[ext_resource type="Script" path="res://world/directional_light/lens_flare.gd" id="2_woggv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_setbf"]
+shader = ExtResource("1_50w50")
+shader_parameter/sun_position = Vector2(0, 0)
+shader_parameter/tint = Vector3(1.4, 1.2, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_luqmi"]
+
+[node name="DirectionalLight" type="DirectionalLight3D"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="LensFlare" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_setbf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_luqmi")
+script = ExtResource("2_woggv")
