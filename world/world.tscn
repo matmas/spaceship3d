@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dgg8gd7pv5ls4"]
 
-[ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
+[ext_resource type="PackedScene" uid="uid://bgbox7t0bcnah" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
 [ext_resource type="PackedScene" uid="uid://dbwo2jy3bdskj" path="res://world/characters/player/player.tscn" id="2_2nl84"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://sliyxuy8brys" path="res://world/characters/guide/guide.tscn" id="3_6ask7"]
