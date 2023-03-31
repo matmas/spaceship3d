@@ -1,13 +1,13 @@
-shader_type canvas_item;
-render_mode blend_mix;
-// Based on Godot 4.x adaptation by malhotraprateek https://godotshaders.com/shader/lens-flare-shader/ (MIT license)
-// Original shader by mu6k https://www.shadertoy.com/view/4sX3Rs (Unlicense license)
+shader_type spatial;
+render_mode blend_mix, unshaded, depth_draw_opaque, cull_disabled;
 
 uniform vec2 sun_position = vec2(0.0);
 uniform vec3 tint = vec3(1.4, 1.2, 1.0);
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+//uniform sampler2D depth_texture : hint_depth_texture;
 
-vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution) {
+
+vec3 lensflare(vec2 uv, vec2 pos) {
 	vec2 main = uv - pos;
 	vec2 uvd = uv * (length(uv));
 	
@@ -48,16 +48,30 @@ vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution) {
 	return c;
 }
 
+mat4 translation(vec3 position) {
+	return mat4(
+			vec4(1.0, 0.0, 0.0, 0.0),
+			vec4(0.0, 1.0, 0.0, 0.0),
+			vec4(0.0, 0.0, 1.0, 0.0),
+			vec4(position, 1.0)
+	);
+}
+
+void vertex() {
+	float near = 0.05;
+	MODELVIEW_MATRIX = mat4(1.0) + translation(vec3(0., 0., -(near + 0.0001)));
+}
+
 void fragment() {
-	vec2 texResolution = 1.0 / TEXTURE_PIXEL_SIZE;
-	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
+	vec2 uv = FRAGCOORD.xy / VIEWPORT_SIZE.xy - 0.5;
+	uv.x *= VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;  // fix aspect ratio
+	vec2 sun = (sun_position.xy / VIEWPORT_SIZE.xy) - vec2(0.5, 0.5);
+	sun.x *= VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;  // fix aspect ratio
 	
-	vec2 uv = FRAGCOORD.xy / resolution.xy - 0.5;
-	uv.x *= resolution.x / resolution.y;  // fix aspect ratio
-	vec2 sun = (sun_position.xy / resolution.xy) - vec2(0.5, 0.5);
-	sun.x *= resolution.x / resolution.y;  // fix aspect ratio
+	ALBEDO = texture(screen_texture, SCREEN_UV).rgb;
+	ALBEDO += tint * lensflare(uv, sun.xy) * 0.5;
 	
-	vec3 color = texture(screen_texture, SCREEN_UV).rgb;
-	color += tint * lensflare(uv, sun.xy, texResolution);
-	COLOR = vec4(color, 1.0);
+//	float depth = texture(depth_texture, SCREEN_UV).r;
+//    float dist = (INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, depth, 1.0)).w;
+//	ALBEDO = vec3(dist);
 }
