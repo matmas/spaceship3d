@@ -5,6 +5,7 @@ render_mode blend_mix;
 
 uniform vec2 sun_position = vec2(0.0);
 uniform vec3 tint = vec3(1.4, 1.2, 1.0);
+uniform float visibility = 1.0;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
 vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution) {
@@ -58,6 +59,6 @@ void fragment() {
 	sun.x *= resolution.x / resolution.y;  // fix aspect ratio
 	
 	vec3 color = texture(screen_texture, SCREEN_UV).rgb;
-	color += tint * lensflare(uv, sun.xy, texResolution);
+	color += tint * lensflare(uv, sun.xy, texResolution) * visibility;
 	COLOR = vec4(color, 1.0);
 }
