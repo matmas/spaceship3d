@@ -1,25 +1,13 @@
 shader_type canvas_item;
 render_mode blend_mix;
-// Taken from https://godotshaders.com/shader/lens-flare-shader/ (MIT license)
-// Based on https://www.shadertoy.com/view/4sX3Rs (Unlicense license)
+// Based on Godot 4.x adaptation by malhotraprateek https://godotshaders.com/shader/lens-flare-shader/ (MIT license)
+// Original shader by mu6k https://www.shadertoy.com/view/4sX3Rs (Unlicense license)
 
 uniform vec2 sun_position = vec2(0.0);
 uniform vec3 tint = vec3(1.4, 1.2, 1.0);
-uniform sampler2D noise_texture;
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
-float noise_float(float t, vec2 texResolution)
-{
-	return texture(noise_texture, vec2(t, 0.0) / texResolution).x;
-}
-
-float noise_vec2(vec2 t, vec2 texResolution)
-{
-	return texture(noise_texture, t / texResolution).x;
-}
-
-vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution)
-{
+vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution) {
 	vec2 main = uv - pos;
 	vec2 uvd = uv * (length(uv));
 	
@@ -27,17 +15,11 @@ vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution)
 	float dist = length(main);
 	dist = pow(dist, 0.1);
 	
-	float n = noise_vec2(vec2(ang * 16.0, dist * 32.0), texResolution);
-	
-	// Do not need an artificial sun
-	//float f0 = 1.0 / (length(uv - pos) * 16.0 + 1.0);
-	//f0 = f0 + f0 * (sin(noise_float(sin(ang * 2.0 + pos.x) * 4.0 - cos(ang * 3.0 + pos.y), texResolution) * 16.0) * 0.1 + dist * 0.1 + 0.8);
-	
 	float f1 = max(0.01 - pow(length(uv + 1.2 * pos), 1.9), 0.0) * 7.0;
 
-	float f2 = max(1.0 / (1.0 + 32.0 * pow(length(uvd + 0.8 * pos), 2.0)), 0.0) * 00.25;
-	float f22 = max(1.0 / (1.0 + 32.0 * pow(length(uvd + 0.85 * pos), 2.0)), 0.0) * 00.23;
-	float f23 = max(1.0 / (1.0 + 32.0 * pow(length(uvd + 0.9 * pos), 2.0)), 0.0) * 00.21;
+	float f2 = max(1.0 / (1.0 + 32.0 * pow(length(uvd + 0.8 * pos), 2.0)), 0.0) * 0.25;
+	float f22 = max(1.0 / (1.0 + 32.0 * pow(length(uvd + 0.85 * pos), 2.0)), 0.0) * 0.23;
+	float f23 = max(1.0 / (1.0 + 32.0 * pow(length(uvd + 0.9 * pos), 2.0)), 0.0) * 0.21;
 	
 	vec2 uvx = mix(uv, uvd, -0.5);
 	
@@ -62,36 +44,20 @@ vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution)
 	c.r += f2 + f4 + f5 + f6;
 	c.g += f22 + f42 + f52 + f62;
 	c.b += f23 + f43 + f53 + f63;
-	c = c * 1.3 - vec3(length(uvd) * 0.05);
-	
-	// Do not need an artificial sun
-	//c += vec3(f0);
-	
+	c = c * 1.3;
 	return c;
 }
 
-vec3 cc(vec3 color, float factor, float factor2) // color modifier
-{
-	float w = color.x + color.y + color.z;
-	return mix(color, vec3(w) * factor, w * factor2);
-}
-
-void fragment()
-{
+void fragment() {
 	vec2 texResolution = 1.0 / TEXTURE_PIXEL_SIZE;
 	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
 	
 	vec2 uv = FRAGCOORD.xy / resolution.xy - 0.5;
 	uv.x *= resolution.x / resolution.y;  // fix aspect ratio
-	vec2 mouse = (sun_position.xy / resolution.xy) - vec2(0.5, 0.5);
-	mouse.x *= resolution.x / resolution.y;  // fix aspect ratio
+	vec2 sun = (sun_position.xy / resolution.xy) - vec2(0.5, 0.5);
+	sun.x *= resolution.x / resolution.y;  // fix aspect ratio
 	
-	vec4 previousColor = texture(SCREEN_TEXTURE, SCREEN_UV);
-	
-	vec3 color = previousColor.rgb;
-	
-	color += tint * lensflare(uv, mouse.xy, texResolution);
-	color -= noise_vec2(FRAGCOORD.xy, texResolution) * 0.015;
-	color = cc(color, 0.5, 0.1);
+	vec3 color = texture(screen_texture, SCREEN_UV).rgb;
+	color += tint * lensflare(uv, sun.xy, texResolution);
 	COLOR = vec4(color, 1.0);
 }

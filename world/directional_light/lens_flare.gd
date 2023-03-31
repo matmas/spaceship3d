@@ -9,17 +9,14 @@ func get_light_apparent_global_position() -> Vector3:
 
 
 func _process(_delta):
-#	visible = not camera.is_position_behind(effective_sun_direction)
-#	if not camera.is_position_behind(effective_sun_direction):
-	var unprojected_sun_position: Vector2 = camera.unproject_position(get_light_apparent_global_position())
 	var shader := material as ShaderMaterial
-	shader.set_shader_parameter("sun_position", unprojected_sun_position)
+	shader.set_shader_parameter("sun_position", camera.unproject_position(get_light_apparent_global_position()))
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var space_state = directional_light.get_world_3d().direct_space_state
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = camera.global_position
 	params.to = get_light_apparent_global_position()
 	var result := space_state.intersect_ray(params)
-	visible = false if result else true
+	visible = false if result else not camera.is_position_behind(get_light_apparent_global_position())
