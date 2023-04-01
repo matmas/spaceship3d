@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfsisv7bqcc2j"
-path="res://.godot/imported/bob.blend-95cc22d53693273dbb08fb83a5686b75.scn"
+uid="uid://dunynvbxapgnk"
+path="res://.godot/imported/challenger.blend-c092fd1937051a27369db490a3642deb.scn"
 
 [deps]
 
-source_file="res://world/characters/ships/bob.blend"
-dest_files=["res://.godot/imported/bob.blend-95cc22d53693273dbb08fb83a5686b75.scn"]
+source_file="res://world/actors/ships/challenger.blend"
+dest_files=["res://.godot/imported/challenger.blend-c092fd1937051a27369db490a3642deb.scn"]
 
 [params]
 
@@ -28,13 +28,7 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:Bob": {
-"physics/body_type": 1
-}
-}
-}
+_subresources={}
 gltf/embedded_image_handling=1
 blender/nodes/visible=0
 blender/nodes/punctual_lights=true

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://world/actors/ships/dispatcher.tscn" id="1_8fdif"]
+[ext_resource type="Script" path="res://world/actors/enemy/enemy_ship.gd" id="2_kdk75"]
+
+[node name="Enemy" type="Node"]
+
+[node name="Dispatcher" parent="." instance=ExtResource("1_8fdif")]
+script = ExtResource("2_kdk75")
