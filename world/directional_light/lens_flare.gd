@@ -3,9 +3,13 @@ extends TextureRect
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var directional_light: DirectionalLight3D = get_parent()
 
-
 var visibility := 0.0
 var target_visibility := 0.0
+
+
+func _ready():
+	set_process(visible)
+	set_physics_process(visible)
 
 
 func get_light_apparent_global_position() -> Vector3:
