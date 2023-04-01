@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b52601y31luk8"]
+[gd_scene load_steps=9 format=3 uid="uid://blih81l4lsjbw"]
 
 [ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
-[ext_resource type="PackedScene" path="res://world/actors/player/player.tscn" id="2_2nl84"]
+[ext_resource type="PackedScene" path="res://actors/player/player.tscn" id="2_2nl84"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
-[ext_resource type="PackedScene" path="res://world/actors/guide/guide.tscn" id="3_6ask7"]
-[ext_resource type="PackedScene" path="res://world/actors/enemy/enemy.tscn" id="4_nj140"]
+[ext_resource type="PackedScene" path="res://actors/guide/guide.tscn" id="3_6ask7"]
+[ext_resource type="PackedScene" path="res://actors/enemy/enemy.tscn" id="4_nj140"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

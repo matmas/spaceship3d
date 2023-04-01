@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://actors/ships/bob.tscn" id="1_prl2k"]
+[ext_resource type="Script" path="res://actors/player/player_ship.gd" id="2_5uvia"]
+[ext_resource type="Script" path="res://actors/player/player_camera.gd" id="3_mctx5"]
+
+[node name="Player" type="Node"]
+
+[node name="Bob" parent="." instance=ExtResource("1_prl2k")]
+script = ExtResource("2_5uvia")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+script = ExtResource("3_mctx5")

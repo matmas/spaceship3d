@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dunynvbxapgnk"
-path="res://.godot/imported/challenger.blend-c092fd1937051a27369db490a3642deb.scn"
+path="res://.godot/imported/challenger.blend-e76c4c2626bd8c870a40e9ee8dd55eb5.scn"
 
 [deps]
 
-source_file="res://world/actors/ships/challenger.blend"
-dest_files=["res://.godot/imported/challenger.blend-c092fd1937051a27369db490a3642deb.scn"]
+source_file="res://actors/ships/challenger.blend"
+dest_files=["res://.godot/imported/challenger.blend-e76c4c2626bd8c870a40e9ee8dd55eb5.scn"]
 
 [params]
 

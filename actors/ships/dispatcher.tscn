@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" uid="uid://cpaqivmcfh6w7" path="res://world/actors/ships/dispatcher.blend" id="1_d4k37"]
+[ext_resource type="PackedScene" uid="uid://cpaqivmcfh6w7" path="res://actors/ships/dispatcher.blend" id="1_d4k37"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_le6gq"]
-[ext_resource type="PackedScene" path="res://world/actors/ships/engines/engines.tscn" id="3_wvvhx"]
+[ext_resource type="PackedScene" path="res://actors/ships/engines/engines.tscn" id="3_wvvhx"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dm8a6"]
 points = PackedVector3Array(-0.252526, -0.0369543, -2.77781, 2.5167, -0.52586, -0.00961089, 1.05052, -1.17742, 7.48178, 1.21266, 1.75474, -2.45232, -2.53335, -0.851478, -0.00961089, -1.22981, 1.75474, -2.45232, -1.06718, -1.17742, 7.48178, 1.86418, -1.17742, 0.31588, -1.22981, -1.50335, 5.8533, 1.86418, -0.851478, -1.63808, -1.88133, -0.851478, -1.63808, 1.21266, -1.50335, 5.8533, -1.88133, -1.17742, 0.31588, -2.53335, -0.52586, -0.00961089, 1.21266, 1.75474, -2.77781, 2.5167, -0.851478, -0.987103, -1.22981, 1.75474, -2.77781, 1.53842, -0.52586, -2.29009, -2.04446, -0.199604, -1.96358, 0.886898, -1.17742, 7.64401, 1.05052, -1.34038, 7.64401, -1.55557, -0.52586, -2.29009, -2.53335, -0.52586, -1.14934, -0.90405, -1.17742, 7.64401, 2.18995, -0.199604, -1.80134, 2.5167, -0.851478, -0.00961089, 2.5167, -0.52586, -1.14934, -2.53335, -0.851478, -0.987103, 0.235375, -0.0369543, -2.77781, -0.823894, -1.35757, 7.1777, 2.18995, -0.52586, -1.80134, 1.21266, 1.42881, -2.77781)

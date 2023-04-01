@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfsisv7bqcc2j"
-path="res://.godot/imported/bob.blend-5386de3c6911bbcee0f35b15447e758b.scn"
+uid="uid://cpaqivmcfh6w7"
+path="res://.godot/imported/dispatcher.blend-f100c0c58a2a7f7fea4864d186673320.scn"
 
 [deps]
 
-source_file="res://world/actors/ships/bob.blend"
-dest_files=["res://.godot/imported/bob.blend-5386de3c6911bbcee0f35b15447e758b.scn"]
+source_file="res://actors/ships/dispatcher.blend"
+dest_files=["res://.godot/imported/dispatcher.blend-f100c0c58a2a7f7fea4864d186673320.scn"]
 
 [params]
 
@@ -28,13 +28,7 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={
-"nodes": {
-"PATH:Bob": {
-"physics/body_type": 1
-}
-}
-}
+_subresources={}
 gltf/embedded_image_handling=1
 blender/nodes/visible=0
 blender/nodes/punctual_lights=true
