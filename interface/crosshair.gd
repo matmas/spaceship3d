@@ -1,7 +1,7 @@
 extends Sprite2D
 
 
-var cursor_position = Vector2.ZERO
+var cursor_position := Vector2.ZERO
 
 
 func _ready():
@@ -22,7 +22,7 @@ func _input(event):
 		cursor_position += e.relative
 		var viewport_center := Vector2(get_viewport().size) / 2
 		var viewport_radius = min(viewport_center.x, viewport_center.y)
-		var i = Geometry2D.segment_intersects_circle(viewport_center, cursor_position, viewport_center, viewport_radius)
+		var i := Geometry2D.segment_intersects_circle(viewport_center, cursor_position, viewport_center, viewport_radius)
 		if i != -1:
 			cursor_position = (cursor_position - viewport_center) * i + viewport_center
 		position = cursor_position

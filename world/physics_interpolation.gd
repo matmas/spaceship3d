@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@onready var target: Node3D = get_parent()  # assumes parent is a physics body
+@onready var target := get_parent() as Node3D  # assumes parent movement is controlled by physics
 var previous_global_transform := Transform3D()
 var current_global_transform := Transform3D()
 

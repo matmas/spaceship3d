@@ -1,7 +1,7 @@
 extends TextureRect
 
-@onready var camera: Camera3D = get_viewport().get_camera_3d()
-@onready var directional_light: DirectionalLight3D = get_parent()
+@onready var camera := get_viewport().get_camera_3d()
+@onready var directional_light := get_parent() as DirectionalLight3D
 
 var visibility := 0.0
 var target_visibility := 0.0

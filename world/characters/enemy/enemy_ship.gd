@@ -1,4 +1,4 @@
-extends "res://world/characters/ship.gd"
+extends Ship
 
 
 func _ready():
