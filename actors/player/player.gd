@@ -15,11 +15,11 @@ func _ready():
 
 
 func _physics_process(_delta):
-	var linear_acceleration: Vector3 = global_transform.basis * Vector3(
+	var linear_acceleration: Vector3 = global_transform.basis * (Vector3(
 		Input.get_axis("move_right", "move_left"),
 		Input.get_axis("move_down", "move_up"),
 		Input.get_axis("move_backward", "move_forward"),
-	).normalized() * Vector3(50, 50, 100)
+	).normalized() * Vector3(50, 50, 100))
 	apply_central_force(linear_acceleration)
 #	velocity += linear_acceleration * delta
 #	velocity *= DAMPING_FACTOR ** (delta * 60)
