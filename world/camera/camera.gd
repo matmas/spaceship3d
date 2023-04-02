@@ -1,6 +1,6 @@
 extends Camera3D
 
-@onready var target: Node3D = $"../Bob/Bob/CameraPosition"
+@onready var target: Node3D = Globals.player.get_node("Bob/CameraPosition")
 
 
 func _ready():

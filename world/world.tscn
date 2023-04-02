@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://blih81l4lsjbw"]
+[gd_scene load_steps=10 format=3 uid="uid://blih81l4lsjbw"]
 
 [ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
-[ext_resource type="PackedScene" uid="uid://chhapjpd62t5x" path="res://actors/player/player.tscn" id="2_2nl84"]
+[ext_resource type="PackedScene" uid="uid://b5m21f5mo0bqx" path="res://actors/player/player.tscn" id="2_2nl84"]
 [ext_resource type="PackedScene" path="res://world/rocks/rocks.tscn" id="2_da7el"]
+[ext_resource type="PackedScene" uid="uid://doo0rv6ot25e5" path="res://world/camera/camera.tscn" id="2_g368m"]
 [ext_resource type="PackedScene" path="res://actors/guide/guide.tscn" id="3_6ask7"]
 [ext_resource type="PackedScene" path="res://actors/enemy/enemy.tscn" id="4_nj140"]
 
@@ -25,6 +26,8 @@ glow_enabled = true
 environment = SubResource("Environment_gyq2f")
 
 [node name="DirectionalLight" parent="." instance=ExtResource("1_n62dy")]
+
+[node name="Camera" parent="." instance=ExtResource("2_g368m")]
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
 

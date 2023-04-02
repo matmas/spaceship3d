@@ -5,8 +5,11 @@ var steering_direction := Vector2()
 #const DAMPING_FACTOR = 0.93
 #var angular_velocity := Vector3()
 
-func _ready():
+func _init():
 	Globals.player = self
+
+
+func _ready():
 	super._ready()
 	Signals.steering_direction_changed.connect(func(d): steering_direction = d)
 

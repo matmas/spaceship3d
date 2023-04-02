@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://d2nopepwbod66"]
 
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://actors/ships/bob.blend" id="1_v31w4"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_ana6v"]
