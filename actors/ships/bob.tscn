@@ -28,7 +28,7 @@ points = PackedVector3Array(0.348048, 0.721279, -1.88415, -0.580232, -0.845018, 
 script = ExtResource("2_ana6v")
 
 [node name="CameraPosition" type="Node3D" parent="Bob" index="0"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 10, -50)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, -10)
 
 [node name="Engines" parent="Bob" index="1" instance=ExtResource("3_vcxc7")]
 

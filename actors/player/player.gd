@@ -19,7 +19,7 @@ func _physics_process(_delta):
 		Input.get_axis("move_right", "move_left"),
 		Input.get_axis("move_down", "move_up"),
 		Input.get_axis("move_backward", "move_forward"),
-	).normalized() * Vector3(50, 50, 100))
+	).normalized() * Vector3(50, 50, 200))
 	apply_central_force(linear_acceleration)
 #	velocity += linear_acceleration * delta
 #	velocity *= DAMPING_FACTOR ** (delta * 60)
