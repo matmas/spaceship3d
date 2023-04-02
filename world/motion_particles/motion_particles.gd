@@ -8,10 +8,9 @@ var camera_velocity := Vector3()
 
 func _process(delta):
 	global_transform = camera.global_transform
-	var material := process_material as ParticleProcessMaterial
-	material.color.a = min(camera_velocity.length(), 1.0)
+	var shader := draw_pass_1.surface_get_material(0) as ShaderMaterial
+	shader.set_shader_parameter("camera_position", camera.global_position)
+	shader.set_shader_parameter("camera_velocity", camera_velocity)
 
-
-func _physics_process(delta):
-	camera_velocity = camera.global_position - previous_camera_position
+	camera_velocity = (camera.global_position - previous_camera_position) / delta
 	previous_camera_position = camera.global_position

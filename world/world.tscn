@@ -28,6 +28,8 @@ environment = SubResource("Environment_gyq2f")
 
 [node name="DirectionalLight" parent="." instance=ExtResource("1_n62dy")]
 
+[node name="MotionParticles" parent="." instance=ExtResource("7_so44r")]
+
 [node name="Camera" parent="." instance=ExtResource("2_g368m")]
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
@@ -37,5 +39,3 @@ environment = SubResource("Environment_gyq2f")
 [node name="Guide" parent="." instance=ExtResource("3_6ask7")]
 
 [node name="Enemy" parent="." instance=ExtResource("4_nj140")]
-
-[node name="MotionParticles" parent="." instance=ExtResource("7_so44r")]

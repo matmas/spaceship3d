@@ -13,22 +13,24 @@ gradient = SubResource("Gradient_4cfxi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3x2aa"]
 emission_shape = 3
-emission_box_extents = Vector3(100, 100, 100)
+emission_box_extents = Vector3(10, 10, 25)
 gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.0980392)
 color_ramp = SubResource("GradientTexture1D_21nua")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ghae"]
 render_priority = 0
 shader = ExtResource("1_op6x2")
+shader_parameter/camera_position = null
+shader_parameter/camera_velocity = Vector3(0, 0, 40)
 shader_parameter/texture_albedo = ExtResource("1_glb3y")
 
 [sub_resource type="QuadMesh" id="QuadMesh_uadri"]
 material = SubResource("ShaderMaterial_6ghae")
 
 [node name="MotionParticles" type="GPUParticles3D"]
-amount = 200
-lifetime = 2.0
-visibility_aabb = AABB(-100, -100, -100, 200, 200, 200)
+amount = 500
+visibility_aabb = AABB(-10, -10, -25, 20, 20, 50)
 process_material = SubResource("ParticleProcessMaterial_3x2aa")
 draw_pass_1 = SubResource("QuadMesh_uadri")
 script = ExtResource("2_gr6tt")
