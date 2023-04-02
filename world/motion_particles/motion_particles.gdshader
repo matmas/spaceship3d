@@ -4,7 +4,7 @@ uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enab
 
 
 void vertex() {
-	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(normalize(INV_VIEW_MATRIX[0]), normalize(INV_VIEW_MATRIX[1]), normalize(INV_VIEW_MATRIX[2]), MODEL_MATRIX[3]);
+	MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], INV_VIEW_MATRIX[1], INV_VIEW_MATRIX[2], MODEL_MATRIX[3]);
 	MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
 }
 
