@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://byy4821tnn515"]
 
 [ext_resource type="PackedScene" uid="uid://cpaqivmcfh6w7" path="res://actors/ships/dispatcher.blend" id="1_d4k37"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_le6gq"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://d0huagdcg13yp"]
 
 [ext_resource type="PackedScene" uid="uid://dunynvbxapgnk" path="res://actors/ships/challenger.blend" id="1_dgif5"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_qav6f"]

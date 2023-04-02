@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://cv86j5uhp1xw2"]
 
 [ext_resource type="PackedScene" path="res://actors/ships/challenger.tscn" id="1_88h2s"]
 [ext_resource type="Script" path="res://actors/guide/guide_ship.gd" id="2_s4o6l"]
