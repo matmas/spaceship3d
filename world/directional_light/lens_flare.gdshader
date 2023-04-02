@@ -8,7 +8,7 @@ uniform vec3 tint = vec3(1.4, 1.2, 1.0);
 uniform float visibility = 1.0;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
-vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution) {
+vec3 lensflare(vec2 uv, vec2 pos) {
 	vec2 main = uv - pos;
 	vec2 uvd = uv * (length(uv));
 	
@@ -50,7 +50,6 @@ vec3 lensflare(vec2 uv, vec2 pos, vec2 texResolution) {
 }
 
 void fragment() {
-	vec2 texResolution = 1.0 / TEXTURE_PIXEL_SIZE;
 	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
 	
 	vec2 uv = FRAGCOORD.xy / resolution.xy - 0.5;
@@ -59,6 +58,6 @@ void fragment() {
 	sun.x *= resolution.x / resolution.y;  // fix aspect ratio
 	
 	vec3 color = texture(screen_texture, SCREEN_UV).rgb;
-	color += tint * lensflare(uv, sun.xy, texResolution) * visibility;
+	color += tint * lensflare(uv, sun.xy) * visibility;
 	COLOR = vec4(color, 1.0);
 }
