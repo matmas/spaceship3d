@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bogmf7fgvpcdh"]
+[gd_scene load_steps=9 format=3 uid="uid://bogmf7fgvpcdh"]
 
 [ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://world/motion_particles/motion_particle.png" id="1_glb3y"]
+[ext_resource type="Shader" path="res://world/motion_particles/motion_particles.gdshader" id="1_op6x2"]
 [ext_resource type="Script" path="res://world/motion_particles/motion_particles.gd" id="2_gr6tt"]
 
 [sub_resource type="Gradient" id="Gradient_4cfxi"]
@@ -16,20 +17,13 @@ emission_box_extents = Vector3(100, 100, 100)
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_21nua")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqn5r"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_glb3y")
-disable_receive_shadows = true
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ghae"]
+render_priority = 0
+shader = ExtResource("1_op6x2")
+shader_parameter/texture_albedo = ExtResource("1_glb3y")
 
 [sub_resource type="QuadMesh" id="QuadMesh_uadri"]
-material = SubResource("StandardMaterial3D_dqn5r")
-size = Vector2(0.1, 0.1)
+material = SubResource("ShaderMaterial_6ghae")
 
 [node name="MotionParticles" type="GPUParticles3D"]
 amount = 200
