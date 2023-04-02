@@ -1,9 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5m21f5mo0bqx"]
+[gd_scene load_steps=3 format=3 uid="uid://bsc3r6jmst1kf"]
 
 [ext_resource type="PackedScene" uid="uid://d2nopepwbod66" path="res://actors/ships/bob.tscn" id="1_prl2k"]
-[ext_resource type="Script" path="res://actors/player/player_ship.gd" id="2_5uvia"]
+[ext_resource type="Script" path="res://actors/player/player.gd" id="2_yy7ms"]
 
-[node name="Player" type="Node"]
-
-[node name="Bob" parent="." instance=ExtResource("1_prl2k")]
-script = ExtResource("2_5uvia")
+[node name="Player" instance=ExtResource("1_prl2k")]
+script = ExtResource("2_yy7ms")

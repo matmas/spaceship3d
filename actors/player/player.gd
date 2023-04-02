@@ -1,4 +1,4 @@
-extends Ship
+extends Actor
 
 var steering_direction := Vector2()
 

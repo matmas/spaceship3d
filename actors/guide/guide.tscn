@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv86j5uhp1xw2"]
+[gd_scene load_steps=3 format=3 uid="uid://bi71ggfaidvjk"]
 
-[ext_resource type="PackedScene" path="res://actors/ships/challenger.tscn" id="1_88h2s"]
-[ext_resource type="Script" path="res://actors/guide/guide_ship.gd" id="2_s4o6l"]
+[ext_resource type="PackedScene" uid="uid://d0huagdcg13yp" path="res://actors/ships/challenger.tscn" id="1_88h2s"]
+[ext_resource type="Script" path="res://actors/guide/guide.gd" id="2_r857q"]
 
-[node name="Guide" type="Node"]
+[node name="Guide" instance=ExtResource("1_88h2s")]
+script = ExtResource("2_r857q")
 
-[node name="Challenger" parent="." instance=ExtResource("1_88h2s")]
-script = ExtResource("2_s4o6l")
+[editable path="Challenger/Engines"]

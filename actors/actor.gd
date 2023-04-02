@@ -1,5 +1,5 @@
 extends RigidBody3D
-class_name Ship
+class_name Actor
 
 
 func _ready():

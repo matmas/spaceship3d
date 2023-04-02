@@ -1,4 +1,4 @@
-extends Ship
+extends Actor
 
 
 func _ready():
