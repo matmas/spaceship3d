@@ -1,12 +1,12 @@
 extends Sprite2D
 
-
 var cursor_position := Vector2.ZERO
 
 
 func _ready():
 	cursor_position = Vector2(get_viewport().size) / 2
 	position = cursor_position
+
 
 func _input(event):
 	# Click inside window

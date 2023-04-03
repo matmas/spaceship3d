@@ -1,6 +1,5 @@
 extends Label
 
-
 @onready var clear_subtitle_timer: Timer = $Timer
 
 const PAUSE_SECONDS = 4

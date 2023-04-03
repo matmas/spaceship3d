@@ -28,6 +28,7 @@ extends EditorScript
 
 var files: Array[String]
 
+
 func _run() -> void:
 	files = []
 
@@ -37,6 +38,7 @@ func _run() -> void:
 		print(file)
 		var res = load(file)
 		ResourceSaver.save(res)
+
 
 func add_files(dir: String):
 	for file in DirAccess.get_files_at(dir):

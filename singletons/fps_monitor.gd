@@ -2,6 +2,7 @@ extends Node
 
 @onready var label = Label.new()
 
+
 func _ready():
 	label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	label.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_RIGHT)
