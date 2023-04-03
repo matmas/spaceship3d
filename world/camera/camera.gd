@@ -5,31 +5,33 @@ extends Camera3D
 
 var camera_distance := 10.0
 var camera_relative_direction := Vector3(0.0, 2.0, -10.0).normalized()
+var target_camera_position: Vector3
 var current_target_camera_position: Vector3
 var previous_target_camera_position: Vector3
-var should_update_target_camera_position := false
+var physics_updated := false
 
 func _ready():
 	global_transform = _target_camera_transform()
 
 
 func _process(delta: float):
+	if physics_updated:   # update at most once per frame when FPS < physics ticks per second
+		physics_updated = false
+		current_target_camera_position = target_camera_position
+		previous_target_camera_position = current_target_camera_position
 	global_transform = global_transform.interpolate_with(_target_camera_transform(), delta * 10)
-	should_update_target_camera_position = true
 
 
 func _target_camera_transform() -> Transform3D:
 	var f := Engine.get_physics_interpolation_fraction()
-	var target_camera_position := previous_target_camera_position.lerp(current_target_camera_position, f)
+	var interpolated_camera_position := previous_target_camera_position.lerp(current_target_camera_position, f)
 	var target_camera_basis = target_mesh.global_transform.rotated_local(Vector3.UP, TAU / 2).basis
-	return Transform3D(target_camera_basis, target_camera_position)
+	return Transform3D(target_camera_basis, interpolated_camera_position)
 
 
 func _physics_process(_delta):
-	if should_update_target_camera_position:   # update at most once per frame when FPS < physics ticks per second
-		should_update_target_camera_position = false
-		previous_target_camera_position = current_target_camera_position
-		current_target_camera_position = _calculate_target_camera_position()
+	target_camera_position = _calculate_target_camera_position()
+	physics_updated = true
 
 
 func _calculate_target_camera_position() -> Vector3:
