@@ -19,7 +19,6 @@ func _process(delta: float):
 
 func _target_camera_transform() -> Transform3D:
 	var f := Engine.get_physics_interpolation_fraction()
-#	var target_camera_position := target_mesh.global_transform * (camera_relative_direction * camera_distance)
 	var target_camera_position := previous_target_camera_position.lerp(current_target_camera_position, f)
 	var target_camera_basis = target_mesh.global_transform.rotated_local(Vector3.UP, TAU / 2).basis
 	return Transform3D(target_camera_basis, target_camera_position)
