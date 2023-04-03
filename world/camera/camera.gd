@@ -5,20 +5,15 @@ extends Camera3D
 
 var camera_distance := 10.0
 var camera_relative_direction := Vector3(0.0, 2.0, -10.0).normalized()
-var target_camera_position: Vector3
 var current_target_camera_position: Vector3
 var previous_target_camera_position: Vector3
-var physics_updated := false
+
 
 func _ready():
 	global_transform = _target_camera_transform()
 
 
 func _process(delta: float):
-	if physics_updated:   # update at most once per frame when FPS < physics ticks per second
-		physics_updated = false
-		previous_target_camera_position = current_target_camera_position
-		current_target_camera_position = target_camera_position
 	global_transform = global_transform.interpolate_with(_target_camera_transform(), delta * 10)
 
 
@@ -30,8 +25,8 @@ func _target_camera_transform() -> Transform3D:
 
 
 func _physics_process(_delta):
-	target_camera_position = _calculate_target_camera_position()
-	physics_updated = true
+	previous_target_camera_position = current_target_camera_position
+	current_target_camera_position = _calculate_target_camera_position()
 
 
 func _calculate_target_camera_position() -> Vector3:
