@@ -58,7 +58,7 @@ func _calculate_target_camera_position() -> Vector3:
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			camera_distance -= 1.0
+			camera_distance -= 5.0
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			camera_distance += 1.0
+			camera_distance += 5.0
 		camera_distance = clamp(camera_distance, 5.0, 50.0)
