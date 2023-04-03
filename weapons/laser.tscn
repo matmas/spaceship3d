@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://0kirrm76h48e"]
+
+[ext_resource type="Script" path="res://weapons/laser.gd" id="1_7i6cv"]
+[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://textures/particle.png" id="2_r62o5"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_pkxld"]
+size = Vector3(0.1, 0.1, 20)
+
+[sub_resource type="Gradient" id="Gradient_x73os"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ulbp"]
+gradient = SubResource("Gradient_x73os")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pyhqh"]
+direction = Vector3(0, 0, -1)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+color_ramp = SubResource("GradientTexture1D_6ulbp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8wll"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_r62o5")
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_lf0n3"]
+material = SubResource("StandardMaterial3D_c8wll")
+size = Vector2(0.1, 0.1)
+
+[node name="Laser" type="RayCast3D"]
+target_position = Vector3(0, 0, 1000)
+script = ExtResource("1_7i6cv")
+
+[node name="Beam" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+mesh = SubResource("PrismMesh_pkxld")
+
+[node name="ImpactParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+lifetime = 0.25
+process_material = SubResource("ParticleProcessMaterial_pyhqh")
+draw_pass_1 = SubResource("QuadMesh_lf0n3")

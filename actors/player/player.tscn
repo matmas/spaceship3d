@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsc3r6jmst1kf"]
+[gd_scene load_steps=4 format=3 uid="uid://bsc3r6jmst1kf"]
 
 [ext_resource type="PackedScene" uid="uid://d2nopepwbod66" path="res://actors/ships/bob.tscn" id="1_prl2k"]
 [ext_resource type="Script" path="res://actors/player/player.gd" id="2_yy7ms"]
+[ext_resource type="PackedScene" uid="uid://0kirrm76h48e" path="res://weapons/laser.tscn" id="3_1a8r5"]
 
 [node name="Player" instance=ExtResource("1_prl2k")]
 script = ExtResource("2_yy7ms")
+
+[node name="Laser" parent="." index="7" instance=ExtResource("3_1a8r5")]

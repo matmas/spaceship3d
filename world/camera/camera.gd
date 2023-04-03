@@ -14,6 +14,11 @@ func _ready():
 
 
 func _process(delta: float):
+	if Input.is_action_just_released("zoom_in"):
+		camera_distance -= 5
+	if Input.is_action_just_released("zoom_out"):
+		camera_distance += 5
+	camera_distance = clamp(camera_distance, 5.0, 50.0)
 	global_transform = global_transform.interpolate_with(_target_camera_transform(), delta * 10)
 
 
@@ -53,12 +58,3 @@ func _calculate_target_camera_position() -> Vector3:
 		return result["position"]
 	else:
 		return Vector3()  # _default_camera_position() should be used later
-
-
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			camera_distance -= 5.0
-		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			camera_distance += 5.0
-		camera_distance = clamp(camera_distance, 5.0, 50.0)

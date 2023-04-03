@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bogmf7fgvpcdh"]
+[gd_scene load_steps=9 format=3 uid="uid://bu8ev1mqrdvxt"]
 
-[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://world/motion_particles/motion_particle.png" id="1_glb3y"]
 [ext_resource type="Shader" path="res://world/motion_particles/motion_particles.gdshader" id="1_op6x2"]
+[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://textures/particle.png" id="2_2p8tf"]
 [ext_resource type="Script" path="res://world/motion_particles/motion_particles.gd" id="2_gr6tt"]
 
 [sub_resource type="Gradient" id="Gradient_4cfxi"]
@@ -23,7 +23,7 @@ render_priority = 0
 shader = ExtResource("1_op6x2")
 shader_parameter/camera_position = null
 shader_parameter/camera_velocity = Vector3(0, 0, 40)
-shader_parameter/texture_albedo = ExtResource("1_glb3y")
+shader_parameter/texture_albedo = ExtResource("2_2p8tf")
 
 [sub_resource type="QuadMesh" id="QuadMesh_uadri"]
 material = SubResource("ShaderMaterial_6ghae")
