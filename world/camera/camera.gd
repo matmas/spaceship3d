@@ -17,8 +17,8 @@ func _ready():
 func _process(delta: float):
 	if physics_updated:   # update at most once per frame when FPS < physics ticks per second
 		physics_updated = false
-		current_target_camera_position = target_camera_position
 		previous_target_camera_position = current_target_camera_position
+		current_target_camera_position = target_camera_position
 	global_transform = global_transform.interpolate_with(_target_camera_transform(), delta * 10)
 
 
