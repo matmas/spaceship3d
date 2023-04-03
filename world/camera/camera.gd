@@ -4,7 +4,8 @@ extends Camera3D
 
 var camera_distance := 10.0
 var camera_relative_direction := Vector3(0.0, 2.0, -10.0).normalized()
-var target_camera_position: Vector3
+var current_target_camera_position: Vector3
+var previous_target_camera_position: Vector3
 
 
 func _ready():
@@ -16,18 +17,17 @@ func _process(delta: float):
 
 
 func _target_camera_transform() -> Transform3D:
+	var f := Engine.get_physics_interpolation_fraction()
+	var target_camera_position := previous_target_camera_position.lerp(current_target_camera_position, f)
 	return Transform3D(target.global_transform.rotated_local(Vector3.UP, TAU / 2).basis, target_camera_position)
 
 
-func _target_camera_offset() -> Vector3:
-	return Vector3(0.0, 2.0, -10.0)
-
-
 func _physics_process(_delta):
-	_update_target_camera_position()
+	previous_target_camera_position = current_target_camera_position
+	current_target_camera_position = _calculate_target_camera_position()
 
 
-func _update_target_camera_position():
+func _calculate_target_camera_position() -> Vector3:
 	var farthest_point := target.global_transform * (camera_relative_direction * camera_distance)
 	var space_state = get_world_3d().direct_space_state
 	var params := PhysicsRayQueryParameters3D.new()
@@ -36,9 +36,9 @@ func _update_target_camera_position():
 	params.exclude = [target]
 	var result := space_state.intersect_ray(params)
 	if result:
-		target_camera_position = result["position"]
+		return result["position"]
 	else:
-		target_camera_position = farthest_point
+		return farthest_point
 
 
 func _input(event):
