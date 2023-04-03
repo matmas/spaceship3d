@@ -1,6 +1,7 @@
 extends Camera3D
 
-@onready var target: Node3D = Globals.player
+@onready var target: Node3D = Globals.player.get_node("Bob")
+@onready var collision_exclude := Globals.player
 
 var camera_distance := 10.0
 var camera_relative_direction := Vector3(0.0, 2.0, -10.0).normalized()
@@ -19,7 +20,8 @@ func _process(delta: float):
 func _target_camera_transform() -> Transform3D:
 	var f := Engine.get_physics_interpolation_fraction()
 	var target_camera_position := previous_target_camera_position.lerp(current_target_camera_position, f)
-	return Transform3D(target.global_transform.rotated_local(Vector3.UP, TAU / 2).basis, target_camera_position)
+	var target_camera_basis = target.global_transform.rotated_local(Vector3.UP, TAU / 2).basis
+	return Transform3D(target_camera_basis, target_camera_position)
 
 
 func _physics_process(_delta):
@@ -33,7 +35,7 @@ func _calculate_target_camera_position() -> Vector3:
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = target.global_position
 	params.to = farthest_point
-	params.exclude = [target]
+	params.exclude = [collision_exclude]
 	var result := space_state.intersect_ray(params)
 	if result:
 		return result["position"]
