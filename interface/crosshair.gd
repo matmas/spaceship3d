@@ -8,7 +8,7 @@ func _ready():
 	position = cursor_position
 
 
-func _input(event):
+func _unhandled_input(event):
 	# Click inside window
 	if event is InputEventMouseButton and event.pressed:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
