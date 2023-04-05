@@ -13,9 +13,10 @@ var target_power := 0.0
 func _process(delta):
 	if Input.is_action_pressed("fire"):
 		target_power = 1.0
+		set_power(move_toward(power, target_power, delta * 60 * 0.2))
 	else:
 		target_power = 0.0
-	set_power(move_toward(power, target_power, delta * 10))
+		set_power(move_toward(power, target_power, delta * 60 * 0.1))
 
 
 func set_power(value: float):
@@ -31,6 +32,7 @@ func set_power(value: float):
 func _physics_process(_delta):
 	if is_colliding():
 		var point := get_collision_point()
+		impact_particles.look_at_from_position(Vector3(), get_collision_normal())
 		impact_particles.emitting = true
 		impact_particles.global_position = point
 		mesh.size.z = global_position.distance_to(point)

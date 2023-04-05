@@ -1,22 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://0kirrm76h48e"]
+[gd_scene load_steps=12 format=3 uid="uid://0kirrm76h48e"]
 
 [ext_resource type="Script" path="res://weapons/laser.gd" id="1_7i6cv"]
 [ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://textures/particle.png" id="2_r62o5"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwqwg"]
+blend_mode = 1
+albedo_color = Color(1, 0.360784, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.360784, 0, 1)
+emission_energy_multiplier = 16.0
+
 [sub_resource type="PrismMesh" id="PrismMesh_pkxld"]
-size = Vector3(0.1, 0.1, 20)
+material = SubResource("StandardMaterial3D_bwqwg")
+size = Vector3(0.05, 0.05, 20)
 
 [sub_resource type="Gradient" id="Gradient_x73os"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.2, 0.3, 0.4, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.705882, 0, 1, 1, 0.44054, 0, 1, 0.635294, 0.117647, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_6ulbp"]
 gradient = SubResource("Gradient_x73os")
 
+[sub_resource type="Curve" id="Curve_l3kkt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_24b13"]
+curve = SubResource("Curve_l3kkt")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pyhqh"]
 direction = Vector3(0, 0, -1)
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 5.0
+initial_velocity_min = 20.0
 initial_velocity_max = 20.0
+scale_curve = SubResource("CurveTexture_24b13")
 color_ramp = SubResource("GradientTexture1D_6ulbp")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8wll"]
@@ -41,10 +58,12 @@ script = ExtResource("1_7i6cv")
 
 [node name="Beam" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+cast_shadow = 0
 mesh = SubResource("PrismMesh_pkxld")
 
 [node name="ImpactParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+amount = 16
 lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_pyhqh")
 draw_pass_1 = SubResource("QuadMesh_lf0n3")
