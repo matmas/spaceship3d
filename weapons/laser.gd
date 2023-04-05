@@ -15,16 +15,16 @@ func _process(delta):
 		target_power = 1.0
 	else:
 		target_power = 0.0
-	set_power(lerp(power, target_power, delta * 10))
+	set_power(move_toward(power, target_power, delta * 10))
 
 
 func set_power(value: float):
 	power = value
 	enabled = not is_zero_approx(power)
 	mesh_instance.visible = not is_zero_approx(power)
-	mesh.size.x = lerp(0.0, MAX_THICKNESS, power)
-	mesh.size.y = lerp(0.0, MAX_THICKNESS, power)
-	if is_zero_approx(power):
+	mesh.size.x = power * MAX_THICKNESS
+	mesh.size.y = power * MAX_THICKNESS
+	if not is_equal_approx(power, 1.0):
 		impact_particles.emitting = false
 
 
