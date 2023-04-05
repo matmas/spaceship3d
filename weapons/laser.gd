@@ -1,11 +1,13 @@
 extends RayCast3D
 
-@onready var impact_particles := $ImpactParticles
-@onready var light := $"ImpactParticles/Light"
-@onready var mesh_instance := $Beam
+@onready var impact_particles := $ImpactParticles as GPUParticles3D
+@onready var light := $"ImpactParticles/Light" as OmniLight3D
+@onready var mesh_instance := $Beam as MeshInstance3D
 @onready var mesh := mesh_instance.mesh as PrismMesh
 @onready var MAX_LENGTH = abs(target_position.z)
 @onready var MAX_THICKNESS = mesh.size.x
+
+const LIGHT_MAX_ENERGY := 10
 
 var power := 0.0
 var target_power := 0.0
@@ -19,7 +21,7 @@ func _process(delta):
 	else:
 		target_power = 0.0
 		set_power(move_toward(power, target_power, delta * 60 * 0.1))
-	light.light_energy = power * abs(noise.get_noise_1d(Time.get_ticks_msec()))
+	light.light_energy = float(is_colliding()) * power * LIGHT_MAX_ENERGY * (noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.5
 
 
 func set_power(value: float):
