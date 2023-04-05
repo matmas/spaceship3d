@@ -1,6 +1,7 @@
 extends RayCast3D
 
 @onready var impact_particles := $ImpactParticles
+@onready var light := $"ImpactParticles/Light"
 @onready var mesh_instance := $Beam
 @onready var mesh := mesh_instance.mesh as PrismMesh
 @onready var MAX_LENGTH = abs(target_position.z)
@@ -8,6 +9,7 @@ extends RayCast3D
 
 var power := 0.0
 var target_power := 0.0
+var noise := FastNoiseLite.new()
 
 
 func _process(delta):
@@ -17,6 +19,7 @@ func _process(delta):
 	else:
 		target_power = 0.0
 		set_power(move_toward(power, target_power, delta * 60 * 0.1))
+	light.light_energy = power * abs(noise.get_noise_1d(Time.get_ticks_msec()))
 
 
 func set_power(value: float):
