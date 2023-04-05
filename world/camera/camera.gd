@@ -55,9 +55,9 @@ func _calculate_target_camera_position() -> Vector3:
 		return Vector3()  # _default_camera_position() should be used later
 
 
-func _unhandled_input(event):
-	if Input.is_action_just_released("zoom_in"):
+func _unhandled_input(_event):
+	if Input.is_action_just_released("dolly_in"):
 		camera_distance -= 5
-	if Input.is_action_just_released("zoom_out"):
+	if Input.is_action_just_released("dolly_out"):
 		camera_distance += 5
 	camera_distance = clampf(camera_distance, 5.0, 50.0)
