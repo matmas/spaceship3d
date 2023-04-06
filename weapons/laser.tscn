@@ -55,12 +55,12 @@ target_position = Vector3(0, 0, -1000)
 script = ExtResource("1_7i6cv")
 
 [node name="Beam" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 cast_shadow = 0
 mesh = SubResource("PrismMesh_pkxld")
 
 [node name="ImpactParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
 amount = 16
 lifetime = 0.25
 explosiveness = 0.2

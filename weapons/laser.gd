@@ -52,5 +52,5 @@ func _physics_process(_delta: float):
 	params.to = params.from + camera.project_ray_normal(cursor_position) * camera.far
 	params.exclude = [exclude]
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
-	# Avoid targetting empty space just in front body by moving collision point a small distance in
-	target_position_override = to_global(to_local(result.position) + Vector3.BACK * 0.1) if result else Vector3()
+	# Avoid targetting empty space just in front body by moving collision point a bit forward
+	target_position_override = to_global(to_local(result.position) + Vector3.FORWARD * 0.1) if result else Vector3()
