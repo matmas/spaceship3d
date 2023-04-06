@@ -1,10 +1,10 @@
 extends RayCast3D
 
+@onready var beam := $Beam as MeshInstance3D
+@onready var beam_mesh := beam.mesh as PrismMesh
 @onready var impact_particles := $ImpactParticles as GPUParticles3D
-@onready var light := $"ImpactParticles/Light" as OmniLight3D
-@onready var mesh_instance := $Beam as MeshInstance3D
-@onready var mesh := mesh_instance.mesh as PrismMesh
-@onready var LIGHT_MAX_ENERGY := light.light_energy
+@onready var impact_light := $"ImpactParticles/Light" as OmniLight3D
+@onready var IMPACT_LIGHT_MAX_ENERGY := impact_light.light_energy
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
 @onready var exclude := get_parent().get_parent()
 
@@ -24,11 +24,11 @@ func _process(delta: float):
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
-	light.light_energy = float(is_colliding()) * power * LIGHT_MAX_ENERGY * ((noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.25 + 0.5)
+	impact_light.light_energy = float(is_colliding()) * power * IMPACT_LIGHT_MAX_ENERGY * ((noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.25 + 0.5)
 	enabled = power > 0.0
-	mesh_instance.visible = power > 0.0
-	mesh_instance.scale.x = power
-	mesh_instance.scale.y = power
+	beam.visible = power > 0.0
+	beam.scale.x = power
+	beam.scale.y = power
 
 	var ray_origin := camera.project_ray_origin(cursor_position)
 	var ray_end := ray_origin + camera.project_ray_normal(cursor_position) * camera.far
@@ -41,9 +41,9 @@ func _process(delta: float):
 	impact_particles.global_position = beam_endpoint
 	if is_colliding():
 		impact_particles.look_at(beam_endpoint + get_collision_normal())
-	mesh_instance.global_position = (global_position + beam_endpoint) / 2
-	mesh_instance.look_at(beam_endpoint)
-	mesh_instance.scale.z = global_position.distance_to(beam_endpoint) / mesh.size.z
+	beam.global_position = (global_position + beam_endpoint) / 2
+	beam.look_at(beam_endpoint)
+	beam.scale.z = global_position.distance_to(beam_endpoint) / beam_mesh.size.z
 
 
 func _physics_process(_delta: float):
