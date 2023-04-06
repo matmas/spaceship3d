@@ -10,11 +10,13 @@ extends RayCast3D
 var power := 0.0
 var noise := FastNoiseLite.new()
 var cursor_position := Vector2()
-var endpoint := Vector3()
+var focus_point_override := Vector3()
 
 
 func _ready():
 	Signals.cursor_position_changed.connect(func(p: Vector2): cursor_position = p)
+#	var m := impact_particles.process_material as ParticleProcessMaterial
+#	m.color *= 1000.0
 
 
 func _process(delta: float):
@@ -30,15 +32,28 @@ func _process(delta: float):
 
 	var ray_origin := camera.project_ray_origin(cursor_position)
 	var ray_end := ray_origin + camera.project_ray_normal(cursor_position) * camera.far
-	target_position = to_local(ray_end)
+	var focus_point := ray_end
+	if focus_point_override:
+		focus_point = focus_point_override
+
+	target_position = to_local(focus_point)
+	var beam_endpoint: Vector3
 	if is_colliding():
-		endpoint = get_collision_point()
+		beam_endpoint = get_collision_point()
 		impact_particles.emitting = power == 1.0
-		impact_particles.global_position = endpoint
-		impact_particles.look_at(endpoint + get_collision_normal())
+		impact_particles.global_position = beam_endpoint
+		impact_particles.look_at(beam_endpoint + get_collision_normal())
 	else:
-		endpoint = to_global(target_position)
+		beam_endpoint = focus_point
 		impact_particles.emitting = false
-	mesh_instance.global_position = (endpoint + global_position) / 2
-	mesh_instance.look_at(endpoint)
-	mesh_instance.scale.z = endpoint.distance_to(global_position) / mesh.size.z
+	mesh_instance.global_position = (global_position + beam_endpoint) / 2
+	mesh_instance.look_at(beam_endpoint)
+	mesh_instance.scale.z = global_position.distance_to(beam_endpoint) / mesh.size.z
+
+
+func _physics_process(delta: float):
+	var params := PhysicsRayQueryParameters3D.new()
+	params.from = camera.project_ray_origin(cursor_position)
+	params.to = params.from + camera.project_ray_normal(cursor_position) * camera.far
+	var result := get_world_3d().direct_space_state.intersect_ray(params)
+	focus_point_override = result.position if result else Vector3()
