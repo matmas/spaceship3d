@@ -15,6 +15,7 @@ var target_position_override := Vector3()
 
 func _ready():
 	Signals.cursor_position_changed.connect(func(p: Vector2): cursor_position = p)
+#	exclude_parent
 #	var m := impact_particles.process_material as ParticleProcessMaterial
 #	m.color *= 1000.0
 
@@ -33,28 +34,23 @@ func _process(delta: float):
 	var ray_origin := camera.project_ray_origin(cursor_position)
 	var ray_end := ray_origin + camera.project_ray_normal(cursor_position) * camera.far
 
-	var new_target_position: Vector3
+	var new_target_position := to_local(ray_end)
 	if target_position_override:
 		new_target_position = target_position_override
-	else:
-		new_target_position = to_local(ray_end)
+
 	target_position = target_position.lerp(new_target_position, delta * 5)
 
-	var beam_endpoint: Vector3
+	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
+	impact_particles.emitting = is_colliding() and power == 1.0
+	impact_particles.global_position = beam_endpoint
 	if is_colliding():
-		beam_endpoint = get_collision_point()
-		impact_particles.emitting = power == 1.0
-		impact_particles.global_position = beam_endpoint
 		impact_particles.look_at(beam_endpoint + get_collision_normal())
-	else:
-		beam_endpoint = to_global(target_position)
-		impact_particles.emitting = false
 	mesh_instance.global_position = (global_position + beam_endpoint) / 2
 	mesh_instance.look_at(beam_endpoint)
 	mesh_instance.scale.z = global_position.distance_to(beam_endpoint) / mesh.size.z
 
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = camera.project_ray_origin(cursor_position)
 	params.to = params.from + camera.project_ray_normal(cursor_position) * camera.far
