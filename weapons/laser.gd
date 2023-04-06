@@ -22,7 +22,7 @@ func _process(delta: float):
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
-	light.light_energy = float(is_colliding()) * power * LIGHT_MAX_ENERGY * (noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.5
+	light.light_energy = float(is_colliding()) * power * LIGHT_MAX_ENERGY * ((noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.25 + 0.5)
 	enabled = power > 0.0
 	mesh_instance.visible = power > 0.0
 	mesh_instance.scale.x = power
