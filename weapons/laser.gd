@@ -28,8 +28,6 @@ func _process(delta: float):
 	mesh_instance.scale.x = power
 	mesh_instance.scale.y = power
 
-
-func _physics_process(_delta):
 	var ray_origin := camera.project_ray_origin(cursor_position)
 	var ray_end := ray_origin + camera.project_ray_normal(cursor_position) * camera.far
 	target_position = to_local(ray_end)
