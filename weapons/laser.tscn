@@ -29,10 +29,12 @@ point_count = 3
 curve = SubResource("Curve_vbb6c")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pyhqh"]
+lifetime_randomness = 0.5
 direction = Vector3(0, 0, -1)
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 20.0
+initial_velocity_min = 10.0
 initial_velocity_max = 20.0
+scale_min = 0.5
 scale_curve = SubResource("CurveTexture_g7ewq")
 color_ramp = SubResource("GradientTexture1D_6ulbp")
 
@@ -61,6 +63,7 @@ mesh = SubResource("PrismMesh_pkxld")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 amount = 16
 lifetime = 0.25
+explosiveness = 0.2
 transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_pyhqh")
 draw_pass_1 = SubResource("QuadMesh_lf0n3")
