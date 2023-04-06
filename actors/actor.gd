@@ -9,7 +9,7 @@ func _ready():
 	angular_damp = 5
 
 
-func point_at(target_position: Vector3, min_distance = 10):
+func point_at(target_position: Vector3, min_distance := 10):
 	var distance := global_position.distance_to(target_position)
 	if distance < min_distance:
 		return true
@@ -32,9 +32,9 @@ func match_roll_with(target: Node3D):
 	return correction.length() < 0.2
 
 
-func move_to(target_position: Vector3, max_accel = 100):
+func move_to(target_position: Vector3, max_accel := 100):
 	var correction := target_position - global_position
-	self.apply_central_force(correction.normalized() * min(correction.length() * linear_damp, max_accel))
+	self.apply_central_force(correction.normalized() * minf(correction.length() * linear_damp, max_accel))
 
 #func move_forward(max_accel = 100):
 #	self.apply_central_force(global_transform.basis.z * max_accel)
