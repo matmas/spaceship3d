@@ -10,7 +10,7 @@ extends RayCast3D
 var power := 0.0
 var noise := FastNoiseLite.new()
 var cursor_position := Vector2()
-var focus_point_override := Vector3()
+var target_position_override := Vector3()
 
 
 func _ready():
@@ -32,11 +32,14 @@ func _process(delta: float):
 
 	var ray_origin := camera.project_ray_origin(cursor_position)
 	var ray_end := ray_origin + camera.project_ray_normal(cursor_position) * camera.far
-	var focus_point := ray_end
-	if focus_point_override:
-		focus_point = focus_point_override
 
-	target_position = to_local(focus_point)
+	var new_target_position: Vector3
+	if target_position_override:
+		new_target_position = target_position_override
+	else:
+		new_target_position = to_local(ray_end)
+	target_position = target_position.lerp(new_target_position, delta * 5)
+
 	var beam_endpoint: Vector3
 	if is_colliding():
 		beam_endpoint = get_collision_point()
@@ -44,7 +47,7 @@ func _process(delta: float):
 		impact_particles.global_position = beam_endpoint
 		impact_particles.look_at(beam_endpoint + get_collision_normal())
 	else:
-		beam_endpoint = focus_point
+		beam_endpoint = to_global(target_position)
 		impact_particles.emitting = false
 	mesh_instance.global_position = (global_position + beam_endpoint) / 2
 	mesh_instance.look_at(beam_endpoint)
@@ -56,4 +59,5 @@ func _physics_process(delta: float):
 	params.from = camera.project_ray_origin(cursor_position)
 	params.to = params.from + camera.project_ray_normal(cursor_position) * camera.far
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
-	focus_point_override = result.position if result else Vector3()
+	# Avoid targetting empty space just in front body by moving collision point a small distance in
+	target_position_override = (to_local(result.position) + Vector3.BACK * 0.1) if result else Vector3()
