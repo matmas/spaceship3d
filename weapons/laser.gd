@@ -6,6 +6,7 @@ extends RayCast3D
 @onready var mesh := mesh_instance.mesh as PrismMesh
 @onready var LIGHT_MAX_ENERGY := light.light_energy
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
+@onready var exclude := get_parent().get_parent()
 
 var power := 0.0
 var noise := FastNoiseLite.new()
@@ -15,9 +16,7 @@ var target_position_override := Vector3()
 
 func _ready():
 	Signals.cursor_position_changed.connect(func(p: Vector2): cursor_position = p)
-#	exclude_parent
-#	var m := impact_particles.process_material as ParticleProcessMaterial
-#	m.color *= 1000.0
+	add_exception(exclude)
 
 
 func _process(delta: float):
@@ -33,12 +32,9 @@ func _process(delta: float):
 
 	var ray_origin := camera.project_ray_origin(cursor_position)
 	var ray_end := ray_origin + camera.project_ray_normal(cursor_position) * camera.far
-
-	var new_target_position := to_local(ray_end)
-	if target_position_override:
-		new_target_position = target_position_override
-
-	target_position = target_position.lerp(new_target_position, delta * 5)
+	var new_target_position := target_position_override if target_position_override else ray_end
+	var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
+	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta))
 
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
 	impact_particles.emitting = is_colliding() and power == 1.0
@@ -54,6 +50,7 @@ func _physics_process(_delta: float):
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = camera.project_ray_origin(cursor_position)
 	params.to = params.from + camera.project_ray_normal(cursor_position) * camera.far
+	params.exclude = [exclude]
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	# Avoid targetting empty space just in front body by moving collision point a small distance in
-	target_position_override = (to_local(result.position) + Vector3.BACK * 0.1) if result else Vector3()
+	target_position_override = to_global(to_local(result.position) + Vector3.BACK * 0.1) if result else Vector3()

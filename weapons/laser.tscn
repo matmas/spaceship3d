@@ -51,7 +51,7 @@ material = SubResource("StandardMaterial3D_c8wll")
 size = Vector2(0.1, 0.3)
 
 [node name="Laser" type="RayCast3D"]
-target_position = Vector3(0, 0, 1000)
+target_position = Vector3(0, 0, -1000)
 script = ExtResource("1_7i6cv")
 
 [node name="Beam" type="MeshInstance3D" parent="."]
