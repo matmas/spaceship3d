@@ -71,3 +71,4 @@ draw_pass_1 = SubResource("QuadMesh_lf0n3")
 [node name="Light" type="OmniLight3D" parent="ImpactParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 light_color = Color(1, 0.827451, 0, 1)
+light_energy = 10.0

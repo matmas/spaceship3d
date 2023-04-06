@@ -28,3 +28,4 @@ func _unhandled_input(event):
 		position = cursor_position
 		var steering_direction = (cursor_position - viewport_center) / viewport_radius
 		Signals.steering_direction_changed.emit(steering_direction)
+		Signals.cursor_position_changed.emit(cursor_position)
