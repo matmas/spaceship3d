@@ -4,7 +4,7 @@ extends Camera3D
 @onready var target_body := Globals.player as PhysicsBody3D
 
 var camera_distance := 10.0
-var camera_relative_direction := Vector3(0.0, 2.0, -10.0).normalized()
+var camera_relative_direction := Vector3(0.0, 2.0, 10.0).normalized()
 var current_camera_position: Vector3
 var previous_camera_position: Vector3
 
@@ -18,7 +18,7 @@ func _process(delta: float):
 
 
 func _target_camera_transform() -> Transform3D:
-	var target_camera_basis = target_mesh.global_transform.rotated_local(Vector3.UP, TAU / 2).basis
+	var target_camera_basis = target_mesh.global_transform.basis
 	return Transform3D(target_camera_basis, _current_camera_position())
 
 
@@ -52,7 +52,7 @@ func _calculate_target_camera_position() -> Vector3:
 	if result:
 		return result["position"]
 	else:
-		return Vector3()  # _default_camera_position() should be used later
+		return Vector3()  # we'll use _default_camera_position() later
 
 
 func _unhandled_input(_event):

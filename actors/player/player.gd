@@ -10,9 +10,9 @@ func _init():
 
 func _physics_process(_delta):
 	var linear_acceleration: Vector3 = global_transform.basis * (Vector3(
-		Input.get_axis("move_right", "move_left"),
+		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_down", "move_up"),
-		Input.get_axis("move_backward", "move_forward"),
+		Input.get_axis("move_forward", "move_backward"),
 	).normalized() * Vector3(50, 50, 200))
 	apply_central_force(linear_acceleration)
 #	velocity += linear_acceleration * delta
@@ -20,9 +20,9 @@ func _physics_process(_delta):
 #	move_and_slide()
 
 	var angular_acceleration: Vector3 = Vector3(
-		Mouse.steering_direction.y,
+		-Mouse.steering_direction.y,
 		-Mouse.steering_direction.x,
-		Input.get_axis("roll_left", "roll_right"),
+		Input.get_axis("roll_right", "roll_left"),
 	)
 	apply_torque(global_transform.basis * (angular_acceleration * Vector3(1, 10, 10)))
 #	angular_velocity += angular_acceleration * delta

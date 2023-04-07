@@ -30,19 +30,25 @@ script = ExtResource("2_ana6v")
 [node name="Engines" parent="Bob" index="0" instance=ExtResource("3_vcxc7")]
 
 [node name="CollisionShape6" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("6")
 
 [node name="CollisionShape5" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("7")
 
 [node name="CollisionShape4" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("8")
 
 [node name="CollisionShape3" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("9")
 
 [node name="CollisionShape2" type="CollisionShape3D" parent="." index="5"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("10")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." index="6"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("11")

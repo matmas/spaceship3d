@@ -18,9 +18,9 @@ func point_at(target_position: Vector3, min_distance := 10):
 
 
 func _point_in_direction(target_direction: Vector3):
-	var current_direction := global_transform.basis.z
+	var current_direction := -global_transform.basis.z
 	var correction := target_direction - current_direction
-	self.apply_torque(correction.cross(-global_transform.basis.z).normalized() * correction.length() * 100)
+	self.apply_torque(correction.cross(global_transform.basis.z).normalized() * correction.length() * 100)
 
 
 func match_roll_with(target: Node3D):
