@@ -52,3 +52,20 @@ func _physics_process(_delta: float):
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	# Avoid targetting empty space just in front body by moving collision point a bit forward
 	target_position_override = to_global(to_local(result.position) + Vector3.FORWARD * 0.1) if result else Vector3()
+	if result != {} and power == 1.0:
+		_burn(result.collider, result.position)
+
+
+func _burn(body: PhysicsBody3D, center_position: Vector3):
+	var mdt := MeshDataTool.new()
+	var mesh_instance: MeshInstance3D
+	for child in body.get_children():
+		if child is MeshInstance3D:
+			mesh_instance = child as MeshInstance3D
+	var mesh := mesh_instance.mesh as ArrayMesh
+	mdt.create_from_surface(mesh, 0)
+	for i in range(mdt.get_vertex_count()):
+		if center_position.distance_to(mesh_instance.to_global(mdt.get_vertex(i))) < 0.05:
+			mdt.set_vertex_color(i, Color(Color.RED, 0.0))
+	mesh.clear_surfaces()
+	mdt.commit_to_surface(mesh as ArrayMesh)
