@@ -6,7 +6,7 @@ extends RayCast3D
 @onready var impact_light := $"ImpactParticles/Light" as OmniLight3D
 @onready var IMPACT_LIGHT_MAX_ENERGY := impact_light.light_energy
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
-@onready var exclude := get_parent().get_parent()
+@onready var exclude := owner
 
 var power := 0.0
 var noise := FastNoiseLite.new()
