@@ -22,6 +22,7 @@ FpsMonitor="*res://singletons/fps_monitor.gd"
 Signals="*res://singletons/signals.gd"
 RandomSeed="*res://singletons/random_seed.gd"
 Globals="*res://singletons/globals.gd"
+Mouse="*res://singletons/mouse.gd"
 
 [display]
 
