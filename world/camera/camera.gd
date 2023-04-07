@@ -50,7 +50,7 @@ func _calculate_target_camera_position() -> Vector3:
 	params.exclude = [target_body]
 	var result := space_state.intersect_ray(params)
 	if result:
-		return result["position"]
+		return result.position
 	else:
 		return Vector3()  # we'll use _default_camera_position() later
 
