@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _on_resize():
-	cursor_position = _get_viewport_center()
+	cursor_position = _get_cursor_position_from_steering_direction()
 	cursor_position_changed.emit(cursor_position)
 
 
@@ -34,12 +34,19 @@ func _unhandled_input(event):
 		if i != -1:
 			cursor_position = (cursor_position - viewport_center) * i + viewport_center
 		cursor_position_changed.emit(cursor_position)
+		steering_direction = _get_steering_direction()
 
 
-func get_steering_direction() -> Vector2:
+func _get_steering_direction() -> Vector2:
 	var viewport_center := _get_viewport_center()
 	var viewport_radius = _get_viewport_radius(viewport_center)
 	return (cursor_position - viewport_center) / viewport_radius
+
+
+func _get_cursor_position_from_steering_direction() -> Vector2:
+	var viewport_center := _get_viewport_center()
+	var viewport_radius = _get_viewport_radius(viewport_center)
+	return steering_direction * viewport_radius + viewport_center
 
 
 func _get_viewport_center() -> Vector2:

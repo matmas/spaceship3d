@@ -19,10 +19,9 @@ func _physics_process(_delta):
 #	velocity *= DAMPING_FACTOR ** (delta * 60)
 #	move_and_slide()
 
-	var steering_direction := Mouse.get_steering_direction()
 	var angular_acceleration: Vector3 = Vector3(
-		steering_direction.y,
-		-steering_direction.x,
+		Mouse.steering_direction.y,
+		-Mouse.steering_direction.x,
 		Input.get_axis("roll_left", "roll_right"),
 	)
 	apply_torque(global_transform.basis * (angular_acceleration * Vector3(1, 10, 10)))
