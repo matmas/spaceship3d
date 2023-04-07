@@ -52,3 +52,5 @@ func _physics_process(_delta: float):
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	# Avoid targetting empty space just in front body by moving collision point a bit forward
 	target_position_override = to_global(to_local(result.position) + Vector3.FORWARD * 0.1) if result else Vector3()
+	if result != {} and power == 1.0:
+		Signals.paint.emit(result.collider, result.position)

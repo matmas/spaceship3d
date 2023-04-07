@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://0kirrm76h48e"]
+[gd_scene load_steps=12 format=3 uid="uid://c5chfqknh5d4y"]
 
-[ext_resource type="Script" path="res://weapons/laser.gd" id="1_7i6cv"]
-[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://textures/particle.png" id="2_r62o5"]
+[ext_resource type="Script" path="res://weapons/laser/laser.gd" id="1_dydt7"]
+[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://textures/particle.png" id="2_3ud61"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwqwg"]
 blend_mode = 1
@@ -43,7 +43,7 @@ transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_r62o5")
+albedo_texture = ExtResource("2_3ud61")
 disable_receive_shadows = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_lf0n3"]
@@ -52,7 +52,7 @@ size = Vector2(0.1, 0.3)
 
 [node name="Laser" type="RayCast3D"]
 target_position = Vector3(0, 0, -1000)
-script = ExtResource("1_7i6cv")
+script = ExtResource("1_dydt7")
 
 [node name="Beam" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
