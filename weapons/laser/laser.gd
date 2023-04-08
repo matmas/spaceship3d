@@ -32,7 +32,7 @@ func _process(delta: float):
 	var ray_end := ray_origin + camera.project_ray_normal(Mouse.cursor_position) * camera.far
 	var new_target_position := target_position_override if target_position_override else ray_end
 	var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
-	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta)).orthonormalized()
+	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * 1000)).orthonormalized()
 
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
 	impact_particles.emitting = is_colliding() and power == 1.0
@@ -43,6 +43,12 @@ func _process(delta: float):
 	beam.look_at(beam_endpoint)
 	beam.scale.z = global_position.distance_to(beam_endpoint) / beam_mesh.size.z
 
+	if is_colliding() and power == 1.0:
+		var mesh_instance = Utils.get_first_child_of_type(get_collider(), MeshInstance3D)
+		if mesh_instance == null:
+			mesh_instance = get_collider().get_parent()
+		Signals.paint.emit(mesh_instance, global_position, get_collision_point())
+
 
 func _physics_process(_delta: float):
 	var params := PhysicsRayQueryParameters3D.new()
@@ -52,5 +58,3 @@ func _physics_process(_delta: float):
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	# Avoid targetting empty space just in front body by moving collision point a bit forward
 	target_position_override = to_global(to_local(result.position) + Vector3.FORWARD * 0.1) if result else Vector3()
-	if result != {} and power == 1.0:
-		Signals.paint.emit(result.collider, result.position)

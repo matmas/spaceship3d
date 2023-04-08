@@ -32,7 +32,7 @@ _subresources={
 "materials": {
 "Asteroid": {
 "use_external/enabled": true,
-"use_external/path": "res://textures/generated/rock.tres"
+"use_external/path": "res://textures/rock.tres"
 }
 },
 "nodes": {

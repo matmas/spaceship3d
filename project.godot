@@ -23,6 +23,7 @@ Signals="*res://singletons/signals.gd"
 RandomSeed="*res://singletons/random_seed.gd"
 Globals="*res://singletons/globals.gd"
 Mouse="*res://singletons/mouse.gd"
+Utils="*res://singletons/utils.gd"
 
 [display]
 

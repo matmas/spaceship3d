@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://badc17myxaqbv"]
+
+[ext_resource type="Script" path="res://world/painter/painter.gd" id="1_xx7sr"]
+[ext_resource type="Shader" path="res://world/painter/painter.gdshader" id="3_eevpi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqkrb"]
+render_priority = 0
+shader = ExtResource("3_eevpi")
+
+[sub_resource type="QuadMesh" id="QuadMesh_o0yna"]
+
+[node name="Painter" type="Node"]
+script = ExtResource("1_xx7sr")
+
+[node name="UVScope" type="SubViewport" parent="."]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(3, 3)
+render_target_update_mode = 4
+
+[node name="Representation" type="MeshInstance3D" parent="UVScope"]
+material_override = SubResource("ShaderMaterial_nqkrb")
+mesh = SubResource("QuadMesh_o0yna")
+
+[node name="Camera" type="Camera3D" parent="UVScope"]
+editor_description = "Camera needs to see the object in order to prevent stutter when displaying the material for the first time."
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+fov = 1.0
