@@ -28,8 +28,10 @@ func _paint(mesh_instance: MeshInstance3D, from_position: Vector3, to_position: 
 	var material := mesh_instance.get_active_material(0)
 	if material is BaseMaterial3D:
 		var base_material := material as BaseMaterial3D
-		base_material.detail_enabled = true
-		base_material.detail_mask = canvas.get_texture()
+		var copy := base_material.duplicate()
+		mesh_instance.set_surface_override_material(0, copy)
+		copy.detail_enabled = true
+		copy.detail_mask = canvas.get_texture()
 
 
 func get_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
