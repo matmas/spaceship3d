@@ -10,7 +10,6 @@ var _materials := {}
 
 func _ready():
 	Signals.paint.connect(_paint)
-#	await RenderingServer.frame_post_draw
 
 
 func _paint(mesh_instance: MeshInstance3D, from_position: Vector3, to_position: Vector3):
