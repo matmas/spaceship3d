@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5chfqknh5d4y"]
+[gd_scene load_steps=13 format=3 uid="uid://c5chfqknh5d4y"]
 
 [ext_resource type="Script" path="res://weapons/laser/laser.gd" id="1_dydt7"]
 [ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://textures/particle.png" id="2_3ud61"]
+[ext_resource type="PackedScene" uid="uid://duq050v68vhla" path="res://painter/painter.tscn" id="3_phfxn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwqwg"]
 blend_mode = 1
@@ -72,3 +73,5 @@ draw_pass_1 = SubResource("QuadMesh_lf0n3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 light_color = Color(1, 0.827451, 0, 1)
 light_energy = 10.0
+
+[node name="Painter" parent="." instance=ExtResource("3_phfxn")]
