@@ -27,8 +27,7 @@ func _uv_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Trans
 	var image := uv_scope.get_texture().get_image()
 	var center := image.get_size() / 2
 	var color := image.get_pixel(center.x, center.y)
-	var uv := Vector2(color.r, color.g)
-	return uv
+	return Vector2(color.r, color.g)
 
 
 func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:

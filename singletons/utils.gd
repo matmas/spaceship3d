@@ -22,7 +22,7 @@ func update_mass(rigid_body: RigidBody3D, density: float) -> float:
 	for child in rigid_body.get_children():
 		if child is MeshInstance3D:
 			var mesh_instance := child as MeshInstance3D
-			if rigid_body.mass == 1:
+			if rigid_body.mass == 1:  # Godot default value for mass
 				var volume := mesh_volume(mesh_instance.mesh as ArrayMesh)
 				rigid_body.mass = volume * density
 				total_mass_calculated += rigid_body.mass
