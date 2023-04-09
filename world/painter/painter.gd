@@ -13,6 +13,14 @@ func _ready():
 
 
 func _paint(mesh_instance: MeshInstance3D, brush_transform: Transform3D):
+	var canvas := _get_or_create_canvas(mesh_instance)
+	var brush := canvas.get_node("Brush") as Sprite2D
+	brush.position = _uv_of_brush_position(mesh_instance, brush_transform) * Vector2(canvas.size)
+	canvas.render_target_update_mode = SubViewport.UPDATE_ONCE
+	_setup_material(mesh_instance, canvas)
+
+
+func _uv_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Transform3D) -> Vector2:
 	uv_scope.get_camera_3d().global_transform = brush_transform
 	representation.mesh = mesh_instance.mesh
 	representation.global_transform = mesh_instance.global_transform
@@ -20,13 +28,7 @@ func _paint(mesh_instance: MeshInstance3D, brush_transform: Transform3D):
 	var center := image.get_size() / 2
 	var color := image.get_pixel(center.x, center.y)
 	var uv := Vector2(color.r, color.g)
-	var canvas := _get_or_create_canvas(mesh_instance)
-	var brush := canvas.get_node("Brush") as Sprite2D
-
-	brush.position = uv * Vector2(canvas.size)
-
-	canvas.render_target_update_mode = SubViewport.UPDATE_ONCE
-	_setup_material(mesh_instance, canvas)
+	return uv
 
 
 func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
