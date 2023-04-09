@@ -12,13 +12,13 @@ func _ready():
 	Signals.paint.connect(_paint)
 
 
-@warning_ignore("integer_division")
 func _paint(mesh_instance: MeshInstance3D, from_position: Vector3, to_position: Vector3):
 	uv_scope.get_camera_3d().look_at_from_position(from_position, to_position)
 	representation.mesh = mesh_instance.mesh
 	representation.global_transform = mesh_instance.global_transform
 	var image := uv_scope.get_texture().get_image()
-	var color := image.get_pixel(image.get_width() / 2, image.get_height() / 2)
+	var center := image.get_size() / 2
+	var color := image.get_pixel(center.x, center.y)
 	var uv := Vector2(color.r, color.g)
 	var canvas := _get_or_create_canvas(mesh_instance)
 	var brush := canvas.get_node("Brush") as Sprite2D
