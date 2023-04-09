@@ -12,8 +12,8 @@ func _ready():
 	Signals.paint.connect(_paint)
 
 
-func _paint(mesh_instance: MeshInstance3D, from_position: Vector3, to_position: Vector3):
-	uv_scope.get_camera_3d().look_at_from_position(from_position, to_position)
+func _paint(mesh_instance: MeshInstance3D, brush_transform: Transform3D):
+	uv_scope.get_camera_3d().global_transform = brush_transform
 	representation.mesh = mesh_instance.mesh
 	representation.global_transform = mesh_instance.global_transform
 	var image := uv_scope.get_texture().get_image()

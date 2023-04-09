@@ -47,7 +47,7 @@ func _process(delta: float):
 		var mesh_instance = Utils.get_first_child_of_type(get_collider(), MeshInstance3D)
 		if mesh_instance == null:
 			mesh_instance = get_collider().get_parent()
-		Signals.paint.emit(mesh_instance, global_position, get_collision_point())
+		Signals.paint.emit(mesh_instance, global_transform)
 
 
 func _physics_process(_delta: float):
