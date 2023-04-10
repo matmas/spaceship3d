@@ -26,7 +26,7 @@ func paint_line(mesh_instance: MeshInstance3D, transform_start: Transform3D, tra
 	brush_material.set_shader_parameter("line_start", uv_start)
 	brush_material.set_shader_parameter("line_end", uv_end)
 	canvas.render_target_update_mode = SubViewport.UPDATE_ONCE
-	_setup_materials(mesh_instance, canvas)
+	_setup_material_for_canvas(mesh_instance, canvas)
 
 
 func _uv_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Transform3D) -> Vector2:
@@ -53,17 +53,17 @@ func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
 	return canvas
 
 
-func _setup_materials(mesh_instance: MeshInstance3D, canvas: SubViewport, surface: int = 0) -> void:
+func _setup_material_for_canvas(mesh_instance: MeshInstance3D, canvas: SubViewport, surface: int = 0) -> void:
 	if mesh_instance.material_override:
-		mesh_instance.material_override = _setup_material_for_canvas(mesh_instance.material_override, canvas)
+		mesh_instance.material_override = _get_material_for_canvas(mesh_instance.material_override, canvas)
 	else:
 		if mesh_instance.get_surface_override_material(surface):
-			mesh_instance.set_surface_override_material(surface, _setup_material_for_canvas(mesh_instance.get_surface_override_material(surface), canvas))
+			mesh_instance.set_surface_override_material(surface, _get_material_for_canvas(mesh_instance.get_surface_override_material(surface), canvas))
 		elif mesh_instance.mesh.surface_get_material(surface):
-			mesh_instance.mesh.surface_set_material(surface, _setup_material_for_canvas(mesh_instance.mesh.surface_get_material(surface), canvas))
+			mesh_instance.mesh.surface_set_material(surface, _get_material_for_canvas(mesh_instance.mesh.surface_get_material(surface), canvas))
 
 
-func _setup_material_for_canvas(material: Material, canvas: SubViewport) -> Material:
+func _get_material_for_canvas(material: Material, canvas: SubViewport) -> Material:
 	if material is BaseMaterial3D:
 		var unique_material := _unique_material(material)
 		if material != unique_material:
