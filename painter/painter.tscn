@@ -10,7 +10,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ufv0g"]
 render_priority = 0
 shader = ExtResource("2_lvbgt")
-shader_parameter/blue = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x7n6k"]
 resource_local_to_scene = true

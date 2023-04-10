@@ -6,20 +6,12 @@ class_name Painter extends Node
 @onready var canvas_scene := preload("res://painter/canvas.tscn") as PackedScene
 @onready var CANVAS_SCENE_NAME := canvas_scene.instantiate().name
 
-const MAX_SURFACE_INDEX := 100
-
-var _allocated_representation_materials := 1
 var _last_uv: Vector2
 
 
 func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D):
-#	var canvas := _get_or_create_canvas(mesh_instance)
+	var canvas := _get_or_create_canvas(mesh_instance)
 	var uv_color := _uv_color_of_brush_position(mesh_instance, transform)
-
-	var canvases = _get_or_create_canvases(mesh_instance)
-	var surface := _surface_from_uv_color(uv_color)
-	surface = mini(surface, len(canvases) - 1)
-	var canvas = canvases[surface]
 
 	var uv_start := _last_uv
 	var uv_end := _uv_from_uv_color(uv_color)
@@ -42,7 +34,6 @@ func _uv_color_of_brush_position(mesh_instance: MeshInstance3D, brush_transform:
 	uv_scope.get_camera_3d().global_transform = brush_transform
 	representation.mesh = mesh_instance.mesh
 	representation.global_transform = mesh_instance.global_transform
-	_allocate_missing_representation_materials(mesh_instance.mesh)
 	var image := uv_scope.get_texture().get_image()
 	var center := image.get_size() / 2
 	return image.get_pixel(center.x, center.y)
@@ -52,51 +43,12 @@ func _uv_from_uv_color(color: Color) -> Vector2:
 	return Vector2(color.r, color.g)
 
 
-func _surface_from_uv_color(color: Color) -> int:
-	return roundi(color.b * MAX_SURFACE_INDEX)
-
-
-func _surface_to_uv_color_component(surface: int) -> float:
-	return float(surface) / MAX_SURFACE_INDEX
-
-
-func _allocate_missing_representation_materials(mesh: Mesh):
-	while _allocated_representation_materials < mesh.get_surface_count():
-		var material_template := representation.get_surface_override_material(0) as ShaderMaterial
-		var copy := material_template.duplicate()
-		var surface := _allocated_representation_materials
-		copy.set_shader_parameter("blue", _surface_to_uv_color_component(surface))
-		representation.set_surface_override_material(surface, copy)
-		_allocated_representation_materials += 1
-
-
-func _get_or_create_canvases(mesh_instance: MeshInstance3D) -> Array:
-	var canvases := mesh_instance.find_children("", "SubViewport", false, false)
-	if canvases == []:
-		if mesh_instance.material_override:
-			mesh_instance.add_child(canvas_scene.instantiate())
-		else:
-			for surface in range(mesh_instance.mesh.get_surface_count()):
-				mesh_instance.add_child(canvas_scene.instantiate())
-		canvases = _get_or_create_canvases(mesh_instance)
-		assert(canvases != [])
-	return canvases
-
-
-#func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
-#	var canvas := mesh_instance.find_child(CANVAS_SCENE_NAME, false, false) as SubViewport
-#	if canvas == null:
-#		canvas = canvas_scene.instantiate() as SubViewport
-#		mesh_instance.add_child(canvas)
-#	return canvas
-
-
-func _switch_to_paintable_materials(mesh_instance: MeshInstance3D, canvases: Array) -> void:
-	if mesh_instance.material_override:
-		_switch_to_paintable_material(mesh_instance, canvases[0])
-	else:
-		for surface in range(mesh_instance.mesh.get_surface_count()):
-			_switch_to_paintable_material(mesh_instance, canvases[surface])
+func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
+	var canvas := mesh_instance.find_child(CANVAS_SCENE_NAME, false, false) as SubViewport
+	if canvas == null:
+		canvas = canvas_scene.instantiate() as SubViewport
+		mesh_instance.add_child(canvas)
+	return canvas
 
 
 func _switch_to_paintable_material(mesh_instance: MeshInstance3D, canvas: SubViewport, surface: int = 0) -> void:
