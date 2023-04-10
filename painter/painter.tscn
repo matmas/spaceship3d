@@ -5,13 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://cpidf8ua8doet" path="res://painter/brush.tscn" id="3_v0n6v"]
 [ext_resource type="Shader" path="res://painter/brush.gdshader" id="4_dt7rb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqkrb"]
-render_priority = 0
-shader = ExtResource("2_lvbgt")
-
 [sub_resource type="QuadMesh" id="QuadMesh_o0yna"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tgj3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufv0g"]
+render_priority = 0
+shader = ExtResource("2_lvbgt")
+shader_parameter/blue = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7n6k"]
 resource_local_to_scene = true
 shader = ExtResource("4_dt7rb")
 shader_parameter/line_start = Vector2(0.4, 0.4)
@@ -27,8 +28,8 @@ size = Vector2i(3, 3)
 render_target_update_mode = 4
 
 [node name="Representation" type="MeshInstance3D" parent="UVScope"]
-material_override = SubResource("ShaderMaterial_nqkrb")
 mesh = SubResource("QuadMesh_o0yna")
+surface_material_override/0 = SubResource("ShaderMaterial_ufv0g")
 
 [node name="Camera" type="Camera3D" parent="UVScope"]
 editor_description = "Camera needs to see the object in order to prevent stutter when displaying the material for the first time."
@@ -37,4 +38,4 @@ fov = 1.0
 
 [node name="Brush" parent="." instance=ExtResource("3_v0n6v")]
 visible = false
-material = SubResource("ShaderMaterial_0tgj3")
+material = SubResource("ShaderMaterial_x7n6k")

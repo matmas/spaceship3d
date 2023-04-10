@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode unshaded;
 
+uniform float blue : hint_range(0, 1) = 0.0;
+
 vec3 toLinear(vec3 sRGB) {
 	// From https://www.shadertoy.com/view/4tXcWr
 	bvec3 cutoff = lessThan(sRGB, vec3(0.04045));
@@ -10,5 +12,5 @@ vec3 toLinear(vec3 sRGB) {
 }
 
 void fragment() {
-	ALBEDO = toLinear(vec3(UV, 0.0));
+	ALBEDO = toLinear(vec3(UV, blue));
 }

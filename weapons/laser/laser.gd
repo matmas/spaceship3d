@@ -9,7 +9,7 @@ extends RayCast3D
 @onready var exclude := owner
 @onready var painter := $Painter as Painter
 
-var targetting_speed := 1.0
+var targetting_speed := 1000.0
 
 var power := 0.0
 var noise := FastNoiseLite.new()
@@ -43,7 +43,7 @@ func _process(delta: float):
 	impact_particles.emitting = is_colliding() and power == 1.0
 	impact_particles.global_position = beam_endpoint
 	if is_colliding():
-		impact_particles.look_at(beam_endpoint + get_collision_normal())
+		impact_particles.look_at(beam_endpoint + get_collision_normal(), get_collision_normal().cross(-impact_particles.basis.z))
 	beam.global_position = (global_position + beam_endpoint) / 2
 	beam.look_at(beam_endpoint)
 	beam.scale.z = global_position.distance_to(beam_endpoint) / beam_mesh.size.z
