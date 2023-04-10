@@ -2,28 +2,28 @@ extends RigidBody3D
 class_name Actor
 
 
-func _ready():
+func _ready() -> void:
 	can_sleep = false
 	gravity_scale = 0
 	linear_damp = 5
 	angular_damp = 5
 
 
-func point_at(target_position: Vector3, min_distance := 10):
+func point_at(target_position: Vector3, min_distance: float = 10) -> void:
 	var distance := global_position.distance_to(target_position)
 	if distance < min_distance:
-		return true
+		return
 	var target_direction := global_position.direction_to(target_position)
 	_point_in_direction(target_direction)
 
 
-func _point_in_direction(target_direction: Vector3):
+func _point_in_direction(target_direction: Vector3) -> void:
 	var current_direction := -global_transform.basis.z
 	var correction := target_direction - current_direction
 	self.apply_torque(correction.cross(global_transform.basis.z).normalized() * correction.length() * 100)
 
 
-func match_roll_with(target: Node3D):
+func match_roll_with(target: Node3D) -> bool:
 	var projected_target_up := Plane(global_transform.basis.z).project(target.global_transform.basis.y)
 	if projected_target_up.length() < 0.1:
 		return true  # prevent constant rolling due to parallel forward and target up vectors
@@ -32,7 +32,7 @@ func match_roll_with(target: Node3D):
 	return correction.length() < 0.2
 
 
-func move_to(target_position: Vector3, max_accel := 100):
+func move_to(target_position: Vector3, max_accel := 100) -> void:
 	var correction := target_position - global_position
 	self.apply_central_force(correction.normalized() * minf(correction.length() * linear_damp, max_accel))
 

@@ -1,7 +1,7 @@
 extends Actor
 
 
-func _ready():
+func _ready() -> void:
 	super._ready()
 	position = Vector3(
 		randf_range(-100, 100),
@@ -10,7 +10,7 @@ func _ready():
 	)
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	var player := Globals.player
 	point_at(player.global_position)
 	match_roll_with(player)

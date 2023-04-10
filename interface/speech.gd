@@ -1,11 +1,11 @@
 extends AudioStreamPlayer
 
 
-func _ready():
+func _ready() -> void:
 	Signals.talk.connect(speak)
 
 
-func speak(speaker_name: String, text: String):
+func speak(speaker_name: String, text: String) -> void:
 	var speach := load("res://speech/generated/%s_%s.ogg" % [speaker_name, text.validate_filename()])
 	if !playing:
 		stream = speach

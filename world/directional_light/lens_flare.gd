@@ -7,7 +7,7 @@ var visibility := 0.0
 var target_visibility := 0.0
 
 
-func _ready():
+func _ready() -> void:
 	set_process(visible)
 	set_physics_process(visible)
 
@@ -16,7 +16,7 @@ func get_light_apparent_global_position() -> Vector3:
 	return camera.global_position + directional_light.global_transform.basis.z * camera.far
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	var shader := material as ShaderMaterial
 	shader.set_shader_parameter("sun_position", camera.unproject_position(get_light_apparent_global_position()))
 	shader.set_shader_parameter("visibility", visibility)
@@ -24,7 +24,7 @@ func _process(delta):
 	visible = not camera.is_position_behind(get_light_apparent_global_position())
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	var space_state = directional_light.get_world_3d().direct_space_state
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = camera.global_position

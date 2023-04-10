@@ -29,17 +29,17 @@ var SPEAKER_COLORS = {
 }
 
 
-func _ready():
+func _ready() -> void:
 	text = ""
 	Signals.talk.connect(display_subtitle)
 	clear_subtitle_timer.timeout.connect(clear_subtitle)
 
 
-func display_subtitle(speaker_name: String, subtitle_text: String):
+func display_subtitle(speaker_name: String, subtitle_text: String) -> void:
 	text = subtitle_text
 	label_settings.font_color = SPEAKER_COLORS.get(speaker_name, Color.WHITE)
 	clear_subtitle_timer.start(PAUSE_SECONDS + len(subtitle_text) / CHARACTERS_PER_SECOND)
 
 
-func clear_subtitle():
+func clear_subtitle() -> void:
 	text = ""

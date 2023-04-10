@@ -9,11 +9,11 @@ var current_camera_position: Vector3
 var previous_camera_position: Vector3
 
 
-func _ready():
+func _ready() -> void:
 	global_transform = _target_camera_transform()
 
 
-func _process(delta: float):
+func _process(delta: float) -> void:
 	global_transform = global_transform.interpolate_with(_target_camera_transform(), delta * 10)
 
 
@@ -22,7 +22,7 @@ func _target_camera_transform() -> Transform3D:
 	return Transform3D(target_camera_basis, _current_camera_position())
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	previous_camera_position = _current_camera_position()
 	current_camera_position = _calculate_target_camera_position()
 
@@ -55,7 +55,7 @@ func _calculate_target_camera_position() -> Vector3:
 		return Vector3()  # we'll use _default_camera_position() later
 
 
-func _unhandled_input(_event):
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("dolly_in"):
 		camera_distance -= 5
 	if Input.is_action_just_released("dolly_out"):

@@ -3,12 +3,11 @@ extends Actor
 #const DAMPING_FACTOR = 0.93
 #var angular_velocity := Vector3()
 
-
-func _init():
+func _init() -> void:
 	Globals.player = self
 
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	var linear_acceleration: Vector3 = global_transform.basis * (Vector3(
 		Input.get_axis("move_left", "move_right"),
 		Input.get_axis("move_down", "move_up"),

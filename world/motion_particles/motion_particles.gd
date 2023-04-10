@@ -6,7 +6,7 @@ extends GPUParticles3D
 var camera_velocity := Vector3()
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	global_transform = camera.global_transform
 	var shader := draw_pass_1.surface_get_material(0) as ShaderMaterial
 	shader.set_shader_parameter("camera_position", camera.global_position)

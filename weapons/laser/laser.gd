@@ -16,13 +16,13 @@ var noise := FastNoiseLite.new()
 var target_position_override := Vector3()
 
 
-func _ready():
+func _ready() -> void:
 	add_exception(exclude)
 	set_process(visible)
 	set_physics_process(visible)
 
 
-func _process(delta: float):
+func _process(delta: float) -> void:
 	if Input.is_action_pressed("fire"):
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
@@ -55,7 +55,7 @@ func _process(delta: float):
 		painter.paint_line(mesh_instance, global_transform)
 
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = camera.project_ray_origin(Mouse.cursor_position)
 	params.to = params.from + camera.project_ray_normal(Mouse.cursor_position) * camera.far

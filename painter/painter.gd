@@ -9,7 +9,7 @@ class_name Painter extends Node
 var _last_uv: Vector2
 
 
-func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D):
+func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D) -> void:
 	var canvas := _get_or_create_canvas(mesh_instance)
 	var uv_color := _uv_color_of_brush_position(mesh_instance, transform)
 

@@ -40,7 +40,7 @@ func _run() -> void:
 		ResourceSaver.save(res)
 
 
-func add_files(dir: String):
+func add_files(dir: String) -> void:
 	for file in DirAccess.get_files_at(dir):
 		if file.get_extension() == "tscn" or file.get_extension() == "tres":
 			files.append(dir.path_join(file))

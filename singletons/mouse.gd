@@ -11,12 +11,12 @@ func _ready() -> void:
 	get_tree().root.size_changed.connect(_on_resize)
 
 
-func _on_resize():
+func _on_resize() -> void:
 	cursor_position = _get_cursor_position_from_steering_direction()
 	cursor_position_changed.emit(cursor_position)
 
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	# Click inside window
 	if event is InputEventMouseButton and event.pressed:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

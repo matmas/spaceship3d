@@ -2,5 +2,5 @@
 extends Node
 
 
-func _ready():
+func _ready() -> void:
 	seed(0)
