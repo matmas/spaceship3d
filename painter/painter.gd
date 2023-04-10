@@ -11,8 +11,10 @@ var _last_uv: Vector2
 
 func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D):
 	var canvas := _get_or_create_canvas(mesh_instance)
+	var uv_color := _uv_color_of_brush_position(mesh_instance, transform)
+
 	var uv_start := _last_uv
-	var uv_end := _uv_of_brush_position(mesh_instance, transform)
+	var uv_end := _uv_from_uv_color(uv_color)
 	_last_uv = uv_end
 
 	# skip large distances as UV maps are often non-linear
@@ -28,13 +30,16 @@ func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D):
 	_setup_material_for_canvas(mesh_instance, canvas)
 
 
-func _uv_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Transform3D) -> Vector2:
+func _uv_color_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Transform3D) -> Color:
 	uv_scope.get_camera_3d().global_transform = brush_transform
 	representation.mesh = mesh_instance.mesh
 	representation.global_transform = mesh_instance.global_transform
 	var image := uv_scope.get_texture().get_image()
 	var center := image.get_size() / 2
-	var color := image.get_pixel(center.x, center.y)
+	return image.get_pixel(center.x, center.y)
+
+
+func _uv_from_uv_color(color: Color) -> Vector2:
 	return Vector2(color.r, color.g)
 
 
