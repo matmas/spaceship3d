@@ -26,7 +26,7 @@ func paint_line(mesh_instance: MeshInstance3D, transform_start: Transform3D, tra
 	brush_material.set_shader_parameter("line_start", uv_start)
 	brush_material.set_shader_parameter("line_end", uv_end)
 	canvas.render_target_update_mode = SubViewport.UPDATE_ONCE
-	_setup_material(mesh_instance, canvas)
+	_setup_materials(mesh_instance, canvas)
 
 
 func _uv_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Transform3D) -> Vector2:
@@ -48,18 +48,36 @@ func _uv_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Trans
 func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
 	var canvas := mesh_instance.find_child(CANVAS_SCENE_NAME, false, false) as SubViewport
 	if canvas == null:
-		canvas = canvas_scene.instantiate()
+		canvas = canvas_scene.instantiate() as SubViewport
 		mesh_instance.add_child(canvas)
 	return canvas
 
 
-func _setup_material(mesh_instance: MeshInstance3D, canvas: SubViewport):
+func _setup_materials(mesh_instance: MeshInstance3D, canvas: SubViewport):
 	var material := mesh_instance.get_active_material(0)
+	mesh_instance.set_surface_override_material(0, _setup_material_for_canvas(material, canvas))
+
+
+func _setup_material_for_canvas(material: Material, canvas: SubViewport) -> Material:
+	if material is BaseMaterial3D:
+		var unique_material := _unique_material(material)
+		if material != unique_material:
+			# previously non-unique are not configured yet
+			_configure_material_for_canvas(unique_material, canvas)
+		return unique_material
+	return material  # unsupported material type
+
+
+func _unique_material(material: Material) -> Material:
+	if material.has_meta(&"unique"):
+		return material
+	var copy := material.duplicate() as Material
+	copy.set_meta(&"unique", true)
+	return copy
+
+
+func _configure_material_for_canvas(material: Material, canvas: SubViewport) -> void:
 	if material is BaseMaterial3D:
 		var base_material := material as BaseMaterial3D
-		if not base_material.has_meta(&"unique"):
-			var copy := base_material.duplicate() as BaseMaterial3D
-			copy.detail_enabled = true
-			copy.detail_mask = canvas.get_texture()
-			copy.set_meta(&"unique", true)
-			mesh_instance.set_surface_override_material(0, copy)
+		base_material.detail_enabled = true
+		base_material.detail_mask = canvas.get_texture()
