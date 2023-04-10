@@ -9,6 +9,7 @@ extends RayCast3D
 @onready var exclude := owner
 @onready var painter := $Painter as Painter
 
+var targetting_speed := 1000.0
 
 var power := 0.0
 var noise := FastNoiseLite.new()
@@ -37,7 +38,7 @@ func _process(delta: float):
 	var ray_end := ray_origin + camera.project_ray_normal(Mouse.cursor_position) * camera.far
 	var new_target_position := target_position_override if target_position_override else ray_end
 	var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
-	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta)).orthonormalized()
+	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
 	impact_particles.emitting = is_colliding() and power == 1.0

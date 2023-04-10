@@ -6,12 +6,19 @@ class_name Painter extends Node
 @onready var canvas_scene := preload("res://painter/canvas.tscn") as PackedScene
 @onready var CANVAS_SCENE_NAME := canvas_scene.instantiate().name
 
+var _last_uv: Vector2
+var _last_mesh_instance: MeshInstance3D
+var _last_brush_transform: Transform3D
+
 
 func paint_line(mesh_instance: MeshInstance3D, transform_start: Transform3D, transform_end: Transform3D):
 	var canvas := _get_or_create_canvas(mesh_instance)
-	var uv_end := await _uv_of_brush_position(mesh_instance, transform_end)
-	var uv_start := await _uv_of_brush_position(mesh_instance, transform_start) if transform_start != transform_end else uv_end
-	if uv_start.distance_to(uv_end) > 0.1:  # skip large distances as UV maps are often non-linear
+	var uv_start := _uv_of_brush_position(mesh_instance, transform_start)
+	var uv_end := _uv_of_brush_position(mesh_instance, transform_end) if transform_start != transform_end else uv_start
+
+	# skip large distances as UV maps are often non-linear
+	# otherwise lines can bridge large distances even across UV boundaries
+	if uv_start.distance_to(uv_end) > 0.1:
 		uv_start = uv_end
 	brush.reparent(canvas)
 	brush.visible = true
@@ -23,14 +30,19 @@ func paint_line(mesh_instance: MeshInstance3D, transform_start: Transform3D, tra
 
 
 func _uv_of_brush_position(mesh_instance: MeshInstance3D, brush_transform: Transform3D) -> Vector2:
+	if mesh_instance == _last_mesh_instance and brush_transform == _last_brush_transform:
+		return _last_uv
 	uv_scope.get_camera_3d().global_transform = brush_transform
 	representation.mesh = mesh_instance.mesh
 	representation.global_transform = mesh_instance.global_transform
-	await RenderingServer.frame_post_draw
 	var image := uv_scope.get_texture().get_image()
 	var center := image.get_size() / 2
 	var color := image.get_pixel(center.x, center.y)
-	return Vector2(color.r, color.g)
+	var uv := Vector2(color.r, color.g)
+	_last_mesh_instance = mesh_instance
+	_last_brush_transform = brush_transform
+	_last_uv = uv
+	return uv
 
 
 func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
