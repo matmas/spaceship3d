@@ -9,12 +9,11 @@ extends RayCast3D
 @onready var exclude := owner
 @onready var painter := $Painter as Painter
 
-var targetting_speed := 1000.0
+var targetting_speed := 1.0
 
 var power := 0.0
 var noise := FastNoiseLite.new()
 var target_position_override := Vector3()
-var paint_line_starting_transform: Transform3D
 
 
 func _ready():
@@ -49,14 +48,11 @@ func _process(delta: float):
 	beam.look_at(beam_endpoint)
 	beam.scale.z = global_position.distance_to(beam_endpoint) / beam_mesh.size.z
 
-	if power < 1.0:
-		paint_line_starting_transform = global_transform
 	if is_colliding() and power == 1.0:
 		var mesh_instance = Utils.get_first_child_of_type(get_collider(), MeshInstance3D)
 		if mesh_instance == null:
 			mesh_instance = get_collider().get_parent()
-		painter.paint_line(mesh_instance, paint_line_starting_transform, global_transform)
-		paint_line_starting_transform = global_transform
+		painter.paint_line(mesh_instance, global_transform)
 
 
 func _physics_process(_delta: float):
