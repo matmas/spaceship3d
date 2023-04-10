@@ -53,9 +53,14 @@ func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
 	return canvas
 
 
-func _setup_materials(mesh_instance: MeshInstance3D, canvas: SubViewport):
-	var material := mesh_instance.get_active_material(0)
-	mesh_instance.set_surface_override_material(0, _setup_material_for_canvas(material, canvas))
+func _setup_materials(mesh_instance: MeshInstance3D, canvas: SubViewport, surface: int = 0) -> void:
+	if mesh_instance.material_override:
+		mesh_instance.material_override = _setup_material_for_canvas(mesh_instance.material_override, canvas)
+	else:
+		if mesh_instance.get_surface_override_material(surface):
+			mesh_instance.set_surface_override_material(surface, _setup_material_for_canvas(mesh_instance.get_surface_override_material(surface), canvas))
+		elif mesh_instance.mesh.surface_get_material(surface):
+			mesh_instance.mesh.surface_set_material(surface, _setup_material_for_canvas(mesh_instance.mesh.surface_get_material(surface), canvas))
 
 
 func _setup_material_for_canvas(material: Material, canvas: SubViewport) -> Material:
