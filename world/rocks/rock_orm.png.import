@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c520ouabi164e"
-path="res://.godot/imported/rock_heightmap.png-9fce97de2695a918fdb04cb74c14ff7c.ctex"
+uid="uid://dtq8a4tnhbfiu"
+path="res://.godot/imported/rock_orm.png-9963253fe448d5639963cf5e40591406.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/generated/rock_heightmap.png"
-dest_files=["res://.godot/imported/rock_heightmap.png-9fce97de2695a918fdb04cb74c14ff7c.ctex"]
+source_file="res://world/rocks/rock_orm.png"
+dest_files=["res://.godot/imported/rock_orm.png-9963253fe448d5639963cf5e40591406.ctex"]
 
 [params]
 

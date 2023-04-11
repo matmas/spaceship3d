@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4tm0opg5hpgo"
-path.s3tc="res://.godot/imported/black.png-0262b92e70cb3a77f5677abea62f4776.s3tc.ctex"
-path.etc2="res://.godot/imported/black.png-0262b92e70cb3a77f5677abea62f4776.etc2.ctex"
+path.s3tc="res://.godot/imported/black.png-da2c0e53659b68e1a72940f316a70a56.s3tc.ctex"
+path.etc2="res://.godot/imported/black.png-da2c0e53659b68e1a72940f316a70a56.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/black.png"
-dest_files=["res://.godot/imported/black.png-0262b92e70cb3a77f5677abea62f4776.s3tc.ctex", "res://.godot/imported/black.png-0262b92e70cb3a77f5677abea62f4776.etc2.ctex"]
+source_file="res://world/rocks/black.png"
+dest_files=["res://.godot/imported/black.png-da2c0e53659b68e1a72940f316a70a56.s3tc.ctex", "res://.godot/imported/black.png-da2c0e53659b68e1a72940f316a70a56.etc2.ctex"]
 
 [params]
 
