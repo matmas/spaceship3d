@@ -62,13 +62,11 @@ func _switch_to_paintable_material(mesh_instance: MeshInstance3D, canvas: SubVie
 
 
 func _make_material_paintable_unique(material: Material, canvas: SubViewport) -> Material:
-	if material is BaseMaterial3D:
-		var unique_material := _make_material_unique(material)
-		if material != unique_material:
-			# previously non-unique are not configured yet
-			_make_material_paintable(unique_material, canvas)
-		return unique_material
-	return material  # unsupported material type
+	var unique_material := _make_material_unique(material)
+	if material != unique_material:
+		# previously non-unique are not configured yet
+		_make_material_paintable(unique_material, canvas)
+	return unique_material
 
 
 func _make_material_unique(material: Material) -> Material:
@@ -84,3 +82,6 @@ func _make_material_paintable(material: Material, canvas: SubViewport) -> void:
 		var base_material := material as BaseMaterial3D
 		base_material.detail_enabled = true
 		base_material.detail_mask = canvas.get_texture()
+	elif material is ShaderMaterial:
+		var shader_material := material as ShaderMaterial
+		shader_material.set_shader_parameter("texture_detail_mask", canvas.get_texture())
