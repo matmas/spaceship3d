@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpidf8ua8doet"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Shader" path="res://painter/brush.gdshader" id="1_dmi1r"]
+[ext_resource type="Shader" path="res://weapons/laser/painter/brush.gdshader" id="1_dmi1r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f10e6"]
 resource_local_to_scene = true
