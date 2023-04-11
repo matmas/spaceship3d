@@ -1,5 +1,4 @@
 #If UID references break, run this script (right click and choose run) to fix it.
-
 @tool
 extends EditorScript
 
@@ -26,24 +25,20 @@ extends EditorScript
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-var files: Array[String]
-
 
 func _run() -> void:
-	files = []
-
-	add_files("res://")
-
-	for file in files:
+	print("Re-saving resources:")
+	for file in get_files_recursively("res://"):
 		print(file)
-		var res = load(file)
-		ResourceSaver.save(res)
+		ResourceSaver.save(load(file))
+	print("Done.")
 
 
-func add_files(dir: String) -> void:
-	for file in DirAccess.get_files_at(dir):
-		if file.get_extension() == "tscn" or file.get_extension() == "tres":
-			files.append(dir.path_join(file))
-
-	for dr in DirAccess.get_directories_at(dir):
-		add_files(dir.path_join(dr))
+func get_files_recursively(directory: String) -> Array[String]:
+	var files: Array[String] = []
+	for filename in DirAccess.get_files_at(directory):
+		if filename.get_extension() in ["tscn", "tres"]:
+			files.append(directory.path_join(filename))
+	for d in DirAccess.get_directories_at(directory):
+		files.append_array(get_files_recursively(directory.path_join(d)))
+	return files
