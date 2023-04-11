@@ -18,8 +18,8 @@ func get_light_apparent_global_position() -> Vector3:
 
 func _process(delta: float) -> void:
 	var shader := material as ShaderMaterial
-	shader.set_shader_parameter("sun_position", camera.unproject_position(get_light_apparent_global_position()))
-	shader.set_shader_parameter("visibility", visibility)
+	shader.set_shader_parameter(&"sun_position", camera.unproject_position(get_light_apparent_global_position()))
+	shader.set_shader_parameter(&"visibility", visibility)
 	visibility = lerpf(visibility, target_visibility, 1 - pow(0.1, delta * 5))
 	visible = not camera.is_position_behind(get_light_apparent_global_position())
 

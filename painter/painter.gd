@@ -24,8 +24,8 @@ func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D) -> void:
 	brush.reparent(canvas)
 	brush.visible = true
 	var brush_material := brush.material as ShaderMaterial
-	brush_material.set_shader_parameter("line_start", uv_start)
-	brush_material.set_shader_parameter("line_end", uv_end)
+	brush_material.set_shader_parameter(&"line_start", uv_start)
+	brush_material.set_shader_parameter(&"line_end", uv_end)
 	canvas.render_target_update_mode = SubViewport.UPDATE_ONCE
 	_switch_to_paintable_material(mesh_instance, canvas)
 

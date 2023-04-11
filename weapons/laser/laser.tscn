@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5chfqknh5d4y"]
+[gd_scene load_steps=13 format=3 uid="uid://c5hvqiliywvtl"]
 
 [ext_resource type="Script" path="res://weapons/laser/laser.gd" id="1_dydt7"]
-[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://textures/particle.png" id="2_3ud61"]
+[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://weapons/laser/particle.png" id="2_aivho"]
 [ext_resource type="PackedScene" uid="uid://duq050v68vhla" path="res://painter/painter.tscn" id="3_phfxn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwqwg"]
@@ -44,7 +44,7 @@ transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_3ud61")
+albedo_texture = ExtResource("2_aivho")
 disable_receive_shadows = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_lf0n3"]

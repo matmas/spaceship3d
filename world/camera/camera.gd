@@ -56,8 +56,8 @@ func _calculate_target_camera_position() -> Vector3:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_released("dolly_in"):
+	if Input.is_action_just_released(&"dolly_in"):
 		camera_distance -= 5
-	if Input.is_action_just_released("dolly_out"):
+	if Input.is_action_just_released(&"dolly_out"):
 		camera_distance += 5
 	camera_distance = clampf(camera_distance, 5.0, 50.0)
