@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://b8ak56u21ckvl"]
 
 [ext_resource type="Script" path="res://weapons/laser/painter/painter.gd" id="1_xx7sr"]
 [ext_resource type="Shader" path="res://weapons/laser/painter/uv.gdshader" id="2_lvbgt"]
-[ext_resource type="PackedScene" path="res://weapons/laser/painter/brush.tscn" id="3_v0n6v"]
+[ext_resource type="PackedScene" uid="uid://c20yui1e2d86l" path="res://weapons/laser/painter/brush.tscn" id="3_v0n6v"]
 [ext_resource type="Shader" path="res://weapons/laser/painter/brush.gdshader" id="4_dt7rb"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_o0yna"]

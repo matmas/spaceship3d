@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://cwbohigkb0gf"]
 
 [ext_resource type="Script" path="res://weapons/laser/laser.gd" id="1_dydt7"]
 [ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://weapons/laser/particle.png" id="2_aivho"]
-[ext_resource type="PackedScene" path="res://weapons/laser/painter/painter.tscn" id="3_phfxn"]
+[ext_resource type="PackedScene" uid="uid://b8ak56u21ckvl" path="res://weapons/laser/painter/painter.tscn" id="3_phfxn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwqwg"]
 blend_mode = 1
