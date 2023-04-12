@@ -1,24 +1,24 @@
 [gd_scene load_steps=8 format=3 uid="uid://b8ak56u21ckvl"]
 
-[ext_resource type="Script" path="res://weapons/laser/painter/painter.gd" id="1_xx7sr"]
-[ext_resource type="Shader" path="res://weapons/laser/painter/uv.gdshader" id="2_lvbgt"]
-[ext_resource type="PackedScene" uid="uid://c20yui1e2d86l" path="res://weapons/laser/painter/brush.tscn" id="3_v0n6v"]
-[ext_resource type="Shader" path="res://weapons/laser/painter/brush.gdshader" id="4_dt7rb"]
+[ext_resource type="Script" path="res://actors/weapons/laser/painter/painter.gd" id="1_hpfs0"]
+[ext_resource type="Shader" path="res://actors/weapons/laser/painter/uv.gdshader" id="2_0pon0"]
+[ext_resource type="PackedScene" uid="uid://citedvshbmnwk" path="res://actors/weapons/laser/painter/brush.tscn" id="3_ivc8x"]
+[ext_resource type="Shader" path="res://actors/weapons/laser/painter/brush.gdshader" id="4_mtpit"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_o0yna"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ufv0g"]
 render_priority = 0
-shader = ExtResource("2_lvbgt")
+shader = ExtResource("2_0pon0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c2whl"]
 resource_local_to_scene = true
-shader = ExtResource("4_dt7rb")
+shader = ExtResource("4_mtpit")
 shader_parameter/line_start = Vector2(0.4, 0.4)
 shader_parameter/line_end = Vector2(0.6, 0.6)
 
 [node name="Painter" type="Node"]
-script = ExtResource("1_xx7sr")
+script = ExtResource("1_hpfs0")
 
 [node name="UVScope" type="SubViewport" parent="."]
 own_world_3d = true
@@ -35,6 +35,6 @@ editor_description = "Camera needs to see the object in order to prevent stutter
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 fov = 1.0
 
-[node name="Brush" parent="." instance=ExtResource("3_v0n6v")]
+[node name="Brush" parent="." instance=ExtResource("3_ivc8x")]
 visible = false
 material = SubResource("ShaderMaterial_c2whl")

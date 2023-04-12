@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b38e2iipfcwf1"
-path.s3tc="res://.godot/imported/particle.png-3c88d192bc0af6281ab5c318c177c170.s3tc.ctex"
-path.etc2="res://.godot/imported/particle.png-3c88d192bc0af6281ab5c318c177c170.etc2.ctex"
+path.s3tc="res://.godot/imported/particle.png-f1c17ae121db7aa58ea10e5d50975d8a.s3tc.ctex"
+path.etc2="res://.godot/imported/particle.png-f1c17ae121db7aa58ea10e5d50975d8a.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://weapons/laser/particle.png"
-dest_files=["res://.godot/imported/particle.png-3c88d192bc0af6281ab5c318c177c170.s3tc.ctex", "res://.godot/imported/particle.png-3c88d192bc0af6281ab5c318c177c170.etc2.ctex"]
+source_file="res://actors/weapons/laser/particle.png"
+dest_files=["res://.godot/imported/particle.png-f1c17ae121db7aa58ea10e5d50975d8a.s3tc.ctex", "res://.godot/imported/particle.png-f1c17ae121db7aa58ea10e5d50975d8a.etc2.ctex"]
 
 [params]
 

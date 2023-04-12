@@ -3,7 +3,7 @@ class_name Painter extends Node
 @onready var uv_scope := $UVScope as SubViewport
 @onready var representation := $UVScope/Representation as MeshInstance3D
 @onready var brush := $Brush as TextureRect
-@onready var canvas_scene := preload("res://weapons/laser/painter/canvas.tscn") as PackedScene
+@onready var canvas_scene := preload("res://actors/weapons/laser/painter/canvas.tscn") as PackedScene
 @onready var CANVAS_SCENE_NAME := canvas_scene.instantiate().name
 
 var _last_uv: Vector2

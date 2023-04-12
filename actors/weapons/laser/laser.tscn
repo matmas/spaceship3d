@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://cwbohigkb0gf"]
 
-[ext_resource type="Script" path="res://weapons/laser/laser.gd" id="1_dydt7"]
-[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://weapons/laser/particle.png" id="2_aivho"]
-[ext_resource type="PackedScene" uid="uid://b8ak56u21ckvl" path="res://weapons/laser/painter/painter.tscn" id="3_phfxn"]
+[ext_resource type="Script" path="res://actors/weapons/laser/laser.gd" id="1_m6s12"]
+[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://actors/weapons/laser/particle.png" id="2_j4ns2"]
+[ext_resource type="PackedScene" uid="uid://b8ak56u21ckvl" path="res://actors/weapons/laser/painter/painter.tscn" id="3_0dfsq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwqwg"]
 blend_mode = 1
@@ -44,7 +44,7 @@ transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_aivho")
+albedo_texture = ExtResource("2_j4ns2")
 disable_receive_shadows = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_lf0n3"]
@@ -53,7 +53,7 @@ size = Vector2(0.1, 0.3)
 
 [node name="Laser" type="RayCast3D"]
 target_position = Vector3(0, 0, -1000)
-script = ExtResource("1_dydt7")
+script = ExtResource("1_m6s12")
 
 [node name="Beam" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -74,4 +74,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 light_color = Color(1, 0.827451, 0, 1)
 light_energy = 10.0
 
-[node name="Painter" parent="." instance=ExtResource("3_phfxn")]
+[node name="Painter" parent="." instance=ExtResource("3_0dfsq")]
