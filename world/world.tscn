@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://xunkqtf0ch6t"]
+[gd_scene load_steps=12 format=3 uid="uid://xunkqtf0ch6t"]
 
+[ext_resource type="Script" path="res://world/world.gd" id="1_2xbmk"]
 [ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
 [ext_resource type="PackedScene" uid="uid://bsc3r6jmst1kf" path="res://actors/player/player.tscn" id="2_2nl84"]
 [ext_resource type="PackedScene" uid="uid://dghu6gt1fudg5" path="res://world/rocks/rocks.tscn" id="2_da7el"]
@@ -22,6 +23,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_2xbmk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gyq2f")

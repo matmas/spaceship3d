@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi71ggfaidvjk"]
 
-[ext_resource type="PackedScene" uid="uid://d0huagdcg13yp" path="res://actors/ships/challenger.tscn" id="1_88h2s"]
+[ext_resource type="PackedScene" uid="uid://kuxfy17qk8oa" path="res://actors/ships/challenger.tscn" id="1_88h2s"]
 [ext_resource type="Script" path="res://actors/guide/guide.gd" id="2_r857q"]
 
 [node name="Guide" instance=ExtResource("1_88h2s")]

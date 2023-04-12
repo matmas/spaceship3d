@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://chuikinnwecj6"]
+[gd_scene load_steps=10 format=3 uid="uid://clqqenbht03vh"]
 
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://actors/ships/bob.blend" id="1_v31w4"]
-[ext_resource type="Script" path="res://world/physics_interpolation_and_material_defaults.gd" id="2_gdodc"]
+[ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_umtvc"]
 [ext_resource type="PackedScene" uid="uid://b6ir0hwmaw1q8" path="res://actors/ships/engines/engines.tscn" id="3_vcxc7"]
 
 [sub_resource type="ConvexPolygonShape3D" id="6"]
@@ -25,7 +25,7 @@ points = PackedVector3Array(0.348048, 0.721279, -1.88415, -0.580232, -0.845018, 
 [node name="Bob" instance=ExtResource("1_v31w4")]
 
 [node name="Bob" parent="." index="0"]
-script = ExtResource("2_gdodc")
+script = ExtResource("2_umtvc")
 
 [node name="Engines" parent="Bob" index="0" instance=ExtResource("3_vcxc7")]
 

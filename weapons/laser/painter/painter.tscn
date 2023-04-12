@@ -11,7 +11,7 @@
 render_priority = 0
 shader = ExtResource("2_lvbgt")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7n6k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_px6yq"]
 resource_local_to_scene = true
 shader = ExtResource("4_dt7rb")
 shader_parameter/line_start = Vector2(0.4, 0.4)
@@ -37,4 +37,4 @@ fov = 1.0
 
 [node name="Brush" parent="." instance=ExtResource("3_v0n6v")]
 visible = false
-material = SubResource("ShaderMaterial_x7n6k")
+material = SubResource("ShaderMaterial_px6yq")

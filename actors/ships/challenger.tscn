@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://kuxfy17qk8oa"]
 
 [ext_resource type="PackedScene" uid="uid://dunynvbxapgnk" path="res://actors/ships/challenger.blend" id="1_dgif5"]
-[ext_resource type="Script" path="res://world/physics_interpolation_and_material_defaults.gd" id="2_qav6f"]
+[ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_qav6f"]
 [ext_resource type="PackedScene" uid="uid://b6ir0hwmaw1q8" path="res://actors/ships/engines/engines.tscn" id="3_o52mr"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmryw"]
