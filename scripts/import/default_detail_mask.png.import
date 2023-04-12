@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1ima3b04oqde"
-path.s3tc="res://.godot/imported/default_detail_albedo.png-8ebe394f5c6fd58e77c7a3c85e2033d5.s3tc.ctex"
-path.etc2="res://.godot/imported/default_detail_albedo.png-8ebe394f5c6fd58e77c7a3c85e2033d5.etc2.ctex"
+uid="uid://b4tm0opg5hpgo"
+path.s3tc="res://.godot/imported/default_detail_mask.png-9fb133e1a6b9ac59590138a59069bd1b.s3tc.ctex"
+path.etc2="res://.godot/imported/default_detail_mask.png-9fb133e1a6b9ac59590138a59069bd1b.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://world/default_detail_albedo.png"
-dest_files=["res://.godot/imported/default_detail_albedo.png-8ebe394f5c6fd58e77c7a3c85e2033d5.s3tc.ctex", "res://.godot/imported/default_detail_albedo.png-8ebe394f5c6fd58e77c7a3c85e2033d5.etc2.ctex"]
+source_file="res://scripts/import/default_detail_mask.png"
+dest_files=["res://.godot/imported/default_detail_mask.png-9fb133e1a6b9ac59590138a59069bd1b.s3tc.ctex", "res://.godot/imported/default_detail_mask.png-9fb133e1a6b9ac59590138a59069bd1b.etc2.ctex"]
 
 [params]
 

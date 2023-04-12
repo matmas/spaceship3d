@@ -1,9 +1,11 @@
-extends Node3D
+@tool
+extends EditorScenePostImport
 
 
-func _ready():
-	for node in find_children("", "MeshInstance3D"):
+func _post_import(scene: Node) -> Object:
+	for node in scene.find_children("", "MeshInstance3D"):
 		_set_material_defaults(node as MeshInstance3D)
+	return scene
 
 
 func _set_material_defaults(mesh_instance: MeshInstance3D) -> void:

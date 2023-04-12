@@ -86,8 +86,8 @@ func _make_material_paintable(material: Material, canvas: SubViewport) -> void:
 		var base_material := material as BaseMaterial3D
 		base_material.detail_mask = canvas.get_texture()
 		if not base_material.detail_enabled:
-			push_warning("Set material.detail_enabled to true to avoid stutter")
-		base_material.detail_enabled = true
+			# setting detail_enabled here would cause a stutter
+			push_warning("Set material.detail_enabled to true to enable painting")
 	elif material is ShaderMaterial:
 		var shader_material := material as ShaderMaterial
 		shader_material.set_shader_parameter("texture_detail_mask", canvas.get_texture())
