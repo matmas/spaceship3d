@@ -5,6 +5,7 @@ class_name Painter extends Node
 @onready var brush := $Brush as TextureRect
 @onready var canvas_scene := preload("res://weapons/laser/painter/canvas.tscn") as PackedScene
 @onready var CANVAS_SCENE_NAME := canvas_scene.instantiate().name
+var default_detail_albedo := preload("res://weapons/laser/painter/default_detail_albedo.png")
 
 var _last_uv: Vector2
 
@@ -82,6 +83,10 @@ func _make_material_paintable(material: Material, canvas: SubViewport) -> void:
 		var base_material := material as BaseMaterial3D
 		base_material.detail_enabled = true
 		base_material.detail_mask = canvas.get_texture()
+		if base_material.detail_albedo == null:
+			base_material.detail_albedo = default_detail_albedo
+		if base_material.detail_normal == null:
+			base_material.detail_normal = base_material.normal_texture
 	elif material is ShaderMaterial:
 		var shader_material := material as ShaderMaterial
 		shader_material.set_shader_parameter("texture_detail_mask", canvas.get_texture())

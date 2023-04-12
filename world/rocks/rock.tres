@@ -1,7 +1,6 @@
-[gd_resource type="ORMMaterial3D" load_steps=5 format=3 uid="uid://djr5mqvoqvxop"]
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://m5dkl5gw45oc"]
 
 [ext_resource type="Texture2D" uid="uid://bdyw0wy5oh8cd" path="res://world/rocks/rock_albedo.png" id="1_4ww1e"]
-[ext_resource type="Texture2D" uid="uid://b4tm0opg5hpgo" path="res://world/rocks/black.png" id="2_4x6rl"]
 [ext_resource type="Texture2D" uid="uid://4r2r3edal4o3" path="res://world/rocks/rock_normal.png" id="2_p3ogm"]
 [ext_resource type="Texture2D" uid="uid://dtq8a4tnhbfiu" path="res://world/rocks/rock_orm.png" id="4_y0mm7"]
 
@@ -10,7 +9,3 @@ albedo_texture = ExtResource("1_4ww1e")
 orm_texture = ExtResource("4_y0mm7")
 normal_enabled = true
 normal_texture = ExtResource("2_p3ogm")
-detail_enabled = true
-detail_mask = ExtResource("2_4x6rl")
-detail_albedo = ExtResource("2_4x6rl")
-detail_normal = ExtResource("2_p3ogm")
