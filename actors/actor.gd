@@ -9,6 +9,14 @@ func _ready() -> void:
 	angular_damp = 5
 
 
+func _max_linear_acceleration() -> Vector3:
+	return Vector3(50, 50, 200) * mass
+
+
+func _max_angular_acceleration() -> Vector3:
+	return Vector3(1, 10, 10) * mass
+
+
 func point_at(target_position: Vector3, min_distance: float = 10) -> void:
 	var distance := global_position.distance_to(target_position)
 	if distance < min_distance:
@@ -20,7 +28,7 @@ func point_at(target_position: Vector3, min_distance: float = 10) -> void:
 func _point_in_direction(target_direction: Vector3) -> void:
 	var current_direction := -global_transform.basis.z
 	var correction := target_direction - current_direction
-	self.apply_torque(correction.cross(global_transform.basis.z).normalized() * correction.length() * 100)
+	self.apply_torque(correction.cross(global_transform.basis.z).normalized() * correction.length() * 100 * mass)
 
 
 func match_roll_with(target: Node3D) -> bool:
@@ -28,13 +36,13 @@ func match_roll_with(target: Node3D) -> bool:
 	if projected_target_up.length() < 0.1:
 		return true  # prevent constant rolling due to parallel forward and target up vectors
 	var correction := projected_target_up - global_transform.basis.y
-	self.apply_torque(correction.cross(-global_transform.basis.y).normalized() * correction.length() * 100)
+	self.apply_torque(correction.cross(-global_transform.basis.y).normalized() * correction.length() * 100 * mass)
 	return correction.length() < 0.2
 
 
 func move_to(target_position: Vector3, max_accel := 100) -> void:
 	var correction := target_position - global_position
-	self.apply_central_force(correction.normalized() * minf(correction.length() * linear_damp, max_accel))
+	self.apply_central_force(correction.normalized() * minf(correction.length() * linear_damp * mass, max_accel * mass))
 
 #func move_forward(max_accel = 100):
 #	self.apply_central_force(global_transform.basis.z * max_accel)

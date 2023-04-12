@@ -8,10 +8,6 @@ func _ready() -> void:
 	RandomSeed._ready()  # autoloads are not initialized when running as @tool
 	_randomize_children_postions()
 
-	var time := Time.get_ticks_usec()
-	if Utils.update_children_masses(self, ROCK_DENSITY) > 0:
-		print("Mass calculation took ", Time.get_ticks_usec() - time, "us.")
-
 
 func _randomize_children_postions() -> void:
 	for child in get_children():

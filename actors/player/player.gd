@@ -12,7 +12,7 @@ func _physics_process(_delta: float) -> void:
 		Input.get_axis(&"move_left", &"move_right"),
 		Input.get_axis(&"move_down", &"move_up"),
 		Input.get_axis(&"move_forward", &"move_backward"),
-	).normalized() * Vector3(50, 50, 200))
+	).normalized() * _max_linear_acceleration())
 	apply_central_force(linear_acceleration)
 #	velocity += linear_acceleration * delta
 #	velocity *= DAMPING_FACTOR ** (delta * 60)
@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 		-Mouse.steering_direction.x,
 		Input.get_axis(&"roll_right", &"roll_left"),
 	)
-	apply_torque(global_transform.basis * (angular_acceleration * Vector3(1, 10, 10)))
+	apply_torque(global_transform.basis * (angular_acceleration * _max_angular_acceleration()))
 #	angular_velocity += angular_acceleration * delta
 #	angular_velocity *= DAMPING_FACTOR ** (delta * 60)
 #	rotate_object_local(Vector3.RIGHT, angular_acceleration.x * delta)
