@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dghu6gt1fudg5" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://doo0rv6ot25e5" path="res://world/camera/camera.tscn" id="2_g368m"]
 [ext_resource type="PackedScene" uid="uid://bi71ggfaidvjk" path="res://actors/guide/guide.tscn" id="3_6ask7"]
-[ext_resource type="PackedScene" uid="uid://de4rgjhjj3piy" path="res://actors/enemy/enemy.tscn" id="4_nj140"]
 [ext_resource type="PackedScene" uid="uid://bu8ev1mqrdvxt" path="res://world/motion_particles/motion_particles.tscn" id="7_so44r"]
+[ext_resource type="Script" path="res://world/enemy_spawner.gd" id="8_3idxp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -38,6 +38,7 @@ environment = SubResource("Environment_gyq2f")
 
 [node name="Guide" parent="." instance=ExtResource("3_6ask7")]
 
-[node name="Enemy" parent="." instance=ExtResource("4_nj140")]
-
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
+
+[node name="EnemySpawner" type="Marker3D" parent="."]
+script = ExtResource("8_3idxp")
