@@ -17,6 +17,8 @@ func _ready() -> void:
 func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D) -> void:
 	var canvas := _get_or_create_canvas(mesh_instance)
 	var uv_color := _uv_color_of_brush_position(mesh_instance, transform)
+	if uv_color.a == 0:
+		return
 	var uv_start := _last_uv
 	var uv_end := _uv_from_uv_color(uv_color)
 	_last_uv = uv_end
