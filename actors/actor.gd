@@ -44,6 +44,7 @@ func move_to(target_position: Vector3) -> void:
 	var correction := target_position - global_position
 	self.apply_central_force((correction.normalized() * correction.length() * linear_damp * mass).clamp(-_max_linear_acceleration(), _max_linear_acceleration()))
 
+
 #func move_forward(max_accel = 100):
 #	self.apply_central_force(global_transform.basis.z * max_accel)
 #
