@@ -34,4 +34,6 @@ script = ExtResource("3_twb4b")
 [node name="Timer" type="Timer" parent="Subtitles"]
 
 [node name="Speech" type="AudioStreamPlayer" parent="."]
+volume_db = -9.0
+bus = &"Voice"
 script = ExtResource("4_lai4d")

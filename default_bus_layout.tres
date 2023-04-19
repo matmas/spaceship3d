@@ -1,4 +1,35 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://cbp8ey6os5e6r"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://cbp8ey6os5e6r"]
+
+[sub_resource type="AudioEffectBandPassFilter" id="AudioEffectBandPassFilter_24ef4"]
+resource_name = "BandPassFilter"
+cutoff_hz = 3200.0
+resonance = 1.0
+db = 2
+
+[sub_resource type="AudioEffectEQ" id="AudioEffectEQ_ob2su"]
+resource_name = "EQ"
+band_db/32_hz = -60.0
+band_db/100_hz = -60.0
+band_db/320_hz = -60.0
+band_db/1000_hz = -60.0
+band_db/3200_hz = 2.0
+band_db/10000_hz = -60.0
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_1ynhs"]
+resource_name = "Chorus"
+wet = 0.3
 
 [resource]
-bus/0/mute = true
+bus/0/volume_db = -2.3125
+bus/1/name = &"Voice"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectBandPassFilter_24ef4")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectEQ_ob2su")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectChorus_1ynhs")
+bus/1/effect/2/enabled = true
