@@ -6,12 +6,12 @@ func _ready() -> void:
 
 
 func speak(speaker_name: String, text: String) -> void:
-	var speech := load("res://speech/generated/%s_%s.ogg" % [speaker_name, text.validate_filename()])
+	var speech := load("res://world/speech/generated/%s_%s.ogg" % [speaker_name, text.validate_filename()]) as AudioStream
 	if !playing:
 		stream = speech
 		play()
 	else:
-		var player = self.duplicate(DUPLICATE_USE_INSTANTIATION)
+		var player := self.duplicate(DUPLICATE_USE_INSTANTIATION) as AudioStreamPlayer
 		add_child(player)
 		player.stream = speech
 		player.play()
