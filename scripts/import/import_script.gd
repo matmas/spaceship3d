@@ -24,6 +24,10 @@ func _set_material_defaults(mesh_instance: MeshInstance3D) -> void:
 			var material := mesh_instance.get_active_material(surface)
 			if material is BaseMaterial3D:
 				var base_material := material as BaseMaterial3D
+				# Enable face culling if disabled
+				if base_material.cull_mode == BaseMaterial3D.CULL_DISABLED:
+					base_material.cull_mode = BaseMaterial3D.CULL_BACK
+
 				# enable material detail by default to avoid stutters when enabling them during runtime
 				base_material.detail_enabled = true
 				# mask needs to be black initially to keep the same appearence
