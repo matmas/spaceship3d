@@ -1,4 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7qmea4hlshj0"]
+[gd_scene load_steps=10 format=3 uid="uid://dqa8i813reny5"]
+
+[ext_resource type="Script" path="res://actors/ships/engines/engine/engine.gd" id="1_01jye"]
+[ext_resource type="AudioStream" uid="uid://cqwrfq2qbs086" path="res://actors/ships/engines/engine/engine_loop.wav" id="1_d3buh"]
 
 [sub_resource type="Curve" id="Curve_raabd"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -40,10 +43,17 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_ffep8"]
 material = SubResource("StandardMaterial3D_ey11i")
 
-[node name="Engine" type="GPUParticles3D"]
+[node name="ShipEngine" type="GPUParticles3D"]
 amount = 25
 lifetime = 0.25
 fixed_fps = 120
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_v0lti")
 draw_pass_1 = SubResource("QuadMesh_ffep8")
+script = ExtResource("1_01jye")
+
+[node name="Exhaust" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_d3buh")
+volume_db = -80.0
+max_db = 0.0
+autoplay = true

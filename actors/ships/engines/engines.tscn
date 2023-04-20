@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6ir0hwmaw1q8"]
+[gd_scene load_steps=3 format=3 uid="uid://dgf3bu8ydx0x2"]
 
-[ext_resource type="PackedScene" uid="uid://c7qmea4hlshj0" path="res://actors/ships/engines/engine.tscn" id="1_cd2od"]
+[ext_resource type="PackedScene" uid="uid://dqa8i813reny5" path="res://actors/ships/engines/engine/engine.tscn" id="1_cd2od"]
 [ext_resource type="Script" path="res://actors/ships/engines/engines.gd" id="1_ulr3q"]
 
 [node name="Engines" type="Node3D"]
