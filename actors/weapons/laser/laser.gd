@@ -8,6 +8,8 @@ extends RayCast3D
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
 @onready var exclude := owner
 @onready var painter := $Painter as Painter
+@onready var firing := $Firing as AudioStreamPlayer3D
+@onready var hitting := $Hitting as AudioStreamPlayer3D
 
 var targetting_speed := 1000.0
 
@@ -32,6 +34,9 @@ func _process(delta: float) -> void:
 	beam.visible = power > 0.0
 	beam.scale.x = power
 	beam.scale.y = power
+
+	firing.volume_db = linear_to_db(power) if not is_colliding() else -INF
+	hitting.volume_db = linear_to_db(power) if is_colliding() else -INF
 
 	var ray_origin := camera.project_ray_origin(Mouse.cursor_position)
 	var ray_end := ray_origin + camera.project_ray_normal(Mouse.cursor_position) * camera.far

@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwbohigkb0gf"]
+[gd_scene load_steps=15 format=3 uid="uid://b0v7o75aoe1rw"]
 
 [ext_resource type="Script" path="res://actors/weapons/laser/laser.gd" id="1_m6s12"]
 [ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://actors/weapons/laser/particle.png" id="2_j4ns2"]
 [ext_resource type="PackedScene" uid="uid://b8ak56u21ckvl" path="res://actors/weapons/laser/painter/painter.tscn" id="3_0dfsq"]
+[ext_resource type="AudioStream" uid="uid://bvanjoe6b6gys" path="res://actors/weapons/laser/laser_firing_loop.wav" id="4_4k38m"]
+[ext_resource type="AudioStream" uid="uid://cgq47bcsuf6vc" path="res://actors/weapons/laser/laser_hitting_loop.wav" id="5_nl0p1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwqwg"]
 blend_mode = 1
@@ -75,3 +77,15 @@ light_color = Color(1, 0.827451, 0, 1)
 light_energy = 10.0
 
 [node name="Painter" parent="." instance=ExtResource("3_0dfsq")]
+
+[node name="Firing" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_4k38m")
+volume_db = -80.0
+autoplay = true
+bus = &"Weapons"
+
+[node name="Hitting" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_nl0p1")
+volume_db = -80.0
+autoplay = true
+bus = &"Weapons"
