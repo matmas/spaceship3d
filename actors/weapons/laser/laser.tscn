@@ -81,11 +81,13 @@ light_energy = 10.0
 [node name="Firing" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_4k38m")
 volume_db = -80.0
+pitch_scale = 0.5
 autoplay = true
 bus = &"Weapons"
 
 [node name="Hitting" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_nl0p1")
 volume_db = -80.0
+pitch_scale = 0.5
 autoplay = true
 bus = &"Weapons"
