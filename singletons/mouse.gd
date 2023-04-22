@@ -29,6 +29,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var viewport_radius = minf(viewport_center.x, viewport_center.y)
 		var i := Geometry2D.segment_intersects_circle(viewport_center, get_cursor_position(), viewport_center, viewport_radius)
 		if i != -1:
+			# snap cursor to circle edge if it is outside
 			_set_cursor_position((get_cursor_position() - viewport_center) * i + viewport_center)
 		cursor_position_changed.emit(get_cursor_position())
 
