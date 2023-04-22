@@ -38,8 +38,8 @@ func _process(delta: float) -> void:
 	firing.volume_db = linear_to_db(power) if not is_colliding() else -INF
 	hitting.volume_db = linear_to_db(power) if is_colliding() else -INF
 
-	var ray_origin := camera.project_ray_origin(Mouse.cursor_position)
-	var ray_end := ray_origin + camera.project_ray_normal(Mouse.cursor_position) * camera.far
+	var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
+	var ray_end := ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
 	var new_target_position := target_position_override if target_position_override else ray_end
 	var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
 	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
@@ -62,8 +62,8 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	var params := PhysicsRayQueryParameters3D.new()
-	params.from = camera.project_ray_origin(Mouse.cursor_position)
-	params.to = params.from + camera.project_ray_normal(Mouse.cursor_position) * camera.far
+	params.from = camera.project_ray_origin(Mouse.get_cursor_position())
+	params.to = params.from + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
 	params.exclude = [exclude]
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	# Avoid targetting empty space just in front body by moving collision point a bit forward

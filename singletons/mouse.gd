@@ -1,10 +1,16 @@
 extends Node
 
-
-@onready var cursor_position := _get_viewport_center()
-var steering_direction := Vector2()
+@onready var resolution_independent_cursor_position := Vector2(0.5, 0.5)
 
 signal cursor_position_changed(position)
+
+
+func get_cursor_position() -> Vector2:
+	return resolution_independent_cursor_position * Vector2(get_viewport().size)
+
+
+func set_cursor_position(cursor_position: Vector2) -> void:
+	resolution_independent_cursor_position = cursor_position / Vector2(get_viewport().size)
 
 
 func _ready() -> void:
@@ -12,8 +18,7 @@ func _ready() -> void:
 
 
 func _on_resize() -> void:
-	cursor_position = _get_cursor_position_from_steering_direction()
-	cursor_position_changed.emit(cursor_position)
+	cursor_position_changed.emit(get_cursor_position())
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -27,31 +32,18 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseMotion and Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		var e := event as InputEventMouseMotion
-		cursor_position += e.relative
-		var viewport_center := _get_viewport_center()
-		var viewport_radius = _get_viewport_radius(viewport_center)
-		var i := Geometry2D.segment_intersects_circle(viewport_center, cursor_position, viewport_center, viewport_radius)
+		set_cursor_position(get_cursor_position() + e.relative)
+		var viewport_center := get_viewport_center()
+		var viewport_radius = get_viewport_radius(viewport_center)
+		var i := Geometry2D.segment_intersects_circle(viewport_center, get_cursor_position(), viewport_center, viewport_radius)
 		if i != -1:
-			cursor_position = (cursor_position - viewport_center) * i + viewport_center
-		cursor_position_changed.emit(cursor_position)
-		steering_direction = _get_steering_direction()
+			set_cursor_position((get_cursor_position() - viewport_center) * i + viewport_center)
+		cursor_position_changed.emit(get_cursor_position())
 
 
-func _get_steering_direction() -> Vector2:
-	var viewport_center := _get_viewport_center()
-	var viewport_radius = _get_viewport_radius(viewport_center)
-	return (cursor_position - viewport_center) / viewport_radius
-
-
-func _get_cursor_position_from_steering_direction() -> Vector2:
-	var viewport_center := _get_viewport_center()
-	var viewport_radius = _get_viewport_radius(viewport_center)
-	return steering_direction * viewport_radius + viewport_center
-
-
-func _get_viewport_center() -> Vector2:
+func get_viewport_center() -> Vector2:
 	return Vector2(get_viewport().size) / 2
 
 
-func _get_viewport_radius(viewport_center: Vector2) -> float:
+func get_viewport_radius(viewport_center: Vector2) -> float:
 	return minf(viewport_center.x, viewport_center.y)

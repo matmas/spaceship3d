@@ -3,8 +3,12 @@ extends Actor
 #const DAMPING_FACTOR = 0.93
 #var angular_velocity := Vector3()
 
+var steering_direction := Vector2()
+
+
 func _init() -> void:
 	Globals.player = self
+	Mouse.cursor_position_changed.connect(func(cursor_position: Vector2): steering_direction = _get_steering_direction(cursor_position))
 
 
 func _physics_process(_delta: float) -> void:
@@ -19,8 +23,8 @@ func _physics_process(_delta: float) -> void:
 #	move_and_slide()
 
 	var angular_acceleration: Vector3 = Vector3(
-		-Mouse.steering_direction.y,
-		-Mouse.steering_direction.x,
+		-steering_direction.y,
+		-steering_direction.x,
 		Input.get_axis(&"roll_right", &"roll_left"),
 	)
 	apply_torque(global_transform.basis * (angular_acceleration * _max_angular_acceleration()))
@@ -29,3 +33,9 @@ func _physics_process(_delta: float) -> void:
 #	rotate_object_local(Vector3.RIGHT, angular_acceleration.x * delta)
 #	rotate_object_local(Vector3.UP, angular_acceleration.y * delta)
 #	rotate_object_local(Vector3.FORWARD, angular_acceleration.z * -delta)
+
+
+func _get_steering_direction(cursor_position: Vector2) -> Vector2:
+	var viewport_center := Mouse.get_viewport_center()
+	var viewport_radius = Mouse.get_viewport_radius(viewport_center)
+	return (cursor_position - viewport_center) / viewport_radius
