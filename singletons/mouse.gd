@@ -33,17 +33,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		var e := event as InputEventMouseMotion
 		set_cursor_position(get_cursor_position() + e.relative)
-		var viewport_center := get_viewport_center()
-		var viewport_radius = get_viewport_radius(viewport_center)
+		var viewport_center := Vector2(get_viewport().size) / 2
+		var viewport_radius = minf(viewport_center.x, viewport_center.y)
 		var i := Geometry2D.segment_intersects_circle(viewport_center, get_cursor_position(), viewport_center, viewport_radius)
 		if i != -1:
 			set_cursor_position((get_cursor_position() - viewport_center) * i + viewport_center)
 		cursor_position_changed.emit(get_cursor_position())
-
-
-func get_viewport_center() -> Vector2:
-	return Vector2(get_viewport().size) / 2
-
-
-func get_viewport_radius(viewport_center: Vector2) -> float:
-	return minf(viewport_center.x, viewport_center.y)

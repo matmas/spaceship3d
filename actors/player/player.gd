@@ -8,7 +8,7 @@ var steering_direction := Vector2()
 
 func _init() -> void:
 	Globals.player = self
-	Mouse.cursor_position_changed.connect(func(cursor_position: Vector2): steering_direction = _get_steering_direction(cursor_position))
+	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
 
 
 func _physics_process(_delta: float) -> void:
@@ -35,7 +35,5 @@ func _physics_process(_delta: float) -> void:
 #	rotate_object_local(Vector3.FORWARD, angular_acceleration.z * -delta)
 
 
-func _get_steering_direction(cursor_position: Vector2) -> Vector2:
-	var viewport_center := Mouse.get_viewport_center()
-	var viewport_radius = Mouse.get_viewport_radius(viewport_center)
-	return (cursor_position - viewport_center) / viewport_radius
+func _get_steering_direction() -> Vector2:
+	return Mouse.resolution_independent_cursor_position * 2 - Vector2(1, 1)
