@@ -1,5 +1,4 @@
 shader_type canvas_item;
-render_mode blend_mix;
 // Based on Godot 4.x adaptation by malhotraprateek https://godotshaders.com/shader/lens-flare-shader/ (MIT license)
 // Original shader by mu6k https://www.shadertoy.com/view/4sX3Rs (Unlicense license)
 
