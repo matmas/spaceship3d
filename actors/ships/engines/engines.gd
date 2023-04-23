@@ -21,7 +21,4 @@ func _physics_process(_delta: float) -> void:
 	engine_rear_right.set_power(-neg_linear_accel.z - neg_linear_accel.x + abs(linear_accel.y))
 	engine_rear_left.set_power(-neg_linear_accel.z + pos_linear_accel.x + abs(linear_accel.y))
 
-	for particles in [engine_front_left, engine_front_right]:
-		particles.emitting = particles.process_material.initial_velocity_max > 0.1
-
 	previous_linear_velocity = local_linear_velocity

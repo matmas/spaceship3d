@@ -1,59 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqa8i813reny5"]
+[gd_scene load_steps=5 format=3 uid="uid://dqa8i813reny5"]
 
 [ext_resource type="Script" path="res://actors/ships/engines/engine/engine.gd" id="1_01jye"]
+[ext_resource type="PackedScene" uid="uid://buooo6xpiljpc" path="res://actors/ships/engines/engine/cone.blend" id="1_adyq1"]
 [ext_resource type="AudioStream" uid="uid://cqwrfq2qbs086" path="res://actors/ships/engines/engine/engine_loop.wav" id="1_d3buh"]
+[ext_resource type="Material" uid="uid://wgb8i7fxy88l" path="res://actors/ships/engines/engine/jet_vfx.tres" id="2_hfq1q"]
 
-[sub_resource type="Curve" id="Curve_raabd"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_0qy5d"]
-curve = SubResource("Curve_raabd")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v0lti"]
-direction = Vector3(0, 0, 1)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-scale_curve = SubResource("CurveTexture_0qy5d")
-color = Color(1, 0.380392, 0, 0.721569)
-
-[sub_resource type="Gradient" id="Gradient_4gib8"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_eejtn"]
-gradient = SubResource("Gradient_4gib8")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ey11i"]
-transparency = 1
-blend_mode = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = SubResource("GradientTexture2D_eejtn")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_ffep8"]
-material = SubResource("StandardMaterial3D_ey11i")
-
-[node name="ShipEngine" type="GPUParticles3D"]
-amount = 25
-lifetime = 0.25
-fixed_fps = 120
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_v0lti")
-draw_pass_1 = SubResource("QuadMesh_ffep8")
+[node name="ShipEngine" type="Node3D"]
 script = ExtResource("1_01jye")
+
+[node name="Cone" parent="." instance=ExtResource("1_adyq1")]
+
+[node name="Cone" parent="Cone" index="0"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_hfq1q")
 
 [node name="Exhaust" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_d3buh")
 volume_db = -80.0
 max_db = 0.0
 autoplay = true
+
+[editable path="Cone"]
