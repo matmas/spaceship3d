@@ -6,7 +6,7 @@
 [node name="Crosshairs" type="Sprite2D"]
 texture = ExtResource("1_rxlcy")
 region_enabled = true
-region_rect = Rect2(64, 1, 64, 64)
+region_rect = Rect2(448, 385, 64, 64)
 script = ExtResource("2_hupuq")
 
 [node name="Steering" type="Sprite2D" parent="."]
