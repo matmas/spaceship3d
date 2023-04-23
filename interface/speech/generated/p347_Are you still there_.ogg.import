@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c815qmbpag3b4"
+path="res://.godot/imported/p347_Are you still there_.ogg-4d64ec8a787b92f177e4da55ca6bfec8.oggvorbisstr"
+
+[deps]
+
+source_file="res://interface/speech/generated/p347_Are you still there_.ogg"
+dest_files=["res://.godot/imported/p347_Are you still there_.ogg-4d64ec8a787b92f177e4da55ca6bfec8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
