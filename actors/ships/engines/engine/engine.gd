@@ -14,4 +14,4 @@ func set_power(value: float) -> void:
 	material.set_shader_parameter(&"alpha_multiplier", clampf(value * 500, 0, 1))
 	material.set_shader_parameter(&"gradient_multiplier", clampf(value * 500 * 6, 0, 6))
 	material.set_shader_parameter(&"gradient_shift", clampf(value * 500, 0, 1))
-	exhaust.volume_db = linear_to_db(clampf(value * 10, 0, 1))
+	exhaust.volume_db = linear_to_db(clampf(value * 50, 0, 1))

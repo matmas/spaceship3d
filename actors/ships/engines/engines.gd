@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var ship = get_parent().get_parent()
+@onready var ship := owner #as RigidBody3D
 
 @onready var engine_rear_left := $EngineRearL as ShipEngine
 @onready var engine_rear_right := $EngineRearR as ShipEngine
