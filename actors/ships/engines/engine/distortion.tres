@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bkpbtswr3x7wj"]
+
+[ext_resource type="Shader" path="res://actors/ships/engines/engine/distortion.gdshader" id="1_agx70"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i27g3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b7eb8"]
+seamless = true
+noise = SubResource("FastNoiseLite_i27g3")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_agx70")
+shader_parameter/distortion = 0.01
+shader_parameter/distortion_speed = Vector2(1, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_b7eb8")
