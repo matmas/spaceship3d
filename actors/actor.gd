@@ -1,5 +1,27 @@
-extends RigidBody3D
-class_name Actor
+class_name Actor extends RigidBody3D
+
+#var mass := 1.0
+#var can_sleep: bool
+#var gravity_scale: float
+#var linear_damp: float
+#var angular_damp: float
+#var angular_velocity := Vector3()
+#
+#
+#func apply_central_force(linear_acceleration: Vector3) -> void:
+#	var delta := get_physics_process_delta_time()
+#	velocity += linear_acceleration * delta
+#	velocity *= (1.0 - 0.01 * linear_damp) ** (delta * 60)
+#	move_and_slide()
+#
+#
+#func apply_torque(angular_acceleration: Vector3) -> void:
+#	var delta := get_physics_process_delta_time()
+#	angular_velocity += angular_acceleration * delta
+#	angular_velocity *= (1.0 - 0.01 * angular_damp) ** (delta * 60)
+#	rotate_object_local(Vector3.RIGHT, angular_acceleration.x * delta)
+#	rotate_object_local(Vector3.UP, angular_acceleration.y * delta)
+#	rotate_object_local(Vector3.FORWARD, angular_acceleration.z * -delta)
 
 
 func _ready() -> void:
