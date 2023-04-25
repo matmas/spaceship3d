@@ -12,5 +12,6 @@ noise = SubResource("FastNoiseLite_i27g3")
 render_priority = 0
 shader = ExtResource("1_agx70")
 shader_parameter/distortion = 0.01
+shader_parameter/distortion_scale = Vector2(1, 1)
 shader_parameter/distortion_speed = Vector2(1, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_b7eb8")
