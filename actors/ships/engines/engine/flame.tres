@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://wgb8i7fxy88l"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://6ug468bu6ugn"]
 
-[ext_resource type="Shader" path="res://actors/ships/engines/engine/jet_vfx.gdshader" id="1_egbwp"]
+[ext_resource type="Shader" path="res://actors/ships/engines/engine/flame.gdshader" id="1_8ekja"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tqvo7"]
 
@@ -10,7 +10,7 @@ noise = SubResource("FastNoiseLite_tqvo7")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_egbwp")
+shader = ExtResource("1_8ekja")
 shader_parameter/color = Color(1, 0.564706, 0, 1)
 shader_parameter/noise_speed = 1.0
 shader_parameter/noise_stretch = 2.0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bn5nrx172evvc"
+path="res://.godot/imported/flame_cone.obj-0b9aaedba45a8647f6b6b6a465963a0b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/flame_cone.obj-0b9aaedba45a8647f6b6b6a465963a0b.mesh"]
+
+source_file="res://actors/ships/engines/engine/flame_cone.obj"
+dest_files=["res://.godot/imported/flame_cone.obj-0b9aaedba45a8647f6b6b6a465963a0b.mesh", "res://.godot/imported/flame_cone.obj-0b9aaedba45a8647f6b6b6a465963a0b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
