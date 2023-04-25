@@ -15,7 +15,7 @@ void vertex() {
 void fragment() {
 	float distance_from_center = distance(vec2(0.5), UV) * 2.0;
 	float distortion_intensity = clamp(1.0 - distance_from_center, 0.0, 1.0);
-	vec2 distortion_direction = vec2(-NORMAL.x, NORMAL.y);
+	vec2 distortion_direction = normalize(vec2(-NORMAL.x, NORMAL.y));
 	vec2 noise_tex = texture(noise_texture, UV / distortion_scale + distortion_direction * distortion_speed * TIME).rg * 2.0 - 1.0;
 	vec2 distorted_screen_uv = mix(SCREEN_UV, SCREEN_UV + noise_tex * distortion_intensity, distortion);
 	vec3 color = texture(screen_texture, distorted_screen_uv).rgb;
