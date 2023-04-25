@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_transform = global_transform.interpolate_with(_target_camera_transform(), delta * 10)
+	global_transform = global_transform.interpolate_with(_target_camera_transform(), 1 - pow(0.1, delta * 2))
 
 
 func _target_camera_transform() -> Transform3D:
