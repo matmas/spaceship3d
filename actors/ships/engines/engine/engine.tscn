@@ -15,9 +15,9 @@ script = ExtResource("1_01jye")
 
 [node name="Flame" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("3_ts7d1")
 cast_shadow = 0
 mesh = ExtResource("2_a84p4")
-surface_material_override/0 = ExtResource("3_ts7d1")
 
 [node name="Distortion" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

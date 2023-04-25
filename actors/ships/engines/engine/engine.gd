@@ -10,7 +10,7 @@ var target_power := 0.0
 
 func _ready() -> void:
 	# We need to change each engine material independently
-	flame.set_surface_override_material(0, flame.get_active_material(0).duplicate() as Material)
+	flame.material_override = flame.material_override.duplicate() as Material
 	distortion.set_surface_override_material(0, distortion.get_active_material(0).duplicate() as Material)
 
 
