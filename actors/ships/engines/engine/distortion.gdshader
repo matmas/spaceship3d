@@ -2,7 +2,7 @@ shader_type spatial;
 render_mode unshaded, shadows_disabled;
 
 uniform float distortion: hint_range(0, 1) = 0.01;
-uniform vec2 distortion_scale = vec2(1.0);
+uniform float distortion_scale = 1.0;
 uniform float distortion_speed = 1.0;
 uniform sampler2D noise_texture;
 uniform sampler2D screen_texture: hint_screen_texture, repeat_disable, filter_nearest;
