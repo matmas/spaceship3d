@@ -47,8 +47,8 @@ func _process(delta: float) -> void:
 
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
 	for particles in [sparks, smoke]:
-		particles.emitting = is_colliding() and power == 1.0
 		particles.global_position = beam_endpoint
+		particles.emitting = is_colliding() and power == 1.0 and (particles == smoke and (get_collider() as Node).name.begins_with("rock") or particles != smoke)
 		if is_colliding():
 			particles.look_at(beam_endpoint + get_collision_normal(), get_collision_normal().cross(-particles.basis.z))
 

@@ -31,7 +31,7 @@ mesh = SubResource("PrismMesh_pkxld")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
 
 [node name="Smoke" parent="." instance=ExtResource("3_jd683")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
 
 [node name="Painter" parent="." instance=ExtResource("3_0dfsq")]
 
