@@ -1,88 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://de4rgjhjj3piy"]
+[gd_scene load_steps=3 format=3 uid="uid://de4rgjhjj3piy"]
 
 [ext_resource type="PackedScene" uid="uid://bo6c8gcf6o136" path="res://actors/ships/dispatcher.tscn" id="1_8fdif"]
 [ext_resource type="Script" path="res://actors/enemy/enemy.gd" id="2_0ggrv"]
-[ext_resource type="Texture2D" uid="uid://bj3h52utxbo74" path="res://actors/ships/textures/Dispatcher_Orange.png" id="3_w64r8"]
-[ext_resource type="Texture2D" uid="uid://c1ima3b04oqde" path="res://scripts/import/default_detail_albedo.png" id="4_lfs6j"]
-[ext_resource type="Texture2D" uid="uid://b4tm0opg5hpgo" path="res://scripts/import/default_detail_mask.png" id="5_lvveu"]
-
-[sub_resource type="Shader" id="Shader_r2rb8"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.0.2.stable's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform sampler2D texture_detail_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform sampler2D texture_detail_normal : hint_normal,filter_linear_mipmap,repeat_enable;
-uniform sampler2D texture_detail_mask : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	UV2=UV2*uv2_scale.xy+uv2_offset.xy;
-}
-
-
-
-
-
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec2 base_uv2 = UV2;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	albedo_tex *= COLOR;
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	vec4 detail_tex = texture(texture_detail_albedo,base_uv2);
-	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv2);
-	vec4 detail_mask_tex = texture(texture_detail_mask,UV2);
-	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
-	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
-	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
-	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kfrn"]
-resource_name = "Texture"
-render_priority = 0
-shader = SubResource("Shader_r2rb8")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.0
-shader_parameter/metallic_texture_channel = Plane(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_w64r8")
-shader_parameter/texture_detail_albedo = ExtResource("4_lfs6j")
-shader_parameter/texture_detail_mask = ExtResource("5_lvveu")
 
 [node name="Enemy" instance=ExtResource("1_8fdif")]
 script = ExtResource("2_0ggrv")
-
-[node name="Dispatcher" parent="." index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_8kfrn")
 
 [editable path="Dispatcher/Engines"]

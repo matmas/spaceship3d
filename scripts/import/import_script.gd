@@ -21,11 +21,6 @@ func _process_node(node: Node) -> void:
 # NOTE: Also modifies existing materials saved as resources when Use external is enabled
 func _set_material_defaults(mesh_instance: MeshInstance3D) -> void:
 	if mesh_instance.get_parent() is PhysicsBody3D:
-		if mesh_instance.mesh is ArrayMesh:
-			var array_mesh := mesh_instance.mesh as ArrayMesh
-			print("Unwrapping UV2 for ", mesh_instance)
-			array_mesh.lightmap_unwrap(mesh_instance.global_transform, 0.4)
-
 		for surface in mesh_instance.mesh.get_surface_count():
 			var material := mesh_instance.get_active_material(surface)
 			if material is BaseMaterial3D:

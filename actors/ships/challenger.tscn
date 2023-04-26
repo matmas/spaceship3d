@@ -1,82 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://kuxfy17qk8oa"]
+[gd_scene load_steps=5 format=3 uid="uid://kuxfy17qk8oa"]
 
 [ext_resource type="PackedScene" uid="uid://dunynvbxapgnk" path="res://actors/ships/challenger.blend" id="1_dgif5"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_qav6f"]
-[ext_resource type="Texture2D" uid="uid://gaqfhu7w6fpf" path="res://actors/ships/textures/Challenger_Orange.png" id="2_sqnlp"]
-[ext_resource type="Texture2D" uid="uid://c1ima3b04oqde" path="res://scripts/import/default_detail_albedo.png" id="3_3yn1f"]
 [ext_resource type="PackedScene" uid="uid://dgf3bu8ydx0x2" path="res://actors/ships/engines/engines.tscn" id="3_o52mr"]
-[ext_resource type="Texture2D" uid="uid://b4tm0opg5hpgo" path="res://scripts/import/default_detail_mask.png" id="4_hfsfa"]
-
-[sub_resource type="Shader" id="Shader_w5k3h"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.0.2.stable's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform sampler2D texture_detail_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform sampler2D texture_detail_normal : hint_normal,filter_linear_mipmap,repeat_enable;
-uniform sampler2D texture_detail_mask : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-}
-
-
-
-
-
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	albedo_tex *= COLOR;
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
-	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
-	vec4 detail_mask_tex = texture(texture_detail_mask,UV2);
-	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
-	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
-	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
-	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d6yv"]
-resource_name = "Texture"
-render_priority = 0
-shader = SubResource("Shader_w5k3h")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.0
-shader_parameter/metallic_texture_channel = Plane(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("2_sqnlp")
-shader_parameter/texture_detail_albedo = ExtResource("3_3yn1f")
-shader_parameter/texture_detail_mask = ExtResource("4_hfsfa")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmryw"]
 points = PackedVector3Array(-0.509897, -0.173615, -3.05192, -2.28837, -0.661415, -2.57659, -5.25111, -0.167107, -2.16104, -1.09998, 2.2006, -3.04394, 0.508868, -0.173615, -3.05192, -1.00335, -0.821451, -1.49538, -2.28837, -0.661415, 0.375049, 2.28734, -0.661415, -2.57659, -5.25111, -0.167107, -1.88003, -5.25111, -0.131905, -2.16104, -1.09998, 2.2006, -2.96522, 1.09895, 2.2006, -3.04394, 5.25111, -0.167107, -2.16104, -1.00335, -0.821451, 3.3795, 1.00232, -0.821451, -1.49538, 2.28734, -0.661415, 0.375049, -5.25111, -0.131905, -1.88003, -0.666156, -0.797194, 5.92057, -0.666156, 0.00298673, 7.12833, 1.09895, 2.2006, -2.96522, 5.25111, -0.131905, -2.16104, 5.25111, -0.167107, -1.88003, 1.00232, -0.821451, 3.3795, 0.665127, -0.797194, 5.92057, 0.665127, 0.00298673, 7.12833, 5.25111, -0.131905, -1.88003)
@@ -84,7 +10,6 @@ points = PackedVector3Array(-0.509897, -0.173615, -3.05192, -2.28837, -0.661415,
 [node name="Challenger" instance=ExtResource("1_dgif5")]
 
 [node name="Challenger" parent="." index="0"]
-surface_material_override/0 = SubResource("ShaderMaterial_6d6yv")
 script = ExtResource("2_qav6f")
 
 [node name="Engines" parent="Challenger" index="0" instance=ExtResource("3_o52mr")]
