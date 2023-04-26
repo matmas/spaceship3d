@@ -10,5 +10,5 @@ vec3 toLinear(vec3 sRGB) {
 }
 
 void fragment() {
-	ALBEDO = toLinear(vec3(UV, 0.0));
+	ALBEDO = toLinear(vec3(UV2, 0.0));
 }
