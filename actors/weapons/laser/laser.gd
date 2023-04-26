@@ -3,6 +3,7 @@ extends RayCast3D
 @onready var beam := $Beam as MeshInstance3D
 @onready var beam_mesh := beam.mesh as PrismMesh
 @onready var sparks := $Sparks as GPUParticles3D
+@onready var smoke := $Smoke as GPUParticles3D
 @onready var sparks_light := $"Sparks/Light" as OmniLight3D
 @onready var SPARKS_LIGHT_MAX_ENERGY := sparks_light.light_energy
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
@@ -45,10 +46,12 @@ func _process(delta: float) -> void:
 	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
-	sparks.emitting = is_colliding() and power == 1.0
-	sparks.global_position = beam_endpoint
-	if is_colliding():
-		sparks.look_at(beam_endpoint + get_collision_normal(), get_collision_normal().cross(-sparks.basis.z))
+	for particles in [sparks, smoke]:
+		particles.emitting = is_colliding() and power == 1.0
+		particles.global_position = beam_endpoint
+		if is_colliding():
+			particles.look_at(beam_endpoint + get_collision_normal(), get_collision_normal().cross(-particles.basis.z))
+
 	beam.global_position = (global_position + beam_endpoint) / 2
 	beam.look_at(beam_endpoint)
 	beam.scale.z = global_position.distance_to(beam_endpoint) / beam_mesh.size.z

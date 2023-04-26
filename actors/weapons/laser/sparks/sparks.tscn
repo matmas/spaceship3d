@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://cg1n1xjiyc65x"]
 
 [ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://actors/weapons/laser/sparks/particle.png" id="1_jvglc"]
 
@@ -39,7 +39,7 @@ material = SubResource("StandardMaterial3D_c8wll")
 size = Vector2(0.1, 0.3)
 
 [node name="Sparks" type="GPUParticles3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 amount = 16
 lifetime = 0.25
 explosiveness = 0.2

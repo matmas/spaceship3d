@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0v7o75aoe1rw"]
+[gd_scene load_steps=9 format=3 uid="uid://b0v7o75aoe1rw"]
 
 [ext_resource type="Script" path="res://actors/weapons/laser/laser.gd" id="1_m6s12"]
-[ext_resource type="PackedScene" path="res://actors/weapons/laser/sparks/sparks.tscn" id="2_jmtt4"]
+[ext_resource type="PackedScene" uid="uid://cg1n1xjiyc65x" path="res://actors/weapons/laser/sparks/sparks.tscn" id="2_jmtt4"]
 [ext_resource type="PackedScene" uid="uid://b8ak56u21ckvl" path="res://actors/weapons/laser/painter/painter.tscn" id="3_0dfsq"]
+[ext_resource type="PackedScene" uid="uid://c8boe3voasjse" path="res://actors/weapons/laser/smoke/smoke.tscn" id="3_jd683"]
 [ext_resource type="AudioStream" uid="uid://bvanjoe6b6gys" path="res://actors/weapons/laser/laser_firing_loop.wav" id="4_4k38m"]
 [ext_resource type="AudioStream" uid="uid://cgq47bcsuf6vc" path="res://actors/weapons/laser/laser_hitting_loop.wav" id="5_nl0p1"]
 
@@ -27,6 +28,10 @@ cast_shadow = 0
 mesh = SubResource("PrismMesh_pkxld")
 
 [node name="Sparks" parent="." instance=ExtResource("2_jmtt4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
+
+[node name="Smoke" parent="." instance=ExtResource("3_jd683")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Painter" parent="." instance=ExtResource("3_0dfsq")]
 
