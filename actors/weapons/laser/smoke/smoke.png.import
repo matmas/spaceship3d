@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1vkimw1cawsg"
-path.s3tc="res://.godot/imported/smoke_frames.png-497bf8c1fa08f398892ffe091bddc49e.s3tc.ctex"
-path.etc2="res://.godot/imported/smoke_frames.png-497bf8c1fa08f398892ffe091bddc49e.etc2.ctex"
+uid="uid://dn6nekwygpedl"
+path.s3tc="res://.godot/imported/smoke.png-20388fa3a6051d3d287d5be087ee1300.s3tc.ctex"
+path.etc2="res://.godot/imported/smoke.png-20388fa3a6051d3d287d5be087ee1300.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://actors/weapons/laser/smoke/smoke_frames.png"
-dest_files=["res://.godot/imported/smoke_frames.png-497bf8c1fa08f398892ffe091bddc49e.s3tc.ctex", "res://.godot/imported/smoke_frames.png-497bf8c1fa08f398892ffe091bddc49e.etc2.ctex"]
+source_file="res://actors/weapons/laser/smoke/smoke.png"
+dest_files=["res://.godot/imported/smoke.png-20388fa3a6051d3d287d5be087ee1300.s3tc.ctex", "res://.godot/imported/smoke.png-20388fa3a6051d3d287d5be087ee1300.etc2.ctex"]
 
 [params]
 
