@@ -2,9 +2,9 @@ extends RayCast3D
 
 @onready var beam := $Beam as MeshInstance3D
 @onready var beam_mesh := beam.mesh as PrismMesh
-@onready var impact_particles := $ImpactParticles as GPUParticles3D
-@onready var impact_light := $"ImpactParticles/Light" as OmniLight3D
-@onready var IMPACT_LIGHT_MAX_ENERGY := impact_light.light_energy
+@onready var sparks := $Sparks as GPUParticles3D
+@onready var sparks_light := $"Sparks/Light" as OmniLight3D
+@onready var SPARKS_LIGHT_MAX_ENERGY := sparks_light.light_energy
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
 @onready var exclude := owner
 @onready var painter := $Painter as Painter
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
-	impact_light.light_energy = float(is_colliding()) * power * IMPACT_LIGHT_MAX_ENERGY * ((noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.25 + 0.5)
+	sparks_light.light_energy = float(is_colliding()) * power * SPARKS_LIGHT_MAX_ENERGY * ((noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.25 + 0.5)
 	enabled = power > 0.0
 	beam.visible = power > 0.0
 	beam.scale.x = power
@@ -45,10 +45,10 @@ func _process(delta: float) -> void:
 	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
-	impact_particles.emitting = is_colliding() and power == 1.0
-	impact_particles.global_position = beam_endpoint
+	sparks.emitting = is_colliding() and power == 1.0
+	sparks.global_position = beam_endpoint
 	if is_colliding():
-		impact_particles.look_at(beam_endpoint + get_collision_normal(), get_collision_normal().cross(-impact_particles.basis.z))
+		sparks.look_at(beam_endpoint + get_collision_normal(), get_collision_normal().cross(-sparks.basis.z))
 	beam.global_position = (global_position + beam_endpoint) / 2
 	beam.look_at(beam_endpoint)
 	beam.scale.z = global_position.distance_to(beam_endpoint) / beam_mesh.size.z

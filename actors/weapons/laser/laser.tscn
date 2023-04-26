@@ -62,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 cast_shadow = 0
 mesh = SubResource("PrismMesh_pkxld")
 
-[node name="ImpactParticles" type="GPUParticles3D" parent="."]
+[node name="Sparks" type="GPUParticles3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
 amount = 16
 lifetime = 0.25
@@ -71,7 +71,7 @@ transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_pyhqh")
 draw_pass_1 = SubResource("QuadMesh_lf0n3")
 
-[node name="Light" type="OmniLight3D" parent="ImpactParticles"]
+[node name="Light" type="OmniLight3D" parent="Sparks"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 light_color = Color(1, 0.827451, 0, 1)
 light_energy = 10.0
