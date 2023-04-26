@@ -18,6 +18,7 @@ func _process_node(node: Node) -> void:
 		_process_node(child)
 
 
+# NOTE: Also modifies existing materials saved as resources when Use external is enabled
 func _set_material_defaults(mesh_instance: MeshInstance3D) -> void:
 	if mesh_instance.get_parent() is PhysicsBody3D:
 		for surface in mesh_instance.mesh.get_surface_count():
