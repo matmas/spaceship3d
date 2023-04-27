@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo6c8gcf6o136"]
+[gd_scene load_steps=5 format=3 uid="uid://dtxoc1mr54elc"]
 
 [ext_resource type="PackedScene" uid="uid://cpaqivmcfh6w7" path="res://actors/ships/dispatcher.blend" id="1_d4k37"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_le6gq"]
-[ext_resource type="PackedScene" uid="uid://dgf3bu8ydx0x2" path="res://actors/ships/engines/engines.tscn" id="3_wvvhx"]
+[ext_resource type="PackedScene" uid="uid://bl1mpcbgeus7t" path="res://actors/ships/propulsion/propulsion.tscn" id="3_s3tuj"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dm8a6"]
 points = PackedVector3Array(-0.252526, -0.0369543, -2.77781, 2.5167, -0.52586, -0.00961089, 1.05052, -1.17742, 7.48178, 1.21266, 1.75474, -2.45232, -2.53335, -0.851478, -0.00961089, -1.22981, 1.75474, -2.45232, -1.06718, -1.17742, 7.48178, 1.86418, -1.17742, 0.31588, -1.22981, -1.50335, 5.8533, 1.86418, -0.851478, -1.63808, -1.88133, -0.851478, -1.63808, 1.21266, -1.50335, 5.8533, -1.88133, -1.17742, 0.31588, -2.53335, -0.52586, -0.00961089, 1.21266, 1.75474, -2.77781, 2.5167, -0.851478, -0.987103, -1.22981, 1.75474, -2.77781, 1.53842, -0.52586, -2.29009, -2.04446, -0.199604, -1.96358, 0.886898, -1.17742, 7.64401, 1.05052, -1.34038, 7.64401, -1.55557, -0.52586, -2.29009, -2.53335, -0.52586, -1.14934, -0.90405, -1.17742, 7.64401, 2.18995, -0.199604, -1.80134, 2.5167, -0.851478, -0.00961089, 2.5167, -0.52586, -1.14934, -2.53335, -0.851478, -0.987103, 0.235375, -0.0369543, -2.77781, -0.823894, -1.35757, 7.1777, 2.18995, -0.52586, -1.80134, 1.21266, 1.42881, -2.77781)
@@ -12,22 +12,22 @@ points = PackedVector3Array(-0.252526, -0.0369543, -2.77781, 2.5167, -0.52586, -
 [node name="Dispatcher" parent="." index="0"]
 script = ExtResource("2_le6gq")
 
-[node name="Engines" parent="Dispatcher" index="0" instance=ExtResource("3_wvvhx")]
+[node name="Propulsion" parent="Dispatcher" index="0" instance=ExtResource("3_s3tuj")]
 
-[node name="EngineRearL" parent="Dispatcher/Engines" index="0"]
+[node name="EngineRearL" parent="Dispatcher/Propulsion" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.4, 1.806)
 
-[node name="EngineRearR" parent="Dispatcher/Engines" index="1"]
+[node name="EngineRearR" parent="Dispatcher/Propulsion" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.4, 1.806)
 
-[node name="EngineFrontL" parent="Dispatcher/Engines" index="2"]
+[node name="EngineFrontL" parent="Dispatcher/Propulsion" index="2"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 0.7)
 
-[node name="EngineFrontR" parent="Dispatcher/Engines" index="3"]
+[node name="EngineFrontR" parent="Dispatcher/Propulsion" index="3"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 0.7)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_dm8a6")
 
-[editable path="Dispatcher/Engines"]
+[editable path="Dispatcher/Propulsion"]

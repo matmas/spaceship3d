@@ -1,4 +1,4 @@
-class_name ShipEngine extends Node3D
+class_name Thruster extends Node3D
 
 @onready var flame := $Flame as MeshInstance3D
 @onready var distortion := $Distortion as MeshInstance3D
@@ -9,13 +9,9 @@ var target_power := 0.0
 
 
 func _ready() -> void:
-	# We need to change each engine material independently
+	# We need to change each material independently
 	flame.material_override = flame.material_override.duplicate() as Material
 	distortion.set_surface_override_material(0, distortion.get_active_material(0).duplicate() as Material)
-
-
-func set_power(value: float) -> void:
-	target_power = value
 
 
 func _process(delta: float) -> void:
@@ -28,3 +24,7 @@ func _process(delta: float) -> void:
 
 	var distortion_material := distortion.get_active_material(0) as ShaderMaterial
 	distortion_material.set_shader_parameter(&"distortion", power * 0.005)
+
+
+func set_power(value: float) -> void:
+	target_power = value

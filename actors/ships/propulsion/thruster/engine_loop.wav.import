@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cqwrfq2qbs086"
-path="res://.godot/imported/engine_loop.wav-a5ea1034b93e6b6aa3b584366e3fe92d.sample"
+path="res://.godot/imported/engine_loop.wav-86f994d527d1bd0c51f39ed38645b334.sample"
 
 [deps]
 
-source_file="res://actors/ships/engines/engine/engine_loop.wav"
-dest_files=["res://.godot/imported/engine_loop.wav-a5ea1034b93e6b6aa3b584366e3fe92d.sample"]
+source_file="res://actors/ships/propulsion/thruster/engine_loop.wav"
+dest_files=["res://.godot/imported/engine_loop.wav-86f994d527d1bd0c51f39ed38645b334.sample"]
 
 [params]
 
