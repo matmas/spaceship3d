@@ -11,11 +11,6 @@ func _init() -> void:
 	max_contacts_reported = 1
 
 
-func _ready() -> void:
-	super._ready()
-	sparks.top_level = true  # its light should not move relative to the weapon when it is fading out
-
-
 func _physics_process(_delta: float) -> void:
 	var linear_acceleration: Vector3 = global_transform.basis * (Vector3(
 		Input.get_axis(&"move_left", &"move_right"),

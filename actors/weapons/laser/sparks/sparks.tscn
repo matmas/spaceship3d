@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cg1n1xjiyc65x"]
+[gd_scene load_steps=9 format=3 uid="uid://cg1n1xjiyc65x"]
 
 [ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://actors/weapons/laser/sparks/particle.png" id="1_jvglc"]
-[ext_resource type="Script" path="res://actors/weapons/laser/sparks/light.gd" id="3_vmowo"]
 
 [sub_resource type="Gradient" id="Gradient_x73os"]
 offsets = PackedFloat32Array(0, 0.0609756, 0.164634, 0.262195, 0.426829, 0.689024, 1)
@@ -46,9 +45,3 @@ explosiveness = 0.2
 transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_pyhqh")
 draw_pass_1 = SubResource("QuadMesh_lf0n3")
-
-[node name="Light" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-light_color = Color(1, 0.827451, 0, 1)
-light_energy = 10.0
-script = ExtResource("3_vmowo")

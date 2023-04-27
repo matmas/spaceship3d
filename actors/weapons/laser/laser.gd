@@ -20,7 +20,6 @@ func _ready() -> void:
 	add_exception(exclude)
 	set_process(visible)
 	set_physics_process(visible)
-	sparks.top_level = true  # its light should not move relative to the weapon when it is fading out
 
 
 func _process(delta: float) -> void:
