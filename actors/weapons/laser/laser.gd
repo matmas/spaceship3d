@@ -7,7 +7,7 @@ extends RayCast3D
 @onready var sparks_light := $"Sparks/Light" as OmniLight3D
 @onready var SPARKS_LIGHT_MAX_ENERGY := sparks_light.light_energy
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
-@onready var exclude := owner
+@onready var exclude := owner as CollisionObject3D
 @onready var painter := $Painter as Painter
 @onready var firing := $Firing as AudioStreamPlayer3D
 @onready var hitting := $Hitting as AudioStreamPlayer3D
