@@ -2,27 +2,25 @@ extends Node3D
 
 @onready var ship := owner as RigidBody3D
 
-@onready var thruster_rear_left := $ThrusterRearLeft as Thruster
-@onready var thruster_rear_right := $ThrusterRearRight as Thruster
-@onready var thruster_front_left := $ThrusterFrontLeft as Thruster
-@onready var thruster_front_right := $ThrusterFrontRight as Thruster
-
 var previous_linear_velocity := Vector3()
+var previous_angular_velocity := Vector3()
 
 
 func _physics_process(_delta: float) -> void:
-	var linear_velocity := ship.linear_velocity
-	var local_linear_velocity := ship.global_transform.basis.inverse() * linear_velocity
-	var linear_accel := local_linear_velocity - previous_linear_velocity
-	var pos_linear_accel := Vector3(maxf(0, linear_accel.x), maxf(0, linear_accel.y), maxf(0, linear_accel.z))
-	var neg_linear_accel := Vector3(minf(0, linear_accel.x), minf(0, linear_accel.y), minf(0, linear_accel.z))
-	set_thruster_power(thruster_front_right, pos_linear_accel.z - neg_linear_accel.x + absf(linear_accel.y))
-	set_thruster_power(thruster_front_left, pos_linear_accel.z + pos_linear_accel.x + absf(linear_accel.y))
-	set_thruster_power(thruster_rear_right, -neg_linear_accel.z - neg_linear_accel.x + absf(linear_accel.y))
-	set_thruster_power(thruster_rear_left, -neg_linear_accel.z + pos_linear_accel.x + absf(linear_accel.y))
+	var global_linear_velocity := ship.linear_velocity
+	var linear_velocity := ship.global_transform.basis.inverse() * global_linear_velocity
+	var linear_acceleration := linear_velocity - previous_linear_velocity
 
-	previous_linear_velocity = local_linear_velocity
+	var global_angular_velocity := ship.angular_velocity
+	var angular_velocity := ship.global_transform.basis.inverse() * global_angular_velocity
+	var angular_acceleration := angular_velocity - previous_angular_velocity
 
+	for child in get_children():
+		if child is Thruster:
+			var thruster := child as Thruster
+			var lateral_thrust := (linear_acceleration * 8).dot(-thruster.transform.basis.z)
+			var angular_thrust := (angular_acceleration * 8).cross(thruster.position).dot(-thruster.transform.basis.z)
+			thruster.set_power(lateral_thrust + angular_thrust)
 
-func set_thruster_power(thruster: Thruster, power: float):
-	thruster.set_power(clampf(power * 8, 0, 1))
+	previous_linear_velocity = linear_velocity
+	previous_angular_velocity = angular_velocity

@@ -22,4 +22,4 @@ func _process(delta: float) -> void:
 
 
 func set_power(value: float) -> void:
-	target_power = value
+	target_power = clampf(value, 0, 1)

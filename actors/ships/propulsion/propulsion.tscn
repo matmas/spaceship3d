@@ -18,3 +18,27 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0,
 
 [node name="ThrusterFrontRight" parent="." instance=ExtResource("3_1n1rf")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, -1)
+
+[node name="ThrusterLeftFront" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -1, 0, -1)
+
+[node name="ThrusterLeftBack" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -1, 0, 1)
+
+[node name="ThrusterRightFront" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 1, 0, -1)
+
+[node name="ThrusterRightBack" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 1, 0, 1)
+
+[node name="ThrusterTopRight" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1, 0, 0)
+
+[node name="ThrusterTopLeft" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 0, 0)
+
+[node name="ThrusterBottomLeft" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, 0, 0)
+
+[node name="ThrusterBottomRight" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, 0, 0)
