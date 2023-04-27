@@ -11,6 +11,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Speech" type="Node"]
 
 [node name="Subtitles" type="Label" parent="."]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
