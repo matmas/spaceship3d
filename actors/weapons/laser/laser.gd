@@ -46,7 +46,8 @@ func _process(delta: float) -> void:
 	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
-	for particles in [sparks, smoke]:
+	for p in [sparks, smoke]:
+		var particles := p as GPUParticles3D
 		particles.global_position = beam_endpoint
 		particles.emitting = is_colliding() and power == 1.0 and (particles == smoke and (get_collider() as Node).name.begins_with("rock") or particles != smoke)
 		if is_colliding():
