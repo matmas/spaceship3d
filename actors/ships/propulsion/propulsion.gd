@@ -2,10 +2,10 @@ extends Node3D
 
 @onready var ship := owner as RigidBody3D
 
-@onready var thruster_rear_left := $EngineRearL as Thruster
-@onready var thruster_rear_right := $EngineRearR as Thruster
-@onready var thruster_front_left := $EngineFrontL as Thruster
-@onready var thruster_front_right := $EngineFrontR as Thruster
+@onready var thruster_rear_left := $ThrusterRearLeft as Thruster
+@onready var thruster_rear_right := $ThrusterRearRight as Thruster
+@onready var thruster_front_left := $ThrusterFrontLeft as Thruster
+@onready var thruster_front_right := $ThrusterFrontRight as Thruster
 
 var previous_linear_velocity := Vector3()
 
@@ -13,7 +13,7 @@ var previous_linear_velocity := Vector3()
 func _physics_process(_delta: float) -> void:
 	var linear_velocity := ship.linear_velocity
 	var local_linear_velocity := ship.global_transform.basis.inverse() * linear_velocity
-	var linear_accel := (local_linear_velocity - previous_linear_velocity) * 0.016
+	var linear_accel := local_linear_velocity - previous_linear_velocity
 	var pos_linear_accel := Vector3(maxf(0, linear_accel.x), maxf(0, linear_accel.y), maxf(0, linear_accel.z))
 	var neg_linear_accel := Vector3(minf(0, linear_accel.x), minf(0, linear_accel.y), minf(0, linear_accel.z))
 	set_thruster_power(thruster_front_right, pos_linear_accel.z - neg_linear_accel.x + absf(linear_accel.y))
@@ -25,4 +25,4 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_thruster_power(thruster: Thruster, power: float):
-	thruster.set_power(clampf(power * 500, 0, 1))
+	thruster.set_power(clampf(power * 8, 0, 1))

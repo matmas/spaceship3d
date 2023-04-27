@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://daif7p54fy86"]
+
+[ext_resource type="PackedScene" uid="uid://bpv1xjag5b0im" path="res://actors/ships/propulsion/thruster/thruster.tscn" id="1_m2og5"]
+[ext_resource type="Script" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.gd" id="2_bor6n"]
+[ext_resource type="Shader" path="res://actors/ships/propulsion/thruster/flame.gdshader" id="3_mbrqw"]
+[ext_resource type="Material" uid="uid://67xfekl3xolo" path="res://actors/ships/propulsion/thruster/rocket_engine/distortion.tres" id="4_l1tob"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nd1no"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5bm8f"]
+noise = SubResource("FastNoiseLite_nd1no")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1hqc"]
+render_priority = 0
+shader = ExtResource("3_mbrqw")
+shader_parameter/color = Color(1, 0.564706, 0, 1)
+shader_parameter/noise_speed = 1.0
+shader_parameter/noise_stretch = 2.0
+shader_parameter/gradient_shift = 1.0
+shader_parameter/gradient_multiplier = 6.0
+shader_parameter/alpha_multiplier = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5bm8f")
+
+[sub_resource type="QuadMesh" id="QuadMesh_44ub6"]
+material = ExtResource("4_l1tob")
+size = Vector2(2, 2)
+
+[node name="RocketEngine" instance=ExtResource("1_m2og5")]
+script = ExtResource("2_bor6n")
+
+[node name="Flame" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_m1hqc")
+
+[node name="Distortion" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_44ub6")

@@ -14,20 +14,6 @@ script = ExtResource("2_qav6f")
 
 [node name="Propulsion" parent="Challenger" index="0" instance=ExtResource("3_o52mr")]
 
-[node name="EngineRearL" parent="Challenger/Propulsion" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 0, 2)
-
-[node name="EngineRearR" parent="Challenger/Propulsion" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0, 2)
-
-[node name="EngineFrontL" parent="Challenger/Propulsion" index="2"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.7, -0.1, -1.7)
-
-[node name="EngineFrontR" parent="Challenger/Propulsion" index="3"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.7, -0.1, -1.7)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_gmryw")
-
-[editable path="Challenger/Propulsion"]

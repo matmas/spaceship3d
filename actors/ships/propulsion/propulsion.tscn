@@ -6,14 +6,14 @@
 [node name="Propulsion" type="Node3D"]
 script = ExtResource("1_s7j15")
 
-[node name="EngineRearL" parent="." instance=ExtResource("2_mjp5v")]
+[node name="ThrusterRearLeft" parent="." instance=ExtResource("2_mjp5v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.806)
 
-[node name="EngineRearR" parent="." instance=ExtResource("2_mjp5v")]
+[node name="ThrusterRearRight" parent="." instance=ExtResource("2_mjp5v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.806)
 
-[node name="EngineFrontL" parent="." instance=ExtResource("2_mjp5v")]
+[node name="ThrusterFrontLeft" parent="." instance=ExtResource("2_mjp5v")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, -0.194)
 
-[node name="EngineFrontR" parent="." instance=ExtResource("2_mjp5v")]
+[node name="ThrusterFrontRight" parent="." instance=ExtResource("2_mjp5v")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, -0.194)
