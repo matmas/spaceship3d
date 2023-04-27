@@ -39,7 +39,6 @@ material = SubResource("StandardMaterial3D_c8wll")
 size = Vector2(0.1, 0.3)
 
 [node name="Sparks" type="GPUParticles3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 amount = 16
 lifetime = 0.25
 explosiveness = 0.2
