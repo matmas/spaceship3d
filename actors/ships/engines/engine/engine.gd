@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func set_power(value: float) -> void:
-	target_power = clampf(value * 500, 0, 1)
+	target_power = value
 
 
 func _process(delta: float) -> void:

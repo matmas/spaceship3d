@@ -11,14 +11,18 @@ var previous_linear_velocity := Vector3()
 
 
 func _physics_process(_delta: float) -> void:
-	var linear_velocity = ship.linear_velocity
-	var local_linear_velocity = ship.global_transform.basis.inverse() * linear_velocity
-	var linear_accel = (local_linear_velocity - previous_linear_velocity) * 0.016
-	var pos_linear_accel := Vector3(max(0, linear_accel.x), max(0, linear_accel.y), max(0, linear_accel.z))
-	var neg_linear_accel := Vector3(min(0, linear_accel.x), min(0, linear_accel.y), min(0, linear_accel.z))
-	engine_front_right.set_power(pos_linear_accel.z - neg_linear_accel.x + abs(linear_accel.y))
-	engine_front_left.set_power(pos_linear_accel.z + pos_linear_accel.x + abs(linear_accel.y))
-	engine_rear_right.set_power(-neg_linear_accel.z - neg_linear_accel.x + abs(linear_accel.y))
-	engine_rear_left.set_power(-neg_linear_accel.z + pos_linear_accel.x + abs(linear_accel.y))
+	var linear_velocity := ship.linear_velocity
+	var local_linear_velocity := ship.global_transform.basis.inverse() * linear_velocity
+	var linear_accel := (local_linear_velocity - previous_linear_velocity) * 0.016
+	var pos_linear_accel := Vector3(maxf(0, linear_accel.x), maxf(0, linear_accel.y), maxf(0, linear_accel.z))
+	var neg_linear_accel := Vector3(minf(0, linear_accel.x), minf(0, linear_accel.y), minf(0, linear_accel.z))
+	set_engine_power(engine_front_right, pos_linear_accel.z - neg_linear_accel.x + absf(linear_accel.y))
+	set_engine_power(engine_front_left, pos_linear_accel.z + pos_linear_accel.x + absf(linear_accel.y))
+	set_engine_power(engine_rear_right, -neg_linear_accel.z - neg_linear_accel.x + absf(linear_accel.y))
+	set_engine_power(engine_rear_left, -neg_linear_accel.z + pos_linear_accel.x + absf(linear_accel.y))
 
 	previous_linear_velocity = local_linear_velocity
+
+
+func set_engine_power(engine: ShipEngine, power: float):
+	engine.set_power(clampf(power * 500, 0, 1))
