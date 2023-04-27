@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch0qx64h55taf"]
+
+[ext_resource type="PackedScene" uid="uid://bpv1xjag5b0im" path="res://actors/ships/propulsion/thruster/thruster.tscn" id="1_al1ni"]
+[ext_resource type="Shader" path="res://actors/ships/propulsion/thruster/flame.gdshader" id="2_q2iob"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nd1no"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5bm8f"]
+noise = SubResource("FastNoiseLite_nd1no")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knotl"]
+render_priority = 0
+shader = ExtResource("2_q2iob")
+shader_parameter/color = Color(0.470588, 0.788235, 0.866667, 1)
+shader_parameter/noise_speed = 1.0
+shader_parameter/noise_stretch = 2.0
+shader_parameter/gradient_shift = 1.0
+shader_parameter/gradient_multiplier = 6.0
+shader_parameter/alpha_multiplier = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5bm8f")
+
+[node name="SmallThruster" instance=ExtResource("1_al1ni")]
+
+[node name="Flame" parent="." index="0"]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_knotl")

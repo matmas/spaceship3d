@@ -1,19 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl1mpcbgeus7t"]
+[gd_scene load_steps=4 format=3 uid="uid://bl1mpcbgeus7t"]
 
 [ext_resource type="Script" path="res://actors/ships/propulsion/propulsion.gd" id="1_s7j15"]
-[ext_resource type="PackedScene" uid="uid://bpv1xjag5b0im" path="res://actors/ships/propulsion/thruster/thruster.tscn" id="2_mjp5v"]
+[ext_resource type="PackedScene" uid="uid://daif7p54fy86" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.tscn" id="2_fjp74"]
+[ext_resource type="PackedScene" uid="uid://ch0qx64h55taf" path="res://actors/ships/propulsion/thruster/small_thruster/small_thruster.tscn" id="3_1n1rf"]
 
 [node name="Propulsion" type="Node3D"]
 script = ExtResource("1_s7j15")
 
-[node name="ThrusterRearLeft" parent="." instance=ExtResource("2_mjp5v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.806)
+[node name="ThrusterRearLeft" parent="." instance=ExtResource("2_fjp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="ThrusterRearRight" parent="." instance=ExtResource("2_mjp5v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.806)
+[node name="ThrusterRearRight" parent="." instance=ExtResource("2_fjp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 
-[node name="ThrusterFrontLeft" parent="." instance=ExtResource("2_mjp5v")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, -0.194)
+[node name="ThrusterFrontLeft" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, -1)
 
-[node name="ThrusterFrontRight" parent="." instance=ExtResource("2_mjp5v")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, -0.194)
+[node name="ThrusterFrontRight" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, -1)
