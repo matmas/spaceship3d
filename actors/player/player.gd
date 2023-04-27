@@ -1,11 +1,19 @@
 extends Actor
 
 var steering_direction := Vector2()
+@onready var sparks := $Sparks as GPUParticles3D
 
 
 func _init() -> void:
 	Globals.player = self
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
+	contact_monitor = true
+	max_contacts_reported = 1
+
+
+func _ready() -> void:
+	super._ready()
+	sparks.top_level = true  # its light should not move relative to the weapon when it is fading out
 
 
 func _physics_process(_delta: float) -> void:
@@ -35,3 +43,13 @@ func _get_steering_direction() -> Vector2:
 	else:
 		direction = direction.normalized() * ((magnitude - DEADZONE) / (1 - DEADZONE))
 	return direction
+
+
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	sparks.emitting = state.get_contact_count() > 0
+	if state.get_contact_count() > 0:
+		var contact_point := global_position + state.get_contact_local_position(0)  # same as state.get_contact_collider_position?
+		var contact_normal := state.get_contact_local_normal(0)
+		sparks.global_position = contact_point
+		if not is_zero_approx(contact_normal.dot(Vector3.UP)):
+			sparks.look_at(contact_point + contact_normal)
