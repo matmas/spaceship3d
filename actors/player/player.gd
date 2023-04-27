@@ -43,7 +43,7 @@ func _get_steering_direction() -> Vector2:
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	sparks.emitting = state.get_contact_count() > 0
 	if state.get_contact_count() > 0:
-		var contact_point := global_position + state.get_contact_local_position(0)  # same as state.get_contact_collider_position?
+		var contact_point := global_position + state.get_contact_local_position(0)
 		var contact_normal := state.get_contact_local_normal(0)
 		sparks.global_position = contact_point
 		if not is_zero_approx(contact_normal.dot(Vector3.UP)):

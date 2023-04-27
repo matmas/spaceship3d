@@ -22,7 +22,10 @@ class_name Actor extends RigidBody3D
 #	rotate_object_local(Vector3.RIGHT, angular_acceleration.x * delta)
 #	rotate_object_local(Vector3.UP, angular_acceleration.y * delta)
 #	rotate_object_local(Vector3.FORWARD, angular_acceleration.z * -delta)
-
+#
+#
+#func linear_velocity() -> Vector3:
+#	return velocity
 
 func _ready() -> void:
 	can_sleep = false
