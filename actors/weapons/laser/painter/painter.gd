@@ -25,7 +25,7 @@ func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D) -> void:
 
 	# skip large distances as UV maps are often non-linear
 	# otherwise lines can bridge large distances even across UV boundaries
-	if uv_start.distance_to(uv_end) > 0.1:
+	if uv_start.distance_to(uv_end) > 0.05:
 		uv_start = uv_end
 	brush.reparent(canvas)
 	brush.visible = true

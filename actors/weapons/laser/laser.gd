@@ -4,8 +4,6 @@ extends RayCast3D
 @onready var beam_mesh := beam.mesh as PrismMesh
 @onready var sparks := $Sparks as GPUParticles3D
 @onready var smoke := $Smoke as GPUParticles3D
-@onready var sparks_light := $"Sparks/Light" as OmniLight3D
-@onready var SPARKS_LIGHT_MAX_ENERGY := sparks_light.light_energy
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
 @onready var exclude := owner as CollisionObject3D
 @onready var painter := $Painter as Painter
@@ -15,7 +13,6 @@ extends RayCast3D
 var targetting_speed := 1000.0
 
 var power := 0.0
-var noise := FastNoiseLite.new()
 var target_position_override := Vector3()
 
 
@@ -23,6 +20,7 @@ func _ready() -> void:
 	add_exception(exclude)
 	set_process(visible)
 	set_physics_process(visible)
+	sparks.top_level = true  # its light should not move relative to the weapon when it is fading out
 
 
 func _process(delta: float) -> void:
@@ -30,7 +28,6 @@ func _process(delta: float) -> void:
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
-	sparks_light.light_energy = float(is_colliding()) * power * SPARKS_LIGHT_MAX_ENERGY * ((noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.25 + 0.5)
 	enabled = power > 0.0
 	beam.visible = power > 0.0
 	beam.scale.x = power
@@ -48,9 +45,9 @@ func _process(delta: float) -> void:
 	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
 	for p in [sparks, smoke]:
 		var particles := p as GPUParticles3D
-		particles.global_position = beam_endpoint
 		particles.emitting = is_colliding() and power == 1.0 and (particles == smoke and (get_collider() as Node).name.begins_with("rock") or particles != smoke)
-		if is_colliding():
+		if is_colliding() and power == 1.0:
+			particles.global_position = beam_endpoint
 			particles.look_at(beam_endpoint + get_collision_normal(), get_collision_normal().cross(-particles.basis.z))
 
 	beam.global_position = (global_position + beam_endpoint) / 2
