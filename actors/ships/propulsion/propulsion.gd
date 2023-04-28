@@ -5,9 +5,10 @@ extends Node3D
 var previous_linear_velocity := Vector3()
 var previous_angular_velocity := Vector3()
 
-
-const mass_to_thruster := 8  # mass to thruster acceleration ratio
-const inertia_to_thruster := 8  # moment of inertia to thruster acceleration ratio
+# mass to thruster acceleration ratio divided by number of thrusters
+const mass_to_thruster := 8
+# moment of inertia to thruster acceleration ratio divided by number of thrusters
+const inertia_to_thruster := 8
 
 
 func _physics_process(_delta: float) -> void:
