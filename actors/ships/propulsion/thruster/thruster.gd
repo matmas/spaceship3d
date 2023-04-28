@@ -2,7 +2,6 @@ class_name Thruster extends Node3D
 
 @onready var flame := $Flame as MeshInstance3D
 @onready var exhaust := $Exhaust as AudioStreamPlayer3D
-@onready var flame_material := flame.material_override.duplicate() as ShaderMaterial
 
 var power := 0.0
 var target_power := 0.0
@@ -10,11 +9,12 @@ var target_power := 0.0
 
 func _ready() -> void:
 	# We need to change each material independently
-	flame.material_override = flame_material
+	flame.material_override = flame.material_override.duplicate() as Material
 
 
 func _process(delta: float) -> void:
 	power = lerpf(power, target_power, 1 - pow(0.1, delta * 5))
+	var flame_material := flame.get_active_material(0) as ShaderMaterial
 	flame_material.set_shader_parameter(&"alpha_multiplier", power)
 	flame_material.set_shader_parameter(&"gradient_multiplier", power * 6)
 	flame_material.set_shader_parameter(&"gradient_shift", power)
