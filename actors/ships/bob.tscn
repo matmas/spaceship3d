@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2vsvkjc7r7on"]
+[gd_scene load_steps=11 format=3 uid="uid://d2vsvkjc7r7on"]
 
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://actors/ships/bob.blend" id="1_v31w4"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_umtvc"]
 [ext_resource type="PackedScene" uid="uid://bl1mpcbgeus7t" path="res://actors/ships/propulsion/propulsion.tscn" id="3_7n513"]
+[ext_resource type="Script" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.gd" id="4_0ukoo"]
 
 [sub_resource type="ConvexPolygonShape3D" id="6"]
 points = PackedVector3Array(4.06111, -0.148882, -0.433703, -1.86069, -0.373801, -1.74946, -1.85096, -0.260179, -1.74606, -5.16331, -0.381003, -0.549682, -2.78381, 0.141206, -0.491693, 2.59886, 0.123796, -1.50676, 5.27981, -0.381003, -0.955871, -2.5986, 0.123833, -1.50682, 2.78454, 0.141206, -0.491562, 1.86117, -0.373771, -1.74938, 4.06111, -0.381003, -0.433703, -5.28011, -0.264917, -0.95574, 1.72742, 0.0752344, -1.74189, -4.06039, -0.381003, -0.433703, 5.27981, -0.264917, -0.607672, -1.72744, 0.0752017, -1.74178, -5.28011, -0.381003, -0.95574, 2.95923, 0.141206, -0.89775, 5.27981, -0.264917, -0.955871, -4.06039, -0.148882, -0.433703, -2.9585, 0.141206, -0.89775, -5.28011, -0.264917, -0.607672, 1.60337, 0.129057, -0.464741, 2.61088, -0.0909662, -1.59376, -2.61016, -0.0909662, -1.59376, 5.163, -0.381003, -0.549552, -1.60339, 0.129014, -0.464853, 3.48556, 0.0141558, -1.28834, -3.48541, 0.014175, -1.28836, 5.04723, -0.381003, -1.01373, -5.04754, -0.381003, -1.01373, -3.82885, -0.148882, -1.30368, 3.82854, -0.148882, -1.30368, 5.27981, -0.381003, -0.607672, -5.28011, -0.381003, -0.607672)
@@ -29,41 +30,43 @@ script = ExtResource("2_umtvc")
 
 [node name="Propulsion" parent="Bob" index="0" instance=ExtResource("3_7n513")]
 
-[node name="ThrusterRearLeft" parent="Bob/Propulsion" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.35)
+[node name="MainEngineLeft" parent="Bob/Propulsion" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.34)
+script = ExtResource("4_0ukoo")
 
-[node name="ThrusterRearRight" parent="Bob/Propulsion" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.35)
+[node name="MainEngineRight" parent="Bob/Propulsion" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.34)
+script = ExtResource("4_0ukoo")
 
-[node name="ThrusterFrontLeft" parent="Bob/Propulsion" index="2"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.26072, -0.046, 0.528)
+[node name="FrontThrusterLeft" parent="Bob/Propulsion" index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.426, -0.25, 0.39)
 
-[node name="ThrusterFrontRight" parent="Bob/Propulsion" index="3"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.23496, -0.0402135, 0.527114)
+[node name="FrontThrusterRight" parent="Bob/Propulsion" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.42555, -0.25, 0.39)
 
-[node name="ThrusterLeftFront" parent="Bob/Propulsion" index="4"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.419309, 0.117089, -2.63301)
+[node name="LeftThrusterFront" parent="Bob/Propulsion" index="4"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.41064, 0, -2.74519)
 
-[node name="ThrusterLeftBack" parent="Bob/Propulsion" index="5"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -1.69906, 0.514439, 1.32176)
+[node name="LeftThrusterBack" parent="Bob/Propulsion" index="5"]
+transform = Transform3D(-4.37114e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1, 3.09086e-08, -3.09086e-08, -1.42497, 0.752223, 1.14446)
 
-[node name="ThrusterRightFront" parent="Bob/Propulsion" index="6"]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0.418317, 0.112508, -2.56459)
+[node name="RightThrusterFront" parent="Bob/Propulsion" index="6"]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0.411, 0, -2.745)
 
-[node name="ThrusterRightBack" parent="Bob/Propulsion" index="7"]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 1.58988, 0.427297, 1.29465)
+[node name="RightThrusterBack" parent="Bob/Propulsion" index="7"]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 1.425, 0.752, 1.14518)
 
-[node name="ThrusterTopRight" parent="Bob/Propulsion" index="8"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.26047, 0.0708672, 1)
+[node name="TopThrusterLeft" parent="Bob/Propulsion" index="8"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.24673, 0.0542436, 0.741825)
 
-[node name="ThrusterTopLeft" parent="Bob/Propulsion" index="9"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.21735, 0.0775314, 1.02299)
+[node name="TopThrusterRight" parent="Bob/Propulsion" index="9"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.247, 0.0542436, 0.741825)
 
-[node name="ThrusterBottomLeft" parent="Bob/Propulsion" index="10"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.22723, -0.363489, 0.963819)
+[node name="BottomThrusterLeft" parent="Bob/Propulsion" index="10"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.24673, -0.368239, 0.741825)
 
-[node name="ThrusterBottomRight" parent="Bob/Propulsion" index="11"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.26012, -0.375734, 1)
+[node name="BottomThrusterRight" parent="Bob/Propulsion" index="11"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.247, -0.368239, 0.741825)
 
 [node name="CollisionShape6" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
