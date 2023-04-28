@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://actors/ships/propulsion/propulsion.gd" id="1_s7j15"]
 [ext_resource type="PackedScene" uid="uid://daif7p54fy86" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.tscn" id="2_fjp74"]
-[ext_resource type="PackedScene" uid="uid://ch0qx64h55taf" path="res://actors/ships/propulsion/thruster/small_thruster/small_thruster.tscn" id="3_1n1rf"]
+[ext_resource type="PackedScene" uid="uid://b8q81nxmm0eyj" path="res://actors/ships/propulsion/thruster/small_thruster/small_thruster.tscn" id="3_1n1rf"]
 
 [node name="Propulsion" type="Node3D"]
 script = ExtResource("1_s7j15")
