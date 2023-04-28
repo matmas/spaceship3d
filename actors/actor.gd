@@ -31,11 +31,11 @@ func _ready() -> void:
 	can_sleep = false
 	gravity_scale = 0
 	linear_damp = 1
-	angular_damp = 5
+	angular_damp = 2
 
 
 func _max_linear_acceleration() -> Vector3:
-	return Vector3(5, 5, 20) * mass
+	return Vector3(10, 10, 30) * mass
 
 
 func _max_angular_acceleration() -> Vector3:
