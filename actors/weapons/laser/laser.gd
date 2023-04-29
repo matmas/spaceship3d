@@ -1,7 +1,7 @@
 extends RayCast3D
 
 @onready var beam := $Beam as MeshInstance3D
-@onready var beam_mesh := beam.mesh as PrismMesh
+@onready var beam_scale := beam.scale
 @onready var sparks := $Sparks as GPUParticles3D
 @onready var smoke := $Smoke as GPUParticles3D
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
@@ -33,8 +33,8 @@ func _process(delta: float) -> void:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
 	enabled = power > 0.0
 	beam.visible = power > 0.0
-	beam.scale.x = power
-	beam.scale.y = power
+	beam.scale.x = power * beam_scale.x
+	beam.scale.y = power * beam_scale.y
 
 	firing.volume_db = firing_volume + linear_to_db(lerpf(db_to_linear(firing.volume_db), power, 1 - pow(0.1, delta * 5)))
 	hitting.volume_db = hitting_volume if is_colliding() else -INF
@@ -55,9 +55,8 @@ func _process(delta: float) -> void:
 			if not is_zero_approx(get_collision_normal().dot(Vector3.UP)):
 				particles.look_at(beam_endpoint + get_collision_normal())
 
-	beam.global_position = (global_position + beam_endpoint) / 2
 	beam.look_at(beam_endpoint)
-	beam.scale.z = global_position.distance_to(beam_endpoint) / beam_mesh.size.z
+	beam.scale.z = global_position.distance_to(beam_endpoint)
 
 	if is_colliding() and power == 1.0:
 		var mesh_instance = Utils.get_first_child_of_type(get_collider(), MeshInstance3D)
