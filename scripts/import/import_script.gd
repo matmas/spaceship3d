@@ -57,19 +57,15 @@ func _mesh_volume(mesh: ArrayMesh) -> float:
 	var volume := 0.0
 	var MDT := MeshDataTool.new()
 	MDT.create_from_surface(mesh, 0)
-	for i in range(MDT.get_face_count()):  # pa = point a, same for b and c
-		var pa := MDT.get_vertex(MDT.get_face_vertex(i, 0))
-		var pb := MDT.get_vertex(MDT.get_face_vertex(i, 1))
-		var pc := MDT.get_vertex(MDT.get_face_vertex(i, 2))
-		var tri_area := _triangle_area(pa, pb, pc)
-		var tri_normal := Plane(pa, pb, pc).normal
-		volume += (pa.dot(tri_normal)) * tri_area
+	for i in range(MDT.get_face_count()):
+		var point0 := MDT.get_vertex(MDT.get_face_vertex(i, 0))
+		var point1 := MDT.get_vertex(MDT.get_face_vertex(i, 1))
+		var point2 := MDT.get_vertex(MDT.get_face_vertex(i, 2))
+		var tri_area := _triangle_area(point0, point1, point2)
+		var tri_normal := Plane(point0, point1, point2).normal
+		volume += (point0.dot(tri_normal)) * tri_area
 	return absf(volume) / 3
 
 
-func _triangle_area(point1: Vector3, point2: Vector3, point3: Vector3) -> float:
-	var a := point1.distance_to(point2)
-	var b := point2.distance_to(point3)
-	var c := point3.distance_to(point1)
-	var s := (a + b + c) / 2
-	return sqrt(s * (s - a) * (s - b) * (s - c))
+func _triangle_area(point0: Vector3, point1: Vector3, point2: Vector3) -> float:
+	return 0.5 * (point1 - point0).cross(point2 - point0).length()
