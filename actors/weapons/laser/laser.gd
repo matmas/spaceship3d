@@ -9,6 +9,8 @@ extends RayCast3D
 @onready var painter := $Painter as Painter
 @onready var firing := $Firing as AudioStreamPlayer3D
 @onready var firing_volume := firing.volume_db
+@onready var hitting := $Hitting as AudioStreamPlayer3D
+@onready var hitting_volume := hitting.volume_db
 
 var targetting_speed := 5.0
 
@@ -21,6 +23,7 @@ func _ready() -> void:
 	set_process(visible)
 	set_physics_process(visible)
 	firing.volume_db = -INF
+	hitting.volume_db = -INF
 
 
 func _process(delta: float) -> void:
@@ -34,6 +37,8 @@ func _process(delta: float) -> void:
 	beam.scale.y = power
 
 	firing.volume_db = firing_volume + linear_to_db(lerpf(db_to_linear(firing.volume_db), power, 1 - pow(0.1, delta * 5)))
+	hitting.volume_db = hitting_volume if is_colliding() else -INF
+	hitting.global_position = get_collision_point()
 
 	var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
 	var ray_end := ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
