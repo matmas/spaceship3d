@@ -40,6 +40,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="Firing" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_wrhby")
 volume_db = -80.0
-pitch_scale = 0.5
+max_db = 0.0
 autoplay = true
 bus = &"Weapons"
