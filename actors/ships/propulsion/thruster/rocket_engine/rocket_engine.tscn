@@ -31,13 +31,13 @@ cast_shadow = 0
 surface_material_override/0 = SubResource("ShaderMaterial_gpkol")
 
 [node name="Light" type="OmniLight3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3)
 light_color = Color(1, 0.564706, 0, 1)
 light_energy = 10.0
 omni_range = 1.51222
 
 [node name="Distortion" parent="." index="2" instance=ExtResource("4_iv36q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="Exhaust" type="AudioStreamPlayer3D" parent="." index="3"]
 stream = ExtResource("5_iawtn")
