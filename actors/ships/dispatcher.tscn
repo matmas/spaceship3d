@@ -14,41 +14,40 @@ script = ExtResource("2_le6gq")
 
 [node name="Propulsion" parent="Dispatcher" index="0" instance=ExtResource("3_s3tuj")]
 
-[node name="MainEngineLeft" parent="Dispatcher/Propulsion" index="0"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.251306, 2)
-visible = false
+[node name="MainEngine" parent="Dispatcher/Propulsion" index="0"]
+transform = Transform3D(-2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0, 0.5, 0, 0.322772, 2)
 
-[node name="MainEngineRight" parent="Dispatcher/Propulsion" index="1"]
-transform = Transform3D(-2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0, 0.5, 0, 0.321446, 1.99608)
+[node name="Distortion" parent="Dispatcher/Propulsion/MainEngine" index="2"]
+transform = Transform3D(1, 3.55271e-15, 0, -3.55271e-15, 1, 0, 0, 0, 1, 0, 0, 1.6)
 
-[node name="FrontThrusterLeft" parent="Dispatcher/Propulsion" index="2"]
+[node name="FrontThrusterLeft" parent="Dispatcher/Propulsion" index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.03811, 0.0880434, 0.749912)
 
-[node name="FrontThrusterRight" parent="Dispatcher/Propulsion" index="3"]
+[node name="FrontThrusterRight" parent="Dispatcher/Propulsion" index="2"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.038, 0.088, 0.75)
 
-[node name="LeftThrusterFront" parent="Dispatcher/Propulsion" index="4"]
+[node name="LeftThrusterFront" parent="Dispatcher/Propulsion" index="3"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.434834, -0.158653, -1.23505)
+
+[node name="RightThrusterFront" parent="Dispatcher/Propulsion" index="4"]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0.435, -0.159, -1.235)
 
 [node name="LeftThrusterBack" parent="Dispatcher/Propulsion" index="5"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.783, 0.477, 0.578)
 
-[node name="RightThrusterFront" parent="Dispatcher/Propulsion" index="6"]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0.435, -0.159, -1.235)
-
-[node name="RightThrusterBack" parent="Dispatcher/Propulsion" index="7"]
+[node name="RightThrusterBack" parent="Dispatcher/Propulsion" index="6"]
 transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0.783444, 0.477, 0.577979)
 
-[node name="TopThrusterLeft" parent="Dispatcher/Propulsion" index="8"]
+[node name="TopThrusterLeft" parent="Dispatcher/Propulsion" index="7"]
 transform = Transform3D(0.866025, 5.85622e-09, -0.5, 0.5, -2.18557e-08, 0.866025, -5.85621e-09, -1, -2.18557e-08, -2.082, -0.417, 0.835)
 
-[node name="TopThrusterRight" parent="Dispatcher/Propulsion" index="9"]
+[node name="TopThrusterRight" parent="Dispatcher/Propulsion" index="8"]
 transform = Transform3D(0.866025, -2.18557e-08, 0.5, -0.5, -3.78552e-08, 0.866025, 0, -1, -4.37114e-08, 2.08249, -0.41746, 0.835376)
 
-[node name="BottomThrusterLeft" parent="Dispatcher/Propulsion" index="10"]
+[node name="BottomThrusterLeft" parent="Dispatcher/Propulsion" index="9"]
 transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, -1.557, -0.709, 0.835)
 
-[node name="BottomThrusterRight" parent="Dispatcher/Propulsion" index="11"]
+[node name="BottomThrusterRight" parent="Dispatcher/Propulsion" index="10"]
 transform = Transform3D(0.866026, -2.18557e-08, -0.5, -0.5, -3.78552e-08, -0.866026, -2.1893e-15, 1, -4.37114e-08, 1.55742, -0.709066, 0.835376)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
@@ -56,3 +55,4 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 shape = SubResource("ConvexPolygonShape3D_dm8a6")
 
 [editable path="Dispatcher/Propulsion"]
+[editable path="Dispatcher/Propulsion/MainEngine"]

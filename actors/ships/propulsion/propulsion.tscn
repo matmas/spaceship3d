@@ -7,38 +7,35 @@
 [node name="Propulsion" type="Node3D"]
 script = ExtResource("1_s7j15")
 
-[node name="MainEngineLeft" parent="." instance=ExtResource("2_fjp74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
-
-[node name="MainEngineRight" parent="." instance=ExtResource("2_fjp74")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+[node name="MainEngine" parent="." instance=ExtResource("2_fjp74")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
 [node name="FrontThrusterLeft" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, -2)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, -2)
 
 [node name="FrontThrusterRight" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, -2)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, -2)
 
 [node name="LeftThrusterFront" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -2)
-
-[node name="LeftThrusterBack" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, 2)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, -1)
 
 [node name="RightThrusterFront" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 2, 0, -2)
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 2, 0, -1)
+
+[node name="LeftThrusterBack" parent="." instance=ExtResource("3_1n1rf")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, 1)
 
 [node name="RightThrusterBack" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 2, 0, 2)
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 2, 0, 1)
 
 [node name="TopThrusterLeft" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1, 1, 0)
 
 [node name="TopThrusterRight" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1, 1, 0)
 
 [node name="BottomThrusterLeft" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, -1, 0)
 
 [node name="BottomThrusterRight" parent="." instance=ExtResource("3_1n1rf")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, -1, 0)
