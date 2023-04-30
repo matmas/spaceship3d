@@ -14,6 +14,44 @@ script = ExtResource("2_qav6f")
 
 [node name="Propulsion" parent="Challenger" index="0" instance=ExtResource("3_o52mr")]
 
+[node name="MainEngineLeft" parent="Challenger/Propulsion" index="0"]
+transform = Transform3D(0.494975, -0.494975, 0, 0.494975, 0.494975, 0, 0, 0, 0.7, -1.29288, 0.200888, 2.04376)
+
+[node name="MainEngineRight" parent="Challenger/Propulsion" index="1"]
+transform = Transform3D(0.494975, 0.494975, 0, -0.494975, 0.494975, 0, 0, 0, 0.7, 1.293, 0.201, 2.044)
+
+[node name="FrontThrusterLeft" parent="Challenger/Propulsion" index="2"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.92473, -0.0732742, 1.30755)
+
+[node name="FrontThrusterRight" parent="Challenger/Propulsion" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.925, -0.073, 1.308)
+
+[node name="LeftThrusterFront" parent="Challenger/Propulsion" index="4"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.71477, -0.292494, -6.01603)
+
+[node name="LeftThrusterBack" parent="Challenger/Propulsion" index="5"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -0.785126, 1.01336, 0.96145)
+
+[node name="RightThrusterFront" parent="Challenger/Propulsion" index="6"]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0.715, -0.292, -6.016)
+
+[node name="RightThrusterBack" parent="Challenger/Propulsion" index="7"]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0.785, 1.013, 0.961)
+
+[node name="TopThrusterLeft" parent="Challenger/Propulsion" index="8"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.36425, 0.230728, 1.66443)
+
+[node name="TopThrusterRight" parent="Challenger/Propulsion" index="9"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.364, 0.230728, 1.66443)
+
+[node name="BottomThrusterLeft" parent="Challenger/Propulsion" index="10"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.36425, -0.20647, 1.66443)
+
+[node name="BottomThrusterRight" parent="Challenger/Propulsion" index="11"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.364, -0.20647, 1.66443)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_gmryw")
+
+[editable path="Challenger/Propulsion"]
