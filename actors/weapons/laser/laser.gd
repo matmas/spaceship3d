@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 			if not is_zero_approx(get_collision_normal().dot(Vector3.UP)):
 				particles.look_at(beam_endpoint + get_collision_normal())
 
-	beam.look_at(beam_endpoint)
+	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)
 	beam.scale.z = global_position.distance_to(beam_endpoint)
 
 	if is_colliding() and power == 1.0:
