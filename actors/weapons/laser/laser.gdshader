@@ -2,6 +2,7 @@ shader_type spatial;
 render_mode blend_add;
 
 uniform vec4 color: source_color = vec4(1.0, 0.36, 0.0, 1.0);
+uniform float alpha: hint_range(0.0, 1.0) = 1.0;
 uniform float emission_energy: hint_range(0.0, 100.0) = 16.0;
 uniform sampler2D noise: source_color, filter_linear_mipmap, repeat_enable;
 
@@ -11,4 +12,5 @@ void fragment() {
 	float fade = pow(1.0 - abs(UV.y - 0.5) * 2.0, 3.0);
 	ALBEDO = color.rgb * noise_tex.rgb * fade;
 	EMISSION = color.rgb * noise_tex.rgb * emission_energy * fade;
+	ALPHA = alpha;
 }

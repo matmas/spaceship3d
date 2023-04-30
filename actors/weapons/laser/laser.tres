@@ -11,5 +11,6 @@ noise = SubResource("FastNoiseLite_f8j03")
 render_priority = 0
 shader = ExtResource("1_vc5wv")
 shader_parameter/color = Color(1, 0.36, 0, 1)
+shader_parameter/alpha = 1.0
 shader_parameter/emission_energy = 16.0
 shader_parameter/noise = SubResource("NoiseTexture2D_rod3e")
