@@ -28,7 +28,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _default_camera_position() -> Vector3:
-	return target_mesh.global_transform * (camera_relative_direction * camera_distance)
+	var top := Vector3(0, target_mesh.get_aabb().size.y * 0.5, 0)
+	return target_mesh.global_transform * (top + camera_relative_direction * camera_distance)
 
 
 func _current_camera_position() -> Vector3:
