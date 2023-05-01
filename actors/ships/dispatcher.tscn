@@ -50,6 +50,12 @@ transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025
 [node name="BottomThrusterRight" parent="Dispatcher/SingleEnginePropulsion" index="10"]
 transform = Transform3D(0.866026, -5.85621e-09, -0.5, -0.5, -2.18557e-08, -0.866026, -5.85621e-09, 1, -2.18557e-08, 1.55742, -0.709066, 0.835376)
 
+[node name="WeaponLeft" type="Marker3D" parent="Dispatcher" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.603146, 0.461283, 0.263234)
+
+[node name="WeaponRight" type="Marker3D" parent="Dispatcher" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603, 0.461, 0.263)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_dm8a6")
