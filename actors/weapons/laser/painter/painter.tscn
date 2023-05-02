@@ -12,7 +12,7 @@
 render_priority = 0
 shader = ExtResource("2_0pon0")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_286um"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kcml"]
 resource_local_to_scene = true
 shader = ExtResource("4_mtpit")
 shader_parameter/line_start = Vector2(0.4, 0.4)
@@ -39,7 +39,7 @@ fov = 1.0
 
 [node name="Brush" parent="." instance=ExtResource("3_ivc8x")]
 visible = false
-material = SubResource("ShaderMaterial_286um")
+material = SubResource("ShaderMaterial_8kcml")
 
 [node name="DebugUVScope" type="TextureRect" parent="."]
 visible = false

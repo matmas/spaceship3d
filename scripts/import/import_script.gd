@@ -33,9 +33,9 @@ func _set_material_defaults(mesh_instance: MeshInstance3D) -> void:
 				base_material.detail_enabled = true
 				# mask needs to be black initially to keep the same appearence
 				if base_material.detail_mask == null:
-					base_material.detail_mask = preload("res://scripts/import/default_detail_mask.png")
+					base_material.detail_mask = preload("default_detail_mask.png")
 				if base_material.detail_albedo == null:
-					base_material.detail_albedo = preload("res://scripts/import/default_detail_albedo.png")
+					base_material.detail_albedo = preload("default_detail_albedo.png")
 				if base_material.detail_normal == null:
 					base_material.detail_normal = base_material.normal_texture
 
