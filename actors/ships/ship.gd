@@ -1,4 +1,4 @@
-class_name Actor extends RigidBody3D
+class_name Ship extends RigidBody3D
 
 #var mass := 1.0
 #var can_sleep: bool

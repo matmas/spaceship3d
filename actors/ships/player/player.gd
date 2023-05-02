@@ -1,4 +1,4 @@
-extends Actor
+extends Ship
 
 var steering_direction := Vector2()
 @onready var sparks := $Sparks as GPUParticles3D
