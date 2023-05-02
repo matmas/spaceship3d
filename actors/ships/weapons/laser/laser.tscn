@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvw3qwof76mw"]
+
+[ext_resource type="Script" path="res://actors/ships/weapons/laser/laser.gd" id="1_m6s12"]
+[ext_resource type="PackedScene" uid="uid://b5gpuj7fuwgn2" path="res://actors/ships/weapons/laser/laser.blend" id="1_mfrm6"]
+[ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapons/laser/sparks/sparks.tscn" id="2_jmtt4"]
+[ext_resource type="PackedScene" uid="uid://deynnxvf26d02" path="res://actors/ships/weapons/laser/painter/painter.tscn" id="3_0dfsq"]
+[ext_resource type="PackedScene" uid="uid://dx8rbcyvmkucu" path="res://actors/ships/weapons/laser/smoke/smoke.tscn" id="3_jd683"]
+[ext_resource type="PackedScene" uid="uid://jmajsdm0er36" path="res://actors/ships/weapons/laser/sparks/light.tscn" id="3_qgwwf"]
+[ext_resource type="Material" uid="uid://cv4pem7oek0qn" path="res://actors/ships/weapons/laser/laser.tres" id="3_x4l7l"]
+[ext_resource type="AudioStream" uid="uid://jrggvoclfm6o" path="res://actors/ships/weapons/laser/laser_firing_loop.wav" id="6_q3lps"]
+[ext_resource type="AudioStream" uid="uid://d4e7wa7b7xrdm" path="res://actors/ships/weapons/laser/laser_hitting_loop.wav" id="7_u2ql7"]
+
+[node name="Laser" instance=ExtResource("1_mfrm6")]
+target_position = Vector3(0, 0, -1000)
+script = ExtResource("1_m6s12")
+
+[node name="Beam" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+cast_shadow = 0
+surface_material_override/0 = ExtResource("3_x4l7l")
+
+[node name="Sparks" parent="." index="1" instance=ExtResource("2_jmtt4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
+
+[node name="Light" parent="Sparks" index="0" instance=ExtResource("3_qgwwf")]
+
+[node name="Smoke" parent="." index="2" instance=ExtResource("3_jd683")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
+
+[node name="Painter" parent="." index="3" instance=ExtResource("3_0dfsq")]
+
+[node name="Firing" type="AudioStreamPlayer3D" parent="." index="4"]
+stream = ExtResource("6_q3lps")
+volume_db = -3.0
+max_db = 0.0
+autoplay = true
+bus = &"Weapons"
+
+[node name="Hitting" type="AudioStreamPlayer3D" parent="." index="5"]
+stream = ExtResource("7_u2ql7")
+volume_db = -3.0
+max_db = 0.0
+autoplay = true
+bus = &"Weapons"

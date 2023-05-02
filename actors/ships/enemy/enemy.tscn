@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkhix625lrif"]
+
+[ext_resource type="PackedScene" uid="uid://d2t1oftfk8gb4" path="res://actors/ships/prototypes/dispatcher.tscn" id="1_8fdif"]
+[ext_resource type="Script" path="res://actors/ships/enemy/enemy.gd" id="2_0ggrv"]
+
+[node name="Enemy" instance=ExtResource("1_8fdif")]
+script = ExtResource("2_0ggrv")
+
+[editable path="Dispatcher/SingleEnginePropulsion"]
+[editable path="Dispatcher/SingleEnginePropulsion/MainEngine"]

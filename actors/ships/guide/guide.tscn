@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://x6ili7qav38b"]
+
+[ext_resource type="PackedScene" uid="uid://b4sl21io5a318" path="res://actors/ships/prototypes/challenger.tscn" id="1_88h2s"]
+[ext_resource type="Script" path="res://actors/ships/guide/guide.gd" id="2_r857q"]
+
+[node name="Guide" instance=ExtResource("1_88h2s")]
+script = ExtResource("2_r857q")
+
+[editable path="Challenger/TwinEnginePropulsion"]

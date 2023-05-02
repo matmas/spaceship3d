@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckb3xih5ku1lj"]
+
+[ext_resource type="Script" path="res://actors/ships/prototypes/propulsion/propulsion.gd" id="1_s7j15"]
+
+[node name="Propulsion" type="Node3D"]
+script = ExtResource("1_s7j15")

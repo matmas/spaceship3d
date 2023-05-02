@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxkp4euygn0h4"]
+
+[ext_resource type="PackedScene" uid="uid://dost2h3bncejn" path="res://actors/ships/prototypes/propulsion/configurations/base.tscn" id="1_vgsbu"]
+[ext_resource type="PackedScene" uid="uid://dyewe4kox2wf3" path="res://actors/ships/prototypes/propulsion/thruster/rocket_engine/rocket_engine.tscn" id="2_ssdx1"]
+
+[node name="TwinEnginePropulsion" instance=ExtResource("1_vgsbu")]
+
+[node name="MainEngineLeft" parent="." index="0" instance=ExtResource("2_ssdx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="MainEngineRight" parent="." index="1" instance=ExtResource("2_ssdx1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
