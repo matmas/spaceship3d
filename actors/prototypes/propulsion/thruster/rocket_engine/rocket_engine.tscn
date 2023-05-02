@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmi58b87oc5rq"]
+[gd_scene load_steps=9 format=3 uid="uid://v1ad2io4bbp3"]
 
-[ext_resource type="PackedScene" uid="uid://whm76p5r0j8e" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.blend" id="1_gl80k"]
-[ext_resource type="Script" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.gd" id="2_bor6n"]
-[ext_resource type="Shader" path="res://actors/ships/propulsion/thruster/flame.gdshader" id="3_mbrqw"]
-[ext_resource type="PackedScene" uid="uid://cvy0mwpkml6ll" path="res://actors/ships/propulsion/thruster/rocket_engine/distortion/distortion.tscn" id="4_iv36q"]
-[ext_resource type="AudioStream" uid="uid://c5bjs178sfroa" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine_loop.wav" id="5_iawtn"]
+[ext_resource type="PackedScene" uid="uid://whm76p5r0j8e" path="res://actors/prototypes/propulsion/thruster/rocket_engine/rocket_engine.blend" id="1_gl80k"]
+[ext_resource type="Script" path="res://actors/prototypes/propulsion/thruster/rocket_engine/rocket_engine.gd" id="2_bor6n"]
+[ext_resource type="Shader" path="res://actors/prototypes/propulsion/thruster/flame.gdshader" id="3_mbrqw"]
+[ext_resource type="PackedScene" uid="uid://cfjpq47ik4is5" path="res://actors/prototypes/propulsion/thruster/rocket_engine/distortion/distortion.tscn" id="4_iv36q"]
+[ext_resource type="AudioStream" uid="uid://c5bjs178sfroa" path="res://actors/prototypes/propulsion/thruster/rocket_engine/rocket_engine_loop.wav" id="5_iawtn"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wa3k3"]
 

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cthyfuegxt0is"
-path="res://.godot/imported/small_thruster.blend-f38015517494283ef233614be74fd32b.scn"
+path="res://.godot/imported/small_thruster.blend-f8a4a2f8231038617137ee561721195b.scn"
 
 [deps]
 
-source_file="res://actors/ships/propulsion/thruster/small_thruster/small_thruster.blend"
-dest_files=["res://.godot/imported/small_thruster.blend-f38015517494283ef233614be74fd32b.scn"]
+source_file="res://actors/prototypes/propulsion/thruster/small_thruster/small_thruster.blend"
+dest_files=["res://.godot/imported/small_thruster.blend-f8a4a2f8231038617137ee561721195b.scn"]
 
 [params]
 
