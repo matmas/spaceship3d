@@ -5,7 +5,7 @@ var ship_factory := ShipFactory.new()
 
 
 func _ready() -> void:
-	var player := ship_factory.build_ship(ship_factory.bob, ship_factory.twin_lasers)
+	var player := ship_factory.build_ship(Prototypes.bob, ship_factory.twin_lasers)
 	player.set_script(preload("res://actors/ships/behaviors/player.gd"))
 	player.add_child(preload("res://actors/ships/weapons/laser/sparks/sparks.tscn").instantiate())
 	for child in player.get_children():
@@ -15,10 +15,10 @@ func _ready() -> void:
 	world.add_child(player)
 	get_viewport().get_camera_3d().set_target(player.get_node("Ship"))
 
-	var guide := ship_factory.build_ship(ship_factory.challenger, ship_factory.twin_lasers)
+	var guide := ship_factory.build_ship(Prototypes.challenger, ship_factory.twin_lasers)
 	guide.set_script(preload("res://actors/ships/behaviors/guide.gd"))
 	world.add_child(guide)
 
-	var enemy := ship_factory.build_ship(ship_factory.dispatcher, ship_factory.twin_lasers)
+	var enemy := ship_factory.build_ship(Prototypes.dispatcher, ship_factory.twin_lasers)
 	enemy.set_script(preload("res://actors/ships/behaviors/enemy.gd"))
 	world.add_child(enemy)

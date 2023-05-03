@@ -1,25 +1,9 @@
 class_name ShipFactory
 extends Node
 
-var bob := preload("prototypes/bob.tscn")
-var challenger := preload("prototypes/challenger.tscn")
-var dispatcher := preload("prototypes/dispatcher.tscn")
-
-var prototypes := [
-	bob,
-	challenger,
-	dispatcher,
-]
-
-var laser := preload("weapons/laser/laser.tscn")
-
-var weapons := [
-	laser,
-]
-
 var twin_lasers := {
-	^"Ship/WeaponLeft": laser,
-	^"Ship/WeaponRight": laser,
+	^"Ship/WeaponLeft": Weapons.laser,
+	^"Ship/WeaponRight": Weapons.laser,
 }
 
 var weapon_loadouts := [
