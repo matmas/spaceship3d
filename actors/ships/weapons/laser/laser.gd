@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 		particles.emitting = is_colliding() and power == 1.0 and (particles == smoke and (get_collider() as Node).name.begins_with("rock") or particles != smoke)
 		if is_colliding() and power == 1.0:
 			particles.global_position = beam_endpoint
-			if not is_zero_approx(get_collision_normal().dot(Vector3.UP)):
+			if not Vector3.UP.cross(beam_endpoint + get_collision_normal() - particles.global_position).is_zero_approx():
 				particles.look_at(beam_endpoint + get_collision_normal())
 
 	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)

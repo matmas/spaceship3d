@@ -16,8 +16,8 @@ func _ready() -> void:
 	Signals.talk.emit("p335", "This is getting weird...")
 
 
-func _physics_process(_delta: float) -> void:
-	var player := Globals.player
-	point_at(player.global_position)
-	match_roll_with(player)
-#	move_to(player.global_transform * Vector3(0, 0, 20))
+#func _physics_process(_delta: float) -> void:
+#	var player := Globals.player
+#	point_at(player.global_position)
+#	match_roll_with(player)
+##	move_to(player.global_transform * Vector3(0, 0, 20))

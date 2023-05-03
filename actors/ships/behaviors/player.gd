@@ -4,8 +4,8 @@ var steering_direction := Vector2()
 @onready var sparks := $Sparks as GPUParticles3D
 
 
-func _init() -> void:
-	Globals.player = self
+func _ready() -> void:
+	super._ready()
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
 	contact_monitor = true
 	max_contacts_reported = 1
@@ -46,5 +46,5 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var contact_point := global_position + state.get_contact_local_position(0)
 		var contact_normal := state.get_contact_local_normal(0)
 		sparks.global_position = contact_point
-		if not is_zero_approx(contact_normal.dot(Vector3.UP)):
+		if not Vector3.UP.cross(contact_point + contact_normal - sparks.global_position).is_zero_approx():
 			sparks.look_at(contact_point + contact_normal)

@@ -1,12 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi485mu83rlf8"]
+[gd_scene load_steps=8 format=3 uid="uid://bi485mu83rlf8"]
 
 [ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
-[ext_resource type="PackedScene" uid="uid://bbe8ugiyliou3" path="res://actors/ships/player/player.tscn" id="2_2nl84"]
 [ext_resource type="PackedScene" uid="uid://dghu6gt1fudg5" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://doo0rv6ot25e5" path="res://world/camera/camera.tscn" id="2_g368m"]
-[ext_resource type="PackedScene" uid="uid://x6ili7qav38b" path="res://actors/ships/guide/guide.tscn" id="3_6ask7"]
 [ext_resource type="PackedScene" uid="uid://bu8ev1mqrdvxt" path="res://world/motion_particles/motion_particles.tscn" id="7_so44r"]
-[ext_resource type="Script" path="res://world/enemy_spawner.gd" id="8_3idxp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,11 +29,4 @@ environment = SubResource("Environment_gyq2f")
 
 [node name="Camera" parent="." instance=ExtResource("2_g368m")]
 
-[node name="Player" parent="." instance=ExtResource("2_2nl84")]
-
-[node name="Guide" parent="." instance=ExtResource("3_6ask7")]
-
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
-
-[node name="EnemySpawner" type="Marker3D" parent="."]
-script = ExtResource("8_3idxp")

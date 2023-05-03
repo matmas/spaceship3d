@@ -1,15 +1,14 @@
 extends Camera3D
 
-@onready var target_mesh := Globals.player.get_node("Bob") as MeshInstance3D
-@onready var target_body := Globals.player as PhysicsBody3D
-
+var target: VisualInstance3D
 var camera_distance := 10.0
 var camera_relative_direction := Vector3(0.0, 2.0, 10.0).normalized()
 var current_camera_position: Vector3
 var previous_camera_position: Vector3
 
 
-func _ready() -> void:
+func set_target(visual_instance: VisualInstance3D) -> void:
+	target = visual_instance
 	global_transform = _target_camera_transform()
 
 
@@ -18,7 +17,7 @@ func _process(delta: float) -> void:
 
 
 func _target_camera_transform() -> Transform3D:
-	var target_camera_basis = target_mesh.global_transform.basis
+	var target_camera_basis = target.global_transform.basis
 	return Transform3D(target_camera_basis, _current_camera_position())
 
 
@@ -28,8 +27,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _default_camera_position() -> Vector3:
-	var top := Vector3(0, target_mesh.get_aabb().size.y * 0.5, 0)
-	return target_mesh.global_transform * (top + camera_relative_direction * camera_distance)
+	var top := Vector3(0, target.get_aabb().size.y * 0.5, 0)
+	return target.global_transform * (top + camera_relative_direction * camera_distance)
 
 
 func _current_camera_position() -> Vector3:
@@ -46,9 +45,9 @@ func _current_camera_position() -> Vector3:
 func _calculate_target_camera_position() -> Vector3:
 	var space_state = get_world_3d().direct_space_state
 	var params := PhysicsRayQueryParameters3D.new()
-	params.from = target_body.global_position
+	params.from = target.global_position
 	params.to = _default_camera_position()
-	params.exclude = [target_body]
+	params.exclude = [target.owner]
 	var result := space_state.intersect_ray(params)
 	if result:
 		return result.position
