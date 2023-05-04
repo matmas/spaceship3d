@@ -1,9 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b42dmby0iy5rd"]
 
-[ext_resource type="PackedScene" uid="uid://bl2sc5qs7yav8" path="res://actors/ships/variants/bob.tscn" id="1_lt6i0"]
 [ext_resource type="Script" path="res://actors/ships/ship.gd" id="2_7gr3m"]
 
-[node name="Ship" instance=ExtResource("1_lt6i0")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_r20mp"]
+radius = 0.001
+
+[node name="Ship" type="RigidBody3D"]
 script = ExtResource("2_7gr3m")
 
-[editable path="Ship/TwinEnginePropulsion"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_r20mp")

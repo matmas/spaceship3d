@@ -1,11 +1,13 @@
 class_name Player
 extends Ship
 
-var steering_direction := Vector2()
 @onready var sparks := $Sparks as GPUParticles3D
+
+var steering_direction := Vector2()
 
 
 func _ready() -> void:
+	init_ship_variant(Variants.bob)
 	super._ready()
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
 	contact_monitor = true

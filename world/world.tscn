@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
 [ext_resource type="PackedScene" uid="uid://dghu6gt1fudg5" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://doo0rv6ot25e5" path="res://world/camera/camera.tscn" id="2_g368m"]
-[ext_resource type="PackedScene" uid="uid://dgbbvgr414pgg" path="res://actors/ships/behaviors/player.tscn" id="5_fquwc"]
+[ext_resource type="PackedScene" uid="uid://bkredy6re3be" path="res://actors/ships/behaviors/player.tscn" id="5_fquwc"]
 [ext_resource type="PackedScene" uid="uid://cfr5nnhq5o1gd" path="res://actors/ships/behaviors/guide.tscn" id="6_m6iur"]
 [ext_resource type="PackedScene" uid="uid://cnyuwfgip15h1" path="res://actors/ships/behaviors/mob.tscn" id="7_a1ax1"]
 [ext_resource type="PackedScene" uid="uid://bu8ev1mqrdvxt" path="res://world/motion_particles/motion_particles.tscn" id="7_so44r"]

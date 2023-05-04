@@ -2,6 +2,7 @@ extends NPC
 
 
 func _ready() -> void:
+#	set_ship_variant(Variants.dispatcher)
 	super._ready()
 	position = Vector3(
 		randf_range(-100, 100),

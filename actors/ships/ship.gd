@@ -88,3 +88,11 @@ func add_loadout(loadout: Dictionary):
 	for attachment_name in loadout:
 		var weapon = loadout[attachment_name].instantiate()
 		get_node(attachment_name).add_child(weapon)
+
+
+func init_ship_variant(variant: PackedScene) -> void:
+	var ship := variant.instantiate() as RigidBody3D
+	mass = ship.mass
+	for child in ship.get_children():
+		child.reparent(self)
+#	ship.queue_free()
