@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://biev16jmpe0kw"]
+
+[ext_resource type="PackedScene" uid="uid://26jp2p4rytq" path="res://actors/pilots/pilot.tscn" id="1_qt27t"]
+[ext_resource type="Script" path="res://actors/pilots/npc.gd" id="2_iv5u2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7b5ki"]
+radius = 100.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tyy8r"]
+radius = 150.0
+
+[node name="NPC" instance=ExtResource("1_qt27t")]
+script = ExtResource("2_iv5u2")
+
+[node name="Detection" type="Area3D" parent="." index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection" index="0"]
+shape = SubResource("SphereShape3D_7b5ki")
+
+[node name="Tracking" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tracking" index="0"]
+shape = SubResource("SphereShape3D_tyy8r")
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Tracking" to="." method="_on_tracking_area_exited"]

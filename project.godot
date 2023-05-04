@@ -24,7 +24,7 @@ Mouse="*res://singletons/mouse.gd"
 Utils="*res://singletons/utils.gd"
 Weapons="*res://actors/ships/weapons/weapons.gd"
 Loadouts="*res://actors/ships/loadouts.gd"
-Variants="*res://actors/ships/variants/variants.gd"
+Ships="*res://actors/ships/ships.gd"
 
 [display]
 

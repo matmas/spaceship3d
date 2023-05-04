@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk4e547t8acam"]
+
+[ext_resource type="Material" uid="uid://yt5j20frsco6" path="res://actors/ships/propulsion/thruster/rocket_engine/distortion/distortion.tres" id="1_q3owy"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_8t6tt"]
+size = Vector2(2, 2)
+
+[node name="Distortion" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8t6tt")
+surface_material_override/0 = ExtResource("1_q3owy")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgxbb6lepopgg"]
+
+[ext_resource type="PackedScene" uid="uid://d1vuicqpvdpi0" path="res://actors/ships/propulsion/configurations/base.tscn" id="1_nffqj"]
+[ext_resource type="PackedScene" uid="uid://ixx8udspmitr" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.tscn" id="2_dfcqc"]
+
+[node name="SingleEnginePropulsion" instance=ExtResource("1_nffqj")]
+
+[node name="MainEngine" parent="." index="0" instance=ExtResource("2_dfcqc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)

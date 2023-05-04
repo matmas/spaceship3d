@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfr5nnhq5o1gd"]
-
-[ext_resource type="PackedScene" uid="uid://dsplk60k1slhf" path="res://actors/ships/behaviors/npc.tscn" id="1_makms"]
-[ext_resource type="Script" path="res://actors/ships/behaviors/guide.gd" id="2_bfqee"]
-
-[node name="Guide" instance=ExtResource("1_makms")]
-script = ExtResource("2_bfqee")
-
-[editable path="Ship/TwinEnginePropulsion"]

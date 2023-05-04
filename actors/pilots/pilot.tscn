@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://26jp2p4rytq"]
+
+[ext_resource type="Script" path="res://actors/pilots/pilot.gd" id="1_rcu0v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8s4r4"]
+
+[node name="Pilot" type="Area3D"]
+script = ExtResource("1_rcu0v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_8s4r4")
