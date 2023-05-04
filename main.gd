@@ -5,7 +5,7 @@ var ship_factory := ShipFactory.new()
 
 
 func _ready() -> void:
-	var player := ship_factory.build_ship(Prototypes.bob, ship_factory.twin_lasers)
+	var player := ship_factory.build_ship(Prototypes.bob, Loadouts.twin_lasers)
 	player.set_script(preload("res://actors/ships/behaviors/player.gd"))
 	player.add_child(preload("res://actors/ships/weapons/laser/sparks/sparks.tscn").instantiate())
 	for child in player.get_children():
@@ -13,12 +13,12 @@ func _ready() -> void:
 			var mesh_instance := child as MeshInstance3D
 			mesh_instance.add_child(AudioListener3D.new())
 	world.add_child(player)
-	get_viewport().get_camera_3d().set_target(player.get_node("Ship"))
+	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(player.get_node("Ship") as VisualInstance3D)
 
-	var guide := ship_factory.build_ship(Prototypes.challenger, ship_factory.twin_lasers)
+	var guide := ship_factory.build_ship(Prototypes.challenger, Loadouts.twin_lasers)
 	guide.set_script(preload("res://actors/ships/behaviors/guide.gd"))
 	world.add_child(guide)
 
-	var enemy := ship_factory.build_ship(Prototypes.dispatcher, ship_factory.twin_lasers)
+	var enemy := ship_factory.build_ship(Prototypes.dispatcher, Loadouts.twin_lasers)
 	enemy.set_script(preload("res://actors/ships/behaviors/enemy.gd"))
 	world.add_child(enemy)

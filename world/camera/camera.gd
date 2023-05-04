@@ -1,3 +1,4 @@
+class_name InterpolatedCamera3D
 extends Camera3D
 
 var target: VisualInstance3D

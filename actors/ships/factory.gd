@@ -1,15 +1,6 @@
 class_name ShipFactory
 extends Node
 
-var twin_lasers := {
-	^"Ship/WeaponLeft": Weapons.laser,
-	^"Ship/WeaponRight": Weapons.laser,
-}
-
-var weapon_loadouts := [
-	twin_lasers
-]
-
 
 func build_ship(prototype: PackedScene, loadout: Dictionary) -> Ship:
 	var ship := prototype.instantiate()
