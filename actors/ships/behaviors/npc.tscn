@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsplk60k1slhf"]
+
+[ext_resource type="PackedScene" uid="uid://b42dmby0iy5rd" path="res://actors/ships/ship.tscn" id="1_otg7t"]
+[ext_resource type="Script" path="res://actors/ships/behaviors/npc.gd" id="2_pymnr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pq4iu"]
+radius = 100.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dbskg"]
+radius = 150.0
+
+[node name="NPC" instance=ExtResource("1_otg7t")]
+script = ExtResource("2_pymnr")
+
+[node name="Detection" type="Area3D" parent="." index="7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection" index="0"]
+shape = SubResource("SphereShape3D_pq4iu")
+
+[node name="Tracking" type="Area3D" parent="." index="8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tracking" index="0"]
+shape = SubResource("SphereShape3D_dbskg")
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Tracking" to="." method="_on_tracking_body_exited"]
+
+[editable path="Ship/TwinEnginePropulsion"]

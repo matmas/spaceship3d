@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b42dmby0iy5rd"]
+
+[ext_resource type="PackedScene" uid="uid://bl2sc5qs7yav8" path="res://actors/ships/variants/bob.tscn" id="1_lt6i0"]
+[ext_resource type="Script" path="res://actors/ships/ship.gd" id="2_7gr3m"]
+
+[node name="Ship" instance=ExtResource("1_lt6i0")]
+script = ExtResource("2_7gr3m")
+
+[editable path="Ship/TwinEnginePropulsion"]
