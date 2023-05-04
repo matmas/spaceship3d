@@ -19,6 +19,11 @@ var power := 0.0
 var target_position_override := Vector3()
 
 
+func _enter_tree() -> void:
+	if not owner:
+		owner = get_parent().owner if get_parent().scene_file_path == "" else get_parent()
+
+
 func _ready() -> void:
 	add_exception(exclude)
 	set_process(visible)

@@ -82,3 +82,9 @@ func move_to(target_position: Vector3) -> void:
 #		_point_in_direction(evade_direction)
 #	else:
 #		_point_in_direction(direction_to_target)
+
+
+func add_loadout(loadout: Dictionary):
+	for attachment_name in loadout:
+		var weapon = loadout[attachment_name].instantiate()
+		get_node(attachment_name).add_child(weapon)

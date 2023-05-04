@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi485mu83rlf8"]
+[gd_scene load_steps=11 format=3 uid="uid://bi485mu83rlf8"]
 
 [ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
 [ext_resource type="PackedScene" uid="uid://dghu6gt1fudg5" path="res://world/rocks/rocks.tscn" id="2_da7el"]
 [ext_resource type="PackedScene" uid="uid://doo0rv6ot25e5" path="res://world/camera/camera.tscn" id="2_g368m"]
+[ext_resource type="PackedScene" uid="uid://byael13ldxx1j" path="res://actors/ships/behaviors/player.tscn" id="5_fquwc"]
+[ext_resource type="PackedScene" uid="uid://bguoauhc44j4d" path="res://actors/ships/behaviors/guide.tscn" id="6_m6iur"]
+[ext_resource type="PackedScene" uid="uid://bsqfsyvym00fi" path="res://actors/ships/behaviors/enemy.tscn" id="7_68evd"]
 [ext_resource type="PackedScene" uid="uid://bu8ev1mqrdvxt" path="res://world/motion_particles/motion_particles.tscn" id="7_so44r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
@@ -30,3 +33,9 @@ environment = SubResource("Environment_gyq2f")
 [node name="Camera" parent="." instance=ExtResource("2_g368m")]
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
+
+[node name="Player" parent="." instance=ExtResource("5_fquwc")]
+
+[node name="Guide" parent="." instance=ExtResource("6_m6iur")]
+
+[node name="Enemy" parent="." instance=ExtResource("7_68evd")]

@@ -8,9 +8,16 @@ var current_camera_position: Vector3
 var previous_camera_position: Vector3
 
 
+func _ready() -> void:
+	set_process(false)
+	set_physics_process(false)
+
+
 func set_target(visual_instance: VisualInstance3D) -> void:
 	target = visual_instance
 	global_transform = _target_camera_transform()
+	set_process(true)
+	set_physics_process(true)
 
 
 func _process(delta: float) -> void:

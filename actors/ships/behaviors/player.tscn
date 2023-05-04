@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://byael13ldxx1j"]
+
+[ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapons/laser/sparks/sparks.tscn" id="1_0ffwn"]
+[ext_resource type="PackedScene" uid="uid://b1l2mkqudvlrw" path="res://actors/ships/prototypes/bob.tscn" id="1_nnbib"]
+[ext_resource type="Script" path="res://actors/ships/behaviors/player.gd" id="2_xaiw0"]
+
+[node name="Player" instance=ExtResource("1_nnbib")]
+script = ExtResource("2_xaiw0")
+
+[node name="AudioListener" type="AudioListener3D" parent="Ship" index="3"]
+current = true
+
+[node name="Sparks" parent="." index="7" instance=ExtResource("1_0ffwn")]
+
+[editable path="Ship/TwinEnginePropulsion"]

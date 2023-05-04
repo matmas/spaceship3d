@@ -9,6 +9,8 @@ func _ready() -> void:
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
 	contact_monitor = true
 	max_contacts_reported = 1
+	add_loadout(Loadouts.twin_lasers)
+	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(get_node("Ship") as VisualInstance3D)
 
 
 func _physics_process(_delta: float) -> void:
