@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dost2h3bncejn"]
+[gd_scene load_steps=3 format=3 uid="uid://lasscfw54i7o"]
 
-[ext_resource type="PackedScene" uid="uid://ckb3xih5ku1lj" path="res://actors/ships/prototypes/propulsion/propulsion.tscn" id="1_ar51v"]
-[ext_resource type="PackedScene" uid="uid://cfwrn173apco7" path="res://actors/ships/prototypes/propulsion/thruster/small_thruster/small_thruster.tscn" id="3_vu5xe"]
+[ext_resource type="PackedScene" uid="uid://c50nnvteuahrg" path="res://actors/ships/variants/propulsion/propulsion.tscn" id="1_ar51v"]
+[ext_resource type="PackedScene" uid="uid://cmmgvhs2dvxgp" path="res://actors/ships/variants/propulsion/thruster/small_thruster/small_thruster.tscn" id="3_vu5xe"]
 
 [node name="BasePropulsion" instance=ExtResource("1_ar51v")]
 

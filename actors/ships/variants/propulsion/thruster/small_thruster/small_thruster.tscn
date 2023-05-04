@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfwrn173apco7"]
+[gd_scene load_steps=8 format=3 uid="uid://cmmgvhs2dvxgp"]
 
-[ext_resource type="PackedScene" uid="uid://cthyfuegxt0is" path="res://actors/ships/prototypes/propulsion/thruster/small_thruster/small_thruster.blend" id="1_iw0kg"]
-[ext_resource type="Shader" path="res://actors/ships/prototypes/propulsion/thruster/flame.gdshader" id="2_q2iob"]
-[ext_resource type="Script" path="res://actors/ships/prototypes/propulsion/thruster/thruster.gd" id="2_yusnp"]
-[ext_resource type="AudioStream" uid="uid://cqwrfq2qbs086" path="res://actors/ships/prototypes/propulsion/thruster/small_thruster/small_thruster_loop.wav" id="4_ostu8"]
+[ext_resource type="PackedScene" uid="uid://cthyfuegxt0is" path="res://actors/ships/variants/propulsion/thruster/small_thruster/small_thruster.blend" id="1_iw0kg"]
+[ext_resource type="Shader" path="res://actors/ships/variants/propulsion/thruster/flame.gdshader" id="2_q2iob"]
+[ext_resource type="Script" path="res://actors/ships/variants/propulsion/thruster/thruster.gd" id="2_yusnp"]
+[ext_resource type="AudioStream" uid="uid://cqwrfq2qbs086" path="res://actors/ships/variants/propulsion/thruster/small_thruster/small_thruster_loop.wav" id="4_ostu8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1otdm"]
 

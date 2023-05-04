@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bi3qom0oggb3y"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cy180jn1a7xm8"]
 
-[ext_resource type="Shader" path="res://actors/ships/prototypes/propulsion/thruster/rocket_engine/distortion/distortion.gdshader" id="1_agx70"]
+[ext_resource type="Shader" path="res://actors/ships/variants/propulsion/thruster/rocket_engine/distortion/distortion.gdshader" id="1_agx70"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i27g3"]
 

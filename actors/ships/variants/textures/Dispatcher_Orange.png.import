@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bplvth4qqwdgj"
-path.s3tc="res://.godot/imported/Bob_Orange.png-d3a6b7c6e9a59da692dce403f31afdba.s3tc.ctex"
-path.etc2="res://.godot/imported/Bob_Orange.png-d3a6b7c6e9a59da692dce403f31afdba.etc2.ctex"
+uid="uid://bj3h52utxbo74"
+path.s3tc="res://.godot/imported/Dispatcher_Orange.png-b6984cd45a54eb6b55fddb156829f9b4.s3tc.ctex"
+path.etc2="res://.godot/imported/Dispatcher_Orange.png-b6984cd45a54eb6b55fddb156829f9b4.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://actors/ships/prototypes/textures/Bob_Orange.png"
-dest_files=["res://.godot/imported/Bob_Orange.png-d3a6b7c6e9a59da692dce403f31afdba.s3tc.ctex", "res://.godot/imported/Bob_Orange.png-d3a6b7c6e9a59da692dce403f31afdba.etc2.ctex"]
+source_file="res://actors/ships/variants/textures/Dispatcher_Orange.png"
+dest_files=["res://.godot/imported/Dispatcher_Orange.png-b6984cd45a54eb6b55fddb156829f9b4.s3tc.ctex", "res://.godot/imported/Dispatcher_Orange.png-b6984cd45a54eb6b55fddb156829f9b4.etc2.ctex"]
 
 [params]
 

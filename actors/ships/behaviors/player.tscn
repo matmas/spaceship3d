@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://byael13ldxx1j"]
+[gd_scene load_steps=4 format=3 uid="uid://dgbbvgr414pgg"]
 
 [ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapons/laser/sparks/sparks.tscn" id="1_0ffwn"]
-[ext_resource type="PackedScene" uid="uid://b1l2mkqudvlrw" path="res://actors/ships/prototypes/bob.tscn" id="1_nnbib"]
+[ext_resource type="PackedScene" uid="uid://bl2sc5qs7yav8" path="res://actors/ships/variants/bob.tscn" id="1_nnbib"]
 [ext_resource type="Script" path="res://actors/ships/behaviors/player.gd" id="2_xaiw0"]
 
 [node name="Player" instance=ExtResource("1_nnbib")]

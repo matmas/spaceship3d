@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhqiqg7jh8ikp"]
+[gd_scene load_steps=3 format=3 uid="uid://c0cfn6820la4i"]
 
-[ext_resource type="Material" uid="uid://bi3qom0oggb3y" path="res://actors/ships/prototypes/propulsion/thruster/rocket_engine/distortion/distortion.tres" id="1_q3owy"]
+[ext_resource type="Material" uid="uid://cy180jn1a7xm8" path="res://actors/ships/variants/propulsion/thruster/rocket_engine/distortion/distortion.tres" id="1_q3owy"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_8t6tt"]
 size = Vector2(2, 2)

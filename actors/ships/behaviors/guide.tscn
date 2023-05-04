@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bguoauhc44j4d"]
+[gd_scene load_steps=3 format=3 uid="uid://c14xf4rem2f5b"]
 
-[ext_resource type="PackedScene" uid="uid://b4sl21io5a318" path="res://actors/ships/prototypes/challenger.tscn" id="1_17mri"]
+[ext_resource type="PackedScene" uid="uid://cfc2ekb35xqip" path="res://actors/ships/variants/challenger.tscn" id="1_17mri"]
 [ext_resource type="Script" path="res://actors/ships/behaviors/guide.gd" id="2_bfqee"]
 
 [node name="Guide" instance=ExtResource("1_17mri")]

@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfsisv7bqcc2j"
-path="res://.godot/imported/bob.blend-ca5ce5ec50217f50f5317759419e8d4d.scn"
+uid="uid://cthyfuegxt0is"
+path="res://.godot/imported/small_thruster.blend-91560726add7030af8a3440ba50c6d9c.scn"
 
 [deps]
 
-source_file="res://actors/ships/prototypes/bob.blend"
-dest_files=["res://.godot/imported/bob.blend-ca5ce5ec50217f50f5317759419e8d4d.scn"]
+source_file="res://actors/ships/variants/propulsion/thruster/small_thruster/small_thruster.blend"
+dest_files=["res://.godot/imported/small_thruster.blend-91560726add7030af8a3440ba50c6d9c.scn"]
 
 [params]
 
-nodes/root_type="RigidBody3D"
+nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -27,14 +27,8 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
-import_script/path="res://scripts/import/import_script.gd"
-_subresources={
-"nodes": {
-"PATH:Bob": {
-"physics/body_type": 1
-}
-}
-}
+import_script/path=""
+_subresources={}
 gltf/embedded_image_handling=1
 blender/nodes/visible=0
 blender/nodes/punctual_lights=true

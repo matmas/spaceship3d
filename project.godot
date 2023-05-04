@@ -22,9 +22,9 @@ Signals="*res://singletons/signals.gd"
 RandomSeed="*res://singletons/random_seed.gd"
 Mouse="*res://singletons/mouse.gd"
 Utils="*res://singletons/utils.gd"
-Prototypes="*res://actors/ships/prototypes/prototypes.gd"
 Weapons="*res://actors/ships/weapons/weapons.gd"
 Loadouts="*res://actors/ships/loadouts.gd"
+Variants="*res://actors/ships/variants/variants.gd"
 
 [display]
 

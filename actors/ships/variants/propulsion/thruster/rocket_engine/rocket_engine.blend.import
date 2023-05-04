@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://whm76p5r0j8e"
-path="res://.godot/imported/rocket_engine.blend-89ee3ada5e3e15116c6379d8340fded6.scn"
+path="res://.godot/imported/rocket_engine.blend-dd8561da851304946c5934e402b261da.scn"
 
 [deps]
 
-source_file="res://actors/ships/prototypes/propulsion/thruster/rocket_engine/rocket_engine.blend"
-dest_files=["res://.godot/imported/rocket_engine.blend-89ee3ada5e3e15116c6379d8340fded6.scn"]
+source_file="res://actors/ships/variants/propulsion/thruster/rocket_engine/rocket_engine.blend"
+dest_files=["res://.godot/imported/rocket_engine.blend-dd8561da851304946c5934e402b261da.scn"]
 
 [params]
 
