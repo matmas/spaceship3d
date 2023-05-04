@@ -1,3 +1,4 @@
+class_name Player
 extends Ship
 
 var steering_direction := Vector2()
