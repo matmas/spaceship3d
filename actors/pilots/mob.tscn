@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ent02qq188gl"]
 
-[ext_resource type="PackedScene" path="res://actors/pilots/npc.tscn" id="1_4sjni"]
+[ext_resource type="PackedScene" uid="uid://biev16jmpe0kw" path="res://actors/pilots/npc.tscn" id="1_4sjni"]
 [ext_resource type="Script" path="res://actors/pilots/mob.gd" id="2_ay250"]
 
 [node name="Mob" instance=ExtResource("1_4sjni")]
