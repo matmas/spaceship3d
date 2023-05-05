@@ -9,6 +9,7 @@ func _ready() -> void:
 	gravity_scale = 0
 	linear_damp = 1
 	angular_damp = 2
+	inertia = Vector3(mass, mass, mass)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -21,7 +22,7 @@ func max_linear_acceleration() -> Vector3:
 
 
 func max_angular_acceleration() -> Vector3:
-	return Vector3(10, 10, 10) * mass
+	return Vector3(2, 2, 2) * mass
 
 
 func add_loadout(loadout: Dictionary):
