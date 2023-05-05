@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://clnjabx3ede62"]
+
+[ext_resource type="PackedScene" uid="uid://di1f74r8jcrup" path="res://actors/pilots/npc/npc.tscn" id="1_oyv4h"]
+[ext_resource type="Script" path="res://actors/pilots/npc/guide/guide.gd" id="2_ypin3"]
+
+[node name="Guide" instance=ExtResource("1_oyv4h")]
+script = ExtResource("2_ypin3")

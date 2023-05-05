@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://djpw8t0dt78ma"]
+
+[ext_resource type="PackedScene" uid="uid://di1f74r8jcrup" path="res://actors/pilots/npc/npc.tscn" id="1_4sjni"]
+[ext_resource type="Script" path="res://actors/pilots/npc/mob/mob.gd" id="2_ay250"]
+
+[node name="Mob" instance=ExtResource("1_4sjni")]
+script = ExtResource("2_ay250")

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://biev16jmpe0kw"]
+[gd_scene load_steps=5 format=3 uid="uid://di1f74r8jcrup"]
 
-[ext_resource type="PackedScene" uid="uid://26jp2p4rytq" path="res://actors/pilots/pilot.tscn" id="1_qt27t"]
-[ext_resource type="Script" path="res://actors/pilots/npc.gd" id="2_iv5u2"]
+[ext_resource type="PackedScene" uid="uid://26jp2p4rytq" path="res://actors/pilots/pilot.tscn" id="1_ts351"]
+[ext_resource type="Script" path="res://actors/pilots/npc/npc.gd" id="2_q47sk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7b5ki"]
 radius = 100.0
@@ -9,8 +9,8 @@ radius = 100.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_tyy8r"]
 radius = 150.0
 
-[node name="NPC" instance=ExtResource("1_qt27t")]
-script = ExtResource("2_iv5u2")
+[node name="NPC" instance=ExtResource("1_ts351")]
+script = ExtResource("2_q47sk")
 
 [node name="Detection" type="Area3D" parent="." index="0"]
 
