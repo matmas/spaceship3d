@@ -21,7 +21,7 @@ func max_linear_acceleration() -> Vector3:
 
 
 func max_angular_acceleration() -> Vector3:
-	return Vector3(1, 10, 10) * mass
+	return Vector3(10, 10, 10) * mass
 
 
 func add_loadout(loadout: Dictionary):
