@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bod6h3axmg0sp"]
+
+[ext_resource type="Script" path="res://interface/selection/selection.gd" id="1_ryifj"]
+[ext_resource type="Texture2D" uid="uid://c0w6wc5ch5bkk" path="res://interface/selection/selection.png" id="1_y5d4x"]
+
+[node name="Selection" type="Sprite2D"]
+texture = ExtResource("1_y5d4x")
+script = ExtResource("1_ryifj")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

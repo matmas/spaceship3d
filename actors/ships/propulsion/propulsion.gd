@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var ship := owner as RigidBody3D
+@onready var ship := owner as Ship
 
 var previous_linear_velocity := Vector3()
 var previous_angular_velocity := Vector3()
