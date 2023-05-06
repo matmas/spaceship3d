@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://actors/ships/ship.gd" id="2_bxa41"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_qav6f"]
 [ext_resource type="PackedScene" uid="uid://4he7igtqyftc" path="res://actors/ships/propulsion/configurations/twin_engine.tscn" id="4_que06"]
-[ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://actors/ships/weapons/weapon_set.tscn" id="5_5soh2"]
+[ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://actors/ships/weapon_set/weapon_set.tscn" id="5_5soh2"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmryw"]
 points = PackedVector3Array(-0.509897, -0.173615, -3.05192, -2.28837, -0.661415, -2.57659, -5.25111, -0.167107, -2.16104, -1.09998, 2.2006, -3.04394, 0.508868, -0.173615, -3.05192, -1.00335, -0.821451, -1.49538, -2.28837, -0.661415, 0.375049, 2.28734, -0.661415, -2.57659, -5.25111, -0.167107, -1.88003, -5.25111, -0.131905, -2.16104, -1.09998, 2.2006, -2.96522, 1.09895, 2.2006, -3.04394, 5.25111, -0.167107, -2.16104, -1.00335, -0.821451, 3.3795, 1.00232, -0.821451, -1.49538, 2.28734, -0.661415, 0.375049, -5.25111, -0.131905, -1.88003, -0.666156, -0.797194, 5.92057, -0.666156, 0.00298673, 7.12833, 1.09895, 2.2006, -2.96522, 5.25111, -0.131905, -2.16104, 5.25111, -0.167107, -1.88003, 1.00232, -0.821451, 3.3795, 0.665127, -0.797194, 5.92057, 0.665127, 0.00298673, 7.12833, 5.25111, -0.131905, -1.88003)
