@@ -38,7 +38,11 @@ func match_roll_with(target: Node3D) -> bool:
 
 func move_to(target_position: Vector3) -> void:
 	var correction := target_position - global_position
-	ship.apply_central_force((correction.normalized() * correction.length() * ship.linear_damp * ship.mass).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
+	var direction := correction.normalized()
+	var distance := correction.length()
+	const breaking_distance = 10
+	var linear_acceleration := ship.max_linear_acceleration().z * minf(distance / breaking_distance, 1)
+	ship.apply_central_force((direction * linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
 
 
 #func move_forward(max_accel = 100):
