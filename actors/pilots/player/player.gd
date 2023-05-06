@@ -7,12 +7,12 @@ var steering_direction := Vector2()
 
 
 func _ready() -> void:
-	super._ready()
+	await super._ready()
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
 	ship.contact_monitor = true
 	ship.max_contacts_reported = 1
-	ship.add_loadout(Loadouts.twin_lasers)
 	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(ship.get_node("Ship") as VisualInstance3D)
+	ship.weapon_set.add_loadout(Loadouts.twin_lasers)
 
 
 func _process(_delta: float) -> void:

@@ -11,7 +11,7 @@ func _ready() -> void:
 	gravity_scale = 0
 	linear_damp = 1
 	angular_damp = 2
-	inertia = Vector3(mass, mass, mass)
+	inertia = Vector3(mass, mass, mass)  # disable automatic calculation of inertia from collision shapes
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -26,8 +26,3 @@ func max_linear_acceleration() -> Vector3:
 func max_angular_acceleration() -> Vector3:
 	return Vector3(2, 2, 2) * mass
 
-
-func add_loadout(loadout: Dictionary):
-	for attachment_name in loadout:
-		var weapon = loadout[attachment_name].instantiate()
-		get_node(attachment_name).add_child(weapon)

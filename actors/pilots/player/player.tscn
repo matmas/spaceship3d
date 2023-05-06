@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://26jp2p4rytq" path="res://actors/pilots/pilot.tscn" id="1_66fuy"]
 [ext_resource type="Script" path="res://actors/pilots/player/player.gd" id="2_a6eof"]
-[ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapons/laser/sparks/sparks.tscn" id="3_wjbn3"]
+[ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapon_set/weapons/laser/sparks/sparks.tscn" id="3_wjbn3"]
 
 [node name="Player" instance=ExtResource("1_66fuy")]
 script = ExtResource("2_a6eof")

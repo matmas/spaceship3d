@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dx8rbcyvmkucu"]
 
-[ext_resource type="Texture2D" uid="uid://dn6nekwygpedl" path="res://actors/ships/weapons/laser/smoke/smoke.png" id="1_sbqat"]
+[ext_resource type="Texture2D" uid="uid://dn6nekwygpedl" path="res://actors/ships/weapon_set/weapons/laser/smoke/smoke.png" id="1_sbqat"]
 
 [sub_resource type="Gradient" id="Gradient_agghb"]
 interpolation_mode = 2

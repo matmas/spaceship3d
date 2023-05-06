@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cv4pem7oek0qn"]
 
-[ext_resource type="Shader" path="res://actors/ships/weapons/laser/laser.gdshader" id="1_vc5wv"]
+[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/laser/laser.gdshader" id="1_vc5wv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_f8j03"]
 
