@@ -24,7 +24,7 @@ func point_at(target_position: Vector3, min_distance: float = 10) -> void:
 func _point_in_direction(target_direction: Vector3) -> void:
 	var current_direction := -ship.global_transform.basis.z
 	var correction := target_direction - current_direction
-	ship.apply_torque(correction.cross(ship.global_transform.basis.z).normalized() * correction.length() * 100 * ship.mass)
+	ship.apply_torque(correction.cross(ship.global_transform.basis.z).normalized() * minf(correction.length(), 1) * ship.max_linear_acceleration().x)
 
 
 func match_roll_with(target: Node3D) -> bool:
@@ -32,7 +32,7 @@ func match_roll_with(target: Node3D) -> bool:
 	if projected_target_up.length() < 0.1:
 		return true  # prevent constant rolling due to parallel forward and target up vectors
 	var correction := projected_target_up - ship.global_transform.basis.y
-	ship.apply_torque(correction.cross(-ship.global_transform.basis.y).normalized() * correction.length() * 100 * ship.mass)
+	ship.apply_torque(correction.cross(-ship.global_transform.basis.y).normalized() * minf(correction.length(), 1) * ship.max_angular_acceleration().z)
 	return correction.length() < 0.2
 
 
