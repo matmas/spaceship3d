@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://xqm7qmtv800m"]
+[gd_scene load_steps=7 format=3 uid="uid://xqm7qmtv800m"]
 
 [ext_resource type="PackedScene" uid="uid://cpaqivmcfh6w7" path="res://actors/ships/dispatcher.blend" id="1_d4k37"]
 [ext_resource type="Script" path="res://actors/ships/ship.gd" id="2_ffwen"]
 [ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_le6gq"]
 [ext_resource type="PackedScene" uid="uid://dgxbb6lepopgg" path="res://actors/ships/propulsion/configurations/single_engine.tscn" id="4_f4ux4"]
+[ext_resource type="PackedScene" uid="uid://bq7uy67oh5wmq" path="res://actors/ships/weapons/weapons.tscn" id="5_bspkd"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dm8a6"]
 points = PackedVector3Array(-0.252526, -0.0369543, -2.77781, 2.5167, -0.52586, -0.00961089, 1.05052, -1.17742, 7.48178, 1.21266, 1.75474, -2.45232, -2.53335, -0.851478, -0.00961089, -1.22981, 1.75474, -2.45232, -1.06718, -1.17742, 7.48178, 1.86418, -1.17742, 0.31588, -1.22981, -1.50335, 5.8533, 1.86418, -0.851478, -1.63808, -1.88133, -0.851478, -1.63808, 1.21266, -1.50335, 5.8533, -1.88133, -1.17742, 0.31588, -2.53335, -0.52586, -0.00961089, 1.21266, 1.75474, -2.77781, 2.5167, -0.851478, -0.987103, -1.22981, 1.75474, -2.77781, 1.53842, -0.52586, -2.29009, -2.04446, -0.199604, -1.96358, 0.886898, -1.17742, 7.64401, 1.05052, -1.34038, 7.64401, -1.55557, -0.52586, -2.29009, -2.53335, -0.52586, -1.14934, -0.90405, -1.17742, 7.64401, 2.18995, -0.199604, -1.80134, 2.5167, -0.851478, -0.00961089, 2.5167, -0.52586, -1.14934, -2.53335, -0.851478, -0.987103, 0.235375, -0.0369543, -2.77781, -0.823894, -1.35757, 7.1777, 2.18995, -0.52586, -1.80134, 1.21266, 1.42881, -2.77781)
@@ -14,13 +15,7 @@ script = ExtResource("2_ffwen")
 [node name="Ship" parent="." index="0"]
 script = ExtResource("2_le6gq")
 
-[node name="WeaponLeft" type="Marker3D" parent="Ship" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.603146, 0.461283, 0.263234)
-
-[node name="WeaponRight" type="Marker3D" parent="Ship" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603, 0.461, 0.263)
-
-[node name="SingleEnginePropulsion" parent="Ship" index="2" instance=ExtResource("4_f4ux4")]
+[node name="SingleEnginePropulsion" parent="Ship" index="0" instance=ExtResource("4_f4ux4")]
 
 [node name="MainEngine" parent="Ship/SingleEnginePropulsion" index="0"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.424238, 1.99874)
@@ -55,8 +50,17 @@ transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025
 [node name="BottomThrusterRight" parent="Ship/SingleEnginePropulsion" index="10"]
 transform = Transform3D(0.866026, -5.85621e-09, -0.5, -0.5, -2.18557e-08, -0.866026, -5.85621e-09, 1, -2.18557e-08, 1.55742, -0.709066, 0.835376)
 
+[node name="Weapons" parent="Ship" index="1" instance=ExtResource("5_bspkd")]
+
+[node name="Left" parent="Ship/Weapons" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.603146, 0.461283, 0.263234)
+
+[node name="Right" parent="Ship/Weapons" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603, 0.461, 0.263)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_dm8a6")
 
 [editable path="Ship/SingleEnginePropulsion"]
+[editable path="Ship/Weapons"]

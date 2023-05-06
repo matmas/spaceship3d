@@ -6,7 +6,7 @@ extends RayCast3D
 @onready var sparks := $Sparks as GPUParticles3D
 @onready var smoke := $Smoke as GPUParticles3D
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
-@onready var exclude := owner as CollisionObject3D
+@onready var exclude := owner.owner as CollisionObject3D
 @onready var painter := $Painter as Painter
 @onready var firing := $Firing as AudioStreamPlayer3D
 @onready var firing_volume := firing.volume_db
