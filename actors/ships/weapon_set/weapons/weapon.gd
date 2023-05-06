@@ -1,4 +1,4 @@
 class_name Weapon
-extends RayCast3D
+extends Node3D
 
 var is_firing := false

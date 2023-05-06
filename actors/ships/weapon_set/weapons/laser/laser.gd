@@ -1,5 +1,6 @@
 extends Weapon
 
+@onready var ray_cast := $RayCast as RayCast3D
 @onready var beam := $Beam as MeshInstance3D
 @onready var beam_scale := beam.scale
 @onready var sparks := $Sparks as GPUParticles3D
@@ -25,7 +26,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	beam.set_surface_override_material(0, beam.get_active_material(0).duplicate() as Material)
-	add_exception(exclude)
+	ray_cast.add_exception(exclude)
 	set_process(visible)
 	set_physics_process(visible)
 	firing.volume_db = -INF
@@ -37,7 +38,7 @@ func _process(delta: float) -> void:
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
-	enabled = power > 0.0
+	ray_cast.enabled = power > 0.0
 	beam.visible = power > 0.0
 	beam.scale.x = power * beam_scale.x
 	beam.scale.y = power * beam_scale.y
@@ -45,8 +46,8 @@ func _process(delta: float) -> void:
 	beam_material.set_shader_parameter(&"alpha", power)
 
 	firing.volume_db = firing_volume + linear_to_db(lerpf(db_to_linear(firing.volume_db), power, 1 - pow(0.1, delta * 5)))
-	hitting.volume_db = hitting_volume if is_colliding() else -INF
-	hitting.global_position = get_collision_point()
+	hitting.volume_db = hitting_volume if ray_cast.is_colliding() else -INF
+	hitting.global_position = ray_cast.get_collision_point()
 
 	var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
 	var ray_end := ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
@@ -54,22 +55,22 @@ func _process(delta: float) -> void:
 	var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
 	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 
-	var beam_endpoint := get_collision_point() if is_colliding() else to_global(target_position)
+	var beam_endpoint := ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position)
 	for p in [sparks, smoke]:
 		var particles := p as GPUParticles3D
-		particles.emitting = is_colliding() and power == 1.0 and (particles == smoke and (get_collider() as Node).name.begins_with("rock") or particles != smoke)
-		if is_colliding() and power == 1.0:
+		particles.emitting = ray_cast.is_colliding() and power == 1.0 and (particles == smoke and (ray_cast.get_collider() as Node).name.begins_with("rock") or particles != smoke)
+		if ray_cast.is_colliding() and power == 1.0:
 			particles.global_position = beam_endpoint
-			if not Vector3.UP.cross(beam_endpoint + get_collision_normal() - particles.global_position).is_zero_approx():
-				particles.look_at(beam_endpoint + get_collision_normal())
+			if not Vector3.UP.cross(beam_endpoint + ray_cast.get_collision_normal() - particles.global_position).is_zero_approx():
+				particles.look_at(beam_endpoint + ray_cast.get_collision_normal())
 
 	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)
 	beam.scale.z = global_position.distance_to(beam_endpoint)
 
-	if is_colliding() and power == 1.0:
-		var mesh_instance = Utils.get_first_child_of_type(get_collider(), MeshInstance3D)
+	if ray_cast.is_colliding() and power == 1.0:
+		var mesh_instance = Utils.get_first_child_of_type(ray_cast.get_collider(), MeshInstance3D)
 		if mesh_instance == null:
-			mesh_instance = get_collider().get_parent()
+			mesh_instance = ray_cast.get_collider().get_parent()
 		painter.paint_line(mesh_instance, global_transform)
 
 
