@@ -41,8 +41,8 @@ func move_to(target_position: Vector3) -> void:
 	var correction := target_position - global_position
 	var direction := correction.normalized()
 	var distance := correction.length()
-	const breaking_distance = 10
-	var linear_acceleration := ship.max_linear_acceleration().z * minf(distance / breaking_distance, 1)
+	const slowdown_distance = 10
+	var linear_acceleration := ship.max_linear_acceleration().z * minf(distance / slowdown_distance, 1)
 	ship.apply_central_force((direction * linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
 
 
