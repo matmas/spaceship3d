@@ -1,6 +1,8 @@
 class_name Ship
 extends RigidBody3D
 
+@onready var weapon_set := $Ship/WeaponSet as WeaponSet
+
 var pilot: Pilot
 
 

@@ -1,7 +1,6 @@
-extends RayCast3D
+extends Weapon
 
 @onready var beam := $Beam as MeshInstance3D
-@onready var beam_material := beam.get_active_material(0) as ShaderMaterial
 @onready var beam_scale := beam.scale
 @onready var sparks := $Sparks as GPUParticles3D
 @onready var smoke := $Smoke as GPUParticles3D
@@ -25,6 +24,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	beam.set_surface_override_material(0, beam.get_active_material(0).duplicate() as Material)
 	add_exception(exclude)
 	set_process(visible)
 	set_physics_process(visible)
@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("fire"):
+	if is_firing:
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 	beam.visible = power > 0.0
 	beam.scale.x = power * beam_scale.x
 	beam.scale.y = power * beam_scale.y
+	var beam_material := beam.get_active_material(0) as ShaderMaterial
 	beam_material.set_shader_parameter(&"alpha", power)
 
 	firing.volume_db = firing_volume + linear_to_db(lerpf(db_to_linear(firing.volume_db), power, 1 - pow(0.1, delta * 5)))

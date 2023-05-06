@@ -1,7 +1,6 @@
 class_name Player
 extends Pilot
 
-
 @onready var sparks := $Sparks as GPUParticles3D
 
 var steering_direction := Vector2()
@@ -14,6 +13,10 @@ func _ready() -> void:
 	ship.max_contacts_reported = 1
 	ship.add_loadout(Loadouts.twin_lasers)
 	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(ship.get_node("Ship") as VisualInstance3D)
+
+
+func _process(_delta: float) -> void:
+	ship.weapon_set.set_all_firing(Input.is_action_pressed("fire"))
 
 
 func _physics_process(_delta: float) -> void:

@@ -8,6 +8,7 @@ func _ready() -> void:
 		randf_range(-100, 100),
 		randf_range(-100, 100),
 	)
+	ship.add_loadout(Loadouts.twin_lasers)
 
 
 func _physics_process(_delta: float) -> void:
