@@ -20,4 +20,7 @@ func _physics_process(_delta: float) -> void:
 	if player:
 		point_at(player.ship.global_position)
 		match_roll_with(player.ship)
-#		move_to(player.global_transform * Vector3(0, 0, 20))
+		apply_thrust(
+			thrust_to_evade(player.ship.global_position)
+			+ thrust_to_move_to(player.ship.global_transform * Vector3(0, 0, -20))
+		)

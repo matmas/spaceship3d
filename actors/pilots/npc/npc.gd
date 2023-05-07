@@ -43,24 +43,21 @@ func match_roll_with(target: Node3D) -> bool:
 	return correction.length() < 0.2
 
 
-func move_to(target_position: Vector3) -> void:
-	var correction := target_position - global_position
-	var direction := correction.normalized()
-	var distance := correction.length()
-	const slowdown_distance = 10
-	var linear_acceleration := ship.max_linear_acceleration().z * minf(distance / slowdown_distance, 1)
-	ship.apply_central_force((direction * linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
+func thrust_to_move_to(target_position: Vector3, slowdown_distance: float = 10) -> Vector3:
+	var target_relative_position := target_position - global_position
+	var target_direction := target_relative_position.normalized()
+	var target_distance := target_relative_position.length()
+	var linear_acceleration := ship.max_linear_acceleration().z * minf(target_distance / slowdown_distance, 1)
+	return target_direction * linear_acceleration
 
 
-#func move_forward(max_accel = 100):
-#	self.apply_central_force(global_transform.basis.z * max_accel)
-#
-#
-#func point_at_but_evade(target_position: Vector3, evade_distance = 50):
-#	var distance := global_position.distance_to(target_position)
-#	var direction_to_target := global_position.direction_to(target_position)
-#	if distance < evade_distance:
-#		var evade_direction := (linear_velocity.normalized() - direction_to_target).normalized()
-#		_point_in_direction(evade_direction)
-#	else:
-#		_point_in_direction(direction_to_target)
+func thrust_to_evade(target_position: Vector3, evade_distance: float = 50):
+	var target_relative_position := target_position - global_position
+	var target_direction := target_relative_position.normalized()
+	var target_distance := target_relative_position.length()
+	var linear_acceleration := ship.max_linear_acceleration().z * (1.0 - minf(target_distance / evade_distance, 1))
+	return -target_direction * linear_acceleration
+
+
+func apply_thrust(linear_acceleration: Vector3) -> void:
+	ship.apply_central_force(linear_acceleration.clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))

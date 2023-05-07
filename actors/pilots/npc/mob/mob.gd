@@ -16,6 +16,8 @@ func _physics_process(_delta: float) -> void:
 	if player:
 		point_at(player.ship.global_position)
 		match_roll_with(player.ship)
-		move_to(player.ship.global_transform * Vector3(0, 0, 30))
-
-		ship.weapon_set.set_all_firing(point_at_difference(player.ship.global_position) < 0.05)
+		apply_thrust(
+			thrust_to_move_to(player.ship.global_transform * Vector3(0, 0, 30))
+			+ thrust_to_evade(player.ship.global_position)
+		)
+#		ship.weapon_set.set_all_firing(point_at_difference(player.ship.global_position) < 0.05)
