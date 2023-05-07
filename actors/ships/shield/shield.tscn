@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://r11l1d44ysd6"]
+
+[ext_resource type="Material" uid="uid://bhm78rtixet0d" path="res://actors/ships/shield/shield.tres" id="1_js5mi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p56h2"]
+material = ExtResource("1_js5mi")
+radius = 5.0
+height = 10.0
+
+[node name="Shield" type="Node3D"]
+
+[node name="Bubble" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_p56h2")

@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bhm78rtixet0d"]
+
+[ext_resource type="Shader" path="res://actors/ships/shield/shield.gdshader" id="1_gw7fb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_05eux"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qeh7l"]
+seamless = true
+noise = SubResource("FastNoiseLite_05eux")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gw7fb")
+shader_parameter/fresnel_power = 2.0
+shader_parameter/fresnel_intensity = 1.0
+shader_parameter/main_color = Color(0.24, 0.59, 0.83, 0.5)
+shader_parameter/fresnel_color = Color(0.639216, 0.309804, 0.619608, 1)
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/refraction_amount = 1.0
+shader_parameter/metallic = 0.134
+shader_parameter/smoothness = 0.627
+shader_parameter/normals = 0.77
+shader_parameter/ice_texture = SubResource("NoiseTexture2D_qeh7l")
