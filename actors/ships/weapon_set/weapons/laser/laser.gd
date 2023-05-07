@@ -31,6 +31,8 @@ func _ready() -> void:
 	set_physics_process(visible)
 	firing.volume_db = -INF
 	hitting.volume_db = -INF
+	if is_fixed:
+		set_physics_process(false)
 
 
 func _process(delta: float) -> void:
@@ -49,11 +51,12 @@ func _process(delta: float) -> void:
 	hitting.volume_db = hitting_volume if ray_cast.is_colliding() else -INF
 	hitting.global_position = ray_cast.get_collision_point()
 
-	var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
-	var ray_end := ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
-	var new_target_position := target_position_override if target_position_override else ray_end
-	var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
-	global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
+	if not is_fixed:
+		var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
+		var ray_end := ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
+		var new_target_position := target_position_override if target_position_override else ray_end
+		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
+		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 
 	var beam_endpoint := ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position)
 	for p in [sparks, smoke]:

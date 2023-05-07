@@ -28,6 +28,12 @@ func _point_in_direction(target_direction: Vector3) -> void:
 	ship.apply_torque(correction.cross(ship.global_transform.basis.z).normalized() * minf(correction.length(), 1) * ship.max_linear_acceleration().x)
 
 
+func point_at_difference(target_position: Vector3) -> float:
+	var target_direction := ship.global_position.direction_to(target_position)
+	var current_direction := -ship.global_transform.basis.z
+	return (target_direction - current_direction).length()
+
+
 func match_roll_with(target: Node3D) -> bool:
 	var projected_target_up := Plane(ship.global_transform.basis.z).project(target.global_transform.basis.y)
 	if projected_target_up.length() < 0.1:
