@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://di1f74r8jcrup"]
+[gd_scene load_steps=6 format=3 uid="uid://di1f74r8jcrup"]
 
 [ext_resource type="PackedScene" uid="uid://26jp2p4rytq" path="res://actors/pilots/pilot.tscn" id="1_ts351"]
 [ext_resource type="Script" path="res://actors/pilots/npc/npc.gd" id="2_q47sk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_24h4b"]
+radius = 20.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7b5ki"]
 radius = 100.0
@@ -12,15 +15,22 @@ radius = 150.0
 [node name="NPC" instance=ExtResource("1_ts351")]
 script = ExtResource("2_q47sk")
 
-[node name="Detection" type="Area3D" parent="." index="0"]
+[node name="Evasion" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Evasion" index="0"]
+shape = SubResource("SphereShape3D_24h4b")
+
+[node name="Detection" type="Area3D" parent="." index="2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Detection" index="0"]
 shape = SubResource("SphereShape3D_7b5ki")
 
-[node name="Tracking" type="Area3D" parent="." index="1"]
+[node name="Tracking" type="Area3D" parent="." index="3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tracking" index="0"]
 shape = SubResource("SphereShape3D_tyy8r")
 
+[connection signal="area_entered" from="Evasion" to="." method="_on_evasion_area_entered"]
+[connection signal="area_exited" from="Evasion" to="." method="_on_evasion_area_exited"]
 [connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
 [connection signal="area_exited" from="Tracking" to="." method="_on_tracking_area_exited"]

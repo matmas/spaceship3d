@@ -1,7 +1,18 @@
 class_name NPC
 extends Pilot
 
+@onready var evasion_distance := (($Evasion/CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius
+
 var player: Player
+var evading_areas := {}
+
+
+func _on_evasion_area_entered(area: Area3D) -> void:
+	evading_areas[area] = true
+
+
+func _on_evasion_area_exited(area: Area3D) -> void:
+	evading_areas.erase(area)
 
 
 func _on_detection_area_entered(area: Area3D) -> void:
@@ -51,7 +62,7 @@ func thrust_to_move_to(target_position: Vector3, slowdown_distance: float = 10) 
 	return target_direction * linear_acceleration
 
 
-func thrust_to_evade(target_position: Vector3, evade_distance: float = 50):
+func thrust_to_evade(target_position: Vector3, evade_distance: float):
 	var target_relative_position := target_position - global_position
 	var target_direction := target_relative_position.normalized()
 	var target_distance := target_relative_position.length()
@@ -59,5 +70,12 @@ func thrust_to_evade(target_position: Vector3, evade_distance: float = 50):
 	return -target_direction * linear_acceleration
 
 
+func _get_evasion() -> Vector3:
+	var evasion := Vector3()
+	for area in evading_areas:
+		evasion += thrust_to_evade((area as Area3D).global_position, evasion_distance)
+	return evasion
+
+
 func apply_thrust(linear_acceleration: Vector3) -> void:
-	ship.apply_central_force(linear_acceleration.clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
+	ship.apply_central_force((_get_evasion() + linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
