@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var indicator := $Indicator as Sprite2D
 @onready var label := $Indicator/Label as Label
-@onready var camera := get_viewport().get_camera_3d()
+@onready var camera := get_viewport().get_camera_3d() as InterpolatedCamera3D
 
 var collider: CollisionObject3D
 
@@ -17,11 +17,12 @@ func _process(_delta: float) -> void:
 		indicator.position = camera.unproject_position(collider_global_position)
 		indicator.visible = not camera.is_position_behind(collider_global_position)
 		label.visible = indicator.visible
+		var distance := "%.0f m" % camera.target.global_position.distance_to(collider_global_position)
+		var velocity := ""
 		if collider is RigidBody3D:
 			var body := collider as RigidBody3D
-			label.text = "%s: %s m/s" % [collider.name, body.linear_velocity.length()]
-		else:
-			label.text = collider.name
+			velocity = "%.0f m/s" % body.linear_velocity.length()
+		label.text = "%s\n%s\n%s" % [collider.name, distance, velocity]
 
 
 func _physics_process(_delta: float) -> void:
