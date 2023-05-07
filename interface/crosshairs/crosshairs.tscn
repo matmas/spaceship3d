@@ -3,13 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://bewl13bwbqrot" path="res://interface/crosshairs/crosshairs.png" id="1_xg1wm"]
 [ext_resource type="Script" path="res://interface/crosshairs/crosshairs.gd" id="2_l0mt7"]
 
-[node name="Crosshairs" type="Sprite2D"]
-texture = ExtResource("1_xg1wm")
-region_enabled = true
-region_rect = Rect2(448, 385, 64, 64)
+[node name="Crosshairs" type="Node"]
 script = ExtResource("2_l0mt7")
 
 [node name="Steering" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
 texture = ExtResource("1_xg1wm")
 region_enabled = true
 region_rect = Rect2(448, 193, 64, 64)
+
+[node name="CenterIndicator" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("1_xg1wm")
+region_enabled = true
+region_rect = Rect2(0, 257, 64, 64)

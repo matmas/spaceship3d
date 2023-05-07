@@ -1,6 +1,7 @@
-extends Sprite2D
+extends Node
 
 @onready var steering := $Steering as Sprite2D
+@onready var center_indicator := $CenterIndicator as Sprite2D
 
 
 func _ready() -> void:
@@ -9,5 +10,7 @@ func _ready() -> void:
 
 
 func _update_crosshairs() -> void:
-	position = get_viewport().size * 0.5
-	steering.global_position = Mouse.get_cursor_position()
+	var center := Vector2(get_viewport().size) * 0.5
+	center_indicator.position = center
+	steering.position = Mouse.get_cursor_position()
+	center_indicator.modulate.a = minf(1.0 - steering.position.distance_to(center) * 0.01, 1)
