@@ -68,4 +68,4 @@ func _unhandled_input(_event: InputEvent) -> void:
 		camera_distance -= 5
 	if Input.is_action_just_released(&"dolly_out"):
 		camera_distance += 5
-	camera_distance = clampf(camera_distance, 5.0, 100.0)
+	camera_distance = clampf(camera_distance, 4.0, 100.0)
