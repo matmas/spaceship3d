@@ -1,7 +1,7 @@
-shader_type spatial; //depth_draw_opaque
-render_mode depth_draw_opaque, specular_schlick_ggx, unshaded, cull_disabled;
-// Port of Unity Ice Shader https://www.youtube.com/watch?v=Gym5JWHgjkk
-// by NekotoArts https://godotshaders.com/shader/spatial-ice-shader/
+shader_type spatial;
+render_mode blend_add, depth_draw_opaque, specular_schlick_ggx, unshaded, cull_disabled;
+// Based on https://www.youtube.com/watch?v=Gym5JWHgjkk
+// and https://godotshaders.com/shader/spatial-ice-shader/
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_enable, filter_nearest;
 uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
@@ -39,20 +39,12 @@ void fragment() {
 	vec2 distorted_screen_uv = SCREEN_UV + (SCREEN_UV - vec2(d + d * noise_tex.x)) * vec2(refraction_amount);
 	vec3 fresnel = vec3(pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), fresnel_power)) * fresnel_color * fresnel_intensity;
 	float depth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
-//	float front_facing_multiplier = (1.0 + float(FRONT_FACING) * 10.0);
 	float intersection_multiplier = pow(camera_distance, 2.0) * 0.01;
     float intersection = clamp(1.0 - (depth - FRAGCOORD.z) * 1000.0 * intersection_multiplier, 0.0, 1.0);
 	vec3 intersection_color = intersection * fresnel_color;
-	vec3 main_tex = noise_tex.rgb * main_color.rgb;
+	vec3 main_tex = noise_tex.rgb * main_color.rgb * main_color.a;
 	vec3 distortion = texture(screen_texture, distorted_screen_uv).rgb * main_color.rgb;
-	if (FRONT_FACING) {
-		ALBEDO = main_tex + distortion + fresnel + intersection_color;
-		ALPHA = main_color.a;
-	}
-	else {
-		ALBEDO = intersection_color;
-		ALPHA = intersection;
-	}
+	ALBEDO = main_tex + distortion + fresnel + intersection_color;
 	METALLIC = metallic;
 	SPECULAR = smoothness;
 	NORMAL = read_normalmap(noise_tex, vec3(normals), TANGENT, BINORMAL, NORMAL_MAP_DEPTH);
