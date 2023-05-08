@@ -5,10 +5,10 @@ render_mode blend_add, depth_draw_opaque, specular_schlick_ggx, unshaded, cull_d
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_enable, filter_nearest;
 uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
-uniform float fresnel_power = 2.0;
-uniform float fresnel_intensity = 1.0;
+uniform float fresnel_power: hint_range(1.0, 10.0) = 2.0;
+uniform float fresnel_intensity: hint_range(1.0, 20.0) = 1.0;
 uniform vec4 main_color : source_color = vec4(0.23, 0.58, 0.82, 0.5);
-uniform vec3 fresnel_color : source_color = vec3(0.63, 0.3, 0.61);
+uniform vec4 fresnel_color : source_color = vec4(0.63, 0.3, 0.61, 0.5);
 uniform vec2 tiling = vec2(1.0, 1.0);
 uniform vec2 offset = vec2(0.0, 0.0);
 uniform sampler2D noise_texture : source_color;
@@ -28,7 +28,7 @@ vec3 read_normalmap(in vec3 normalmap, in vec3 normal, in vec3 tangent, in vec3 
 }
 
 void vertex() {
-	camera_distance = length((MODELVIEW_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz);
+	camera_distance = length((MODELVIEW_MATRIX * vec4(vec3(0.0), 1.0)).xyz);
 }
 
 void fragment() {
@@ -37,13 +37,13 @@ void fragment() {
 	vec3 noise_tex = texture(noise_texture, UV * tiling + offset).rgb;
 	float d = dot(vec3(SCREEN_UV, 0.0), vec3(0.333333));
 	vec2 distorted_screen_uv = SCREEN_UV + (SCREEN_UV - vec2(d + d * noise_tex.x)) * vec2(refraction_amount);
-	vec3 fresnel = vec3(pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), fresnel_power)) * fresnel_color * fresnel_intensity;
+	vec3 fresnel = vec3(pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), fresnel_power)) * fresnel_color.rgb * fresnel_color.a * fresnel_intensity;
 	float depth = textureLod(depth_texture, SCREEN_UV, 0.0).r;
 	float intersection_multiplier = pow(camera_distance, 2.0) * 0.01;
     float intersection = clamp(1.0 - (depth - FRAGCOORD.z) * 1000.0 * intersection_multiplier, 0.0, 1.0);
-	vec3 intersection_color = intersection * fresnel_color;
+	vec3 intersection_color = intersection * fresnel_color.rgb * fresnel_color.a;
 	vec3 main_tex = noise_tex.rgb * main_color.rgb * main_color.a;
-	vec3 distortion = texture(screen_texture, distorted_screen_uv).rgb * main_color.rgb;
+	vec3 distortion = texture(screen_texture, distorted_screen_uv).rgb * main_color.rgb * main_color.a;
 	ALBEDO = main_tex + distortion + fresnel + intersection_color;
 	METALLIC = metallic;
 	SPECULAR = smoothness;
