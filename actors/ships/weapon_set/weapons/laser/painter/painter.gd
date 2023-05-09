@@ -14,6 +14,16 @@ func _ready() -> void:
 	uv_scope.get_texture().get_image()
 
 
+func paint_line_on(collision_object: CollisionObject3D, transform: Transform3D) -> void:
+	if collision_object is StaticBody3D:
+		# StaticBody3D are imported as a child of MeshInstance3D from .blend files
+		paint_line(collision_object.get_parent() as MeshInstance3D, transform)
+	else:
+		for child in collision_object.get_children():
+			if child is MeshInstance3D:
+				paint_line(child as MeshInstance3D, transform)
+
+
 func paint_line(mesh_instance: MeshInstance3D, transform: Transform3D) -> void:
 	var canvas := _get_or_create_canvas(mesh_instance)
 	var uv_color := _uv_color_of_brush_position(mesh_instance, transform)

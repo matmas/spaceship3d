@@ -70,10 +70,7 @@ func _process(delta: float) -> void:
 	beam.scale.z = global_position.distance_to(beam_endpoint)
 
 	if ray_cast.is_colliding() and power == 1.0:
-		var mesh_instance = Utils.get_first_child_of_type(ray_cast.get_collider(), MeshInstance3D)
-		if mesh_instance == null:
-			mesh_instance = ray_cast.get_collider().get_parent()
-		painter.paint_line(mesh_instance, global_transform)
+		painter.paint_line_on(ray_cast.get_collider() as CollisionObject3D, global_transform)
 
 
 func _physics_process(_delta: float) -> void:
