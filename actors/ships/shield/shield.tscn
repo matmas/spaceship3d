@@ -1,38 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dppx6ufhwj5xl"]
+[gd_scene load_steps=3 format=3 uid="uid://dppx6ufhwj5xl"]
 
-[ext_resource type="Script" path="res://actors/ships/shield/shield.gd" id="1_4ho5a"]
 [ext_resource type="Material" uid="uid://bc4ueioafx7k7" path="res://actors/ships/shield/shield.tres" id="1_js5mi"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_p56h2"]
 radius = 5.0
 height = 10.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_jynxu"]
-radius = 5.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_cj62t"]
-radius = 5.0
-
-[node name="Shield" type="Area3D"]
-collision_mask = 256
-script = ExtResource("1_4ho5a")
+[node name="Shield" type="Node3D"]
 
 [node name="Bubble" type="MeshInstance3D" parent="."]
-layers = 524288
 cast_shadow = 0
 mesh = SubResource("SphereMesh_p56h2")
 surface_material_override/0 = ExtResource("1_js5mi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_jynxu")
-
-[node name="ShapeCast" type="ShapeCast3D" parent="."]
-shape = SubResource("SphereShape3D_cj62t")
-target_position = Vector3(0, 0, 0)
-collision_mask = 256
-collide_with_areas = true
-
-[connection signal="area_entered" from="." to="." method="_on_body_entered"]
-[connection signal="area_exited" from="." to="." method="_on_body_exited"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

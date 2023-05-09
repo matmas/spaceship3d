@@ -3,9 +3,6 @@ extends Weapon
 @onready var ray_cast := $RayCast as RayCast3D
 @onready var beam := $Beam as MeshInstance3D
 @onready var beam_scale := beam.scale
-@onready var beam_area := $BeamArea as Area3D
-@onready var beam_area_collision_shape := $BeamArea/CollisionShape as CollisionShape3D
-@onready var beam_area_shape := beam_area_collision_shape.shape as CylinderShape3D
 @onready var sparks := $Sparks as GPUParticles3D
 @onready var smoke := $Smoke as GPUParticles3D
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
@@ -44,7 +41,6 @@ func _process(delta: float) -> void:
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
 	ray_cast.enabled = power > 0.0
-	beam_area_collision_shape.disabled = power == 0.0
 	beam.visible = power > 0.0
 	beam.scale.x = power * beam_scale.x
 	beam.scale.y = power * beam_scale.y
@@ -73,9 +69,6 @@ func _process(delta: float) -> void:
 
 	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)
 	beam.scale.z = global_position.distance_to(beam_endpoint)
-	beam_area.look_at(beam_endpoint, beam.global_position - camera.global_position)
-	beam_area_shape.height = beam.scale.z
-	beam_area.global_position = (beam.global_position + beam_endpoint) * 0.5
 
 	if ray_cast.is_colliding() and power == 1.0:
 		var mesh_instance = Utils.get_first_child_of_type(ray_cast.get_collider(), MeshInstance3D)

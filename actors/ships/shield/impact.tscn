@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://ba5tgevaujgpe"]
-
-[node name="Impact" type="OmniLight3D"]
-light_color = Color(0.231373, 0.580392, 0.819608, 1)
