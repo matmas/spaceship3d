@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvw3qwof76mw"]
+[gd_scene load_steps=13 format=3 uid="uid://cvw3qwof76mw"]
 
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/laser/laser.gd" id="2_v7ywm"]
 [ext_resource type="Material" uid="uid://cv4pem7oek0qn" path="res://actors/ships/weapon_set/weapons/laser/laser.tres" id="3_mrj76"]
@@ -39,6 +39,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gdm7s")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_prj4a"]
+resource_local_to_scene = true
+height = 20.0
+radius = 0.1
+
 [node name="Laser" type="Node3D"]
 script = ExtResource("2_v7ywm")
 
@@ -52,10 +57,20 @@ mesh = SubResource("ArrayMesh_mopdk")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_mrj76")
 
+[node name="BeamArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+collision_layer = 256
+monitoring = false
+
+[node name="CollisionShape" type="CollisionShape3D" parent="BeamArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_prj4a")
+
 [node name="Sparks" parent="." instance=ExtResource("4_2w8fn")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
 
 [node name="Light" parent="Sparks" instance=ExtResource("5_o8esj")]
+light_cull_mask = 4294443007
 
 [node name="Smoke" parent="." instance=ExtResource("6_i7anl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)

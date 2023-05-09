@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_add, depth_draw_opaque, specular_schlick_ggx, unshaded, cull_disabled;
+render_mode blend_add, depth_draw_opaque, specular_schlick_ggx, cull_disabled, shadows_disabled; //, unshaded;
 // Based on https://www.youtube.com/watch?v=Gym5JWHgjkk
 // and https://godotshaders.com/shader/spatial-ice-shader/
 
@@ -45,7 +45,18 @@ void fragment() {
 	vec3 main_tex = noise_tex.rgb * main_color.rgb * main_color.a;
 	vec3 distortion = texture(screen_texture, distorted_screen_uv).rgb * main_color.rgb * main_color.a;
 	ALBEDO = main_tex + distortion + fresnel + intersection_color;
+	ALPHA = 0.0;
 	METALLIC = metallic;
 	SPECULAR = smoothness;
 	NORMAL = read_normalmap(noise_tex, vec3(normals), TANGENT, BINORMAL, NORMAL_MAP_DEPTH);
+}
+
+void light() {
+	DIFFUSE_LIGHT = vec3(0.0);
+	SPECULAR_LIGHT = vec3(0.0);
+	if (abs(length(ATTENUATION) - 1.0) < 0.0001) {
+		ALPHA = 0.0;
+	} else {
+		ALPHA = length(ATTENUATION) * 100.0;
+	}
 }
