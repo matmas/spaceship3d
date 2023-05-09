@@ -12,6 +12,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_1otdm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mq8hj"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_q2iob")
 shader_parameter/color = Color(0.717647, 0.847059, 0.866667, 1)

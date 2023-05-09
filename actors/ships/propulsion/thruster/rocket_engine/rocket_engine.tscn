@@ -13,6 +13,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_wa3k3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpkol"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_mbrqw")
 shader_parameter/color = Color(1, 0.564706, 0, 1)

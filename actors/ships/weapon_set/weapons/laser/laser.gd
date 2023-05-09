@@ -25,7 +25,6 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	beam.set_surface_override_material(0, beam.get_active_material(0).duplicate() as Material)
 	ray_cast.add_exception(exclude)
 	set_process(visible)
 	set_physics_process(visible)

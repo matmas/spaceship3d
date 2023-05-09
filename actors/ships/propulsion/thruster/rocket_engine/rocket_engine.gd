@@ -9,8 +9,6 @@ var noise := FastNoiseLite.new()
 
 func _ready() -> void:
 	super._ready()
-	# We need to change each material independently
-	distortion.set_surface_override_material(0, distortion.get_active_material(0).duplicate() as Material)
 	light.light_energy = 0
 
 
