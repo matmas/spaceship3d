@@ -92,6 +92,10 @@ select={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_2="Shields"
+
 [physics]
 
 3d/default_gravity_vector=Vector3(0, 0, 0)
