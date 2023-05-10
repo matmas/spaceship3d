@@ -9,12 +9,14 @@ seamless = true
 noise = SubResource("FastNoiseLite_eq103")
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_gw7fb")
-shader_parameter/fresnel_power = 2.0
-shader_parameter/fresnel_intensity = 1.0
+shader_parameter/alpha = 0.0
 shader_parameter/main_color = Color(0.23, 0.58, 0.82, 0.5)
 shader_parameter/fresnel_color = Color(0.63, 0.3, 0.61, 0.5)
+shader_parameter/fresnel_power = 2.0
+shader_parameter/fresnel_intensity = 1.0
 shader_parameter/tiling = Vector2(1, 1)
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/refraction_amount = 1.0
@@ -23,4 +25,7 @@ shader_parameter/smoothness = 0.627
 shader_parameter/normals = 0.77
 shader_parameter/cull_front = false
 shader_parameter/cull_back = false
+shader_parameter/impact_focus = 8.0
+shader_parameter/impact_positions = PackedFloat32Array()
+shader_parameter/impact_alphas = PackedFloat32Array()
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_sxblv")

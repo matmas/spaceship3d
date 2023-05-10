@@ -1,14 +1,15 @@
 shader_type spatial;
-render_mode blend_add, depth_draw_opaque, specular_schlick_ggx, unshaded, cull_disabled;
-// Based on https://www.youtube.com/watch?v=Gym5JWHgjkk
-// and https://godotshaders.com/shader/spatial-ice-shader/
+render_mode blend_add, depth_draw_opaque, specular_schlick_ggx, unshaded, cull_disabled, shadows_disabled;
+// Based on https://godotshaders.com/shader/spatial-ice-shader/
+// and https://www.youtube.com/watch?v=Gym5JWHgjkk
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_enable, filter_nearest;
 uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
-uniform float fresnel_power: hint_range(1.0, 10.0) = 2.0;
-uniform float fresnel_intensity: hint_range(1.0, 20.0) = 1.0;
+uniform float alpha: hint_range(0.0, 1.0) = 1.0;
 uniform vec4 main_color : source_color = vec4(0.23, 0.58, 0.82, 0.5);
 uniform vec4 fresnel_color : source_color = vec4(0.63, 0.3, 0.61, 0.5);
+uniform float fresnel_power: hint_range(1.0, 10.0) = 2.0;
+uniform float fresnel_intensity: hint_range(1.0, 20.0) = 1.0;
 uniform vec2 tiling = vec2(1.0, 1.0);
 uniform vec2 offset = vec2(0.0, 0.0);
 uniform sampler2D noise_texture : source_color;
@@ -18,7 +19,12 @@ uniform float smoothness: hint_range(0.0, 1.0) = 0.627;
 uniform float normals: hint_range(-3.0, 3.0) = 0.77;
 uniform bool cull_front = false;
 uniform bool cull_back = false;
+uniform float impact_focus: hint_range(1.0, 200.0) = 8;
+const int NUM_IMPACTS = 8;
+uniform vec3 impact_positions[NUM_IMPACTS];
+uniform float impact_alphas[NUM_IMPACTS];
 varying float camera_distance;
+varying mat4 modelview_matrix;
 
 // Pulled straight from Godot's scene.glsl file
 vec3 read_normalmap(in vec3 normalmap, in vec3 normal, in vec3 tangent, in vec3 binormal, in float normaldepth) {
@@ -29,6 +35,7 @@ vec3 read_normalmap(in vec3 normalmap, in vec3 normal, in vec3 tangent, in vec3 
 
 void vertex() {
 	camera_distance = length((MODELVIEW_MATRIX * vec4(vec3(0.0), 1.0)).xyz);
+	modelview_matrix = MODELVIEW_MATRIX;
 }
 
 void fragment() {
@@ -45,6 +52,13 @@ void fragment() {
 	vec3 main_tex = noise_tex.rgb * main_color.rgb * main_color.a;
 	vec3 distortion = texture(screen_texture, distorted_screen_uv).rgb * main_color.rgb * main_color.a;
 	ALBEDO = main_tex + distortion + fresnel + intersection_color;
+	float total_alpha = alpha;
+	for (int i = 0; i < NUM_IMPACTS; i++) {
+		if (length(impact_positions[i]) > 0.0) {
+			total_alpha += impact_alphas[i] * pow(max(dot((float(FRONT_FACING) * 2.0 - 1.0) * NORMAL, (modelview_matrix * vec4(normalize(impact_positions[i]), 0.0)).xyz), 0.0), impact_focus);
+		}
+	}
+	ALPHA = total_alpha;
 	METALLIC = metallic;
 	SPECULAR = smoothness;
 	NORMAL = read_normalmap(noise_tex, vec3(normals), TANGENT, BINORMAL, NORMAL_MAP_DEPTH);

@@ -31,8 +31,6 @@ func _ready() -> void:
 	set_physics_process(visible)
 	firing.volume_db = -INF
 	hitting.volume_db = -INF
-	if is_fixed:
-		set_physics_process(false)
 
 
 func _process(delta: float) -> void:
@@ -51,9 +49,7 @@ func _process(delta: float) -> void:
 	hitting.global_position = ray_cast.get_collision_point()
 
 	if not is_fixed:
-		var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
-		var ray_end := ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
-		var new_target_position := target_position_override if target_position_override else ray_end
+		var new_target_position := target_position_override if target_position_override else _mouse_cursor_to_world_position()
 		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
 		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 
@@ -73,11 +69,26 @@ func _process(delta: float) -> void:
 		painter.paint_line_on(ray_cast.get_collider() as CollisionObject3D, global_transform)
 
 
+
 func _physics_process(_delta: float) -> void:
+	if not is_fixed:
+		target_position_override = _mouse_cursor_to_collision_world_position()
+	if ray_cast.is_colliding() and power == 1.0:
+		if ray_cast.get_collider() is Ship:
+			var ship := ray_cast.get_collider() as Ship
+			ship.hit.emit(self)
+
+
+func _mouse_cursor_to_world_position() -> Vector3:
+	var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
+	return ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
+
+
+func _mouse_cursor_to_collision_world_position() -> Vector3:
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = camera.project_ray_origin(Mouse.get_cursor_position())
 	params.to = params.from + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
 	params.exclude = [exclude]
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	# Avoid targetting empty space just in front body by moving collision point a bit forward
-	target_position_override = to_global(to_local(result.position) + Vector3.FORWARD * 0.1) if result else Vector3()
+	return to_global(to_local(result.position) + Vector3.FORWARD * 0.1) if result else Vector3()
