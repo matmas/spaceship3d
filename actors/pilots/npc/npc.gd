@@ -1,26 +1,26 @@
 class_name NPC
 extends Pilot
 
-@onready var evasion_distance := (($Evasion/CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius
+@onready var proxymity_distance := (($ProxymitySensor/CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius
 
 var player: Player
-var evading_areas := {}
+var areas_in_proxymity := {}
 
 
-func _on_evasion_area_entered(area: Area3D) -> void:
-	evading_areas[area] = true
+func _on_proxymity_sensor_area_entered(area: Area3D) -> void:
+	areas_in_proxymity[area] = true
 
 
-func _on_evasion_area_exited(area: Area3D) -> void:
-	evading_areas.erase(area)
+func _on_proxymity_sensor_area_exited(area: Area3D) -> void:
+	areas_in_proxymity.erase(area)
 
 
-func _on_detection_area_entered(area: Area3D) -> void:
+func _on_detection_radar_area_entered(area: Area3D) -> void:
 	if area is Player:
 		player = area as Player
 
 
-func _on_tracking_area_exited(area: Area3D) -> void:
+func _on_tracking_radar_area_exited(area: Area3D) -> void:
 	if area == player:
 		player = null
 
@@ -72,8 +72,8 @@ func thrust_to_evade(target_position: Vector3, evade_distance: float):
 
 func _get_evasion() -> Vector3:
 	var evasion := Vector3()
-	for area in evading_areas:
-		evasion += thrust_to_evade((area as Area3D).global_position, evasion_distance)
+	for area in areas_in_proxymity:
+		evasion += thrust_to_evade((area as Area3D).global_position, proxymity_distance)
 	return evasion
 
 

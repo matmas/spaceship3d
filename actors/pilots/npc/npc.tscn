@@ -15,22 +15,22 @@ radius = 150.0
 [node name="NPC" instance=ExtResource("1_ts351")]
 script = ExtResource("2_q47sk")
 
-[node name="Evasion" type="Area3D" parent="." index="1"]
+[node name="ProxymitySensor" type="Area3D" parent="." index="1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Evasion" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProxymitySensor" index="0"]
 shape = SubResource("SphereShape3D_24h4b")
 
-[node name="Detection" type="Area3D" parent="." index="2"]
+[node name="DetectionRadar" type="Area3D" parent="." index="2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRadar" index="0"]
 shape = SubResource("SphereShape3D_7b5ki")
 
-[node name="Tracking" type="Area3D" parent="." index="3"]
+[node name="TrackingRadar" type="Area3D" parent="." index="3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tracking" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TrackingRadar" index="0"]
 shape = SubResource("SphereShape3D_tyy8r")
 
-[connection signal="area_entered" from="Evasion" to="." method="_on_evasion_area_entered"]
-[connection signal="area_exited" from="Evasion" to="." method="_on_evasion_area_exited"]
-[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
-[connection signal="area_exited" from="Tracking" to="." method="_on_tracking_area_exited"]
+[connection signal="area_entered" from="ProxymitySensor" to="." method="_on_proxymity_sensor_area_entered"]
+[connection signal="area_exited" from="ProxymitySensor" to="." method="_on_proxymity_sensor_area_exited"]
+[connection signal="area_entered" from="DetectionRadar" to="." method="_on_detection_radar_area_entered"]
+[connection signal="area_exited" from="TrackingRadar" to="." method="_on_tracking_radar_area_exited"]
