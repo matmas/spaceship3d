@@ -20,19 +20,21 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var linear_acceleration: Vector3 = ship.global_transform.basis * (Vector3(
+	var linear_acceleration_direction := Vector3(
 		Input.get_axis(&"move_left", &"move_right"),
 		Input.get_axis(&"move_down", &"move_up"),
 		Input.get_axis(&"move_forward", &"move_backward"),
-	).normalized() * ship.max_linear_acceleration())
-	ship.apply_central_force(linear_acceleration)
+	).normalized()
+	var linear_acceleration := linear_acceleration_direction * ship.max_linear_acceleration()
+	ship.apply_central_force(ship.global_transform.basis * linear_acceleration)
 
-	var angular_acceleration: Vector3 = Vector3(
+	var angular_acceleration_direction := Vector3(
 		-steering_direction.y,
 		-steering_direction.x,
 		Input.get_axis(&"roll_right", &"roll_left"),
 	)
-	ship.apply_torque(ship.global_transform.basis * (angular_acceleration * ship.max_angular_acceleration()))
+	var angular_acceleration := angular_acceleration_direction * ship.max_angular_acceleration()
+	ship.apply_torque(ship.global_transform.basis * angular_acceleration)
 
 
 func _get_steering_direction() -> Vector2:
