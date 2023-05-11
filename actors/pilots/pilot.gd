@@ -8,7 +8,3 @@ extends Area3D
 func _ready() -> void:
 	ship.pilot = self
 	await ship.ready
-
-
-func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
-	pass

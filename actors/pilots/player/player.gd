@@ -1,16 +1,12 @@
 class_name Player
 extends Pilot
 
-@onready var sparks := $Sparks as GPUParticles3D
-
 var steering_direction := Vector2()
 
 
 func _ready() -> void:
 	await super._ready()
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
-	ship.contact_monitor = true
-	ship.max_contacts_reported = 1
 	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(ship.get_node("Ship") as VisualInstance3D)
 	ship.weapon_set.add_loadout(Loadouts.twin_lasers)
 
@@ -49,12 +45,3 @@ func _get_steering_direction() -> Vector2:
 		direction = direction.normalized() * ((magnitude - DEADZONE) / (1 - DEADZONE))
 	return direction
 
-
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	sparks.emitting = state.get_contact_count() > 0
-	if state.get_contact_count() > 0:
-		var contact_point := ship.global_position + state.get_contact_local_position(0)
-		var contact_normal := state.get_contact_local_normal(0)
-		sparks.global_position = contact_point
-		if not Vector3.UP.cross(contact_point + contact_normal - sparks.global_position).is_zero_approx():
-			sparks.look_at(contact_point + contact_normal)
