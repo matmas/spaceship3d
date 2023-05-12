@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvw3qwof76mw"]
+[gd_scene load_steps=13 format=3 uid="uid://eo4ij0ykr05o"]
 
+[ext_resource type="PackedScene" uid="uid://du6o8ebarhjc4" path="res://actors/ships/weapon_set/weapons/weapon.tscn" id="1_mh6ji"]
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/laser/laser.gd" id="2_v7ywm"]
 [ext_resource type="Material" uid="uid://cv4pem7oek0qn" path="res://actors/ships/weapon_set/weapons/laser/laser.tres" id="3_mrj76"]
 [ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapon_set/weapons/laser/sparks/sparks.tscn" id="4_2w8fn"]
@@ -23,7 +24,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_mopdk"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_0e4aj"]
 resource_name = "laser-ff202ac4c029399bf2049df547c6d3fe_Triangle"
 _surfaces = [{
 "aabb": AABB(-0.1, -0.057735, -1, 0.2, 0.173215, 1.00001),
@@ -39,30 +40,30 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gdm7s")
 
-[node name="Laser" type="Node3D"]
+[node name="Laser" instance=ExtResource("1_mh6ji")]
 script = ExtResource("2_v7ywm")
 
-[node name="RayCast" type="RayCast3D" parent="."]
+[node name="RayCast" type="RayCast3D" parent="." index="0"]
 target_position = Vector3(0, 0, -1000)
 
-[node name="Beam" type="MeshInstance3D" parent="."]
+[node name="Beam" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 cast_shadow = 0
-mesh = SubResource("ArrayMesh_mopdk")
+mesh = SubResource("ArrayMesh_0e4aj")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_mrj76")
 
-[node name="Sparks" parent="." instance=ExtResource("4_2w8fn")]
+[node name="Sparks" parent="." index="2" instance=ExtResource("4_2w8fn")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
 
-[node name="Light" parent="Sparks" instance=ExtResource("5_o8esj")]
+[node name="Light" parent="Sparks" index="0" instance=ExtResource("5_o8esj")]
 
-[node name="Smoke" parent="." instance=ExtResource("6_i7anl")]
+[node name="Smoke" parent="." index="3" instance=ExtResource("6_i7anl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -20)
 
-[node name="Painter" parent="." instance=ExtResource("7_ytueb")]
+[node name="Painter" parent="." index="4" instance=ExtResource("7_ytueb")]
 
-[node name="Firing" type="AudioStreamPlayer3D" parent="."]
+[node name="Firing" type="AudioStreamPlayer3D" parent="." index="5"]
 stream = ExtResource("8_eos7u")
 volume_db = -3.0
 max_db = 0.0
@@ -70,7 +71,7 @@ autoplay = true
 panning_strength = 0.25
 bus = &"Weapons"
 
-[node name="Hitting" type="AudioStreamPlayer3D" parent="."]
+[node name="Hitting" type="AudioStreamPlayer3D" parent="." index="6"]
 stream = ExtResource("9_01rag")
 volume_db = -3.0
 max_db = 0.0

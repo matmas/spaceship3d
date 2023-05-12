@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://du6o8ebarhjc4"]
+
+[ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/weapon.gd" id="1_ceomy"]
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_ceomy")
