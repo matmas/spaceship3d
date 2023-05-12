@@ -3,9 +3,9 @@ extends Node3D
 @onready var camera := get_viewport().get_camera_3d()
 @onready var ship := owner as Ship
 @onready var bubble_material := $Bubble.get_surface_override_material(0) as ShaderMaterial
+@onready var object_to_index := ObjectToIndex.new(NUM_LAST_IMPACTS)
 
 const NUM_LAST_IMPACTS = 8
-var last_impact_weapons: Array[Weapon] = []
 var last_impact_positions := PackedVector3Array()
 var last_impact_alphas := PackedFloat32Array()
 
@@ -34,16 +34,6 @@ func _process_hit(weapon: Weapon) -> void:
 	params.collision_mask = 0b10
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	var local_position := to_local(result.position) if result else Vector3()
-	var index := _weapon_to_index(weapon)
+	var index := object_to_index.get_index(weapon)
 	last_impact_positions[index] = local_position
 	last_impact_alphas[index] = 1.0
-
-
-func _weapon_to_index(weapon: Weapon) -> int:
-	var index := last_impact_weapons.find(weapon)
-	if index == -1:
-		last_impact_weapons.push_back(weapon)
-		while last_impact_weapons.size() > NUM_LAST_IMPACTS:
-			last_impact_weapons.pop_front()
-		return last_impact_weapons.size() - 1
-	return index

@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://du6o8ebarhjc4"]
+[gd_scene load_steps=6 format=3 uid="uid://du6o8ebarhjc4"]
 
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/weapon.gd" id="1_ceomy"]
-[ext_resource type="Texture2D" uid="uid://bewl13bwbqrot" path="res://actors/ships/weapon_set/weapons/crosshairs.png" id="2_p81h2"]
+[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://actors/ships/weapon_set/weapons/empty64x64.png" id="2_xv1v5"]
+[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aim.gdshader" id="2_xy8b6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2pl7"]
+shader = ExtResource("2_xy8b6")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/size_power = 2.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f21wk"]
+shader = ExtResource("2_xy8b6")
+shader_parameter/color = Color(0, 0, 0, 0.5)
+shader_parameter/size_power = 2.7
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_ceomy")
@@ -11,6 +22,10 @@ enabled = false
 target_position = Vector3(0, 0, -1000)
 
 [node name="Aim" type="Sprite2D" parent="."]
-texture = ExtResource("2_p81h2")
-region_enabled = true
-region_rect = Rect2(349, 29, 6, 6)
+material = SubResource("ShaderMaterial_l2pl7")
+texture = ExtResource("2_xv1v5")
+
+[node name="Shadow" type="Sprite2D" parent="Aim"]
+z_index = -1
+material = SubResource("ShaderMaterial_f21wk")
+texture = ExtResource("2_xv1v5")

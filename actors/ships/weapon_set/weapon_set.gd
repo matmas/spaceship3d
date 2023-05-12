@@ -14,10 +14,10 @@ func set_all_fixed(is_fixed: bool) -> void:
 			(weapon as Weapon).is_fixed = is_fixed
 
 
-func set_all_aim_visibility(is_visible_: bool) -> void:
+func set_all_aiming_visibility(is_aiming_visible: bool) -> void:
 	for place in get_children():
 		for weapon in place.get_children():
-			(weapon as Weapon).aim.visible = is_visible_
+			(weapon as Weapon).aim.visible = is_aiming_visible
 
 
 func add_loadout(loadout: Dictionary):

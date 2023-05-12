@@ -1,6 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8c6b77y6km0y"]
+[gd_scene load_steps=2 format=3 uid="uid://dnpsybcleworo"]
 
-[ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/projectile/projectile.gd" id="1_rfa6t"]
+[ext_resource type="PackedScene" uid="uid://du6o8ebarhjc4" path="res://actors/ships/weapon_set/weapons/weapon.tscn" id="1_fuky8"]
 
-[node name="Projectile" type="Node3D"]
-script = ExtResource("1_rfa6t")
+[node name="Projectile" instance=ExtResource("1_fuky8")]

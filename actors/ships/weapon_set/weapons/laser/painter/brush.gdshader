@@ -17,8 +17,8 @@ float line_segment(in vec2 p, in vec2 a, in vec2 b) {
 }
 
 void fragment() {
-	vec2 st = FRAGCOORD.xy * SCREEN_PIXEL_SIZE;
-	float line = line_segment(st, line_start, line_end);
+	vec2 p = FRAGCOORD.xy * SCREEN_PIXEL_SIZE;
+	float line = line_segment(p, line_start, line_end);
 	line = smoothstep(brush_size * (1.0 - fuzziness), brush_size, line);
 	float alpha = (1.0 - line);
 	vec3 white = vec3(1.0);
