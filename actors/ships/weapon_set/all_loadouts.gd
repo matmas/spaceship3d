@@ -6,7 +6,7 @@ var twin_lasers := {
 	^"Right": Weapons.laser,
 }
 
-var laser_and_projectile := {
-	^"Left": Weapons.laser,
+var projectiles := {
+	^"Left": Weapons.projectile,
 	^"Right": Weapons.projectile,
 }
