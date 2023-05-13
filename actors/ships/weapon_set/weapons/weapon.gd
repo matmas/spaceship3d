@@ -30,7 +30,8 @@ func _process(delta: float) -> void:
 		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
 		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 	if aim.visible:
-		aim.position = camera.unproject_position(ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position))
+		aim.position = camera.unproject_position(_collision_point_or_target_position())
+		(aim.material as ShaderMaterial).set_shader_parameter(&"alpha", 1.0 if ray_cast.is_colliding() else 0.5)
 
 
 func _physics_process(_delta: float) -> void:
@@ -51,3 +52,7 @@ func _mouse_cursor_to_collision_world_position() -> Vector3:
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	# Avoid targetting empty space just in front body by moving collision point a bit forward
 	return to_global(to_local(result.position) + Vector3.FORWARD * 0.2) if result else Vector3()
+
+
+func _collision_point_or_target_position() -> Vector3:
+	return ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position)

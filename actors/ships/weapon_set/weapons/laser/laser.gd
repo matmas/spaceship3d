@@ -16,7 +16,6 @@ var power := 0.0
 
 func _ready() -> void:
 	super._ready()
-	ray_cast.enabled = true
 	firing.volume_db = -INF
 	hitting.volume_db = -INF
 
@@ -36,7 +35,7 @@ func _process(delta: float) -> void:
 	hitting.volume_db = hitting_volume if ray_cast.is_colliding() and power > 0.0 else -INF
 	hitting.global_position = ray_cast.get_collision_point()
 
-	var beam_endpoint := ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position)
+	var beam_endpoint := _collision_point_or_target_position()
 	for p in [sparks, smoke]:
 		var particles := p as GPUParticles3D
 		particles.emitting = ray_cast.is_colliding() and power == 1.0 and (particles == smoke and (ray_cast.get_collider() as Node).name.begins_with("rock") or particles != smoke)
@@ -45,7 +44,7 @@ func _process(delta: float) -> void:
 			if not Vector3.UP.cross(beam_endpoint + ray_cast.get_collision_normal() - particles.global_position).is_zero_approx():
 				particles.look_at(beam_endpoint + ray_cast.get_collision_normal())
 
-	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)
+	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)  # rotate bottom towards camera
 	beam.scale.z = global_position.distance_to(beam_endpoint)
 
 	if ray_cast.is_colliding() and power == 1.0:

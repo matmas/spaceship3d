@@ -5,20 +5,22 @@
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aim.gdshader" id="2_xy8b6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2pl7"]
+resource_local_to_scene = true
 shader = ExtResource("2_xy8b6")
 shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
 shader_parameter/size_power = 2.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f21wk"]
 shader = ExtResource("2_xy8b6")
 shader_parameter/color = Color(0, 0, 0, 0.5)
+shader_parameter/alpha = 1.0
 shader_parameter/size_power = 2.7
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_ceomy")
 
 [node name="RayCast" type="RayCast3D" parent="."]
-enabled = false
 target_position = Vector3(0, 0, -1000)
 
 [node name="Aim" type="Sprite2D" parent="."]
