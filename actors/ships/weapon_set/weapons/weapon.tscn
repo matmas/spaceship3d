@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://du6o8ebarhjc4"]
+[gd_scene load_steps=3 format=3 uid="uid://du6o8ebarhjc4"]
 
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/weapon.gd" id="1_ceomy"]
+[ext_resource type="Texture2D" uid="uid://bewl13bwbqrot" path="res://actors/ships/weapon_set/weapons/crosshairs.png" id="2_p81h2"]
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_ceomy")
+
+[node name="RayCast" type="RayCast3D" parent="."]
+enabled = false
+target_position = Vector3(0, 0, -1000)
+
+[node name="Aim" type="Sprite2D" parent="."]
+texture = ExtResource("2_p81h2")
+region_enabled = true
+region_rect = Rect2(349, 29, 6, 6)

@@ -1,6 +1,5 @@
 extends Weapon
 
-@onready var ray_cast := $RayCast as RayCast3D
 @onready var beam := $Beam as MeshInstance3D
 @onready var beam_material := beam.get_active_material(0) as ShaderMaterial
 @onready var beam_scale := beam.scale
@@ -17,7 +16,7 @@ var power := 0.0
 
 func _ready() -> void:
 	super._ready()
-	ray_cast.add_exception(owner.owner)
+	ray_cast.enabled = true
 	firing.volume_db = -INF
 	hitting.volume_db = -INF
 
@@ -28,14 +27,13 @@ func _process(delta: float) -> void:
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)
-	ray_cast.enabled = power > 0.0
 	beam.visible = power > 0.0
 	beam.scale.x = power * beam_scale.x
 	beam.scale.y = power * beam_scale.y
 	beam_material.set_shader_parameter(&"alpha", power)
 
 	firing.volume_db = firing_volume + linear_to_db(lerpf(db_to_linear(firing.volume_db), power, 1 - pow(0.1, delta * 5)))
-	hitting.volume_db = hitting_volume if ray_cast.is_colliding() else -INF
+	hitting.volume_db = hitting_volume if ray_cast.is_colliding() and power > 0.0 else -INF
 	hitting.global_position = ray_cast.get_collision_point()
 
 	var beam_endpoint := ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position)

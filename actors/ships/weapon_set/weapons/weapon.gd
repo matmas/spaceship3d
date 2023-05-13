@@ -1,6 +1,8 @@
 class_name Weapon
 extends Node3D
 
+@onready var ray_cast := $RayCast as RayCast3D
+@onready var aim := $Aim as Sprite2D
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
 
 var targetting_speed := 1.0
@@ -17,6 +19,8 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	set_process(visible)
 	set_physics_process(visible)
+	ray_cast.add_exception(owner.owner)
+	ray_cast.enabled = aim.visible
 
 
 func _process(delta: float) -> void:
@@ -24,6 +28,7 @@ func _process(delta: float) -> void:
 		var new_target_position := target_position_override if target_position_override else _mouse_cursor_to_world_position()
 		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
 		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
+	aim.position = camera.unproject_position(ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position))
 
 
 func _physics_process(_delta: float) -> void:

@@ -10,6 +10,7 @@ func _ready() -> void:
 	)
 	ship.weapon_set.add_loadout(Loadouts.twin_lasers)
 	ship.weapon_set.set_all_fixed(true)
+	ship.weapon_set.set_all_aim_visibility(false)
 
 
 func _physics_process(_delta: float) -> void:
