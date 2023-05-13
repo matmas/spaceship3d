@@ -5,7 +5,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3xg4x"]
 height = 1.0
 
-[node name="Bullet" type="Node3D"]
+[node name="Bullet" type="RayCast3D"]
 script = ExtResource("1_54ldu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
