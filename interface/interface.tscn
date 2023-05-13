@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://nskhakqnhbo7"]
+[gd_scene load_steps=5 format=3 uid="uid://nskhakqnhbo7"]
 
 [ext_resource type="PackedScene" uid="uid://d2libmlwj0qog" path="res://interface/speech/speech.tscn" id="1_w4qfq"]
 [ext_resource type="PackedScene" uid="uid://dp7bghrfql6yi" path="res://interface/crosshairs/crosshairs.tscn" id="2_jgicl"]
 [ext_resource type="PackedScene" uid="uid://bod6h3axmg0sp" path="res://interface/selection/selection.tscn" id="3_fxtho"]
+[ext_resource type="PackedScene" uid="uid://cq8wb71fjswo0" path="res://interface/metrics/metrics.tscn" id="3_u6884"]
 
 [node name="Interface" type="Node"]
 
 [node name="Speech" parent="." instance=ExtResource("1_w4qfq")]
 
 [node name="Crosshairs" parent="." instance=ExtResource("2_jgicl")]
+
+[node name="Metrics" parent="." instance=ExtResource("3_u6884")]
 
 [node name="Selection" parent="." instance=ExtResource("3_fxtho")]

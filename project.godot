@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-FpsMonitor="*res://singletons/fps_monitor.gd"
 Signals="*res://singletons/signals.gd"
 RandomSeed="*res://singletons/random_seed.gd"
 Mouse="*res://singletons/mouse.gd"
