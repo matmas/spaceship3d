@@ -31,3 +31,5 @@ func _process(_delta: float) -> void:
 		"num_physics_col": Performance.get_monitor(Performance.PHYSICS_3D_COLLISION_PAIRS),
 		"num_physics_island": Performance.get_monitor(Performance.PHYSICS_3D_ISLAND_COUNT),
 	})
+	if Input.is_action_just_pressed("ui_home"):
+		Node.print_orphan_nodes()

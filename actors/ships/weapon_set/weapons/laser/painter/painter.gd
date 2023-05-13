@@ -4,12 +4,15 @@ class_name Painter extends Node
 @onready var representation := $UVScope/Representation as MeshInstance3D
 @onready var brush := $Brush as TextureRect
 @onready var canvas_scene := preload("canvas.tscn") as PackedScene
-@onready var CANVAS_SCENE_NAME := canvas_scene.instantiate().name
+var canvas_scene_name: String
 
 var _last_uv: Vector2
 
 
 func _ready() -> void:
+	var canvas := canvas_scene.instantiate()
+	canvas_scene_name = canvas.name
+	canvas.free()
 	# avoid stutter as first get_image call is a bit slower
 	uv_scope.get_texture().get_image()
 
@@ -60,7 +63,7 @@ func _uv_from_uv_color(color: Color) -> Vector2:
 
 
 func _get_or_create_canvas(mesh_instance: MeshInstance3D) -> SubViewport:
-	var canvas := mesh_instance.find_child(CANVAS_SCENE_NAME, false, false) as SubViewport
+	var canvas := mesh_instance.find_child(canvas_scene_name, false, false) as SubViewport
 	if canvas == null:
 		canvas = canvas_scene.instantiate() as SubViewport
 		mesh_instance.add_child(canvas)
