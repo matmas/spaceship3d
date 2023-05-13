@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnpsybcleworo"]
+[gd_scene load_steps=8 format=3 uid="uid://dnpsybcleworo"]
 
 [ext_resource type="PackedScene" uid="uid://du6o8ebarhjc4" path="res://actors/ships/weapon_set/weapons/weapon.tscn" id="1_fuky8"]
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/projectile/projectile.gd" id="2_i88fm"]
@@ -11,8 +11,26 @@ shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/size_power = 2.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0v7t4"]
+shading_mode = 0
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_jjhit"]
+material = SubResource("StandardMaterial3D_0v7t4")
+
+[sub_resource type="MultiMesh" id="MultiMesh_lqrdi"]
+transform_format = 1
+instance_count = 1
+mesh = SubResource("QuadMesh_jjhit")
+buffer = PackedFloat32Array(0, 0, 317, 49, 0, 0, 0, 0, 317, 24, 0, 0)
+
 [node name="Projectile" instance=ExtResource("1_fuky8")]
 script = ExtResource("2_i88fm")
 
 [node name="Aim" parent="." index="1"]
 material = SubResource("ShaderMaterial_7hjgu")
+
+[node name="BulletMultimesh" type="MultiMeshInstance3D" parent="." index="2"]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_lqrdi")
