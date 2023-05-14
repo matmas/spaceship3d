@@ -3,7 +3,7 @@ extends Weapon
 @onready var bullet_scene := preload("bullet.tscn")
 
 var cooldown := 1.0
-var bullet_velocity := 10.0
+var bullet_velocity := 1000.0
 
 
 func _process(_delta: float) -> void:
