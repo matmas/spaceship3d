@@ -3,7 +3,7 @@ extends Weapon
 @onready var bullet_scene := preload("bullet.tscn")
 
 var cooldown := 0.0
-var bullet_velocity := 10000.0
+var bullet_velocity := 10.0
 var last_bullet_fired_at := -INF
 
 
