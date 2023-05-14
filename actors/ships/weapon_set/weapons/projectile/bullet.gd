@@ -5,7 +5,13 @@ var linear_velocity := Vector3()
 
 
 func _process(delta: float) -> void:
-	if is_colliding():
+	var params := PhysicsRayQueryParameters3D.new()
+	params.from = global_position
+	params.to = global_position + linear_velocity * delta
+#	params.exclude = exclude
+	var result := get_world_3d().direct_space_state.intersect_ray(params)
+	if result:
+		global_position = result.position
 		queue_free()
-	global_position += linear_velocity * delta
-	target_position = to_local(global_position + linear_velocity * (get_physics_process_delta_time() + get_physics_process_delta_time() * (1 - Engine.get_physics_interpolation_fraction())))
+	else:
+		global_position += linear_velocity * delta
