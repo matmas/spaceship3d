@@ -16,8 +16,8 @@ func _ready() -> void:
 	Signals.talk.emit("p335", "This is getting weird...")
 
 
-func _physics_process(_delta: float) -> void:
-	if player:
-		point_at(player.ship.global_position)
-		match_roll_with(player.ship)
-		apply_thrust(thrust_to_move_to(player.ship.global_transform * Vector3(0, 0, -30)))
+#func _physics_process(_delta: float) -> void:
+#	if player:
+#		point_at(player.ship.global_position)
+#		match_roll_with(player.ship)
+#		apply_thrust(thrust_to_move_to(player.ship.global_transform * Vector3(0, 0, -30)))

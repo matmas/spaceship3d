@@ -20,7 +20,9 @@ func _process(delta: float) -> void:
 		global_position = result.position
 		if result.collider is Ship:
 			var ship := result.collider as Ship
-			ship.hit.emit(weapon)
+			var impact_direction := initial_global_position.direction_to(result.position)
+			var impact_position: Vector3 = result.position
+			ship.hit.emit(weapon, impact_direction, impact_position)
 		queue_free()
 	else:
 		global_position += linear_velocity * delta

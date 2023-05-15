@@ -21,7 +21,7 @@ uniform bool cull_front = false;
 uniform bool cull_back = false;
 uniform float impact_focus: hint_range(1.0, 200.0) = 8;
 const int NUM_IMPACTS = 8;
-uniform vec3 impact_positions[NUM_IMPACTS];
+uniform vec3 impact_directions[NUM_IMPACTS];
 uniform float impact_alphas[NUM_IMPACTS];
 varying float camera_distance;
 varying mat4 modelview_matrix;
@@ -54,8 +54,8 @@ void fragment() {
 	ALBEDO = main_tex + distortion + fresnel + intersection_color;
 	float total_alpha = alpha;
 	for (int i = 0; i < NUM_IMPACTS; i++) {
-		if (length(impact_positions[i]) > 0.0) {
-			total_alpha += impact_alphas[i] * pow(max(dot((float(FRONT_FACING) * 2.0 - 1.0) * NORMAL, (modelview_matrix * vec4(normalize(impact_positions[i]), 0.0)).xyz), 0.0), impact_focus);
+		if (length(impact_directions[i]) > 0.0) {
+			total_alpha += impact_alphas[i] * pow(max(dot((float(FRONT_FACING) * 2.0 - 1.0) * NORMAL, (modelview_matrix * vec4(impact_directions[i], 0.0)).xyz), 0.0), impact_focus);
 		}
 	}
 	ALPHA = total_alpha;

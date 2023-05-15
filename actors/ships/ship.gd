@@ -3,7 +3,7 @@ extends RigidBody3D
 
 @onready var weapon_set := $Ship/WeaponSet as WeaponSet
 
-signal hit(weapon)  # should emit from _physics_process only
+signal hit(weapon, impact_direction, impact_point)  # should emit from _physics_process if physics/3d/run_on_separate_thread is enabled
 
 var pilot: Pilot
 

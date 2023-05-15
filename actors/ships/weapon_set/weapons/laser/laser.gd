@@ -56,4 +56,6 @@ func _physics_process(delta: float) -> void:
 	if ray_cast.is_colliding() and power == 1.0:
 		if ray_cast.get_collider() is Ship:
 			var ship := ray_cast.get_collider() as Ship
-			ship.hit.emit(self)
+			var impact_direction := global_position.direction_to(ray_cast.get_collision_point())
+			var impact_position := ray_cast.get_collision_point()
+			ship.hit.emit(self, impact_direction, impact_position)

@@ -1,14 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://eo4ij0ykr05o"]
+[gd_scene load_steps=15 format=3 uid="uid://eo4ij0ykr05o"]
 
 [ext_resource type="PackedScene" uid="uid://du6o8ebarhjc4" path="res://actors/ships/weapon_set/weapons/weapon.tscn" id="1_mh6ji"]
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/laser/laser.gd" id="2_v7ywm"]
 [ext_resource type="Material" uid="uid://cv4pem7oek0qn" path="res://actors/ships/weapon_set/weapons/laser/laser.tres" id="3_mrj76"]
+[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aim.gdshader" id="3_t6mbh"]
 [ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapon_set/weapons/laser/sparks/sparks.tscn" id="4_2w8fn"]
 [ext_resource type="PackedScene" uid="uid://jmajsdm0er36" path="res://actors/ships/weapon_set/weapons/laser/sparks/light.tscn" id="5_o8esj"]
 [ext_resource type="PackedScene" uid="uid://dx8rbcyvmkucu" path="res://actors/ships/weapon_set/weapons/laser/smoke/smoke.tscn" id="6_i7anl"]
 [ext_resource type="PackedScene" uid="uid://deynnxvf26d02" path="res://actors/ships/weapon_set/weapons/laser/painter/painter.tscn" id="7_ytueb"]
 [ext_resource type="AudioStream" uid="uid://jrggvoclfm6o" path="res://actors/ships/weapon_set/weapons/laser/laser_firing_loop.wav" id="8_eos7u"]
 [ext_resource type="AudioStream" uid="uid://d4e7wa7b7xrdm" path="res://actors/ships/weapon_set/weapons/laser/laser_hitting_loop.wav" id="9_01rag"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0ujr"]
+resource_local_to_scene = true
+shader = ExtResource("3_t6mbh")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
+shader_parameter/size_power = 2.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33f11"]
 
@@ -42,6 +50,9 @@ shadow_mesh = SubResource("ArrayMesh_gdm7s")
 
 [node name="Laser" instance=ExtResource("1_mh6ji")]
 script = ExtResource("2_v7ywm")
+
+[node name="Aim" parent="." index="1"]
+material = SubResource("ShaderMaterial_r0ujr")
 
 [node name="Beam" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
