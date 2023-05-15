@@ -3,15 +3,15 @@ extends Node3D
 
 @onready var camera := get_viewport().get_camera_3d()
 @onready var initial_global_position := global_position
-@onready var max_travel_distance := camera.far
+@onready var max_travel_distance := minf(camera.far, 1000.0)
 
 var linear_velocity := Vector3()
 var excluded_rids: Array[RID] = []
 var weapon: Weapon
+var params := PhysicsRayQueryParameters3D.new()
 
 
 func _process(delta: float) -> void:
-	var params := PhysicsRayQueryParameters3D.new()
 	params.from = global_position
 	params.to = global_position + linear_velocity * delta
 	params.exclude = excluded_rids
@@ -19,12 +19,12 @@ func _process(delta: float) -> void:
 	if result:
 		global_position = result.position
 		if result.collider is Ship:
-			var ship := result.collider as Ship
+			var ship: Ship = result.collider
 			var impact_direction := initial_global_position.direction_to(result.position)
 			var impact_position: Vector3 = result.position
 			ship.hit.emit(weapon, impact_direction, impact_position)
 		queue_free()
 	else:
-		global_position += linear_velocity * delta
+		global_position = params.to
 		if initial_global_position.distance_squared_to(global_position) > pow(max_travel_distance, 2):
 			queue_free()
