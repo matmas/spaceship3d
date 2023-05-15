@@ -7,6 +7,7 @@ extends Node3D
 
 var linear_velocity := Vector3()
 var excluded_rids: Array[RID] = []
+var weapon: Weapon
 
 
 func _process(delta: float) -> void:
@@ -17,8 +18,11 @@ func _process(delta: float) -> void:
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	if result:
 		global_position = result.position
+		if result.collider is Ship:
+			var ship := result.collider as Ship
+			ship.hit.emit(weapon)
 		queue_free()
 	else:
 		global_position += linear_velocity * delta
-	if initial_global_position.distance_squared_to(global_position) > pow(max_travel_distance, 2):
-		queue_free()
+		if initial_global_position.distance_squared_to(global_position) > pow(max_travel_distance, 2):
+			queue_free()
