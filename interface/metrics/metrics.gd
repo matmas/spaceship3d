@@ -2,6 +2,7 @@ extends Label
 
 
 func _ready() -> void:
+	z_index = -1
 	if OS.get_name() == "Android":
 		label_settings.font_size = 30
 		position.x = -50  # some phones have rounded corners
