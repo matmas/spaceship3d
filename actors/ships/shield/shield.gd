@@ -23,7 +23,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for i in range(NUM_LAST_IMPACTS):
 		last_impact_alphas[i] = move_toward(last_impact_alphas[i], 0, delta)
-	bubble_material.set_shader_parameter(&"impact_directions", last_impact_directions)
 	bubble_material.set_shader_parameter(&"impact_alphas", last_impact_alphas)
 
 
@@ -36,7 +35,9 @@ func _process_hit(weapon: Node3D, impact_direction: Vector3, impact_point: Vecto
 	params.to = impact_point
 	params.collision_mask = 0b10
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
-	var local_position := to_local(result.position) if result else Vector3()
-	var index := object_to_index.get_index(weapon)
-	last_impact_directions[index] = local_position.normalized()
-	last_impact_alphas[index] = 1.0
+	if result:
+		var shield_impact_point: Vector3 = result.position
+		var index := object_to_index.get_index(weapon)
+		last_impact_directions[index] = to_local(shield_impact_point).normalized()
+		bubble_material.set_shader_parameter(&"impact_directions", last_impact_directions)
+		last_impact_alphas[index] = 1.0
