@@ -1,9 +1,10 @@
 extends Weapon
 
 @onready var bullet_scene := preload("bullet.tscn")
+@onready var ship := owner.owner as Ship
 
-var cooldown := 0.0
-var bullet_velocity := 10.0
+var cooldown := 100.0
+var bullet_velocity := 100.0
 var last_bullet_fired_at := -INF
 
 
@@ -12,7 +13,9 @@ func _process(_delta: float) -> void:
 		var now := Time.get_ticks_msec()
 		if now - last_bullet_fired_at > cooldown:
 			last_bullet_fired_at = now
+
 			var bullet := bullet_scene.instantiate() as Bullet
 			bullet.top_level = true
-			bullet.linear_velocity = -global_transform.basis.z * bullet_velocity
+			bullet.linear_velocity = ship.linear_velocity + -global_transform.basis.z * bullet_velocity
+			bullet.excluded_rids = [ship.get_rid()]
 			add_child(bullet)

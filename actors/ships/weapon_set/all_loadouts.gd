@@ -10,7 +10,3 @@ var projectiles := {
 	^"Left": Weapons.projectile,
 	^"Right": Weapons.projectile,
 }
-
-var one_projectile := {
-	^"Left": Weapons.projectile,
-}
