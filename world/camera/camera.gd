@@ -55,6 +55,7 @@ func _calculate_target_camera_position() -> Vector3:
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = target.global_position
 	params.to = _default_camera_position()
+	params.collision_mask = 0b1
 	params.exclude = [target.owner]
 	var result := space_state.intersect_ray(params)
 	if result:

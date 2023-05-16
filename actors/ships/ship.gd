@@ -1,9 +1,8 @@
 class_name Ship
-extends RigidBody3D
+extends Hittable
 
 @onready var weapon_set := $Ship/WeaponSet as WeaponSet
-
-signal hit(weapon, impact_direction, impact_point)  # should emit from _physics_process if physics/3d/run_on_separate_thread is enabled
+@onready var shield := $Ship/Shield as Shield
 
 var pilot: Pilot
 

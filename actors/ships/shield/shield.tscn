@@ -3,24 +3,23 @@
 [ext_resource type="Script" path="res://actors/ships/shield/shield.gd" id="1_3ylyv"]
 [ext_resource type="Material" uid="uid://bc4ueioafx7k7" path="res://actors/ships/shield/shield.tres" id="1_js5mi"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_gprwi"]
+radius = 5.0
+
 [sub_resource type="SphereMesh" id="SphereMesh_p56h2"]
 radius = 5.0
 height = 10.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_gprwi"]
-radius = 5.0
-
-[node name="Shield" type="Node3D"]
+[node name="Shield" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 0
+freeze = true
 script = ExtResource("1_3ylyv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_gprwi")
 
 [node name="Bubble" type="MeshInstance3D" parent="."]
 cast_shadow = 0
 mesh = SubResource("SphereMesh_p56h2")
 surface_material_override/0 = ExtResource("1_js5mi")
-
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 2
-monitoring = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_gprwi")

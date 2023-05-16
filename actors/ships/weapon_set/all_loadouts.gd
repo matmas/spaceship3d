@@ -10,3 +10,8 @@ var projectiles := {
 	^"Left": Weapons.projectile,
 	^"Right": Weapons.projectile,
 }
+
+var combined := {
+	^"Left": Weapons.laser,
+	^"Right": Weapons.projectile,
+}

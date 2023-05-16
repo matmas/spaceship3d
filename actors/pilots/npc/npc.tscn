@@ -16,16 +16,19 @@ radius = 150.0
 script = ExtResource("2_q47sk")
 
 [node name="ProxymitySensor" type="Area3D" parent="." index="1"]
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxymitySensor" index="0"]
 shape = SubResource("SphereShape3D_24h4b")
 
 [node name="DetectionRadar" type="Area3D" parent="." index="2"]
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionRadar" index="0"]
 shape = SubResource("SphereShape3D_7b5ki")
 
 [node name="TrackingRadar" type="Area3D" parent="." index="3"]
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrackingRadar" index="0"]
 shape = SubResource("SphereShape3D_tyy8r")

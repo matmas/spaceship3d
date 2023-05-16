@@ -47,15 +47,13 @@ func _process(delta: float) -> void:
 	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)  # rotate bottom towards camera
 	beam.scale.z = global_position.distance_to(beam_endpoint)
 
-	if ray_cast.is_colliding() and power == 1.0:
+	if ray_cast.is_colliding() and power == 1.0 and not ray_cast.get_collider() is Shield:
 		painter.paint_line_on(ray_cast.get_collider() as CollisionObject3D, global_transform)
 
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	if ray_cast.is_colliding() and power == 1.0:
-		if ray_cast.get_collider() is Ship:
-			var ship := ray_cast.get_collider() as Ship
-			var impact_direction := global_position.direction_to(ray_cast.get_collision_point())
-			var impact_position := ray_cast.get_collision_point()
-			ship.hit.emit(self, impact_direction, impact_position)
+		if ray_cast.get_collider() is Hittable:
+			var hittable := ray_cast.get_collider() as Hittable
+			hittable.hit.emit(self, ray_cast.get_collision_point())

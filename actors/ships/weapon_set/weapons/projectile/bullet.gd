@@ -9,20 +9,20 @@ var linear_velocity := Vector3()
 var excluded_rids: Array[RID] = []
 var weapon: Weapon
 var params := PhysicsRayQueryParameters3D.new()
+var collision_mask: int
 
 
 func _process(delta: float) -> void:
 	params.from = global_position
 	params.to = global_position + linear_velocity * delta
+	params.collision_mask = collision_mask
 	params.exclude = excluded_rids
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
 	if result:
 		global_position = result.position
-		if result.collider is Ship:
-			var ship: Ship = result.collider
-			var impact_direction := initial_global_position.direction_to(result.position)
-			var impact_position: Vector3 = result.position
-			ship.hit.emit(weapon, impact_direction, impact_position)
+		if result.collider is Hittable:
+			var hittable: Hittable = result.collider
+			hittable.hit.emit(weapon, result.position)
 		queue_free()
 	else:
 		global_position = params.to
