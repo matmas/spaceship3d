@@ -9,7 +9,6 @@ seamless = true
 noise = SubResource("FastNoiseLite_i27g3")
 
 [resource]
-resource_local_to_scene = true
 render_priority = -1
 shader = ExtResource("1_agx70")
 shader_parameter/distortion = 0.01

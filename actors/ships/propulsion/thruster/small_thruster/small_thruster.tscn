@@ -12,7 +12,6 @@ seamless = true
 noise = SubResource("FastNoiseLite_1otdm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mq8hj"]
-resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_q2iob")
 shader_parameter/color = Color(0.717647, 0.847059, 0.866667, 1)
@@ -20,7 +19,7 @@ shader_parameter/noise_speed = 1.0
 shader_parameter/noise_stretch = 2.0
 shader_parameter/gradient_shift = 1.0
 shader_parameter/gradient_multiplier = 6.0
-shader_parameter/alpha_multiplier = 0.3
+shader_parameter/alpha = 0.3
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_e3ffa")
 
 [node name="SmallThruster" instance=ExtResource("1_iw0kg")]

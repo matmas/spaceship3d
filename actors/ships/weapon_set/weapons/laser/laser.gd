@@ -1,7 +1,6 @@
 extends Weapon
 
 @onready var beam := $Beam as MeshInstance3D
-@onready var beam_material := beam.get_active_material(0) as ShaderMaterial
 @onready var beam_scale := beam.scale
 @onready var sparks := $Sparks as GPUParticles3D
 @onready var smoke := $Smoke as GPUParticles3D
@@ -29,7 +28,7 @@ func _process(delta: float) -> void:
 	beam.visible = power > 0.0
 	beam.scale.x = power * beam_scale.x
 	beam.scale.y = power * beam_scale.y
-	beam_material.set_shader_parameter(&"alpha", power)
+	beam.set_instance_shader_parameter(&"instance_alpha", power)
 
 	firing.volume_db = firing_volume + linear_to_db(lerpf(db_to_linear(firing.volume_db), power, 1 - pow(0.1, delta * 5)))
 	hitting.volume_db = hitting_volume if ray_cast.is_colliding() and power > 0.0 else -INF

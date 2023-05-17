@@ -14,6 +14,5 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	var distortion_material := distortion.get_active_material(0) as ShaderMaterial
-	distortion_material.set_shader_parameter(&"distortion", power * 0.005)
+	distortion.set_instance_shader_parameter(&"instance_distortion", power * 0.5)
 	light.light_energy = power * light_energy * ((noise.get_noise_1d(Time.get_ticks_msec()) + 1) * 0.25 + 0.5)

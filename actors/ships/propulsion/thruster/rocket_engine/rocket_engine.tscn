@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ixx8udspmitr"]
+[gd_scene load_steps=9 format=3 uid="uid://ixx8udspmitr"]
 
 [ext_resource type="PackedScene" uid="uid://whm76p5r0j8e" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.blend" id="1_gl80k"]
 [ext_resource type="Script" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine.gd" id="2_bor6n"]
 [ext_resource type="Shader" path="res://actors/ships/propulsion/thruster/flame.gdshader" id="3_mbrqw"]
 [ext_resource type="PackedScene" uid="uid://dk4e547t8acam" path="res://actors/ships/propulsion/thruster/rocket_engine/distortion/distortion.tscn" id="4_iv36q"]
 [ext_resource type="AudioStream" uid="uid://c5bjs178sfroa" path="res://actors/ships/propulsion/thruster/rocket_engine/rocket_engine_loop.wav" id="5_iawtn"]
-[ext_resource type="Shader" path="res://actors/ships/propulsion/thruster/rocket_engine/distortion/distortion.gdshader" id="5_iut5u"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wa3k3"]
 
@@ -14,7 +13,6 @@ seamless = true
 noise = SubResource("FastNoiseLite_wa3k3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpkol"]
-resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_mbrqw")
 shader_parameter/color = Color(1, 0.564706, 0, 1)
@@ -22,23 +20,8 @@ shader_parameter/noise_speed = 1.0
 shader_parameter/noise_stretch = 2.0
 shader_parameter/gradient_shift = 1.0
 shader_parameter/gradient_multiplier = 6.0
-shader_parameter/alpha_multiplier = 1.0
+shader_parameter/alpha = 1.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_wyf4o")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_i27g3"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b7eb8"]
-seamless = true
-noise = SubResource("FastNoiseLite_i27g3")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvhq6"]
-resource_local_to_scene = true
-render_priority = -1
-shader = ExtResource("5_iut5u")
-shader_parameter/distortion = 0.01
-shader_parameter/distortion_scale = 2.0
-shader_parameter/distortion_speed = 2.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_b7eb8")
 
 [node name="RocketEngine" instance=ExtResource("1_gl80k")]
 script = ExtResource("2_bor6n")
@@ -55,7 +38,6 @@ omni_range = 1.51222
 
 [node name="Distortion" parent="." index="2" instance=ExtResource("4_iv36q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-surface_material_override/0 = SubResource("ShaderMaterial_nvhq6")
 
 [node name="Exhaust" type="AudioStreamPlayer3D" parent="." index="3"]
 stream = ExtResource("5_iawtn")
