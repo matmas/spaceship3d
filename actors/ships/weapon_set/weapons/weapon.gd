@@ -65,4 +65,6 @@ func _collision_point_or_target_position() -> Vector3:
 
 
 func _get_aiming_screen_position() -> Vector2:
-	return Mouse.get_cursor_position()
+	var viewport_center := Mouse.viewport_size * 0.5
+	var max_distance_from_center := minf(viewport_center.x, viewport_center.y) * 0.5
+	return Mouse.get_limited_cursor_position(max_distance_from_center)
