@@ -1,6 +1,7 @@
 extends Node
 
 @onready var resolution_independent_cursor_position := Vector2(0.5, 0.5)
+@onready var viewport_size := Vector2(get_viewport().size)
 
 signal cursor_position_changed(position)
 
@@ -10,6 +11,7 @@ func _ready() -> void:
 
 
 func _on_resize() -> void:
+	viewport_size = Vector2(get_viewport().size)
 	cursor_position_changed.emit(get_cursor_position())
 
 
@@ -25,18 +27,25 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode != Input.MOUSE_MODE_VISIBLE:
 		var e := event as InputEventMouseMotion
 		_set_cursor_position(get_cursor_position() + e.relative)
-		var viewport_center := Vector2(get_viewport().size) / 2
-		var viewport_radius = minf(viewport_center.x, viewport_center.y)
-		var i := Geometry2D.segment_intersects_circle(viewport_center, get_cursor_position(), viewport_center, viewport_radius)
-		if i != -1:
-			# snap cursor to circle edge if it is outside
-			_set_cursor_position((get_cursor_position() - viewport_center) * i + viewport_center)
+		var viewport_center := viewport_size * 0.5
+		var max_distance_from_center := minf(viewport_center.x, viewport_center.y)
+		_set_cursor_position(get_limited_cursor_position(max_distance_from_center))
 		cursor_position_changed.emit(get_cursor_position())
 
 
 func get_cursor_position() -> Vector2:
-	return resolution_independent_cursor_position * Vector2(get_viewport().size)
+	return resolution_independent_cursor_position * viewport_size
 
 
 func _set_cursor_position(cursor_position: Vector2) -> void:
-	resolution_independent_cursor_position = cursor_position / Vector2(get_viewport().size)
+	resolution_independent_cursor_position = cursor_position / viewport_size
+
+
+func get_limited_cursor_position(max_distance_from_center: float) -> Vector2:
+	var cursor_position := get_cursor_position()
+	var viewport_center := viewport_size * 0.5
+	var i := Geometry2D.segment_intersects_circle(viewport_center, cursor_position, viewport_center, max_distance_from_center)
+	if i == -1:
+		return cursor_position
+	# snap cursor to circle edge if it is outside
+	return (cursor_position - viewport_center) * i + viewport_center

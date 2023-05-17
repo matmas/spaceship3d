@@ -43,14 +43,16 @@ func _physics_process(_delta: float) -> void:
 
 
 func _mouse_cursor_to_world_position() -> Vector3:
-	var ray_origin := camera.project_ray_origin(Mouse.get_cursor_position())
-	return ray_origin + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
+	var screen_position := _get_aiming_screen_position()
+	var ray_origin := camera.project_ray_origin(screen_position)
+	return ray_origin + camera.project_ray_normal(screen_position) * camera.far
 
 
 func _mouse_cursor_to_collision_world_position() -> Vector3:
+	var screen_position := _get_aiming_screen_position()
 	var params := PhysicsRayQueryParameters3D.new()
-	params.from = camera.project_ray_origin(Mouse.get_cursor_position())
-	params.to = params.from + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
+	params.from = camera.project_ray_origin(screen_position)
+	params.to = params.from + camera.project_ray_normal(screen_position) * camera.far
 	params.collision_mask = ray_cast.collision_mask
 	params.exclude = [ship, shield]
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
@@ -60,3 +62,7 @@ func _mouse_cursor_to_collision_world_position() -> Vector3:
 
 func _collision_point_or_target_position() -> Vector3:
 	return ray_cast.get_collision_point() if ray_cast.is_colliding() else to_global(ray_cast.target_position)
+
+
+func _get_aiming_screen_position() -> Vector2:
+	return Mouse.get_cursor_position()
