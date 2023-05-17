@@ -1,5 +1,5 @@
 class_name Bullet
-extends Node3D
+extends MeshInstance3D
 
 @onready var camera := get_viewport().get_camera_3d()
 @onready var initial_global_position := global_position

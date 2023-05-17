@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://du6o8ebarhjc4" path="res://actors/ships/weapon_set/weapons/weapon.tscn" id="1_fuky8"]
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/projectile/projectile.gd" id="2_i88fm"]
-[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aim.gdshader" id="3_qhjo6"]
+[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aiming_dot.gdshader" id="3_dtqg3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cx50i"]
 resource_local_to_scene = true
-shader = ExtResource("3_qhjo6")
+shader = ExtResource("3_dtqg3")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/size_power = 2.5

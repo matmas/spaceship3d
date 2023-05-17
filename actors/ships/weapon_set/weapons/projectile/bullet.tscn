@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://pyvddsvamyli"]
+[gd_scene load_steps=5 format=3 uid="uid://pyvddsvamyli"]
 
+[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/projectile/bullet.gdshader" id="1_5vjo1"]
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/projectile/bullet.gd" id="1_54ldu"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_3xg4x"]
-height = 1.0
+[sub_resource type="QuadMesh" id="QuadMesh_ex36d"]
 
-[node name="Bullet" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62tqs"]
+render_priority = 0
+shader = ExtResource("1_5vjo1")
+shader_parameter/color = Color(1, 0.784314, 0, 1)
+shader_parameter/size_power = 6.0
+
+[node name="Bullet" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_ex36d")
+surface_material_override/0 = SubResource("ShaderMaterial_62tqs")
 script = ExtResource("1_54ldu")
-
-[node name="MeshInstance" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_3xg4x")

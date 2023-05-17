@@ -7,6 +7,10 @@ var bullet_velocity := 100.0
 var last_bullet_fired_at := -INF
 
 
+func _ready() -> void:
+	targetting_speed = 10.0
+
+
 func _process(delta: float) -> void:
 	super._process(delta)
 	if try_firing:
