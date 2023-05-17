@@ -2,16 +2,16 @@ extends Weapon
 
 @onready var bullet_scene := preload("bullet.tscn")
 
-var cooldown := 100.0
+var delay_between_bullets := 100.0
 var bullet_velocity := 100.0
 var last_bullet_fired_at := -INF
 
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	if is_firing:
+	if try_firing:
 		var now := Time.get_ticks_msec()
-		if now - last_bullet_fired_at > cooldown:
+		if now - last_bullet_fired_at >= delay_between_bullets:
 			last_bullet_fired_at = now
 
 			var bullet := bullet_scene.instantiate() as Bullet

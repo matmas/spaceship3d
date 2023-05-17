@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	ship.weapon_set.set_all_firing(Input.is_action_pressed("fire"))
+	ship.weapon_set.set_all_try_firing(Input.is_action_pressed("fire"))
 
 
 func _physics_process(_delta: float) -> void:

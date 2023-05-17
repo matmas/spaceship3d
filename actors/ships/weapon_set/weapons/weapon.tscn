@@ -24,11 +24,11 @@ script = ExtResource("1_ceomy")
 target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 
-[node name="Aim" type="Sprite2D" parent="."]
+[node name="AimingDot" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_l2pl7")
 texture = ExtResource("2_xv1v5")
 
-[node name="Shadow" type="Sprite2D" parent="Aim"]
+[node name="Shadow" type="Sprite2D" parent="AimingDot"]
 z_index = -1
 material = SubResource("ShaderMaterial_f21wk")
 texture = ExtResource("2_xv1v5")

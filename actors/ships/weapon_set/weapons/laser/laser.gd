@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	if is_firing:
+	if try_firing:
 		power = move_toward(power, 1.0, delta * 60 * 0.2)
 	else:
 		power = move_toward(power, 0.0, delta * 60 * 0.1)

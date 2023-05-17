@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/projectile/projectile.gd" id="2_i88fm"]
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aim.gdshader" id="3_qhjo6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hjgu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cx50i"]
 resource_local_to_scene = true
 shader = ExtResource("3_qhjo6")
 shader_parameter/color = Color(1, 1, 1, 1)
@@ -14,5 +14,5 @@ shader_parameter/size_power = 2.5
 [node name="Projectile" instance=ExtResource("1_fuky8")]
 script = ExtResource("2_i88fm")
 
-[node name="Aim" parent="." index="1"]
-material = SubResource("ShaderMaterial_7hjgu")
+[node name="AimingDot" parent="." index="1"]
+material = SubResource("ShaderMaterial_cx50i")

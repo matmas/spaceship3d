@@ -2,10 +2,10 @@ class_name WeaponSet
 extends Node3D
 
 
-func set_all_firing(is_firing: bool) -> void:
+func set_all_try_firing(try_firing: bool) -> void:
 	for place in get_children():
 		for weapon in place.get_children():
-			(weapon as Weapon).is_firing = is_firing
+			(weapon as Weapon).try_firing = try_firing
 
 
 func set_all_fixed(is_fixed: bool) -> void:
@@ -17,7 +17,7 @@ func set_all_fixed(is_fixed: bool) -> void:
 func set_all_aiming_visibility(is_aiming_visible: bool) -> void:
 	for place in get_children():
 		for weapon in place.get_children():
-			(weapon as Weapon).aim.visible = is_aiming_visible
+			(weapon as Weapon).aiming_dot.visible = is_aiming_visible
 
 
 func add_loadout(loadout: Dictionary):

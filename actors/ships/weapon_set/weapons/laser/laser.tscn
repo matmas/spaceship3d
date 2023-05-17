@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://jrggvoclfm6o" path="res://actors/ships/weapon_set/weapons/laser/laser_firing_loop.wav" id="8_eos7u"]
 [ext_resource type="AudioStream" uid="uid://d4e7wa7b7xrdm" path="res://actors/ships/weapon_set/weapons/laser/laser_hitting_loop.wav" id="9_01rag"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0ujr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nn87m"]
 resource_local_to_scene = true
 shader = ExtResource("3_t6mbh")
 shader_parameter/color = Color(1, 1, 1, 1)
@@ -51,8 +51,8 @@ shadow_mesh = SubResource("ArrayMesh_gdm7s")
 [node name="Laser" instance=ExtResource("1_mh6ji")]
 script = ExtResource("2_v7ywm")
 
-[node name="Aim" parent="." index="1"]
-material = SubResource("ShaderMaterial_r0ujr")
+[node name="AimingDot" parent="." index="1"]
+material = SubResource("ShaderMaterial_nn87m")
 
 [node name="Beam" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
