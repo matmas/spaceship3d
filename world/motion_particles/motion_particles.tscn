@@ -21,7 +21,6 @@ color_ramp = SubResource("GradientTexture1D_21nua")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6ghae"]
 render_priority = 0
 shader = ExtResource("1_op6x2")
-shader_parameter/camera_position = null
 shader_parameter/camera_velocity = Vector3(0, 0, 40)
 shader_parameter/texture_albedo = ExtResource("2_oij3x")
 
