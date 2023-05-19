@@ -8,6 +8,8 @@ extends Node3D
 @onready var shield := ship.shield as Shield
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
 
+const focus_separation := 0.1
+
 var is_fixed := false
 var try_firing := false
 var targetting_speed := 1.0
@@ -30,7 +32,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_fixed:
 		var new_target_position := target_position_override if target_position_override else _mouse_cursor_to_world_position()
-		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position))
+		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position), ship.global_transform.basis.y)
 		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
 	if aiming_dot.visible:
 		aiming_dot.position = camera.unproject_position(_collision_point_or_target_position())
@@ -56,8 +58,9 @@ func _mouse_cursor_to_collision_world_position() -> Vector3:
 	params.collision_mask = ray_cast.collision_mask
 	params.exclude = [ship, shield]
 	var result := get_world_3d().direct_space_state.intersect_ray(params)
-	# Avoid targetting empty space just in front body by moving collision point a bit forward
-	return to_global(to_local(result.position) + Vector3.FORWARD * 0.2) if result else Vector3()
+	# Avoid targetting empty space just in front body by moving collision point a bit forward along the -Z axis
+	var local_offset := ship.to_local(global_position) * focus_separation + Vector3.FORWARD * 0.2
+	return to_global(to_local(result.position) + local_offset) if result else Vector3()
 
 
 func _collision_point_or_target_position() -> Vector3:
