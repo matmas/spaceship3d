@@ -23,7 +23,7 @@ uniform float impact_focus: hint_range(1.0, 200.0) = 8;
 uniform float impact_detail: hint_range(0.0, 50.0) = 15.0;
 uniform float impact_detail_brightness: hint_range(0.0, 50.0) = 10.0;
 uniform float impact_detail_focus: hint_range(1.0, 1000.0) = 100.0;
-const int NUM_IMPACTS = 16;
+const int NUM_IMPACTS = 32;
 uniform vec3 impact_directions[NUM_IMPACTS];
 uniform float impact_alphas[NUM_IMPACTS];
 varying float camera_distance;

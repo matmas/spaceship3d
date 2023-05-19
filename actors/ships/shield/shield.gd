@@ -6,7 +6,7 @@ extends Hittable
 @onready var bubble_material := $Bubble.get_surface_override_material(0) as ShaderMaterial
 @onready var object_to_index := ObjectToIndex.new(NUM_LAST_IMPACTS)
 
-const NUM_LAST_IMPACTS = 16
+const NUM_LAST_IMPACTS = 32
 var last_impact_directions := PackedVector3Array()
 var last_impact_alphas := PackedFloat32Array()
 
