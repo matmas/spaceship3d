@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 		global_position = result.position
 		if result.collider is Hittable:
 			var hittable: Hittable = result.collider
-			hittable.hit.emit(weapon, result.position)
+			hittable.hit.emit(self, result.position)
 		queue_free()
 	else:
 		global_position = params.to

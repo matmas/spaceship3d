@@ -12,6 +12,6 @@ void fragment() {
 	vec4 noise_tex = texture(noise, UV - uv_offset);
 	float fade = pow(1.0 - abs(UV.y - 0.5) * 2.0, 3.0);
 	ALBEDO = color.rgb * noise_tex.rgb * fade;
-	EMISSION = color.rgb * noise_tex.rgb * emission_energy * fade;
+	EMISSION = ALBEDO * emission_energy;
 	ALPHA = alpha * instance_alpha;
 }

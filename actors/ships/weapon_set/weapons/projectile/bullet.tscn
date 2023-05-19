@@ -9,7 +9,7 @@
 render_priority = 0
 shader = ExtResource("1_5vjo1")
 shader_parameter/color = Color(1, 0.784314, 0, 1)
-shader_parameter/size_power = 6.0
+shader_parameter/emission_energy = 16.0
 
 [node name="Bullet" type="MeshInstance3D"]
 cast_shadow = 0

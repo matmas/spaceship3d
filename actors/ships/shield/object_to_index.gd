@@ -1,19 +1,18 @@
 class_name ObjectToIndex
 extends RefCounted
 
-var _num_last_objects: int
-var _last_objects: Array[Object] = []
+var _objects: Array[Object] = []
+var oldest_object_index = 0
 
 
-func _init(num_last_objects: int) -> void:
-	_num_last_objects = num_last_objects
+func _init(capacity: int) -> void:
+	_objects.resize(capacity)
 
 
 func get_index(object: Object) -> int:
-	var index := _last_objects.find(object)
+	var index := _objects.find(object)
 	if index == -1:
-		_last_objects.push_back(object)
-		while _last_objects.size() > _num_last_objects:
-			_last_objects.pop_front()
-		return _last_objects.size() - 1
+		index = oldest_object_index
+		_objects[index] = object
+		oldest_object_index = (oldest_object_index + 1) % _objects.size()
 	return index
