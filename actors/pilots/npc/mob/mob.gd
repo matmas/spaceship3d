@@ -8,7 +8,7 @@ func _ready() -> void:
 		randf_range(-100, 100),
 		randf_range(-100, 100),
 	)
-	ship.weapon_set.add_loadout(Loadouts.twin_lasers)
+	ship.weapon_set.add_loadout(Loadouts.projectiles)
 	ship.weapon_set.set_all_fixed(true)
 
 

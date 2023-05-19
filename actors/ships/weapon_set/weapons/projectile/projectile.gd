@@ -8,6 +8,7 @@ var last_bullet_fired_at := -INF
 
 
 func _ready() -> void:
+	super._ready()
 	targetting_speed = 10.0
 
 

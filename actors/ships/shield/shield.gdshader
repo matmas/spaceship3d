@@ -20,7 +20,10 @@ uniform float normals: hint_range(-3.0, 3.0) = 0.77;
 uniform bool cull_front = false;
 uniform bool cull_back = false;
 uniform float impact_focus: hint_range(1.0, 200.0) = 8;
-const int NUM_IMPACTS = 8;
+uniform float impact_detail: hint_range(0.0, 50.0) = 15.0;
+uniform float impact_detail_brightness: hint_range(0.0, 50.0) = 10.0;
+uniform float impact_detail_focus: hint_range(1.0, 1000.0) = 100.0;
+const int NUM_IMPACTS = 16;
 uniform vec3 impact_directions[NUM_IMPACTS];
 uniform float impact_alphas[NUM_IMPACTS];
 varying float camera_distance;
@@ -55,7 +58,10 @@ void fragment() {
 	float total_alpha = alpha;
 	for (int i = 0; i < NUM_IMPACTS; i++) {
 		if (length(impact_directions[i]) > 0.0) {
-			total_alpha += impact_alphas[i] * pow(max(dot((float(FRONT_FACING) * 2.0 - 1.0) * NORMAL, (modelview_matrix * vec4(impact_directions[i], 0.0)).xyz), 0.0), impact_focus);
+			float impact_hemisphere = max(dot((float(FRONT_FACING) * 2.0 - 1.0) * NORMAL, (modelview_matrix * vec4(impact_directions[i], 0.0)).xyz), 0.0);
+			float impact_area = pow(impact_hemisphere, impact_focus);
+			total_alpha += impact_alphas[i] * impact_area;
+			total_alpha += impact_alphas[i] * min(pow(impact_area, impact_detail_focus) * impact_detail, impact_detail_brightness);
 		}
 	}
 	ALPHA = total_alpha;
