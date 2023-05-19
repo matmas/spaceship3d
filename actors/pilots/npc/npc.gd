@@ -4,15 +4,15 @@ extends Pilot
 @onready var proxymity_distance := (($ProxymitySensor/CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius
 
 var player: Player
-var areas_in_proxymity := {}
+var nodes_in_proxymity := {}
 
 
-func _on_proxymity_sensor_area_entered(area: Area3D) -> void:
-	areas_in_proxymity[area] = true
+func _on_proxymity_sensor_node_entered(node: Node3D) -> void:
+	nodes_in_proxymity[node] = true
 
 
-func _on_proxymity_sensor_area_exited(area: Area3D) -> void:
-	areas_in_proxymity.erase(area)
+func _on_proxymity_sensor_node_exited(node: Node3D) -> void:
+	nodes_in_proxymity.erase(node)
 
 
 func _on_detection_radar_area_entered(area: Area3D) -> void:
@@ -70,12 +70,12 @@ func thrust_to_evade(target_position: Vector3, evade_distance: float):
 	return -target_direction * linear_acceleration
 
 
-func _get_evasion() -> Vector3:
+func evasion_thrust() -> Vector3:
 	var evasion := Vector3()
-	for area in areas_in_proxymity:
-		evasion += thrust_to_evade((area as Area3D).global_position, proxymity_distance)
+	for node in nodes_in_proxymity:
+		evasion += thrust_to_evade((node as Node3D).global_position, proxymity_distance)
 	return evasion
 
 
 func apply_thrust(linear_acceleration: Vector3) -> void:
-	ship.apply_central_force((_get_evasion() + linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
+	ship.apply_central_force((linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
