@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://actors/pilots/npc/npc.gd" id="2_q47sk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_24h4b"]
-radius = 50.0
+radius = 20.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7b5ki"]
 radius = 100.0

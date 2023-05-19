@@ -71,9 +71,10 @@ func thrust_to_evade(target_position: Vector3, evade_distance: float):
 
 
 func evasion_thrust() -> Vector3:
+	const importance = 1.5
 	var evasion := Vector3()
 	for node in nodes_in_proxymity:
-		evasion += thrust_to_evade((node as Node3D).global_position, proxymity_distance)
+		evasion += thrust_to_evade((node as Node3D).global_position, proxymity_distance) * importance
 	return evasion
 
 
