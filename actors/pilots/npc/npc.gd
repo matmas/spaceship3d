@@ -62,20 +62,20 @@ func thrust_to_move_to(target_position: Vector3, slowdown_distance: float = 10) 
 	return target_direction * linear_acceleration
 
 
-func thrust_to_evade(target_position: Vector3, evade_distance: float):
+func thrust_to_avoid(target_position: Vector3, avoid_distance: float):
 	var target_relative_position := target_position - global_position
 	var target_direction := target_relative_position.normalized()
 	var target_distance := target_relative_position.length()
-	var linear_acceleration := ship.max_linear_acceleration().z * (1.0 - minf(target_distance / evade_distance, 1))
+	var linear_acceleration := ship.max_linear_acceleration().z * (1.0 - minf(target_distance / avoid_distance, 1))
 	return -target_direction * linear_acceleration
 
 
-func evasion_thrust() -> Vector3:
+func avoidance_thrust() -> Vector3:
 	const importance = 1.5
-	var evasion := Vector3()
+	var thrust := Vector3()
 	for node in nodes_in_proxymity:
-		evasion += thrust_to_evade((node as Node3D).global_position, proxymity_distance) * importance
-	return evasion
+		thrust += thrust_to_avoid((node as Node3D).global_position, proxymity_distance) * importance
+	return thrust
 
 
 func apply_thrust(linear_acceleration: Vector3) -> void:
