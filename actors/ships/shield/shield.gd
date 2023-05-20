@@ -1,8 +1,6 @@
 class_name Shield
 extends Hittable
 
-@onready var camera := get_viewport().get_camera_3d()
-@onready var ship := owner as Ship
 @onready var bubble_material := $Bubble.get_surface_override_material(0) as ShaderMaterial
 @onready var object_to_index := ObjectToIndex.new(NUM_LAST_IMPACTS)
 

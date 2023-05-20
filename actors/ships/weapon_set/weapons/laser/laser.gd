@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 		particles.emitting = ray_cast.is_colliding() and power == 1.0 and (particles == smoke and (ray_cast.get_collider() as Node).name.begins_with("rock") or particles != smoke)
 		if ray_cast.is_colliding() and power == 1.0:
 			particles.global_position = beam_endpoint
-			if not Vector3.UP.cross(beam_endpoint + ray_cast.get_collision_normal() - particles.global_position).is_zero_approx():
+			if not Vector3.UP.cross(ray_cast.get_collision_normal()).is_zero_approx():
 				particles.look_at(beam_endpoint + ray_cast.get_collision_normal())
 
 	beam.look_at(beam_endpoint, beam.global_position - camera.global_position)  # rotate bottom towards camera

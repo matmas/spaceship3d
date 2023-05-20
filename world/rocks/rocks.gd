@@ -1,8 +1,6 @@
 @tool
 extends Node3D
 
-const ROCK_DENSITY := 3500.0  # kg per cubic meters
-
 
 func _ready() -> void:
 	RandomSeed._ready()  # autoloads are not initialized when running as @tool
