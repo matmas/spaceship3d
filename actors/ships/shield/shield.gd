@@ -18,6 +18,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	global_transform.basis = Basis()  # maintain the same world space orientation
 	for i in range(NUM_LAST_IMPACTS):
 		last_impact_alphas[i] = move_toward(last_impact_alphas[i], 0, delta)
 	bubble_material.set_shader_parameter(&"impact_alphas", last_impact_alphas)

@@ -30,10 +30,10 @@ func point_at(target_position: Vector3, min_distance: float = 10) -> void:
 	if distance < min_distance:
 		return
 	var target_direction := ship.global_position.direction_to(target_position)
-	_point_in_direction(target_direction)
+	point_in_direction(target_direction)
 
 
-func _point_in_direction(target_direction: Vector3) -> void:
+func point_in_direction(target_direction: Vector3) -> void:
 	var current_direction := -ship.global_transform.basis.z
 	var correction := target_direction - current_direction
 	ship.apply_torque(correction.cross(ship.global_transform.basis.z).normalized() * minf(correction.length(), 1) * ship.max_linear_acceleration().x)
@@ -70,7 +70,7 @@ func thrust_to_avoid(target_position: Vector3, avoid_distance: float):
 	return -target_direction * linear_acceleration
 
 
-func avoidance_thrust() -> Vector3:
+func collision_avoidance_thrust() -> Vector3:
 	const importance = 1.5
 	var thrust := Vector3()
 	for node in nodes_in_proxymity:
@@ -80,3 +80,11 @@ func avoidance_thrust() -> Vector3:
 
 func apply_thrust(linear_acceleration: Vector3) -> void:
 	ship.apply_central_force((linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
+
+
+func evasion_direction(hit_direction: Vector3) -> Vector3:
+	return global_transform.basis.z.cross(hit_direction).cross(hit_direction).normalized()
+
+
+func thrust_to_evade_hit_from(hit_direction: Vector3) -> Vector3:
+	return evasion_direction(hit_direction) * ship.max_linear_acceleration().z
