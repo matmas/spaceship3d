@@ -30,6 +30,7 @@ func _physics_process(_delta: float) -> void:
 		var params := PhysicsRayQueryParameters3D.new()
 		params.from = camera.project_ray_origin(Mouse.get_cursor_position())
 		params.to = params.from + camera.project_ray_normal(Mouse.get_cursor_position()) * camera.far
+		params.collision_mask = 0b1
 		var result := get_world_3d().direct_space_state.intersect_ray(params)
 		if result:
 			collider = result.collider
