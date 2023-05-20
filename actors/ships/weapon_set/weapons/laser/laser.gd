@@ -37,7 +37,9 @@ func _process(delta: float) -> void:
 	var beam_endpoint := _collision_point_or_target_position()
 	for p in [sparks, smoke]:
 		var particles := p as GPUParticles3D
-		particles.emitting = ray_cast.is_colliding() and power == 1.0 and (particles == smoke and (ray_cast.get_collider() as Node).name.begins_with("rock") or particles != smoke)
+		if particles == smoke and not ray_cast.get_collider() is Rock:
+			continue
+		particles.emitting = ray_cast.is_colliding() and power == 1.0
 		if ray_cast.is_colliding() and power == 1.0:
 			particles.global_position = beam_endpoint
 			if not Vector3.UP.cross(ray_cast.get_collision_normal()).is_zero_approx():

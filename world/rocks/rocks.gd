@@ -16,3 +16,4 @@ func _randomize_children_postions() -> void:
 				randf_range(-100, 100),
 				randf_range(-100, 100),
 			)
+			rigid_body.set_script(preload("rock.gd"))
