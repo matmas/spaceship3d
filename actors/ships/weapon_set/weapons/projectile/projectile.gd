@@ -3,12 +3,12 @@ extends Weapon
 @onready var bullet_scene := preload("bullet.tscn")
 
 var delay_between_bullets := 100.0
-var bullet_velocity := 100.0
 var last_bullet_fired_at := -INF
 
 
 func _ready() -> void:
 	super._ready()
+	bullet_velocity = 100.0
 	targetting_speed = 10.0
 
 

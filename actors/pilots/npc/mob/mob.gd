@@ -1,7 +1,7 @@
 extends NPC
 
 var being_hit_from_direction := Vector3()
-# wander to random location, behaviour tree, state machine
+
 
 func _ready() -> void:
 	await super._ready()

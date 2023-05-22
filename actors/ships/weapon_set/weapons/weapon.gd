@@ -4,6 +4,7 @@ extends Node3D
 @onready var ray_cast := $RayCast as RayCast3D
 @onready var aiming_dot := $AimingDot as Sprite2D
 @onready var aiming_dot_material := aiming_dot.material as ShaderMaterial
+@onready var target_lead := $TargetLead as Sprite2D
 @onready var ship := owner.owner as Ship
 @onready var shield := ship.shield as Shield
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
@@ -12,8 +13,11 @@ const focus_separation := 0.1
 
 var is_fixed := false
 var try_firing := false
+var bullet_velocity := INF
 var targetting_speed := 1.0
 var target_position_override := Vector3()
+var is_ui_visible := false
+var selection: CollisionObject3D
 
 
 func _enter_tree() -> void:
@@ -26,7 +30,7 @@ func _ready() -> void:
 	set_physics_process(visible)
 	ray_cast.add_exception(ship)
 	ray_cast.add_exception(shield)
-	aiming_dot.visible = false
+	Signals.selection_changed.connect(func(collision_object): selection = collision_object)
 
 
 func _process(delta: float) -> void:
@@ -34,9 +38,28 @@ func _process(delta: float) -> void:
 		var new_target_position := target_position_override if target_position_override else _mouse_cursor_to_world_position()
 		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position), ship.global_transform.basis.y)
 		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
-	if aiming_dot.visible:
+	if is_ui_visible:
 		aiming_dot.position = camera.unproject_position(_collision_point_or_target_position())
 		aiming_dot_material.set_shader_parameter(&"alpha", 1.0 if ray_cast.is_colliding() else 0.5)
+		target_lead.visible = selection and selection is RigidBody3D
+		if target_lead.visible:
+			var selection_global_position := Utils.interpolated_global_position(selection)
+			var collision_position := _calculate_projectile_and_target_collision_point(
+				selection_global_position,
+				(selection as RigidBody3D).linear_velocity,
+				Utils.interpolated_global_position(ship),
+				ship.linear_velocity,
+				bullet_velocity
+			)
+			target_lead.position = camera.unproject_position(collision_position)
+			target_lead.visible = not camera.is_position_behind(collision_position)
+
+
+func _calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, player_position: Vector3, player_velocity: Vector3, projectile_velocity: float, time: float = 0.01, recursion_depth: int = 20) -> Vector3:
+	var distance := target_position.distance_to(player_position)
+	var relative_velocity := target_velocity - player_velocity
+	var projectile_travel_time := 1.0 / projectile_velocity
+	return target_position + relative_velocity * projectile_travel_time * distance
 
 
 func _physics_process(_delta: float) -> void:

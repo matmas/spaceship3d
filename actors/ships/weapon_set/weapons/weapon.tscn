@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://du6o8ebarhjc4"]
+[gd_scene load_steps=7 format=3 uid="uid://du6o8ebarhjc4"]
 
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/weapon.gd" id="1_ceomy"]
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aiming_dot.gdshader" id="2_dsr1e"]
@@ -17,6 +17,12 @@ shader_parameter/color = Color(0, 0, 0, 0.5)
 shader_parameter/alpha = 1.0
 shader_parameter/size_power = 2.7
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rr74g"]
+shader = ExtResource("2_dsr1e")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 1.0
+shader_parameter/size_power = 2.5
+
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_ceomy")
 
@@ -31,4 +37,8 @@ texture = ExtResource("2_xv1v5")
 [node name="Shadow" type="Sprite2D" parent="AimingDot"]
 z_index = -1
 material = SubResource("ShaderMaterial_f21wk")
+texture = ExtResource("2_xv1v5")
+
+[node name="TargetLead" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_rr74g")
 texture = ExtResource("2_xv1v5")
