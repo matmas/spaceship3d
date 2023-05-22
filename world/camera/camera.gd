@@ -3,7 +3,8 @@ extends Camera3D
 
 var target: VisualInstance3D
 var camera_distance := 10.0
-var camera_relative_direction := Vector3(0.0, 2.0, 10.0).normalized()
+var camera_offset := Vector3(0, 1, 0)
+var camera_relative_direction := Vector3.BACK
 var current_camera_position: Vector3
 var previous_camera_position: Vector3
 
@@ -36,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 
 func _default_camera_position() -> Vector3:
 	var top := Vector3(0, target.get_aabb().size.y * 0.5, 0)
-	return target.global_transform * (top + camera_relative_direction * camera_distance)
+	return target.global_transform * (top + camera_offset + camera_relative_direction * camera_distance)
 
 
 func _current_camera_position() -> Vector3:
