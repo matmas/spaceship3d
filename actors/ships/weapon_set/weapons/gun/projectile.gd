@@ -1,4 +1,4 @@
-class_name Bullet
+class_name Projectile
 extends Node3D
 
 @onready var mesh_instance := $MeshInstance as MeshInstance3D

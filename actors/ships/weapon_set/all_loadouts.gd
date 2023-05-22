@@ -6,12 +6,12 @@ var twin_lasers := {
 	^"Right": Weapons.laser,
 }
 
-var projectiles := {
-	^"Left": Weapons.projectile,
-	^"Right": Weapons.projectile,
+var twin_guns := {
+	^"Left": Weapons.gun,
+	^"Right": Weapons.gun,
 }
 
 var combined := {
 	^"Left": Weapons.laser,
-	^"Right": Weapons.projectile,
+	^"Right": Weapons.gun,
 }

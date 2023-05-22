@@ -13,7 +13,7 @@ const focus_separation := 0.1
 
 var is_fixed := false
 var try_firing := false
-var bullet_velocity := INF
+var projectile_speed := INF
 var targetting_speed := 1.0
 var target_position_override := Vector3()
 var is_ui_visible := false
@@ -49,16 +49,15 @@ func _process(delta: float) -> void:
 				(selection as RigidBody3D).linear_velocity,
 				Utils.interpolated_global_position(ship),
 				ship.linear_velocity,
-				bullet_velocity
 			)
 			target_lead.position = camera.unproject_position(collision_position)
 			target_lead.visible = not camera.is_position_behind(collision_position)
 
 
-func _calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, player_position: Vector3, player_velocity: Vector3, projectile_velocity: float, time: float = 0.01, recursion_depth: int = 20) -> Vector3:
+func _calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, player_position: Vector3, player_velocity: Vector3, time: float = 0.01, recursion_depth: int = 20) -> Vector3:
 	var distance := target_position.distance_to(player_position)
 	var relative_velocity := target_velocity - player_velocity
-	var projectile_travel_time := 1.0 / projectile_velocity
+	var projectile_travel_time := 1.0 / projectile_speed
 	return target_position + relative_velocity * projectile_travel_time * distance
 
 
