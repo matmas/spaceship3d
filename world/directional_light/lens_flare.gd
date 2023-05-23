@@ -29,5 +29,6 @@ func _physics_process(_delta: float) -> void:
 	var params := PhysicsRayQueryParameters3D.new()
 	params.from = camera.global_position
 	params.to = get_light_apparent_global_position()
+	params.collision_mask = 0b1
 	var result := space_state.intersect_ray(params)
 	target_visibility = 0.0 if result else 1.0
