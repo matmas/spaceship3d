@@ -24,5 +24,6 @@ func _process(delta: float) -> void:
 			projectile.weapon = self
 			projectile.collision_mask = ray_cast.collision_mask
 			projectile.linear_velocity = ship.linear_velocity + -global_transform.basis.z * projectile_speed
+			projectile.max_travel_distance = projectile_max_travel_distance
 			projectile.excluded_rids = [ship]
 			add_child(projectile)

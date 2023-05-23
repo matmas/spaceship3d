@@ -6,13 +6,13 @@ extends Node3D
 @onready var smoke := $Smoke as GPUParticles3D
 @onready var camera := get_viewport().get_camera_3d()
 @onready var initial_global_position := global_position
-@onready var max_travel_distance := minf(camera.far, 1000.0)
 
 var linear_velocity := Vector3()
 var excluded_rids: Array[RID] = []
 var weapon: Weapon
 var params := PhysicsRayQueryParameters3D.new()
 var collision_mask: int
+var max_travel_distance: float
 
 
 func _process(delta: float) -> void:

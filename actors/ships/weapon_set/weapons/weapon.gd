@@ -8,6 +8,7 @@ extends Node3D
 @onready var ship := owner.owner as Ship
 @onready var shield := ship.shield as Shield
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
+@onready var projectile_max_travel_distance := minf(camera.far, 1000.0)
 
 const focus_separation := 0.1
 
@@ -51,7 +52,10 @@ func _process(delta: float) -> void:
 				Utils.interpolated_global_position(ship),
 			)
 			target_lead.position = camera.unproject_position(collision_position)
-			target_lead.visible = not camera.is_position_behind(collision_position)
+			target_lead.visible = (
+				not camera.is_position_behind(collision_position)
+				and collision_position.distance_to(ship.global_position) < projectile_max_travel_distance
+			)
 
 
 func _calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, ship_position: Vector3, time: float = 0.01, max_recursion_depth: int = 20) -> Vector3:
