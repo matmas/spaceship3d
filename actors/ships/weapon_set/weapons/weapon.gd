@@ -5,6 +5,7 @@ extends Node3D
 @onready var aiming_dot := $AimingDot as Sprite2D
 @onready var aiming_dot_material := aiming_dot.material as ShaderMaterial
 @onready var target_lead := $TargetLead as Sprite2D
+@onready var target_lead_material := target_lead.material as ShaderMaterial
 @onready var ship := owner.owner as Ship
 @onready var shield := ship.shield as Shield
 @onready var camera := get_viewport().get_camera_3d() as Camera3D
@@ -16,7 +17,7 @@ var is_fixed := false
 var try_firing := false
 var projectile_speed := INF
 var targetting_speed := 1.0
-var can_focus := true
+var can_focus := false
 var target_position_override := Vector3()
 var is_ui_visible := false
 var selection: CollisionObject3D
@@ -40,6 +41,8 @@ func _process(delta: float) -> void:
 		var new_target_position := target_position_override if target_position_override else _mouse_cursor_to_world_position()
 		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position), ship.global_transform.basis.y)
 		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
+	aiming_dot.visible = is_ui_visible
+	target_lead.visible = is_ui_visible
 	if is_ui_visible:
 		aiming_dot.position = camera.unproject_position(_collision_point_or_target_position())
 		aiming_dot_material.set_shader_parameter(&"alpha", 1.0 if ray_cast.is_colliding() else 0.5)
@@ -51,11 +54,13 @@ func _process(delta: float) -> void:
 				(selection as RigidBody3D).linear_velocity,
 				Utils.interpolated_global_position(ship),
 			)
+			var projectile_travel_distance := collision_position.distance_to(ship.global_position)
 			target_lead.position = camera.unproject_position(collision_position)
 			target_lead.visible = (
 				not camera.is_position_behind(collision_position)
-				and collision_position.distance_to(ship.global_position) < projectile_max_travel_distance
+				and projectile_travel_distance < projectile_max_travel_distance
 			)
+			target_lead_material.set_shader_parameter(&"alpha", clampf((projectile_max_travel_distance - projectile_travel_distance) * 0.01, 0, 1))
 
 
 func _calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, ship_position: Vector3, time: float = 0.01, max_recursion_depth: int = 20) -> Vector3:

@@ -17,6 +17,7 @@ func _ready() -> void:
 	super._ready()
 	firing.volume_db = -INF
 	hitting.volume_db = -INF
+	can_focus = true
 
 
 func _process(delta: float) -> void:
