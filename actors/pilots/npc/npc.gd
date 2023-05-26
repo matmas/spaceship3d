@@ -1,68 +1,41 @@
 class_name NPC
 extends Pilot
 
-@onready var proxymity_distance := (($ProxymitySensor/CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius
-
-var player: Player
-var nodes_in_proxymity := {}
-
-
-func _on_proxymity_sensor_node_entered(node: Node3D) -> void:
-	nodes_in_proxymity[node] = true
+@onready var proxymity_sensor := $ProxymitySensor as Area3D
+@onready var proxymity_distance := ((proxymity_sensor.get_node("CollisionShape3D") as CollisionShape3D).shape as SphereShape3D).radius
+@onready var detection_radar := $DetectionRadar as Area3D
 
 
-func _on_proxymity_sensor_node_exited(node: Node3D) -> void:
-	nodes_in_proxymity.erase(node)
+var detected_players := {}
+var last_hit_direction := Vector3()
+var last_hit_time := -INF
+
+
+func _ready() -> void:
+	await super._ready()
+	ship.hit.connect(_process_hit)
+	ship.shield.hit.connect(_process_hit)
 
 
 func _on_detection_radar_area_entered(area: Area3D) -> void:
 	if area is Player:
-		player = area as Player
+		detected_players[area] = true
 
 
 func _on_tracking_radar_area_exited(area: Area3D) -> void:
-	if area == player:
-		player = null
+	if area is Player:
+		detected_players.erase(area)
 
 
-func point_at(target_position: Vector3, min_distance: float = 10) -> void:
-	var distance := ship.global_position.distance_to(target_position)
-	if distance < min_distance:
-		return
-	var target_direction := ship.global_position.direction_to(target_position)
-	point_in_direction(target_direction)
+func _physics_process(_delta: float) -> void:
+	const collision_avoidance_importance = 1.5
+	var collision_avoidance_thrust := Vector3()
+	for node in proxymity_sensor.get_overlapping_bodies():
+		collision_avoidance_thrust += _thrust_to_avoid(node.global_position, proxymity_distance) * collision_avoidance_importance
+	ship.linear_acceleration_to_apply += collision_avoidance_thrust
 
 
-func point_in_direction(target_direction: Vector3) -> void:
-	var current_direction := -ship.global_transform.basis.z
-	var correction := target_direction - current_direction
-	ship.apply_torque(correction.cross(ship.global_transform.basis.z).normalized() * minf(correction.length(), 1) * ship.max_linear_acceleration().x)
-
-
-func point_at_difference(target_position: Vector3) -> float:
-	var target_direction := ship.global_position.direction_to(target_position)
-	var current_direction := -ship.global_transform.basis.z
-	return (target_direction - current_direction).length()
-
-
-func match_roll_with(target: Node3D) -> bool:
-	var projected_target_up := Plane(ship.global_transform.basis.z).project(target.global_transform.basis.y)
-	if projected_target_up.length() < 0.1:
-		return true  # prevent constant rolling due to parallel forward and target up vectors
-	var correction := projected_target_up - ship.global_transform.basis.y
-	ship.apply_torque(correction.cross(-ship.global_transform.basis.y).normalized() * minf(correction.length(), 1) * ship.max_angular_acceleration().z)
-	return correction.length() < 0.2
-
-
-func thrust_to_move_to(target_position: Vector3, slowdown_distance: float = 10) -> Vector3:
-	var target_relative_position := target_position - global_position
-	var target_direction := target_relative_position.normalized()
-	var target_distance := target_relative_position.length()
-	var linear_acceleration := ship.max_linear_acceleration().z * minf(target_distance / slowdown_distance, 1)
-	return target_direction * linear_acceleration
-
-
-func thrust_to_avoid(target_position: Vector3, avoid_distance: float):
+func _thrust_to_avoid(target_position: Vector3, avoid_distance: float) -> Vector3:
 	var target_relative_position := target_position - global_position
 	var target_direction := target_relative_position.normalized()
 	var target_distance := target_relative_position.length()
@@ -70,21 +43,6 @@ func thrust_to_avoid(target_position: Vector3, avoid_distance: float):
 	return -target_direction * linear_acceleration
 
 
-func collision_avoidance_thrust() -> Vector3:
-	const importance = 1.5
-	var thrust := Vector3()
-	for node in nodes_in_proxymity:
-		thrust += thrust_to_avoid((node as Node3D).global_position, proxymity_distance) * importance
-	return thrust
-
-
-func apply_thrust(linear_acceleration: Vector3) -> void:
-	ship.apply_central_force((linear_acceleration).clamp(-ship.max_linear_acceleration(), ship.max_linear_acceleration()))
-
-
-func evasion_direction(hit_direction: Vector3) -> Vector3:
-	return global_transform.basis.z.cross(hit_direction).cross(hit_direction).normalized()
-
-
-func thrust_to_evade_hit_from(hit_direction: Vector3) -> Vector3:
-	return evasion_direction(hit_direction) * ship.max_linear_acceleration().z
+func _process_hit(source: Node3D, _impact_point: Vector3) -> void:
+	last_hit_direction = global_position.direction_to(source.global_position)
+	last_hit_time = Time.get_ticks_msec()

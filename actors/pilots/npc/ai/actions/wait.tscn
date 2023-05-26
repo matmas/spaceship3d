@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg7lu3imb2d71"]
+
+[ext_resource type="Script" path="res://actors/pilots/npc/ai/actions/wait.gd" id="1_gko8n"]
+
+[node name="Wait" type="Node"]
+script = ExtResource("1_gko8n")

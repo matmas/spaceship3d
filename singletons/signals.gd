@@ -1,4 +1,4 @@
 extends Node
 
-signal talk(speaker_name, text)
+signal talk(speaker, text)
 signal selection_changed(collision_object)

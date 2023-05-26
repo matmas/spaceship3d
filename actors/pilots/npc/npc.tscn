@@ -7,10 +7,10 @@
 radius = 20.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7b5ki"]
-radius = 100.0
+radius = 500.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tyy8r"]
-radius = 150.0
+radius = 1000.0
 
 [node name="NPC" instance=ExtResource("1_ts351")]
 script = ExtResource("2_q47sk")
@@ -33,9 +33,5 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrackingRadar" index="0"]
 shape = SubResource("SphereShape3D_tyy8r")
 
-[connection signal="area_entered" from="ProxymitySensor" to="." method="_on_proxymity_sensor_node_entered"]
-[connection signal="area_exited" from="ProxymitySensor" to="." method="_on_proxymity_sensor_node_exited"]
-[connection signal="body_entered" from="ProxymitySensor" to="." method="_on_proxymity_sensor_node_entered"]
-[connection signal="body_exited" from="ProxymitySensor" to="." method="_on_proxymity_sensor_node_exited"]
 [connection signal="area_entered" from="DetectionRadar" to="." method="_on_detection_radar_area_entered"]
 [connection signal="area_exited" from="TrackingRadar" to="." method="_on_tracking_radar_area_exited"]

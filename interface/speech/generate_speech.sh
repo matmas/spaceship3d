@@ -17,7 +17,7 @@ trap 'rm -rf -- "$temp_dir"' EXIT
 shopt -s nullglob
 existing_files=("$output_dir"/*.ogg)
 
-lines=$(grep --exclude-dir=".git" --exclude-dir=".godot" --include="*.gd" --recursive --no-filename "talk.emit" "$project_root" | sed -E 's/.*talk.emit\("(.*)", *"(.*)"\).*/\1:\2/')
+lines=$(cat "$script_dir/phrases.txt")
 while read -r line; do
     IFS=: read -r speaker text <<< "$line"
     filename=$(echo "$speaker"_"$text" | tr ':/\\?*"|%<>' _)  # See https://docs.godotengine.org/en/stable/classes/class_string.html#class-string-method-validate-filename

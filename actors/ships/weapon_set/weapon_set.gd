@@ -20,6 +20,15 @@ func set_all_ui_visibility(is_ui_visible: bool) -> void:
 			(child as Weapon).is_ui_visible = is_ui_visible
 
 
+func get_projectile_speed() -> float:
+	for place in get_children():
+		for child in place.get_children():
+			var speed := (child as Weapon).projectile_speed
+			if speed != INF:
+				return speed
+	return INF
+
+
 func add_loadout(loadout: Dictionary):
 	for attachment_name in loadout:
 		var weapon = loadout[attachment_name].instantiate()

@@ -49,10 +49,12 @@ func _process(delta: float) -> void:
 		target_lead.visible = selection and selection is RigidBody3D
 		if target_lead.visible:
 			var selection_global_position := Utils.interpolated_global_position(selection)
-			var collision_position := _calculate_projectile_and_target_collision_point(
+			var collision_position := Utils.calculate_projectile_and_target_collision_point(
 				selection_global_position,
 				(selection as RigidBody3D).linear_velocity,
 				Utils.interpolated_global_position(ship),
+				ship.linear_velocity,
+				projectile_speed,
 			)
 			var projectile_travel_distance := collision_position.distance_to(ship.global_position)
 			target_lead.position = camera.unproject_position(collision_position)
@@ -61,18 +63,6 @@ func _process(delta: float) -> void:
 				and projectile_travel_distance < projectile_max_travel_distance
 			)
 			target_lead_material.set_shader_parameter(&"alpha", clampf((projectile_max_travel_distance - projectile_travel_distance) * 0.01, 0, 1))
-
-
-func _calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, ship_position: Vector3, time: float = 0.01, max_recursion_depth: int = 20) -> Vector3:
-	var relative_velocity := target_velocity - ship.linear_velocity
-	var target_future_position := target_position + relative_velocity * time
-	var projectile_direction := ship_position.direction_to(target_future_position)
-	var projectile_velocity := projectile_direction * projectile_speed + ship.linear_velocity
-	var projectile_travel_distance := ship_position.distance_to(target_future_position)
-	var new_time := projectile_travel_distance / projectile_velocity.length()
-	if max_recursion_depth == 0 or is_equal_approx(new_time, time):
-		return target_future_position
-	return _calculate_projectile_and_target_collision_point(target_position, target_velocity, ship_position, new_time, max_recursion_depth - 1)
 
 
 func _physics_process(_delta: float) -> void:

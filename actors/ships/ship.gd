@@ -5,6 +5,7 @@ extends Hittable
 @onready var shield := $Ship/Shield as Shield
 
 var pilot: Pilot
+var linear_acceleration_to_apply := Vector3()
 
 
 func _ready() -> void:
@@ -16,7 +17,7 @@ func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 2
 	for i in range(max_contacts_reported):
-		var sparks := preload("res://actors/ships/weapon_set/weapons/laser/sparks/sparks.tscn").instantiate()
+		var sparks := preload("weapon_set/weapons/laser/sparks/sparks.tscn").instantiate()
 		sparks.name = "Sparks%d" % i
 		add_child(sparks)
 
@@ -32,6 +33,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			sparks.global_position = contact_point
 			if not Vector3.UP.cross(contact_point + contact_normal - sparks.global_position).is_zero_approx():
 				sparks.look_at(contact_point + contact_normal)
+
+
+func _physics_process(_delta: float) -> void:
+	apply_central_force(to_global(to_local(linear_acceleration_to_apply).clamp(-max_linear_acceleration(), max_linear_acceleration())))
+	linear_acceleration_to_apply = Vector3.ZERO
 
 
 func max_linear_acceleration() -> Vector3:

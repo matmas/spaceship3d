@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2libmlwj0qog"]
+
+[ext_resource type="Script" path="res://interface/subtitles/subtitles.gd" id="1_gj5uk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8fg6g"]
+font_size = 30
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Subtitles" type="Label"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Subtitle text"
+label_settings = SubResource("LabelSettings_8fg6g")
+horizontal_alignment = 1
+script = ExtResource("1_gj5uk")
+
+[node name="Timer" type="Timer" parent="."]

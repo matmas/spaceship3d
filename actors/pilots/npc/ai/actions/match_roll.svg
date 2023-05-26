@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="match_roll.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   width="16"
+   height="16"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="41.079999"
+     inkscape:cx="1.4849075"
+     inkscape:cy="5.7205454"
+     inkscape:window-width="2560"
+     inkscape:window-height="1367"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4">
+    <inkscape:grid
+       type="xygrid"
+       id="grid233"
+       snapvisiblegridlinesonly="false" />
+  </sodipodi:namedview>
+  <path
+     d="m 8.0218006,3.3247671 c -0.9312441,0 -0.9425615,1.024576 -0.9425615,2.246104 -0.00376,0.0564 -0.00752,0.10654 -0.010027,0.160436 -0.9413082,0.329646 -1.6143874,1.134333 -1.6143874,2.085668 0,1.1869763 1.1230521,2.5669759 2.5669762,2.5669759 1.4439242,0 2.5669761,-1.3799996 2.5669761,-2.5669759 0,-0.951335 -0.673079,-1.756022 -1.6143872,-2.085668 -0.00125,-0.0539 0.00376,-0.106539 0,-0.160436 -3e-7,-1.243671 -0.01349,-2.246104 -0.9525892,-2.246104 z M 0.64174405,6.8543591 C 0.28828362,6.8543591 0,7.1426431 0,7.4961031 c 0,0.353461 0.26070852,0.609156 0.58158055,0.641744 l 4.33177235,0.421145 c -0.063924,-0.22436 -0.1002725,-0.485068 -0.1002725,-0.742017 0,-0.35346 0.062671,-0.674332 0.1905177,-0.962616 z m 6.41744055,0 h 0.641744 v 0.641744 H 6.7383125 Z m 1.2834881,0 h 0.641744 l 0.320872,0.641744 h -0.962616 z m 2.6973303,0 c 0.127848,0.288284 0.190518,0.609156 0.190518,0.962616 0,0.256949 -0.03384,0.51515 -0.130354,0.772099 l 4.331772,-0.421145 c 0.353461,-0.03259 0.581581,-0.320872 0.581581,-0.641744 0.03259,-0.384796 -0.258202,-0.671826 -0.611663,-0.671826 z"
+     id="path2"
+     style="fill:#ffb649;fill-opacity:1;stroke-width:0.320872"
+     sodipodi:nodetypes="cccssscccssccscscccccccccccscccsc" />
+  <metadata
+     id="metadata130">
+    <rdf:RDF>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
