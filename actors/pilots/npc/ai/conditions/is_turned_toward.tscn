@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwoa4qmqhhyr1"]
-
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/conditions/is_turned_toward.gd" id="1_x07ui"]
-
-[node name="IsTurnedToward" type="Node"]
-script = ExtResource("1_x07ui")
