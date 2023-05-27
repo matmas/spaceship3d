@@ -13,6 +13,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if not target:
 		return FAILURE
 
-	var target_direction := npc.ship.global_position.direction_to(target.global_position)
+	var direction_to_target := npc.ship.global_position.direction_to(target.global_position)
 	var current_direction := -npc.ship.global_transform.basis.z
-	return SUCCESS if (target_direction - current_direction).length() < tolerance else FAILURE
+	return SUCCESS if (direction_to_target - current_direction).length() < tolerance else FAILURE
