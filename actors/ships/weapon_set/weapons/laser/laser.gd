@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 	for p in [sparks, smoke]:
 		var particles := p as GPUParticles3D
 		if particles == smoke and not ray_cast.get_collider() is Rock:
+			particles.emitting = false
 			continue
 		particles.emitting = ray_cast.is_colliding() and power == 1.0
 		if ray_cast.is_colliding() and power == 1.0:
