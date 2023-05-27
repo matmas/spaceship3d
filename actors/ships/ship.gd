@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	for i in range(max_contacts_reported):
-		var sparks := get_node("Sparks%d" % i)
+		var sparks := get_node("Sparks%d" % i) as GPUParticles3D
 		var is_contact := i < state.get_contact_count()
 		sparks.emitting = is_contact
 		if is_contact:

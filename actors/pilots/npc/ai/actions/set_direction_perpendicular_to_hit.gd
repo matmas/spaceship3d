@@ -1,3 +1,5 @@
+@icon("set_direction_perpendicular_to_hit.svg")
+class_name SetDirectionPerpendicularToHit
 extends ActionLeaf
 
 @export var direction_key := "direction"
