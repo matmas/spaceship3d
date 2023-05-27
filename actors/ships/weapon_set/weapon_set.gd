@@ -20,13 +20,16 @@ func set_all_ui_visibility(is_ui_visible: bool) -> void:
 			(child as Weapon).is_ui_visible = is_ui_visible
 
 
-func get_projectile_speed() -> float:
+func get_average_projectile_speed() -> float:
+	var sum := 0.0
+	var count := 0
 	for place in get_children():
 		for child in place.get_children():
 			var speed := (child as Weapon).projectile_speed
 			if speed != INF:
-				return speed
-	return INF
+				sum += speed
+				count += 1
+	return INF if count == 0 else sum / count
 
 
 func add_loadout(loadout: Dictionary):
