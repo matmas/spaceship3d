@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://37gxupnelcop"
-path="res://.godot/imported/set_target_nearest.svg-7ede1665ae13916dcc32677c66c3ec2e.ctex"
+path="res://.godot/imported/set_target_to_closest_enemy.svg-ceac2fda825f4985e77dafcb62cd3a13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/pilots/npc/ai/actions/set_target_nearest.svg"
-dest_files=["res://.godot/imported/set_target_nearest.svg-7ede1665ae13916dcc32677c66c3ec2e.ctex"]
+source_file="res://actors/pilots/npc/ai/actions/set_target_to_closest_enemy.svg"
+dest_files=["res://.godot/imported/set_target_to_closest_enemy.svg-ceac2fda825f4985e77dafcb62cd3a13.ctex"]
 
 [params]
 

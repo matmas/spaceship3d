@@ -10,6 +10,7 @@ func _ready() -> void:
 	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(ship.get_node("Ship") as VisualInstance3D)
 	ship.weapon_set.add_loadout(Loadouts.twin_guns)
 	ship.weapon_set.set_all_ui_visibility(true)
+	faction = Factions.Faction.Players
 
 
 func _process(_delta: float) -> void:

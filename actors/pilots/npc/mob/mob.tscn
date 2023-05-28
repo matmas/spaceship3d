@@ -1,22 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://djpw8t0dt78ma"]
+[gd_scene load_steps=5 format=3 uid="uid://djpw8t0dt78ma"]
 
 [ext_resource type="PackedScene" uid="uid://di1f74r8jcrup" path="res://actors/pilots/npc/npc.tscn" id="1_4sjni"]
 [ext_resource type="Script" path="res://actors/pilots/npc/mob/mob.gd" id="2_ay250"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_epmeq"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="4_b2b6s"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="4_exgmm"]
-[ext_resource type="PackedScene" uid="uid://ccxwx4j4emcx2" path="res://actors/pilots/npc/ai/actions/match_roll.tscn" id="5_0h2go"]
-[ext_resource type="PackedScene" uid="uid://d0axlnnf1l32r" path="res://actors/pilots/npc/ai/actions/set_target_nearest.tscn" id="5_bmtaa"]
-[ext_resource type="PackedScene" uid="uid://bhggcwbkthvgw" path="res://actors/pilots/npc/ai/conditions/is_hit.tscn" id="5_vg6kb"]
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/sequence_parallel.gd" id="6_dy8x5"]
-[ext_resource type="PackedScene" uid="uid://bs22cmybhr65c" path="res://actors/pilots/npc/ai/actions/set_direction_perpendicular_to_hit.tscn" id="7_6dkh0"]
-[ext_resource type="PackedScene" uid="uid://c1o6xqm1axho8" path="res://actors/pilots/npc/ai/actions/turn_toward.tscn" id="7_bmc4o"]
-[ext_resource type="PackedScene" uid="uid://dj8dkl6hvt0d8" path="res://actors/pilots/npc/ai/actions/set_direction_target_lead.tscn" id="8_mj4kt"]
-[ext_resource type="PackedScene" uid="uid://boxjsqe5er123" path="res://actors/pilots/npc/ai/actions/move_toward.tscn" id="8_yvwqg"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="12_3t0ok"]
-[ext_resource type="PackedScene" uid="uid://cr1btthinuili" path="res://actors/pilots/npc/ai/actions/keep_firing_at.tscn" id="12_5qatv"]
-[ext_resource type="PackedScene" uid="uid://d3eidbxmandyr" path="res://actors/pilots/npc/ai/conditions/is_target_turned_toward_me.tscn" id="14_xjn05"]
-[ext_resource type="PackedScene" uid="uid://dgrfj34b5neyi" path="res://actors/pilots/npc/ai/actions/set_direction_perpendicular_to_direction_of_target.tscn" id="15_cyw5j"]
+[ext_resource type="PackedScene" uid="uid://b5du3st8v2hoq" path="res://actors/pilots/npc/ai/combat.tscn" id="4_fwnc5"]
 
 [node name="Mob" instance=ExtResource("1_4sjni")]
 script = ExtResource("2_ay250")
@@ -24,64 +11,4 @@ script = ExtResource("2_ay250")
 [node name="MobAI" type="Node" parent="." index="4"]
 script = ExtResource("3_epmeq")
 
-[node name="SelectorReactive" type="Node" parent="MobAI" index="0"]
-script = ExtResource("4_exgmm")
-
-[node name="HitReaction" type="Node" parent="MobAI/SelectorReactive" index="0"]
-script = ExtResource("4_b2b6s")
-
-[node name="IsHit" parent="MobAI/SelectorReactive/HitReaction" index="0" instance=ExtResource("5_vg6kb")]
-max_time_after_hit_msec = 5000.0
-
-[node name="SetDirectionPerpendicularToHit" parent="MobAI/SelectorReactive/HitReaction" index="1" instance=ExtResource("7_6dkh0")]
-
-[node name="EvasionManeuver" type="Node" parent="MobAI/SelectorReactive/HitReaction" index="2"]
-script = ExtResource("6_dy8x5")
-
-[node name="TurnTowardDirection" parent="MobAI/SelectorReactive/HitReaction/EvasionManeuver" index="0" instance=ExtResource("7_bmc4o")]
-direction_key = "direction"
-
-[node name="MoveTowardDirection" parent="MobAI/SelectorReactive/HitReaction/EvasionManeuver" index="1" instance=ExtResource("8_yvwqg")]
-target_offset = Vector3(0, 0, -30)
-direction_key = "direction"
-
-[node name="AttackSequence" type="Node" parent="MobAI/SelectorReactive" index="1"]
-script = ExtResource("4_b2b6s")
-
-[node name="SetTargetNearest" parent="MobAI/SelectorReactive/AttackSequence" index="0" instance=ExtResource("5_bmtaa")]
-
-[node name="Evasion" type="Node" parent="MobAI/SelectorReactive/AttackSequence" index="1"]
-script = ExtResource("12_3t0ok")
-
-[node name="EvasionSequence" type="Node" parent="MobAI/SelectorReactive/AttackSequence/Evasion" index="0"]
-script = ExtResource("4_b2b6s")
-
-[node name="IsTargetTurnedTowardMe" parent="MobAI/SelectorReactive/AttackSequence/Evasion/EvasionSequence" index="0" instance=ExtResource("14_xjn05")]
-
-[node name="SetDirectionPerpendicularToDirectionOfTarget" parent="MobAI/SelectorReactive/AttackSequence/Evasion/EvasionSequence" index="1" instance=ExtResource("15_cyw5j")]
-
-[node name="EvasionManeuver" type="Node" parent="MobAI/SelectorReactive/AttackSequence/Evasion/EvasionSequence" index="2"]
-script = ExtResource("6_dy8x5")
-
-[node name="TurnTowardDirection" parent="MobAI/SelectorReactive/AttackSequence/Evasion/EvasionSequence/EvasionManeuver" index="0" instance=ExtResource("7_bmc4o")]
-direction_key = "direction"
-
-[node name="MoveTowardDirection" parent="MobAI/SelectorReactive/AttackSequence/Evasion/EvasionSequence/EvasionManeuver" index="1" instance=ExtResource("8_yvwqg")]
-target_offset = Vector3(0, 0, 30)
-direction_key = "direction"
-
-[node name="SetDirectionTargetLead" parent="MobAI/SelectorReactive/AttackSequence" index="2" instance=ExtResource("8_mj4kt")]
-
-[node name="AttackManeuver" type="Node" parent="MobAI/SelectorReactive/AttackSequence" index="3"]
-script = ExtResource("6_dy8x5")
-
-[node name="MatchRoll" parent="MobAI/SelectorReactive/AttackSequence/AttackManeuver" index="0" instance=ExtResource("5_0h2go")]
-
-[node name="TurnTowardDirection" parent="MobAI/SelectorReactive/AttackSequence/AttackManeuver" index="1" instance=ExtResource("7_bmc4o")]
-direction_key = "direction"
-
-[node name="MoveTowardTarget" parent="MobAI/SelectorReactive/AttackSequence/AttackManeuver" index="2" instance=ExtResource("8_yvwqg")]
-target_offset = Vector3(0, 0, 30)
-
-[node name="KeepFiringAtDirection" parent="MobAI/SelectorReactive/AttackSequence/AttackManeuver" index="3" instance=ExtResource("12_5qatv")]
-direction_key = "direction"
+[node name="Combat" parent="MobAI" index="0" instance=ExtResource("4_fwnc5")]

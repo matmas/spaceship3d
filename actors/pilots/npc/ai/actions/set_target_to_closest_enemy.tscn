@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0axlnnf1l32r"]
+
+[ext_resource type="Script" path="res://actors/pilots/npc/ai/actions/set_target_to_closest_enemy.gd" id="1_quv1w"]
+
+[node name="SetTargetToClosestEnemy" type="Node"]
+script = ExtResource("1_quv1w")

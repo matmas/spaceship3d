@@ -1,0 +1,78 @@
+[gd_scene load_steps=15 format=3 uid="uid://b5du3st8v2hoq"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="1_8aynt"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="2_rymj2"]
+[ext_resource type="PackedScene" uid="uid://bhggcwbkthvgw" path="res://actors/pilots/npc/ai/conditions/is_hit.tscn" id="3_fpar4"]
+[ext_resource type="PackedScene" uid="uid://bs22cmybhr65c" path="res://actors/pilots/npc/ai/actions/set_direction_perpendicular_to_hit.tscn" id="4_u2oy3"]
+[ext_resource type="Script" path="res://actors/pilots/npc/ai/sequence_parallel.gd" id="5_sct5f"]
+[ext_resource type="PackedScene" uid="uid://c1o6xqm1axho8" path="res://actors/pilots/npc/ai/actions/turn_toward.tscn" id="6_fk3qw"]
+[ext_resource type="PackedScene" uid="uid://boxjsqe5er123" path="res://actors/pilots/npc/ai/actions/move_toward.tscn" id="7_8nt14"]
+[ext_resource type="PackedScene" uid="uid://d0axlnnf1l32r" path="res://actors/pilots/npc/ai/actions/set_target_to_closest_enemy.tscn" id="8_ec1m5"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="9_rayjb"]
+[ext_resource type="PackedScene" uid="uid://d3eidbxmandyr" path="res://actors/pilots/npc/ai/conditions/is_target_turned_toward_me.tscn" id="10_cgf3j"]
+[ext_resource type="PackedScene" uid="uid://dgrfj34b5neyi" path="res://actors/pilots/npc/ai/actions/set_direction_perpendicular_to_direction_of_target.tscn" id="11_b2dd5"]
+[ext_resource type="PackedScene" uid="uid://dj8dkl6hvt0d8" path="res://actors/pilots/npc/ai/actions/set_direction_target_lead.tscn" id="12_hbqvp"]
+[ext_resource type="PackedScene" uid="uid://ccxwx4j4emcx2" path="res://actors/pilots/npc/ai/actions/match_roll.tscn" id="13_6bpdp"]
+[ext_resource type="PackedScene" uid="uid://cr1btthinuili" path="res://actors/pilots/npc/ai/actions/keep_firing_at.tscn" id="14_u8x48"]
+
+[node name="Combat" type="Node"]
+script = ExtResource("1_8aynt")
+
+[node name="HitReaction" type="Node" parent="."]
+script = ExtResource("2_rymj2")
+
+[node name="IsHit" parent="HitReaction" instance=ExtResource("3_fpar4")]
+max_time_after_hit_msec = 5000.0
+
+[node name="SetDirectionPerpendicularToHit" parent="HitReaction" instance=ExtResource("4_u2oy3")]
+
+[node name="EvasionManeuver" type="Node" parent="HitReaction"]
+script = ExtResource("5_sct5f")
+
+[node name="TurnTowardDirection" parent="HitReaction/EvasionManeuver" instance=ExtResource("6_fk3qw")]
+direction_key = "direction"
+
+[node name="MoveTowardDirection" parent="HitReaction/EvasionManeuver" instance=ExtResource("7_8nt14")]
+target_offset = Vector3(0, 0, -30)
+direction_key = "direction"
+
+[node name="AttackSequence" type="Node" parent="."]
+script = ExtResource("2_rymj2")
+
+[node name="SetTargetToClosestEnemy" parent="AttackSequence" instance=ExtResource("8_ec1m5")]
+
+[node name="Evasion" type="Node" parent="AttackSequence"]
+script = ExtResource("9_rayjb")
+
+[node name="EvasionSequence" type="Node" parent="AttackSequence/Evasion"]
+script = ExtResource("2_rymj2")
+
+[node name="IsTargetTurnedTowardMe" parent="AttackSequence/Evasion/EvasionSequence" instance=ExtResource("10_cgf3j")]
+
+[node name="SetDirectionPerpendicularToDirectionOfTarget" parent="AttackSequence/Evasion/EvasionSequence" instance=ExtResource("11_b2dd5")]
+
+[node name="EvasionManeuver" type="Node" parent="AttackSequence/Evasion/EvasionSequence"]
+script = ExtResource("5_sct5f")
+
+[node name="TurnTowardDirection" parent="AttackSequence/Evasion/EvasionSequence/EvasionManeuver" instance=ExtResource("6_fk3qw")]
+direction_key = "direction"
+
+[node name="MoveTowardDirection" parent="AttackSequence/Evasion/EvasionSequence/EvasionManeuver" instance=ExtResource("7_8nt14")]
+target_offset = Vector3(0, 0, 30)
+direction_key = "direction"
+
+[node name="SetDirectionTargetLead" parent="AttackSequence" instance=ExtResource("12_hbqvp")]
+
+[node name="AttackManeuver" type="Node" parent="AttackSequence"]
+script = ExtResource("5_sct5f")
+
+[node name="MatchRoll" parent="AttackSequence/AttackManeuver" instance=ExtResource("13_6bpdp")]
+
+[node name="TurnTowardDirection" parent="AttackSequence/AttackManeuver" instance=ExtResource("6_fk3qw")]
+direction_key = "direction"
+
+[node name="MoveTowardTarget" parent="AttackSequence/AttackManeuver" instance=ExtResource("7_8nt14")]
+target_offset = Vector3(0, 0, 30)
+
+[node name="KeepFiringAtDirection" parent="AttackSequence/AttackManeuver" instance=ExtResource("14_u8x48")]
+direction_key = "direction"

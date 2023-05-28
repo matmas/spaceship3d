@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0axlnnf1l32r"]
-
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/actions/set_target_nearest.gd" id="1_27jm6"]
-
-[node name="SetTargetNearest" type="Node"]
-script = ExtResource("1_27jm6")
