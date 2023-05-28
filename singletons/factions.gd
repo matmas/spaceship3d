@@ -4,9 +4,9 @@ extends Node
 enum Faction { Pirates, Civilians, Players }
 
 
-func are_factions_hostile_to_each_other(faction1: Faction, faction2: Faction) -> bool:
-	if faction1 == faction2:
+func is_hostile_to_another(source_faction: Faction, target_faction: Faction) -> bool:
+	if source_faction == target_faction:
 		return false
-	if faction1 == Faction.Pirates or faction2 == Faction.Pirates:
+	if source_faction == Faction.Pirates or target_faction == Faction.Pirates:
 		return true
 	return false

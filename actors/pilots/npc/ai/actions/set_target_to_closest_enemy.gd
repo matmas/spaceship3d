@@ -17,7 +17,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	for area in npc.detection_radar.get_overlapping_areas():
 		if area is Pilot:
 			var pilot := area as Pilot
-			if Factions.are_factions_hostile_to_each_other(pilot.faction, npc.faction):
+			if Factions.is_hostile_to_another(pilot.faction, npc.faction):
 				var distance_squared := npc.global_position.distance_squared_to(pilot.global_position)
 				if distance_squared < min_distance_squared:
 					min_distance_squared = distance_squared
