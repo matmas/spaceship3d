@@ -6,7 +6,6 @@ extends Pilot
 @onready var detection_radar := $DetectionRadar as Area3D
 
 
-var detected_players := {}
 var last_hit_direction := Vector3()
 var last_hit_time := -INF
 
@@ -15,16 +14,6 @@ func _ready() -> void:
 	await super._ready()
 	ship.hit.connect(_process_hit)
 	ship.shield.hit.connect(_process_hit)
-
-
-func _on_detection_radar_area_entered(area: Area3D) -> void:
-	if area is Player:
-		detected_players[area] = true
-
-
-func _on_tracking_radar_area_exited(area: Area3D) -> void:
-	if area is Player:
-		detected_players.erase(area)
 
 
 func _physics_process(_delta: float) -> void:

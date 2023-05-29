@@ -1,7 +1,7 @@
 extends Node
 
 @onready var resolution_independent_cursor_position := Vector2(0.5, 0.5)
-@onready var viewport_size := Vector2(get_viewport().size)
+@onready var viewport_size := get_viewport().get_visible_rect().size
 
 signal cursor_position_changed(position)
 
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _on_resize() -> void:
-	viewport_size = Vector2(get_viewport().size)
+	viewport_size = get_viewport().get_visible_rect().size
 	cursor_position_changed.emit(get_cursor_position())
 
 

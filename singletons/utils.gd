@@ -19,3 +19,16 @@ func calculate_projectile_and_target_collision_point(target_position: Vector3, t
 	if max_recursion_depth == 0 or is_equal_approx(new_time, time):
 		return target_future_position
 	return calculate_projectile_and_target_collision_point(target_position, target_velocity, ship_position, ship_velocity, projectile_speed, new_time, max_recursion_depth - 1)
+
+
+#func get_rect_segment_intersection(rect: Rect2, segment_from: Vector2, segment_to: Vector2) -> Vector2:
+#	var top_left := rect.position
+#	var bottom_right := rect.end
+#	var top_right := Vector2(top_left.x, bottom_right.y)
+#	var bottom_left := Vector2(bottom_right.x, top_left.y)
+#	var corners := [top_left, top_right, bottom_right, bottom_left]
+#	for i in range(corners.size()):
+#		var intersection = Geometry2D.segment_intersects_segment(corners[i], corners[(i + 1) % corners.size()], segment_from, segment_to)
+#		if intersection != null:
+#			return intersection as Vector2
+#	return Vector2.ZERO

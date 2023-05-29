@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _update_crosshairs() -> void:
-	var center := Vector2(get_viewport().size) * 0.5
+	var center := get_viewport().get_visible_rect().size * 0.5
 
 	steering.position = Mouse.get_cursor_position()
 	center_indicator.position = center

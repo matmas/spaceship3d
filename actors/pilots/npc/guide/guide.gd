@@ -1,5 +1,8 @@
 extends NPC
 
+func _init() -> void:
+	faction = Factions.Faction.Civilians
+
 
 func _ready() -> void:
 	await super._ready()
@@ -10,4 +13,3 @@ func _ready() -> void:
 	)
 	ship.weapon_set.add_loadout(Loadouts.twin_guns)
 	ship.weapon_set.set_all_fixed(true)
-	faction = Factions.Faction.Civilians

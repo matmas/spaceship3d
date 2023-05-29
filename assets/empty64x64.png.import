@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drcpnyvinuih7"
-path="res://.godot/imported/empty64x64.png-7a51695b2d0bcc36dbe21cf9e4ac0d53.ctex"
+path="res://.godot/imported/empty64x64.png-7872d0a26427f18f1ed6c05f5f9a3b34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/ships/weapon_set/weapons/empty64x64.png"
-dest_files=["res://.godot/imported/empty64x64.png-7a51695b2d0bcc36dbe21cf9e4ac0d53.ctex"]
+source_file="res://assets/empty64x64.png"
+dest_files=["res://.godot/imported/empty64x64.png-7872d0a26427f18f1ed6c05f5f9a3b34.ctex"]
 
 [params]
 

@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 
 func _get_steering_direction() -> Vector2:
 	const DEADZONE := 0.01
-	var viewport_size := Vector2(get_viewport().size)
+	var viewport_size := get_viewport().get_visible_rect().size
 	var viewport_min_size := minf(viewport_size.x, viewport_size.y)
 	var direction := (Mouse.resolution_independent_cursor_position - Vector2(0.5, 0.5)) * 2 * viewport_size / viewport_min_size
 	var magnitude := Vector2.ZERO.distance_to(direction)
