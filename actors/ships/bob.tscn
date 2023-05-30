@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://b72ftnmb0gk78"]
 
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://actors/ships/bob.blend" id="1_v31w4"]
-[ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_umtvc"]
 [ext_resource type="Script" path="res://actors/ships/ship.gd" id="2_ynpb5"]
+[ext_resource type="Script" path="res://world/physics_interpolation/mesh_instance_3d.gd" id="3_nqxv7"]
 [ext_resource type="PackedScene" uid="uid://4he7igtqyftc" path="res://actors/ships/propulsion/configurations/twin_engine.tscn" id="4_qg4q6"]
 [ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://actors/ships/weapon_set/weapon_set.tscn" id="5_7l24i"]
 [ext_resource type="PackedScene" uid="uid://dppx6ufhwj5xl" path="res://actors/ships/shield/shield.tscn" id="6_dib0m"]
@@ -29,7 +29,7 @@ points = PackedVector3Array(0.348048, 0.721279, -1.88415, -0.580232, -0.845018, 
 script = ExtResource("2_ynpb5")
 
 [node name="Ship" parent="." index="0"]
-script = ExtResource("2_umtvc")
+script = ExtResource("3_nqxv7")
 
 [node name="TwinEnginePropulsion" parent="Ship" index="0" instance=ExtResource("4_qg4q6")]
 

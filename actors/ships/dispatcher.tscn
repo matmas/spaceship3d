@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpaqivmcfh6w7" path="res://actors/ships/dispatcher.blend" id="1_d4k37"]
 [ext_resource type="Script" path="res://actors/ships/ship.gd" id="2_ffwen"]
-[ext_resource type="Script" path="res://world/physics_interpolation.gd" id="2_le6gq"]
+[ext_resource type="Script" path="res://world/physics_interpolation/mesh_instance_3d.gd" id="2_le6gq"]
 [ext_resource type="PackedScene" uid="uid://dgxbb6lepopgg" path="res://actors/ships/propulsion/configurations/single_engine.tscn" id="4_f4ux4"]
 [ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://actors/ships/weapon_set/weapon_set.tscn" id="5_skatg"]
 [ext_resource type="PackedScene" uid="uid://dppx6ufhwj5xl" path="res://actors/ships/shield/shield.tscn" id="6_tp2mm"]
