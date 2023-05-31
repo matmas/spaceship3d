@@ -4,13 +4,16 @@ extends Pilot
 var steering_direction := Vector2()
 
 
+func _init() -> void:
+	faction = Factions.Faction.Players
+
+
 func _ready() -> void:
 	await super._ready()
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
 	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(ship.get_node("Ship") as VisualInstance3D)
 	ship.weapon_set.add_loadout(Loadouts.twin_guns)
 	ship.weapon_set.set_all_ui_visibility(true)
-	faction = Factions.Faction.Players
 
 
 func _process(_delta: float) -> void:
@@ -46,4 +49,3 @@ func _get_steering_direction() -> Vector2:
 	else:
 		direction = direction.normalized() * ((magnitude - DEADZONE) / (1 - DEADZONE))
 	return direction
-

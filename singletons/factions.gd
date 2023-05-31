@@ -1,7 +1,7 @@
 extends Node
 
 
-enum Faction { Pirates, Civilians, Players }
+enum Faction { Civilians, Players, Pirates }
 
 
 func is_hostile_to_another(source_faction: Faction, target_faction: Faction) -> bool:
