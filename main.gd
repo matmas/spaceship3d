@@ -2,4 +2,4 @@ extends Node
 
 
 func _ready() -> void:
-	pass
+	DebugMenu.style = DebugMenu.Style.VISIBLE_DETAILED
