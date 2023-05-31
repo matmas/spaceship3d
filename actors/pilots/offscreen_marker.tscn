@@ -13,8 +13,6 @@ shader_parameter/alpha = 1.0
 [node name="OffscreenMarker" type="Node3D"]
 script = ExtResource("1_tuw5k")
 
-[node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="."]
-
 [node name="Marker" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tnvoq")
 texture = ExtResource("2_7qh7t")
