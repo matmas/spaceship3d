@@ -1,4 +1,5 @@
-extends MeshInstance3D
+class_name PhysicsInterpolation
+extends Node3D
 
 @onready var target := get_parent() as Node3D  # assumes parent movement is controlled by physics
 

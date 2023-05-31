@@ -1,8 +1,8 @@
 class_name Pilot
 extends Area3D
 
-@onready var offscreen_marker := $OffscreenMarker as Node3D
-@onready var offscreen_marker_material := $OffscreenMarker/Marker.material as ShaderMaterial
+@onready var offscreen_marker := $PhysicsInterpolation/OffscreenMarker as Node3D
+@onready var offscreen_marker_material := $PhysicsInterpolation/OffscreenMarker/Marker.material as ShaderMaterial
 @onready var ship := get_parent() as Ship
 
 var faction: Factions.Faction
