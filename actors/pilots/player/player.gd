@@ -11,7 +11,6 @@ func _init() -> void:
 func _ready() -> void:
 	await super._ready()
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
-	(get_viewport().get_camera_3d() as InterpolatedCamera3D).set_target(ship.get_node("Ship") as VisualInstance3D)
 	ship.weapon_set.add_loadout(Loadouts.twin_guns)
 	ship.weapon_set.set_all_ui_visibility(true)
 
