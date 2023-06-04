@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://pyvddsvamyli"]
+[gd_scene load_steps=10 format=3 uid="uid://pyvddsvamyli"]
 
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/gun/projectile.gd" id="1_kdx1c"]
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/gun/projectile.gdshader" id="2_5qlmm"]
 [ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapon_set/weapons/laser/sparks/sparks.tscn" id="3_yq4cp"]
 [ext_resource type="PackedScene" uid="uid://dx8rbcyvmkucu" path="res://actors/ships/weapon_set/weapons/laser/smoke/smoke.tscn" id="4_eo0pf"]
 [ext_resource type="AudioStream" uid="uid://dw6kcf5vxwr4h" path="res://actors/ships/weapon_set/weapons/gun/projectile_flying_loop.wav" id="5_0m0ku"]
-[ext_resource type="AudioStream" uid="uid://q4a71351xo1w" path="res://actors/ships/weapon_set/weapons/gun/projectile_impact_shield.wav" id="5_cgcfy"]
+[ext_resource type="AudioStream" uid="uid://qtto65mghy3u" path="res://actors/ships/weapon_set/weapons/gun/projectile_impacting.wav" id="6_l3c54"]
+[ext_resource type="AudioStream" uid="uid://q4a71351xo1w" path="res://actors/ships/weapon_set/weapons/gun/projectile_impacting_shield.wav" id="7_8y1rm"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_injob"]
 
@@ -42,6 +43,9 @@ autoplay = true
 max_distance = 500.0
 doppler_tracking = 1
 
-[node name="ImpactShield" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_cgcfy")
+[node name="Impacting" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_l3c54")
+
+[node name="ImpactingShield" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_8y1rm")
 max_db = 0.0
