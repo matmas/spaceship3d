@@ -10,7 +10,6 @@ var last_projectile_fired_at := -INF
 func _ready() -> void:
 	super._ready()
 	projectile_speed = 100.0
-	targetting_speed = 10.0
 
 
 func _process(delta: float) -> void:
