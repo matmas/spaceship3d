@@ -17,6 +17,7 @@ var params := PhysicsRayQueryParameters3D.new()
 var collision_mask: int
 var max_travel_distance: float
 
+
 func _ready() -> void:
 	flying.pitch_scale = randf_range(0.9, 1.1)
 

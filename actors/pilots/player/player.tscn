@@ -5,5 +5,3 @@
 
 [node name="Player" instance=ExtResource("1_66fuy")]
 script = ExtResource("2_a6eof")
-
-[node name="AudioListener3D" type="AudioListener3D" parent="." index="0"]

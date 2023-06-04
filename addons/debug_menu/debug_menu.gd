@@ -332,6 +332,7 @@ func _process(_delta: float) -> void:
 
 		# Frametimes are colored following FPS logic (red = 10 FPS, yellow = 60 FPS, green = 110 FPS, cyan = 160 FPS).
 		# This makes the color gradient non-linear.
+
 		frametime_avg = frame_history_total.reduce(sum_func) / frame_history_total.size()
 		frame_history_total_avg.text = str(frametime_avg).pad_decimals(2)
 		frame_history_total_avg.modulate = frame_time_gradient.sample(remap(1000.0 / frametime_avg, GRAPH_MIN_FPS, GRAPH_MAX_FPS, 0.0, 1.0))
