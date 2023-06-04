@@ -19,9 +19,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	global_transform.basis = Basis()  # maintain the same world space orientation
+
+	var all_alpha_zero := true
 	for i in range(NUM_LAST_IMPACTS):
-		last_impact_alphas[i] = move_toward(last_impact_alphas[i], 0, delta)
+		var alpha := move_toward(last_impact_alphas[i], 0, delta)
+		if alpha > 0:
+			all_alpha_zero = false
+		last_impact_alphas[i] = alpha
 	bubble_material.set_shader_parameter(&"impact_alphas", last_impact_alphas)
+
+	if all_alpha_zero:
+		set_process(false)
 
 
 func _process_hit(source: Node3D, impact_point: Vector3) -> void:
@@ -29,3 +37,4 @@ func _process_hit(source: Node3D, impact_point: Vector3) -> void:
 	last_impact_directions[index] = to_local(impact_point).normalized()
 	bubble_material.set_shader_parameter(&"impact_directions", last_impact_directions)
 	last_impact_alphas[index] = 1.0
+	set_process(true)
