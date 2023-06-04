@@ -224,12 +224,12 @@ func update_information_label() -> void:
 		adapter_string = RenderingServer.get_video_adapter_vendor() + " - " + RenderingServer.get_video_adapter_name().trim_suffix("/PCIe/SSE2")
 
 	# Graphics driver version information isn't always availble.
-	var driver_info := OS.get_video_adapter_driver_info()
+#	var driver_info := OS.get_video_adapter_driver_info()
 	var driver_info_string := ""
-	if driver_info.size() >= 2:
-		driver_info_string = driver_info[1]
-	else:
-		driver_info_string = "(unknown)"
+#	if driver_info.size() >= 2:
+#		driver_info_string = driver_info[1]
+#	else:
+#		driver_info_string = "(unknown)"
 
 	var release_string := ""
 	if OS.has_feature("editor"):
