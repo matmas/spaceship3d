@@ -7,6 +7,8 @@ extends Node3D
 @onready var camera := get_viewport().get_camera_3d()
 @onready var initial_global_position := global_position
 @onready var impact_shield := $ImpactShield as AudioStreamPlayer3D
+@onready var flying := $Flying as AudioStreamPlayer3D
+
 
 var linear_velocity := Vector3()
 var excluded_rids: Array[RID] = []
@@ -31,6 +33,7 @@ func _process(delta: float) -> void:
 			if hittable is Shield:
 				impact_shield.pitch_scale = randf_range(0.8, 2.0)
 				impact_shield.play()
+			flying.stop()
 
 			for p in [sparks, smoke]:
 				var particles := p as GPUParticles3D
