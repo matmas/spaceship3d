@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://du6o8ebarhjc4"]
+[gd_scene load_steps=9 format=3 uid="uid://du6o8ebarhjc4"]
 
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/weapon.gd" id="1_ceomy"]
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aiming_dot.gdshader" id="2_dsr1e"]
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/target_lead.gdshader" id="4_plhdm"]
+[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/empty64x64.png" id="4_pnh2k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2pl7"]
 resource_local_to_scene = true
@@ -11,14 +12,13 @@ shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/alpha = 1.0
 shader_parameter/size_power = 2.5
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ewgr"]
-load_path = "res://.godot/imported/empty64x64.png-7a51695b2d0bcc36dbe21cf9e4ac0d53.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f21wk"]
 shader = ExtResource("2_dsr1e")
 shader_parameter/color = Color(0, 0, 0, 0.5)
 shader_parameter/alpha = 1.0
 shader_parameter/size_power = 2.7
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ewgr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rr74g"]
 shader = ExtResource("4_plhdm")
@@ -34,7 +34,7 @@ collision_mask = 3
 
 [node name="AimingDot" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_l2pl7")
-texture = SubResource("CompressedTexture2D_8ewgr")
+texture = ExtResource("4_pnh2k")
 
 [node name="Shadow" type="Sprite2D" parent="AimingDot"]
 z_index = -1
@@ -43,4 +43,4 @@ texture = SubResource("CompressedTexture2D_8ewgr")
 
 [node name="TargetLead" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_rr74g")
-texture = SubResource("CompressedTexture2D_8ewgr")
+texture = ExtResource("4_pnh2k")
