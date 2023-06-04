@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://pyvddsvamyli"]
+[gd_scene load_steps=8 format=3 uid="uid://pyvddsvamyli"]
 
 [ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/gun/projectile.gd" id="1_kdx1c"]
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/gun/projectile.gdshader" id="2_5qlmm"]
 [ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapon_set/weapons/laser/sparks/sparks.tscn" id="3_yq4cp"]
 [ext_resource type="PackedScene" uid="uid://dx8rbcyvmkucu" path="res://actors/ships/weapon_set/weapons/laser/smoke/smoke.tscn" id="4_eo0pf"]
+[ext_resource type="AudioStream" uid="uid://q4a71351xo1w" path="res://actors/ships/weapon_set/weapons/gun/projectile_impact_shield.wav" id="5_cgcfy"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_injob"]
 
@@ -13,7 +14,7 @@ shader = ExtResource("2_5qlmm")
 shader_parameter/color = Color(1, 0.784314, 0, 1)
 shader_parameter/emission_energy = 16.0
 
-[node name="Bullet" type="Node3D"]
+[node name="Projectile" type="Node3D"]
 script = ExtResource("1_kdx1c")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
@@ -30,3 +31,7 @@ explosiveness = 1.0
 emitting = false
 one_shot = true
 explosiveness = 1.0
+
+[node name="ImpactShield" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_cgcfy")
+max_db = 0.0

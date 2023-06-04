@@ -1,6 +1,7 @@
 extends Weapon
 
 @onready var projectile_scene := preload("projectile.tscn")
+@onready var fire := $Fire as AudioStreamPlayer3D
 
 var delay_between_projectiles := 100.0
 var last_projectile_fired_at := -INF
@@ -27,3 +28,6 @@ func _process(delta: float) -> void:
 			projectile.max_travel_distance = projectile_max_travel_distance
 			projectile.excluded_rids = [ship]
 			add_child(projectile)
+
+			fire.pitch_scale = randf_range(0.9, 1.1)
+			fire.play()
