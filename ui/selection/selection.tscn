@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bod6h3axmg0sp"]
 
-[ext_resource type="Script" path="res://interface/selection/selection.gd" id="1_ryifj"]
-[ext_resource type="Texture2D" uid="uid://c0w6wc5ch5bkk" path="res://interface/selection/selection.png" id="1_y5d4x"]
+[ext_resource type="Script" path="res://ui/selection/selection.gd" id="1_ryifj"]
+[ext_resource type="Texture2D" uid="uid://c0w6wc5ch5bkk" path="res://ui/selection/selection.png" id="1_y5d4x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ww8cl"]
 line_spacing = 0.0

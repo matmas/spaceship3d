@@ -12,11 +12,11 @@ extends ActionLeaf
 func _ready() -> void:
 	if speaker:
 		var speaker_key := Speakers.Speaker.find_key(speaker) as String
-		speech.stream = load("res://interface/speech/generated/%s_%s.ogg" % [speaker_key, _get_text().validate_filename()]) as AudioStream
+		speech.stream = load("res://ui/speech/generated/%s_%s.ogg" % [speaker_key, _get_text().validate_filename()]) as AudioStream
 
 		if Engine.is_editor_hint():
 			var line := "%s:%s\n" % [speaker_key, _get_text()]
-			var path := "res://interface/speech/phrases.txt"
+			var path := "res://ui/speech/phrases.txt"
 			var file := FileAccess.open(path, FileAccess.READ)
 			if file == null or not line in file.get_as_text(true):
 				var file_access := FileAccess.READ_WRITE if FileAccess.file_exists(path) else FileAccess.WRITE_READ

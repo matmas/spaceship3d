@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2libmlwj0qog"]
 
-[ext_resource type="Script" path="res://interface/subtitles/subtitles.gd" id="1_gj5uk"]
+[ext_resource type="Script" path="res://ui/subtitles/subtitles.gd" id="1_gj5uk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8fg6g"]
 font_size = 30
