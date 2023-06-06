@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://deynnxvf26d02"]
 
-[ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/laser/painter/painter.gd" id="1_hpfs0"]
-[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/laser/painter/uv.gdshader" id="2_0pon0"]
-[ext_resource type="PackedScene" uid="uid://ckc8inodetsft" path="res://actors/ships/weapon_set/weapons/laser/painter/brush.tscn" id="3_ivc8x"]
-[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/laser/painter/brush.gdshader" id="4_mtpit"]
-[ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/laser/painter/debug_uv_scope.gd" id="5_p6pwd"]
+[ext_resource type="Script" path="res://assets/weapons/laser/painter/painter.gd" id="1_hpfs0"]
+[ext_resource type="Shader" path="res://assets/weapons/laser/painter/uv.gdshader" id="2_0pon0"]
+[ext_resource type="PackedScene" uid="uid://ckc8inodetsft" path="res://assets/weapons/laser/painter/brush.tscn" id="3_ivc8x"]
+[ext_resource type="Shader" path="res://assets/weapons/laser/painter/brush.gdshader" id="4_mtpit"]
+[ext_resource type="Script" path="res://assets/weapons/laser/painter/debug_uv_scope.gd" id="5_p6pwd"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_o0yna"]
 

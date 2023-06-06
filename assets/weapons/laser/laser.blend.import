@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b5gpuj7fuwgn2"
-path="res://.godot/imported/laser.blend-ff202ac4c029399bf2049df547c6d3fe.scn"
+path="res://.godot/imported/laser.blend-87fa110755ee773d3d927dbb0aaaafae.scn"
 
 [deps]
 
-source_file="res://actors/ships/weapon_set/weapons/laser/laser.blend"
-dest_files=["res://.godot/imported/laser.blend-ff202ac4c029399bf2049df547c6d3fe.scn"]
+source_file="res://assets/weapons/laser/laser.blend"
+dest_files=["res://.godot/imported/laser.blend-87fa110755ee773d3d927dbb0aaaafae.scn"]
 
 [params]
 

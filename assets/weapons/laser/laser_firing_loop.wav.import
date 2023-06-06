@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://jrggvoclfm6o"
-path="res://.godot/imported/laser_firing_loop.wav-6b43071fda5f6c0e71cda7144d688da4.sample"
+path="res://.godot/imported/laser_firing_loop.wav-3df9187fefdf269b440840f351408283.sample"
 
 [deps]
 
-source_file="res://actors/ships/weapon_set/weapons/laser/laser_firing_loop.wav"
-dest_files=["res://.godot/imported/laser_firing_loop.wav-6b43071fda5f6c0e71cda7144d688da4.sample"]
+source_file="res://assets/weapons/laser/laser_firing_loop.wav"
+dest_files=["res://.godot/imported/laser_firing_loop.wav-3df9187fefdf269b440840f351408283.sample"]
 
 [params]
 

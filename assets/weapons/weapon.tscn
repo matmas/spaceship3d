@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://du6o8ebarhjc4"]
 
-[ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/weapon.gd" id="1_ceomy"]
-[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aiming_dot.gdshader" id="2_dsr1e"]
-[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/target_lead.gdshader" id="4_plhdm"]
+[ext_resource type="Script" path="res://assets/weapons/weapon.gd" id="1_ceomy"]
+[ext_resource type="Shader" path="res://assets/weapons/aiming_dot.gdshader" id="2_dsr1e"]
+[ext_resource type="Shader" path="res://assets/weapons/target_lead.gdshader" id="4_plhdm"]
 [ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/empty64x64.png" id="4_pnh2k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2pl7"]

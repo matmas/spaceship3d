@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnpsybcleworo"]
 
-[ext_resource type="PackedScene" uid="uid://du6o8ebarhjc4" path="res://actors/ships/weapon_set/weapons/weapon.tscn" id="1_oxueu"]
-[ext_resource type="Script" path="res://actors/ships/weapon_set/weapons/gun/gun.gd" id="2_ga3s5"]
-[ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aiming_dot.gdshader" id="3_6pc7e"]
+[ext_resource type="PackedScene" uid="uid://du6o8ebarhjc4" path="res://assets/weapons/weapon.tscn" id="1_oxueu"]
+[ext_resource type="Script" path="res://assets/weapons/gun/gun.gd" id="2_ga3s5"]
+[ext_resource type="Shader" path="res://assets/weapons/aiming_dot.gdshader" id="3_6pc7e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cx50i"]
 resource_local_to_scene = true
