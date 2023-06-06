@@ -1,8 +1,8 @@
 class_name Ship
 extends Hittable
 
-@onready var weapon_set := $Ship/WeaponSet as WeaponSet
-@onready var shield := $Ship/Shield as Shield
+@onready var weapon_set := $Mesh/WeaponSet as WeaponSet
+@onready var shield := $Mesh/Shield as Shield
 
 var pilot: Pilot
 var linear_acceleration_to_apply := Vector3()
