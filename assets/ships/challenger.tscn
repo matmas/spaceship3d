@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://c68gjfmsf83o0"]
+
+[ext_resource type="PackedScene" uid="uid://dunynvbxapgnk" path="res://assets/ships/challenger.blend" id="1_dgif5"]
+[ext_resource type="Script" path="res://assets/ships/ship.gd" id="2_bxa41"]
+[ext_resource type="Script" path="res://world/physics_interpolation/mesh_instance_3d.gd" id="2_qav6f"]
+[ext_resource type="PackedScene" uid="uid://4he7igtqyftc" path="res://assets/ships/propulsion/configurations/twin_engine.tscn" id="4_que06"]
+[ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://assets/ships/weapon_set/weapon_set.tscn" id="5_5soh2"]
+[ext_resource type="PackedScene" uid="uid://dppx6ufhwj5xl" path="res://assets/ships/shield/shield.tscn" id="6_ko4eu"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gmryw"]
+points = PackedVector3Array(-0.509897, -0.173615, -3.05192, -2.28837, -0.661415, -2.57659, -5.25111, -0.167107, -2.16104, -1.09998, 2.2006, -3.04394, 0.508868, -0.173615, -3.05192, -1.00335, -0.821451, -1.49538, -2.28837, -0.661415, 0.375049, 2.28734, -0.661415, -2.57659, -5.25111, -0.167107, -1.88003, -5.25111, -0.131905, -2.16104, -1.09998, 2.2006, -2.96522, 1.09895, 2.2006, -3.04394, 5.25111, -0.167107, -2.16104, -1.00335, -0.821451, 3.3795, 1.00232, -0.821451, -1.49538, 2.28734, -0.661415, 0.375049, -5.25111, -0.131905, -1.88003, -0.666156, -0.797194, 5.92057, -0.666156, 0.00298673, 7.12833, 1.09895, 2.2006, -2.96522, 5.25111, -0.131905, -2.16104, 5.25111, -0.167107, -1.88003, 1.00232, -0.821451, 3.3795, 0.665127, -0.797194, 5.92057, 0.665127, 0.00298673, 7.12833, 5.25111, -0.131905, -1.88003)
+
+[node name="Challenger" instance=ExtResource("1_dgif5")]
+script = ExtResource("2_bxa41")
+
+[node name="Ship" parent="." index="0"]
+script = ExtResource("2_qav6f")
+
+[node name="TwinEnginePropulsion" parent="Ship" index="0" instance=ExtResource("4_que06")]
+
+[node name="MainEngineLeft" parent="Ship/TwinEnginePropulsion" index="0"]
+transform = Transform3D(0.494975, -0.494975, 0, 0.494975, 0.494975, 0, 0, 0, 0.7, -1.293, 0.201, 2.044)
+
+[node name="MainEngineRight" parent="Ship/TwinEnginePropulsion" index="1"]
+transform = Transform3D(0.494975, 0.494975, 0, -0.494975, 0.494975, 0, 0, 0, 0.7, 1.293, 0.201, 2.044)
+
+[node name="FrontThrusterLeft" parent="Ship/TwinEnginePropulsion" index="2"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -2.92473, -0.0732742, 1.30755)
+
+[node name="FrontThrusterRight" parent="Ship/TwinEnginePropulsion" index="3"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 2.925, -0.073, 1.308)
+
+[node name="LeftThrusterFront" parent="Ship/TwinEnginePropulsion" index="4"]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, -0.71477, -0.292494, -6.01603)
+
+[node name="RightThrusterFront" parent="Ship/TwinEnginePropulsion" index="5"]
+transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.715, -0.292, -6.016)
+
+[node name="LeftThrusterBack" parent="Ship/TwinEnginePropulsion" index="6"]
+transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, -0.785126, 1.01336, 0.96145)
+
+[node name="RightThrusterBack" parent="Ship/TwinEnginePropulsion" index="7"]
+transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.785, 1.013, 0.961)
+
+[node name="TopThrusterLeft" parent="Ship/TwinEnginePropulsion" index="8"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.36425, 0.230728, 1.66443)
+
+[node name="TopThrusterRight" parent="Ship/TwinEnginePropulsion" index="9"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.364, 0.230728, 1.66443)
+
+[node name="BottomThrusterLeft" parent="Ship/TwinEnginePropulsion" index="10"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.36425, -0.20647, 1.66443)
+
+[node name="BottomThrusterRight" parent="Ship/TwinEnginePropulsion" index="11"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.364, -0.20647, 1.66443)
+
+[node name="WeaponSet" parent="Ship" index="1" instance=ExtResource("5_5soh2")]
+
+[node name="Left" parent="Ship/WeaponSet" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36557, 0.0816251, 1.44261)
+
+[node name="Right" parent="Ship/WeaponSet" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.366, 0.0814059, 1.443)
+
+[node name="Shield" parent="Ship" index="2" instance=ExtResource("6_ko4eu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gmryw")
+
+[editable path="Ship/TwinEnginePropulsion"]
+[editable path="Ship/WeaponSet"]
