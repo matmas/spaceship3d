@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://oaie2edlf0a5"]
 
 [ext_resource type="Script" path="res://actors/pilots/offscreen_marker.gd" id="1_tuw5k"]
-[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/empty64x64.png" id="2_7qh7t"]
+[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/empty64x64.png" id="2_7qh7t"]
 [ext_resource type="Shader" path="res://actors/pilots/offscreen_marker.gdshader" id="2_mo7iw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tnvoq"]
