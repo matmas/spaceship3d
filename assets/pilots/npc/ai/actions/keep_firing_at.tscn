@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr1btthinuili"]
+
+[ext_resource type="Script" path="res://assets/pilots/npc/ai/actions/keep_firing_at.gd" id="1_m5dks"]
+
+[node name="KeepFiringAt" type="Node"]
+script = ExtResource("1_m5dks")

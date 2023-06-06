@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bs22cmybhr65c"]
-
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/actions/set_direction_perpendicular_to_hit.gd" id="1_07k75"]
-
-[node name="SetDirectionPerpendicularToHit" type="Node"]
-script = ExtResource("1_07k75")

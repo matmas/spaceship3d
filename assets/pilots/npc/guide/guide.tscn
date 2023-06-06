@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://clnjabx3ede62"]
+
+[ext_resource type="PackedScene" uid="uid://di1f74r8jcrup" path="res://assets/pilots/npc/npc.tscn" id="1_oyv4h"]
+[ext_resource type="Script" path="res://assets/pilots/npc/guide/guide.gd" id="2_ypin3"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_nrdd1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_n7ouq"]
+[ext_resource type="Script" path="res://assets/pilots/npc/ai/sequence_parallel.gd" id="4_uwvgt"]
+[ext_resource type="PackedScene" uid="uid://c0o6wcv06f11" path="res://assets/pilots/npc/ai/actions/speak.tscn" id="5_ssg8k"]
+[ext_resource type="PackedScene" uid="uid://bg7lu3imb2d71" path="res://assets/pilots/npc/ai/actions/wait.tscn" id="6_5clqv"]
+[ext_resource type="PackedScene" uid="uid://b5du3st8v2hoq" path="res://assets/pilots/npc/ai/combat.tscn" id="8_k62ib"]
+
+[node name="Guide" instance=ExtResource("1_oyv4h")]
+script = ExtResource("2_ypin3")
+
+[node name="GuideAI" type="Node" parent="." index="4"]
+script = ExtResource("3_nrdd1")
+
+[node name="ParallelComposite" type="Node" parent="GuideAI" index="0"]
+script = ExtResource("4_uwvgt")
+
+[node name="Talking" type="Node" parent="GuideAI/ParallelComposite" index="0"]
+script = ExtResource("4_n7ouq")
+
+[node name="Wait 1s" parent="GuideAI/ParallelComposite/Talking" index="0" instance=ExtResource("6_5clqv")]
+
+[node name="Hello?" parent="GuideAI/ParallelComposite/Talking" index="1" instance=ExtResource("5_ssg8k")]
+speaker = 347
+
+[node name="Are you still there?" parent="GuideAI/ParallelComposite/Talking" index="2" instance=ExtResource("5_ssg8k")]
+speaker = 347
+
+[node name="Wait 5s" parent="GuideAI/ParallelComposite/Talking" index="3" instance=ExtResource("6_5clqv")]
+delay_msec = 5000.0
+
+[node name="This is getting weird…" parent="GuideAI/ParallelComposite/Talking" index="4" instance=ExtResource("5_ssg8k")]
+text_override = "This is getting weird..."
+speaker = 335
+
+[node name="Wait" parent="GuideAI/ParallelComposite/Talking" index="5" instance=ExtResource("6_5clqv")]
+delay_msec = 1e+07
+
+[node name="Combat" parent="GuideAI/ParallelComposite" index="1" instance=ExtResource("8_k62ib")]

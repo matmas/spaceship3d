@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://djpw8t0dt78ma"]
+
+[ext_resource type="PackedScene" uid="uid://di1f74r8jcrup" path="res://assets/pilots/npc/npc.tscn" id="1_4sjni"]
+[ext_resource type="Script" path="res://assets/pilots/npc/mob/mob.gd" id="2_ay250"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_epmeq"]
+[ext_resource type="PackedScene" uid="uid://b5du3st8v2hoq" path="res://assets/pilots/npc/ai/combat.tscn" id="4_fwnc5"]
+
+[node name="Mob" instance=ExtResource("1_4sjni")]
+script = ExtResource("2_ay250")
+
+[node name="MobAI" type="Node" parent="." index="4"]
+script = ExtResource("3_epmeq")
+
+[node name="Combat" parent="MobAI" index="0" instance=ExtResource("4_fwnc5")]

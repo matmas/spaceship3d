@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1o6xqm1axho8"]
+
+[ext_resource type="Script" path="res://assets/pilots/npc/ai/actions/turn_toward.gd" id="1_h02w2"]
+
+[node name="TurnToward" type="Node"]
+script = ExtResource("1_h02w2")

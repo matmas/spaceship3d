@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhggcwbkthvgw"]
-
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/conditions/is_hit.gd" id="1_y1h2h"]
-
-[node name="IsHit" type="Node"]
-script = ExtResource("1_y1h2h")

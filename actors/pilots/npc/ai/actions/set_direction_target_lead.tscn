@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj8dkl6hvt0d8"]
-
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/actions/set_direction_target_lead.gd" id="1_aebaq"]
-
-[node name="SetDirectionTargetLead" type="Node"]
-script = ExtResource("1_aebaq")

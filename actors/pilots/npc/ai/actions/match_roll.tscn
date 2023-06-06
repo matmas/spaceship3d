@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccxwx4j4emcx2"]
-
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/actions/match_roll.gd" id="1_pde6p"]
-
-[node name="MatchRoll" type="Node"]
-script = ExtResource("1_pde6p")

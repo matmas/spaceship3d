@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://boxjsqe5er123"]
-
-[ext_resource type="Script" path="res://actors/pilots/npc/ai/actions/move_toward.gd" id="1_ur8om"]
-
-[node name="MoveToward" type="Node"]
-script = ExtResource("1_ur8om")
