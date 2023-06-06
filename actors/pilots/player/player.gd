@@ -12,7 +12,7 @@ func _ready() -> void:
 	await super._ready()
 	Mouse.cursor_position_changed.connect(func(_p: Vector2): steering_direction = _get_steering_direction())
 	ship.weapon_set.add_loadout(Loadouts.twin_guns)
-	ship.weapon_set.set_all_ui_visibility(true)
+	ship.weapon_set.set_all_belongs_to_player(true)
 
 
 func _process(_delta: float) -> void:

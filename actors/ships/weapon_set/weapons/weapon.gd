@@ -19,7 +19,7 @@ var projectile_speed := INF
 var targetting_speed := INF
 var can_focus := false
 var target_position_override := Vector3()
-var is_ui_visible := false
+var belongs_to_player := false
 var selection: CollisionObject3D
 
 
@@ -41,9 +41,9 @@ func _process(delta: float) -> void:
 		var new_target_position := target_position_override if target_position_override else _mouse_cursor_to_world_position()
 		var new_basis := Basis.looking_at(global_position.direction_to(new_target_position), ship.global_transform.basis.y)
 		global_transform.basis = global_transform.basis.slerp(new_basis, 1 - pow(0.1, delta * targetting_speed)).orthonormalized()
-	aiming_dot.visible = is_ui_visible
-	target_lead.visible = is_ui_visible
-	if is_ui_visible:
+	aiming_dot.visible = belongs_to_player
+	target_lead.visible = belongs_to_player
+	if belongs_to_player:
 		aiming_dot.position = camera.unproject_position(_collision_point_or_target_position())
 		aiming_dot_material.set_shader_parameter(&"alpha", 1.0 if ray_cast.is_colliding() else 0.5)
 		target_lead.visible = selection and selection is RigidBody3D

@@ -14,10 +14,10 @@ func set_all_fixed(is_fixed: bool) -> void:
 			(weapon as Weapon).is_fixed = is_fixed
 
 
-func set_all_ui_visibility(is_ui_visible: bool) -> void:
+func set_all_belongs_to_player(belongs_to_player: bool) -> void:
 	for place in get_children():
 		for child in place.get_children():
-			(child as Weapon).is_ui_visible = is_ui_visible
+			(child as Weapon).belongs_to_player = belongs_to_player
 
 
 func get_average_projectile_speed() -> float:
