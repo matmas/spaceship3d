@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dn6nekwygpedl"
-path.s3tc="res://.godot/imported/smoke.png-7c6d0b4f8fb6d050ffd1137cacc4285c.s3tc.ctex"
-path.etc2="res://.godot/imported/smoke.png-7c6d0b4f8fb6d050ffd1137cacc4285c.etc2.ctex"
+path.s3tc="res://.godot/imported/smoke.png-ebcc854a17726ff96d6bad4e08a16164.s3tc.ctex"
+path.etc2="res://.godot/imported/smoke.png-ebcc854a17726ff96d6bad4e08a16164.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://actors/ships/weapon_set/weapons/laser/smoke/smoke.png"
-dest_files=["res://.godot/imported/smoke.png-7c6d0b4f8fb6d050ffd1137cacc4285c.s3tc.ctex", "res://.godot/imported/smoke.png-7c6d0b4f8fb6d050ffd1137cacc4285c.etc2.ctex"]
+source_file="res://assets/shared/smoke/smoke.png"
+dest_files=["res://.godot/imported/smoke.png-ebcc854a17726ff96d6bad4e08a16164.s3tc.ctex", "res://.godot/imported/smoke.png-ebcc854a17726ff96d6bad4e08a16164.etc2.ctex"]
 
 [params]
 

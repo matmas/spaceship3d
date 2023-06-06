@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://actors/ships/weapon_set/weapons/aiming_dot.gdshader" id="3_t6mbh"]
 [ext_resource type="PackedScene" uid="uid://dvxc6v6xdb078" path="res://actors/ships/weapon_set/weapons/laser/sparks/sparks.tscn" id="4_2w8fn"]
 [ext_resource type="PackedScene" uid="uid://jmajsdm0er36" path="res://actors/ships/weapon_set/weapons/laser/sparks/light.tscn" id="5_o8esj"]
-[ext_resource type="PackedScene" uid="uid://dx8rbcyvmkucu" path="res://actors/ships/weapon_set/weapons/laser/smoke/smoke.tscn" id="6_i7anl"]
+[ext_resource type="PackedScene" uid="uid://dx8rbcyvmkucu" path="res://assets/shared/smoke/smoke.tscn" id="6_i7anl"]
 [ext_resource type="PackedScene" uid="uid://deynnxvf26d02" path="res://actors/ships/weapon_set/weapons/laser/painter/painter.tscn" id="7_ytueb"]
 [ext_resource type="AudioStream" uid="uid://jrggvoclfm6o" path="res://actors/ships/weapon_set/weapons/laser/laser_firing_loop.wav" id="8_eos7u"]
 [ext_resource type="AudioStream" uid="uid://d4e7wa7b7xrdm" path="res://actors/ships/weapon_set/weapons/laser/laser_hitting_loop.wav" id="9_01rag"]
