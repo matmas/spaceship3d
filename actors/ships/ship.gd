@@ -17,7 +17,7 @@ func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 2
 	for i in range(max_contacts_reported):
-		var sparks := preload("weapon_set/weapons/laser/sparks/sparks.tscn").instantiate()
+		var sparks := preload("res://assets/shared/sparks/sparks.tscn").instantiate()
 		sparks.name = "Sparks%d" % i
 		add_child(sparks)
 

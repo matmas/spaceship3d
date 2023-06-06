@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dvxc6v6xdb078"]
 
-[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://actors/ships/weapon_set/weapons/laser/sparks/particle.png" id="1_jvglc"]
+[ext_resource type="Texture2D" uid="uid://b38e2iipfcwf1" path="res://assets/shared/sparks/particle.png" id="1_jvglc"]
 
 [sub_resource type="Gradient" id="Gradient_x73os"]
 offsets = PackedFloat32Array(0, 0.0609756, 0.164634, 0.262195, 0.426829, 0.689024, 1)

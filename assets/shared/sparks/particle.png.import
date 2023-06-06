@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b38e2iipfcwf1"
-path.s3tc="res://.godot/imported/particle.png-7e5c87326d2bb28ad439e691303cfddf.s3tc.ctex"
-path.etc2="res://.godot/imported/particle.png-7e5c87326d2bb28ad439e691303cfddf.etc2.ctex"
+path.s3tc="res://.godot/imported/particle.png-3946cfeb3980cfce52c7f093d8296da1.s3tc.ctex"
+path.etc2="res://.godot/imported/particle.png-3946cfeb3980cfce52c7f093d8296da1.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://actors/ships/weapon_set/weapons/laser/sparks/particle.png"
-dest_files=["res://.godot/imported/particle.png-7e5c87326d2bb28ad439e691303cfddf.s3tc.ctex", "res://.godot/imported/particle.png-7e5c87326d2bb28ad439e691303cfddf.etc2.ctex"]
+source_file="res://assets/shared/sparks/particle.png"
+dest_files=["res://.godot/imported/particle.png-3946cfeb3980cfce52c7f093d8296da1.s3tc.ctex", "res://.godot/imported/particle.png-3946cfeb3980cfce52c7f093d8296da1.etc2.ctex"]
 
 [params]
 
