@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c68gjfmsf83o0"]
+[gd_scene load_steps=9 format=3 uid="uid://c68gjfmsf83o0"]
 
 [ext_resource type="PackedScene" uid="uid://dunynvbxapgnk" path="res://assets/ships/challenger.blend" id="1_dgif5"]
 [ext_resource type="Script" path="res://assets/ships/ship.gd" id="2_bxa41"]
 [ext_resource type="Script" path="res://world/physics_interpolation/mesh_instance_3d.gd" id="2_qav6f"]
+[ext_resource type="PackedScene" uid="uid://bdwqft6ri4ptf" path="res://assets/ships/ship/ship.tscn" id="4_bikai"]
 [ext_resource type="PackedScene" uid="uid://4he7igtqyftc" path="res://assets/ships/propulsion/configurations/twin_engine.tscn" id="4_que06"]
 [ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://assets/ships/weapon_set/weapon_set.tscn" id="5_5soh2"]
 [ext_resource type="PackedScene" uid="uid://dppx6ufhwj5xl" path="res://assets/ships/shield/shield.tscn" id="6_ko4eu"]
@@ -16,7 +17,9 @@ script = ExtResource("2_bxa41")
 [node name="Mesh" parent="." index="0"]
 script = ExtResource("2_qav6f")
 
-[node name="TwinEnginePropulsion" parent="Mesh" index="0" instance=ExtResource("4_que06")]
+[node name="Ship" parent="Mesh" index="0" instance=ExtResource("4_bikai")]
+
+[node name="TwinEnginePropulsion" parent="Mesh" index="1" instance=ExtResource("4_que06")]
 
 [node name="MainEngineLeft" parent="Mesh/TwinEnginePropulsion" index="0"]
 transform = Transform3D(0.494975, -0.494975, 0, 0.494975, 0.494975, 0, 0, 0, 0.7, -1.293, 0.201, 2.044)
@@ -54,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.364
 [node name="BottomThrusterRight" parent="Mesh/TwinEnginePropulsion" index="11"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.364, -0.20647, 1.66443)
 
-[node name="WeaponSet" parent="Mesh" index="1" instance=ExtResource("5_5soh2")]
+[node name="WeaponSet" parent="Mesh" index="2" instance=ExtResource("5_5soh2")]
 
 [node name="Left" parent="Mesh/WeaponSet" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36557, 0.0816251, 1.44261)
@@ -62,7 +65,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36557, 0.0816251, 1.44261)
 [node name="Right" parent="Mesh/WeaponSet" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.366, 0.0814059, 1.443)
 
-[node name="Shield" parent="Mesh" index="2" instance=ExtResource("6_ko4eu")]
+[node name="Shield" parent="Mesh" index="3" instance=ExtResource("6_ko4eu")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
