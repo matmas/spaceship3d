@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b72ftnmb0gk78"]
 
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://assets/ships/bob.blend" id="1_v31w4"]
-[ext_resource type="Script" path="res://assets/ships/ship.gd" id="2_ynpb5"]
+[ext_resource type="Script" path="res://assets/ships/ship_body.gd" id="2_i371y"]
 [ext_resource type="Script" path="res://world/physics_interpolation/mesh_instance_3d.gd" id="3_nqxv7"]
 [ext_resource type="PackedScene" uid="uid://bdwqft6ri4ptf" path="res://assets/ships/ship/ship.tscn" id="4_5c33h"]
 [ext_resource type="PackedScene" uid="uid://4he7igtqyftc" path="res://assets/ships/propulsion/configurations/twin_engine.tscn" id="4_qg4q6"]
@@ -27,7 +27,7 @@ points = PackedVector3Array(-0.769922, -0.736176, -0.404757, 0.253767, 1.06308, 
 points = PackedVector3Array(0.348048, 0.721279, -1.88415, -0.580232, -0.845018, -2.05819, -0.522186, -0.903053, -2.40611, 0.56336, -0.823089, -1.77995, 0.46414, -0.728949, -2.58031, -0.348048, 0.721279, -1.76815, -0.290116, 0.60521, -2.11623, -0.56336, -0.823089, -1.77995, -0.46414, -0.728949, -2.58031, 0.46414, -0.903053, -2.58031, 0.290116, 0.60521, -2.11623, 0.580232, -0.496811, -1.76815, 0.348048, 0.721279, -1.76815, -0.580232, -0.496811, -1.76815, -0.348048, 0.721279, -1.88415, 0.522186, -0.903053, -2.40611, -0.46414, -0.903053, -2.58031, -0.522186, -0.786983, -2.40611, 0.522186, -0.786983, -2.40611, 0.522186, -0.148762, -1.82611, -0.522186, -0.148762, -1.82611, -0.406094, -0.0908867, -2.34815, 0.406094, -0.0908867, -2.34815, 0.580232, -0.786983, -2.05819, -0.290116, 0.663245, -2.05819, -0.406094, -0.554845, -2.52219, 0.290116, 0.663245, -2.05819)
 
 [node name="Bob" instance=ExtResource("1_v31w4")]
-script = ExtResource("2_ynpb5")
+script = ExtResource("2_i371y")
 
 [node name="Mesh" parent="." index="0"]
 script = ExtResource("3_nqxv7")

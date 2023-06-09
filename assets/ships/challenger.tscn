@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c68gjfmsf83o0"]
 
 [ext_resource type="PackedScene" uid="uid://dunynvbxapgnk" path="res://assets/ships/challenger.blend" id="1_dgif5"]
-[ext_resource type="Script" path="res://assets/ships/ship.gd" id="2_bxa41"]
+[ext_resource type="Script" path="res://assets/ships/ship_body.gd" id="2_bxa41"]
 [ext_resource type="Script" path="res://world/physics_interpolation/mesh_instance_3d.gd" id="2_qav6f"]
 [ext_resource type="PackedScene" uid="uid://bdwqft6ri4ptf" path="res://assets/ships/ship/ship.tscn" id="4_bikai"]
 [ext_resource type="PackedScene" uid="uid://4he7igtqyftc" path="res://assets/ships/propulsion/configurations/twin_engine.tscn" id="4_que06"]
