@@ -9,7 +9,7 @@ func interpolated_global_position(collision_object: CollisionObject3D) -> Vector
 	return collision_object.global_position
 
 
-func calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, ship_position: Vector3, ship_velocity: Vector3, projectile_speed: float, time: float = 0.01, max_recursion_depth: int = 20) -> Vector3:
+func calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, ship_position: Vector3, ship_velocity: Vector3, projectile_speed: float, time: float = 0.01, max_recursion_depth: int = 2) -> Vector3:
 	var relative_velocity := target_velocity - ship_velocity
 	var target_future_position := target_position + relative_velocity * time
 	var projectile_direction := ship_position.direction_to(target_future_position)
