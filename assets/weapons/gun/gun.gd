@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 			projectile.collision_mask = ray_cast.collision_mask
 			projectile.linear_velocity = ship.linear_velocity + -global_transform.basis.z * projectile_speed
 			projectile.max_travel_distance = projectile_max_travel_distance
-			projectile.excluded_rids = [ship]
+			projectile.excluded_rids = [ship, ship.shield]
 			add_child(projectile)
 
 			fire.pitch_scale = randf_range(0.9, 1.1)
