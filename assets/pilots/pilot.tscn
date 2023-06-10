@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://26jp2p4rytq"]
 
 [ext_resource type="Script" path="res://assets/pilots/pilot.gd" id="1_udykb"]
-[ext_resource type="Script" path="res://world/physics_interpolation/node_3d.gd" id="2_d1s50"]
+[ext_resource type="Script" path="res://assets/shared/physics_interpolation/node_3d.gd" id="2_d1s50"]
 [ext_resource type="PackedScene" uid="uid://oaie2edlf0a5" path="res://assets/pilots/offscreen_marker.tscn" id="3_0bnts"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8s4r4"]
