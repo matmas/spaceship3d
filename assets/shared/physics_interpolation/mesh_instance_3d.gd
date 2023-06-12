@@ -7,6 +7,9 @@ var current_global_transform := Transform3D()
 
 
 func _ready():
+	# Process interpolation before camera
+	process_priority = -2
+
 	top_level = true
 	global_transform = target.global_transform
 	previous_global_transform = target.global_transform

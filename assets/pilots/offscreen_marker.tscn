@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/pilots/offscreen_marker.gd" id="1_obuo0"]
 [ext_resource type="Shader" path="res://assets/pilots/offscreen_marker.gdshader" id="2_llqi3"]
-[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/empty64x64.png" id="3_6sxek"]
+[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/transparent1x1.png" id="3_yp0k1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tnvoq"]
 resource_local_to_scene = true
@@ -15,4 +15,5 @@ script = ExtResource("1_obuo0")
 
 [node name="Marker" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tnvoq")
-texture = ExtResource("3_6sxek")
+scale = Vector2(64, 64)
+texture = ExtResource("3_yp0k1")

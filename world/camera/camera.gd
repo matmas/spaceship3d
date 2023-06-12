@@ -10,6 +10,10 @@ var previous_camera_position: Vector3
 
 
 func _ready() -> void:
+	# Process camera before doing any camera unprojections elsewhere
+	process_priority = -1
+
+	# There is no point of processing without a target set
 	set_process(false)
 	set_physics_process(false)
 

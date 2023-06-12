@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdwqft6ri4ptf"]
+[gd_scene load_steps=3 format=3 uid="uid://bdwqft6ri4ptf"]
 
 [ext_resource type="AudioStream" uid="uid://5qa5cibrdlf0" path="res://assets/ships/ship/ship_ambience_loop.ogg" id="1_onyxs"]
+[ext_resource type="PackedScene" uid="uid://4j88gbr62q0w" path="res://assets/ships/ship/ship_ui/ship_ui.tscn" id="2_nv5ii"]
 
 [node name="Ship" type="Node3D"]
 
@@ -11,3 +12,5 @@ volume_db = -12.0
 max_db = -3.0
 autoplay = true
 panning_strength = 0.0
+
+[node name="ShipUI" parent="." instance=ExtResource("2_nv5ii")]

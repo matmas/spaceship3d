@@ -18,7 +18,40 @@ func calculate_projectile_and_target_collision_point(target_position: Vector3, t
 	var new_time := projectile_travel_distance / projectile_velocity.length()
 	if max_recursion_depth == 0 or is_equal_approx(new_time, time):
 		return target_future_position
-	return calculate_projectile_and_target_collision_point(target_position, target_velocity, ship_position, ship_velocity, projectile_speed, new_time, max_recursion_depth - 1)
+	return calculate_projectile_and_target_collision_point(
+		target_position, target_velocity, ship_position, ship_velocity, projectile_speed,
+		new_time, max_recursion_depth - 1
+	)
+
+
+func unproject_aabb_to_screen_space_rect(visual_instance: VisualInstance3D, camera: Camera3D) -> Rect2:
+	var aabb := visual_instance.get_aabb()
+	var vertex_positions := PackedVector2Array()
+	vertex_positions.resize(8)
+	for i in range(8):
+		@warning_ignore("integer_division")
+		var local_vertex := aabb.position + aabb.size * Vector3(i / 4, (i % 4) / 2, i % 2)
+		var vertex := visual_instance.to_global(local_vertex)
+		if camera.is_position_behind(vertex):
+			return Rect2()
+		vertex_positions[i] = camera.unproject_position(vertex)
+	var rect := Rect2(vertex_positions[0], Vector2.ZERO)
+	for i in range(1, 8):
+		if not vertex_positions[i].is_zero_approx():
+			rect = rect.expand(vertex_positions[i])
+	var viewport_rect := camera.get_viewport().get_visible_rect()
+	return rect if rect.intersects(viewport_rect) else Rect2()
+
+
+func make_square(rect: Rect2, min_size: float = 0) -> Rect2:
+	var center := rect.get_center()
+	var square_size := maxf(maxf(rect.size.x, rect.size.y), min_size)
+	return Rect2(
+		center.x - square_size * 0.5,
+		center.y - square_size * 0.5,
+		square_size,
+		square_size,
+	)
 
 
 #func get_rect_segment_intersection(rect: Rect2, segment_from: Vector2, segment_to: Vector2) -> Vector2:

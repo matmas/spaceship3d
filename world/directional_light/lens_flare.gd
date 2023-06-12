@@ -2,6 +2,7 @@ extends TextureRect
 
 @onready var camera := get_viewport().get_camera_3d()
 @onready var directional_light := get_parent() as DirectionalLight3D
+@onready var shader_material := material as ShaderMaterial
 
 var visibility := 0.0
 var target_visibility := 0.0
@@ -17,11 +18,11 @@ func get_light_apparent_global_position() -> Vector3:
 
 
 func _process(delta: float) -> void:
-	var shader := material as ShaderMaterial
-	shader.set_shader_parameter(&"sun_position", camera.unproject_position(get_light_apparent_global_position()))
-	shader.set_shader_parameter(&"visibility", visibility)
-	visibility = lerpf(visibility, target_visibility, 1 - pow(0.1, delta * 5))
 	visible = not camera.is_position_behind(get_light_apparent_global_position())
+	if visible:
+		shader_material.set_shader_parameter(&"sun_position", camera.unproject_position(get_light_apparent_global_position()))
+		shader_material.set_shader_parameter(&"visibility", visibility)
+		visibility = lerpf(visibility, target_visibility, 1 - pow(0.1, delta * 5))
 
 
 func _physics_process(_delta: float) -> void:

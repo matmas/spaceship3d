@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://ui/crosshairs/steering.gdshader" id="2_agmrc"]
 [ext_resource type="Script" path="res://ui/crosshairs/crosshairs.gd" id="2_l0mt7"]
-[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/empty64x64.png" id="3_4ccvm"]
+[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/transparent1x1.png" id="3_nuoxo"]
 [ext_resource type="Shader" path="res://ui/crosshairs/center.gdshader" id="4_uxbye"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d3wsl"]
@@ -19,11 +19,13 @@ script = ExtResource("2_l0mt7")
 [node name="Steering" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_d3wsl")
 position = Vector2(576, 324)
-texture = ExtResource("3_4ccvm")
+scale = Vector2(64, 64)
+texture = ExtResource("3_nuoxo")
 region_rect = Rect2(448, 193, 64, 64)
 
 [node name="CenterIndicator" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_smx1c")
 position = Vector2(576, 324)
-texture = ExtResource("3_4ccvm")
+scale = Vector2(64, 64)
+texture = ExtResource("3_nuoxo")
 region_rect = Rect2(448, 193, 64, 64)

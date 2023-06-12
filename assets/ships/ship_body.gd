@@ -1,6 +1,7 @@
 class_name Ship
 extends Hittable
 
+@onready var mesh_instance := $Mesh as MeshInstance3D
 @onready var weapon_set := $Mesh/WeaponSet as WeaponSet
 @onready var shield := $Mesh/Shield as Shield
 

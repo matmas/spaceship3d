@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://assets/weapons/weapon.gd" id="1_ceomy"]
 [ext_resource type="Shader" path="res://assets/weapons/aiming_dot.gdshader" id="2_dsr1e"]
+[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/transparent1x1.png" id="3_c5r8b"]
 [ext_resource type="Shader" path="res://assets/weapons/target_lead.gdshader" id="4_plhdm"]
-[ext_resource type="Texture2D" uid="uid://drcpnyvinuih7" path="res://assets/shared/empty64x64.png" id="4_pnh2k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l2pl7"]
 resource_local_to_scene = true
@@ -34,7 +34,8 @@ collision_mask = 3
 
 [node name="AimingDot" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_l2pl7")
-texture = ExtResource("4_pnh2k")
+scale = Vector2(64, 64)
+texture = ExtResource("3_c5r8b")
 
 [node name="Shadow" type="Sprite2D" parent="AimingDot"]
 z_index = -1
@@ -43,4 +44,5 @@ texture = SubResource("CompressedTexture2D_8ewgr")
 
 [node name="TargetLead" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_rr74g")
-texture = ExtResource("4_pnh2k")
+scale = Vector2(64, 64)
+texture = ExtResource("3_c5r8b")

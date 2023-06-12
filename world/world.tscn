@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://world/world.gd" id="1_8ty4g"]
 [ext_resource type="PackedScene" uid="uid://05qo64cq3nb7" path="res://world/directional_light/directional_light.tscn" id="1_n62dy"]
 [ext_resource type="PackedScene" uid="uid://dghu6gt1fudg5" path="res://world/rocks/rocks.tscn" id="2_da7el"]
-[ext_resource type="PackedScene" uid="uid://doo0rv6ot25e5" path="res://world/camera/camera.tscn" id="2_g368m"]
 [ext_resource type="PackedScene" uid="uid://b72ftnmb0gk78" path="res://assets/ships/bob.tscn" id="5_t70me"]
 [ext_resource type="PackedScene" uid="uid://lp4twd3yctie" path="res://assets/pilots/player/player.tscn" id="6_wctgv"]
 [ext_resource type="PackedScene" uid="uid://c68gjfmsf83o0" path="res://assets/ships/challenger.tscn" id="7_lecc1"]
@@ -11,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://clnjabx3ede62" path="res://assets/pilots/npc/guide/guide.tscn" id="8_28ggj"]
 [ext_resource type="PackedScene" uid="uid://dwa1ac7y4hoaj" path="res://assets/ships/dispatcher.tscn" id="9_bpbht"]
 [ext_resource type="PackedScene" uid="uid://djpw8t0dt78ma" path="res://assets/pilots/npc/mob/mob.tscn" id="10_v7p8n"]
+[ext_resource type="PackedScene" uid="uid://doo0rv6ot25e5" path="res://world/camera/camera.tscn" id="11_eg8ov"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1g1qc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -33,6 +33,8 @@ environment = SubResource("Environment_gyq2f")
 
 [node name="DirectionalLight" parent="." instance=ExtResource("1_n62dy")]
 
+[node name="Camera" parent="." instance=ExtResource("11_eg8ov")]
+
 [node name="MotionParticles" parent="." instance=ExtResource("7_so44r")]
 
 [node name="Rocks" parent="." instance=ExtResource("2_da7el")]
@@ -48,5 +50,3 @@ environment = SubResource("Environment_gyq2f")
 [node name="Dispatcher" parent="." instance=ExtResource("9_bpbht")]
 
 [node name="Mob" parent="Dispatcher" instance=ExtResource("10_v7p8n")]
-
-[node name="Camera" parent="." instance=ExtResource("2_g368m")]
