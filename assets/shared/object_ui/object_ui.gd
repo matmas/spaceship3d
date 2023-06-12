@@ -2,15 +2,17 @@ extends Control
 
 @onready var selection := $Selection as NinePatchRect
 @onready var label := $Label as Label
-@onready var camera := get_viewport().get_camera_3d()
+@onready var camera := get_viewport().get_camera_3d() as InterpolatedCamera3D
 
 var visual_instance: VisualInstance3D
+var body: RigidBody3D
 
 const MIN_SIZE = 64
 
 
 func _ready() -> void:
-	visual_instance = _get_visual_instance_ancestor()
+	visual_instance = Utils.get_visual_instance_ancestor(self)
+	body = Utils.get_rigid_body_ancestor(self)
 
 
 func _process(_delta: float) -> void:
@@ -21,15 +23,13 @@ func _process(_delta: float) -> void:
 		position = rect.position
 		size = rect.size
 
+		var distance := "%.0f m" % camera.target.global_position.distance_to(visual_instance.global_position)
+		var velocity := ""
+		if body is RigidBody3D:
+			var body_ := body as RigidBody3D
+			velocity = "%.0f m/s" % body_.linear_velocity.length()
+		label.text = "%s\n%s\n%s" % [body.name, distance, velocity]
+
 		if visual_instance.owner is Ship:
 			var ship := visual_instance.owner as Ship
 			modulate = Factions.get_color(ship.pilot.faction)
-
-
-func _get_visual_instance_ancestor() -> VisualInstance3D:
-	var parent := get_parent()
-	while parent != null:
-		if parent is VisualInstance3D:
-			return parent as VisualInstance3D
-		parent = parent.get_parent()
-	return null

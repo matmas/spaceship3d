@@ -54,6 +54,24 @@ func make_square(rect: Rect2, min_size: float = 0) -> Rect2:
 	)
 
 
+func get_visual_instance_ancestor(node: Node) -> VisualInstance3D:
+	var parent := node.get_parent()
+	while parent != null:
+		if parent is VisualInstance3D:
+			return parent as VisualInstance3D
+		parent = parent.get_parent()
+	return null
+
+
+func get_rigid_body_ancestor(node: Node) -> RigidBody3D:
+	var parent := node.get_parent()
+	while parent != null:
+		if parent is RigidBody3D:
+			return parent as RigidBody3D
+		parent = parent.get_parent()
+	return null
+
+
 #func get_rect_segment_intersection(rect: Rect2, segment_from: Vector2, segment_to: Vector2) -> Vector2:
 #	var top_left := rect.position
 #	var bottom_right := rect.end
