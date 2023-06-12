@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dfsisv7bqcc2j" path="res://assets/ships/bob.blend" id="1_v31w4"]
 [ext_resource type="Script" path="res://assets/ships/ship_body.gd" id="2_i371y"]
 [ext_resource type="Script" path="res://assets/shared/physics_interpolation/mesh_instance_3d.gd" id="3_fotk3"]
-[ext_resource type="PackedScene" uid="uid://bdwqft6ri4ptf" path="res://assets/ships/ship/ship.tscn" id="4_5c33h"]
+[ext_resource type="PackedScene" uid="uid://bdwqft6ri4ptf" path="res://assets/ships/ship_common/ship_common.tscn" id="4_2i1c2"]
 [ext_resource type="PackedScene" uid="uid://4he7igtqyftc" path="res://assets/ships/propulsion/configurations/twin_engine.tscn" id="4_qg4q6"]
 [ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://assets/ships/weapon_set/weapon_set.tscn" id="5_7l24i"]
 [ext_resource type="PackedScene" uid="uid://dppx6ufhwj5xl" path="res://assets/ships/shield/shield.tscn" id="6_dib0m"]
@@ -32,7 +32,7 @@ script = ExtResource("2_i371y")
 [node name="Mesh" parent="." index="0"]
 script = ExtResource("3_fotk3")
 
-[node name="Ship" parent="Mesh" index="0" instance=ExtResource("4_5c33h")]
+[node name="ShipCommon" parent="Mesh" index="0" instance=ExtResource("4_2i1c2")]
 
 [node name="TwinEnginePropulsion" parent="Mesh" index="1" instance=ExtResource("4_qg4q6")]
 
