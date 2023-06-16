@@ -50,3 +50,51 @@ environment = SubResource("Environment_gyq2f")
 [node name="Dispatcher" parent="." instance=ExtResource("9_bpbht")]
 
 [node name="Mob" parent="Dispatcher" instance=ExtResource("10_v7p8n")]
+
+[node name="Challenger2" parent="." instance=ExtResource("7_lecc1")]
+
+[node name="Guide" parent="Challenger2" instance=ExtResource("8_28ggj")]
+
+[node name="Dispatcher2" parent="." instance=ExtResource("9_bpbht")]
+
+[node name="Mob" parent="Dispatcher2" instance=ExtResource("10_v7p8n")]
+
+[node name="Challenger3" parent="." instance=ExtResource("7_lecc1")]
+
+[node name="Guide" parent="Challenger3" instance=ExtResource("8_28ggj")]
+
+[node name="Dispatcher3" parent="." instance=ExtResource("9_bpbht")]
+
+[node name="Mob" parent="Dispatcher3" instance=ExtResource("10_v7p8n")]
+
+[node name="Challenger4" parent="." instance=ExtResource("7_lecc1")]
+
+[node name="Guide" parent="Challenger4" instance=ExtResource("8_28ggj")]
+
+[node name="Dispatcher4" parent="." instance=ExtResource("9_bpbht")]
+
+[node name="Mob" parent="Dispatcher4" instance=ExtResource("10_v7p8n")]
+
+[node name="Challenger5" parent="." instance=ExtResource("7_lecc1")]
+
+[node name="Guide" parent="Challenger5" instance=ExtResource("8_28ggj")]
+
+[node name="Dispatcher5" parent="." instance=ExtResource("9_bpbht")]
+
+[node name="Mob" parent="Dispatcher5" instance=ExtResource("10_v7p8n")]
+
+[node name="Challenger6" parent="." instance=ExtResource("7_lecc1")]
+
+[node name="Guide" parent="Challenger6" instance=ExtResource("8_28ggj")]
+
+[node name="Dispatcher6" parent="." instance=ExtResource("9_bpbht")]
+
+[node name="Mob" parent="Dispatcher6" instance=ExtResource("10_v7p8n")]
+
+[node name="Challenger7" parent="." instance=ExtResource("7_lecc1")]
+
+[node name="Guide" parent="Challenger7" instance=ExtResource("8_28ggj")]
+
+[node name="Dispatcher7" parent="." instance=ExtResource("9_bpbht")]
+
+[node name="Mob" parent="Dispatcher7" instance=ExtResource("10_v7p8n")]
