@@ -1,7 +1,7 @@
 extends NPC
 
 func _init() -> void:
-	faction = Factions.Faction.Civilians
+	faction = Factions.Faction.Allies
 
 
 func _ready() -> void:
