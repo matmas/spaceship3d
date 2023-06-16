@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/shared/object_ui/object_ui.gd" id="1_6legy"]
 [ext_resource type="Texture2D" uid="uid://2fe72k8ma2ku" path="res://assets/shared/object_ui/selection.png" id="2_kcrci"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ltand"]
+[sub_resource type="LabelSettings" id="LabelSettings_uundc"]
 line_spacing = 0.0
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
@@ -58,4 +58,4 @@ grow_vertical = 2
 text = "name
 0 m
 0 m/s"
-label_settings = SubResource("LabelSettings_ltand")
+label_settings = SubResource("LabelSettings_uundc")
