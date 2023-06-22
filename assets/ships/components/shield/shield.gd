@@ -10,7 +10,7 @@ var last_impact_alphas := PackedFloat32Array()
 
 
 func _ready() -> void:
-	hit.connect(_process_hit)
+	super._ready()
 	last_impact_alphas.resize(NUM_LAST_IMPACTS)
 	last_impact_alphas.fill(0)
 	last_impact_directions.resize(NUM_LAST_IMPACTS)
@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 
 
 func _process_hit(source: Node3D, impact_point: Vector3) -> void:
+	super._process_hit(source, impact_point)
 	var index := object_to_index.get_index(source)
 	last_impact_directions[index] = to_local(impact_point).normalized()
 	bubble_material.set_shader_parameter(&"impact_directions", last_impact_directions)

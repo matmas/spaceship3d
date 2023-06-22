@@ -16,7 +16,7 @@ func _ready() -> void:
 	offscreen_marker.visible = false
 	offscreen_marker_material.set_shader_parameter(&"color", Factions.get_color(faction))
 
-	ship.object_ui.modulate = Factions.get_color(faction)
+	ship.object_ui.set_color(Factions.get_color(faction))
 
 
 func _on_detection_radar_area_entered(area: Area3D) -> void:

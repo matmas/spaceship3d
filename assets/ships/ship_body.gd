@@ -3,14 +3,16 @@ extends Hittable
 
 @onready var mesh_instance := $Mesh as MeshInstance3D
 @onready var weapon_set := $Mesh/WeaponSet as WeaponSet
-@onready var shield := $Mesh/Shield as Shield
-@onready var object_ui := $Mesh/ShipCommon/ObjectUI as Control
+@onready var shield := $Mesh/Components/Shield as Shield
+@onready var object_ui := $Mesh/Components/ObjectUI as ObjectUI
+@onready var integrity := $Mesh/Components/Integrity as Integrity
 
 var pilot: Pilot
 var linear_acceleration_to_apply := Vector3()
 
 
 func _ready() -> void:
+	super._ready()
 	can_sleep = false
 	gravity_scale = 0
 	linear_damp = 1

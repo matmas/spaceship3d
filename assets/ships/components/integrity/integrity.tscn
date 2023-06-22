@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuuxr6uqsqar5"]
+
+[ext_resource type="Script" path="res://assets/ships/components/integrity/integrity.gd" id="1_6stic"]
+
+[node name="Integrity" type="Node3D"]
+script = ExtResource("1_6stic")

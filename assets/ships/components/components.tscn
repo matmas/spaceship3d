@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdwqft6ri4ptf"]
+
+[ext_resource type="PackedScene" uid="uid://dppx6ufhwj5xl" path="res://assets/ships/components/shield/shield.tscn" id="1_hbmf6"]
+[ext_resource type="PackedScene" uid="uid://4j88gbr62q0w" path="res://assets/ships/components/object_ui/object_ui.tscn" id="1_uy3fb"]
+[ext_resource type="AudioStream" uid="uid://5qa5cibrdlf0" path="res://assets/ships/components/ship_ambience_loop.ogg" id="2_nvfn5"]
+[ext_resource type="PackedScene" uid="uid://cuuxr6uqsqar5" path="res://assets/ships/components/integrity/integrity.tscn" id="3_abjpw"]
+
+[node name="Components" type="Node3D"]
+
+[node name="Shield" parent="." instance=ExtResource("1_hbmf6")]
+
+[node name="ObjectUI" parent="." instance=ExtResource("1_uy3fb")]
+
+[node name="Integrity" parent="." instance=ExtResource("3_abjpw")]
+
+[node name="ShipAmbience" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_nvfn5")
+attenuation_model = 2
+volume_db = -12.0
+max_db = -3.0
+autoplay = true
+panning_strength = 0.0

@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwa1ac7y4hoaj"]
+[gd_scene load_steps=8 format=3 uid="uid://dwa1ac7y4hoaj"]
 
 [ext_resource type="PackedScene" uid="uid://cpaqivmcfh6w7" path="res://assets/ships/dispatcher.blend" id="1_d4k37"]
 [ext_resource type="Script" path="res://assets/ships/ship_body.gd" id="2_ffwen"]
 [ext_resource type="Script" path="res://assets/shared/physics_interpolation/mesh_instance_3d.gd" id="2_le6gq"]
 [ext_resource type="PackedScene" uid="uid://dgxbb6lepopgg" path="res://assets/ships/propulsion/configurations/single_engine.tscn" id="4_f4ux4"]
-[ext_resource type="PackedScene" uid="uid://bdwqft6ri4ptf" path="res://assets/ships/ship_common/ship_common.tscn" id="4_v11fl"]
+[ext_resource type="PackedScene" uid="uid://bdwqft6ri4ptf" path="res://assets/ships/components/components.tscn" id="4_v11fl"]
 [ext_resource type="PackedScene" uid="uid://b5hha2pr0ou1" path="res://assets/ships/weapon_set/weapon_set.tscn" id="5_skatg"]
-[ext_resource type="PackedScene" uid="uid://dppx6ufhwj5xl" path="res://assets/ships/shield/shield.tscn" id="6_tp2mm"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dm8a6"]
 points = PackedVector3Array(-0.252526, -0.0369543, -2.77781, 2.5167, -0.52586, -0.00961089, 1.05052, -1.17742, 7.48178, 1.21266, 1.75474, -2.45232, -2.53335, -0.851478, -0.00961089, -1.22981, 1.75474, -2.45232, -1.06718, -1.17742, 7.48178, 1.86418, -1.17742, 0.31588, -1.22981, -1.50335, 5.8533, 1.86418, -0.851478, -1.63808, -1.88133, -0.851478, -1.63808, 1.21266, -1.50335, 5.8533, -1.88133, -1.17742, 0.31588, -2.53335, -0.52586, -0.00961089, 1.21266, 1.75474, -2.77781, 2.5167, -0.851478, -0.987103, -1.22981, 1.75474, -2.77781, 1.53842, -0.52586, -2.29009, -2.04446, -0.199604, -1.96358, 0.886898, -1.17742, 7.64401, 1.05052, -1.34038, 7.64401, -1.55557, -0.52586, -2.29009, -2.53335, -0.52586, -1.14934, -0.90405, -1.17742, 7.64401, 2.18995, -0.199604, -1.80134, 2.5167, -0.851478, -0.00961089, 2.5167, -0.52586, -1.14934, -2.53335, -0.851478, -0.987103, 0.235375, -0.0369543, -2.77781, -0.823894, -1.35757, 7.1777, 2.18995, -0.52586, -1.80134, 1.21266, 1.42881, -2.77781)
@@ -17,7 +16,7 @@ script = ExtResource("2_ffwen")
 [node name="Mesh" parent="." index="0"]
 script = ExtResource("2_le6gq")
 
-[node name="ShipCommon" parent="Mesh" index="0" instance=ExtResource("4_v11fl")]
+[node name="Components" parent="Mesh" index="0" instance=ExtResource("4_v11fl")]
 
 [node name="SingleEnginePropulsion" parent="Mesh" index="1" instance=ExtResource("4_f4ux4")]
 
@@ -61,8 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.603146, 0.461283, 0.263234
 
 [node name="Right" parent="Mesh/WeaponSet" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.603, 0.461, 0.263)
-
-[node name="Shield" parent="Mesh" index="3" instance=ExtResource("6_tp2mm")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
