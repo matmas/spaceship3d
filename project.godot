@@ -108,6 +108,7 @@ select={
 [physics]
 
 common/physics_jitter_fix=0.0
+3d/physics_engine="JoltPhysics3D"
 3d/default_gravity_vector=Vector3(0, 0, 0)
 
 [rendering]
