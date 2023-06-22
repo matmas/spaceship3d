@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var indicator := $Indicator as Sprite2D
-@onready var label := $Indicator/Label as Label
 @onready var camera := get_viewport().get_camera_3d() as InterpolatedCamera3D
 
 var selection: CollisionObject3D
@@ -16,13 +15,6 @@ func _process(_delta: float) -> void:
 		var selection_global_position := Utils.interpolated_global_position(selection)
 		indicator.position = camera.unproject_position(selection_global_position)
 		indicator.visible = not camera.is_position_behind(selection_global_position)
-		label.visible = indicator.visible
-		var distance := "%.0f m" % camera.target.global_position.distance_to(selection_global_position)
-		var velocity := ""
-		if selection is RigidBody3D:
-			var body := selection as RigidBody3D
-			velocity = "%.0f m/s" % body.linear_velocity.length()
-		label.text = "%s\n%s\n%s" % [selection.name, distance, velocity]
 
 
 func _physics_process(_delta: float) -> void:
