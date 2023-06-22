@@ -31,8 +31,5 @@ func _process(_delta: float) -> void:
 				velocity = "%.0f m/s" % body_.linear_velocity.length()
 			label.text = "%s\n%s\n%s" % [body.name, distance, velocity]
 
-			if visual_instance.owner is Ship:
-				var ship := visual_instance.owner as Ship
-				modulate = Factions.get_color(ship.pilot.faction)
 		else:
 			visible = false
