@@ -29,7 +29,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var is_contact := i < state.get_contact_count()
 		sparks.emitting = is_contact
 		if is_contact:
-			var contact_point := state.get_contact_local_position(i)
+			var contact_point := global_position + state.get_contact_local_position(i)
 			var contact_normal := state.get_contact_local_normal(i)
 			sparks.global_position = contact_point
 			if not Vector3.UP.cross(contact_point + contact_normal - sparks.global_position).is_zero_approx():
