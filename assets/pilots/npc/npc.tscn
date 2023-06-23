@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://di1f74r8jcrup"]
+[gd_scene load_steps=6 format=3 uid="uid://di1f74r8jcrup"]
 
 [ext_resource type="PackedScene" uid="uid://26jp2p4rytq" path="res://assets/pilots/pilot.tscn" id="1_ts351"]
 [ext_resource type="Script" path="res://assets/pilots/npc/npc.gd" id="2_q47sk"]
+[ext_resource type="Script" path="res://assets/shared/physics_interpolation/node_3d.gd" id="3_3er4k"]
+[ext_resource type="PackedScene" uid="uid://oaie2edlf0a5" path="res://assets/pilots/npc/offscreen_indicator/offscreen_indicator.tscn" id="4_pqnpo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_24h4b"]
 radius = 20.0
@@ -14,3 +16,8 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProxymitySensor" index="0"]
 shape = SubResource("SphereShape3D_24h4b")
+
+[node name="PhysicsInterpolation" type="Node3D" parent="." index="4"]
+script = ExtResource("3_3er4k")
+
+[node name="OffscreenIndicator" parent="PhysicsInterpolation" index="0" instance=ExtResource("4_pqnpo")]

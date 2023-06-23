@@ -5,3 +5,6 @@
 
 [node name="Player" instance=ExtResource("1_66fuy")]
 script = ExtResource("2_a6eof")
+
+[connection signal="area_entered" from="DetectionRadar" to="." method="_on_detection_radar_area_entered"]
+[connection signal="area_exited" from="TrackingRadar" to="." method="_on_tracking_radar_area_exited"]

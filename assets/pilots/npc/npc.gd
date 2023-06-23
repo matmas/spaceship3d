@@ -4,6 +4,7 @@ extends Pilot
 @onready var proxymity_sensor := $ProxymitySensor as Area3D
 @onready var proxymity_distance := ((proxymity_sensor.get_node("CollisionShape3D") as CollisionShape3D).shape as SphereShape3D).radius
 @onready var detection_radar := $DetectionRadar as Area3D
+@onready var offscreen_indicator := $PhysicsInterpolation/OffscreenIndicator as Sprite2D
 
 
 var last_hit_direction := Vector3()
@@ -14,6 +15,8 @@ func _ready() -> void:
 	await super._ready()
 	ship.hit.connect(_process_hit)
 	ship.shield.hit.connect(_process_hit)
+	offscreen_indicator.visible = false
+	offscreen_indicator.modulate = Color(Factions.get_color(faction), offscreen_indicator.modulate.a)
 
 
 func _physics_process(_delta: float) -> void:

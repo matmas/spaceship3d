@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://26jp2p4rytq"]
+[gd_scene load_steps=5 format=3 uid="uid://26jp2p4rytq"]
 
 [ext_resource type="Script" path="res://assets/pilots/pilot.gd" id="1_udykb"]
-[ext_resource type="Script" path="res://assets/shared/physics_interpolation/node_3d.gd" id="2_d1s50"]
-[ext_resource type="PackedScene" uid="uid://oaie2edlf0a5" path="res://assets/pilots/offscreen_indicator/offscreen_indicator.tscn" id="3_0bnts"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8s4r4"]
 
@@ -30,11 +28,3 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrackingRadar"]
 shape = SubResource("SphereShape3D_7mrom")
-
-[node name="PhysicsInterpolation" type="Node3D" parent="."]
-script = ExtResource("2_d1s50")
-
-[node name="OffscreenIndicator" parent="PhysicsInterpolation" instance=ExtResource("3_0bnts")]
-
-[connection signal="area_entered" from="DetectionRadar" to="." method="_on_detection_radar_area_entered"]
-[connection signal="area_exited" from="TrackingRadar" to="." method="_on_tracking_radar_area_exited"]

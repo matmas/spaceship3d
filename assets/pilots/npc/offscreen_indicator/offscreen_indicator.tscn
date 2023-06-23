@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://oaie2edlf0a5"]
+
+[ext_resource type="Texture2D" uid="uid://dlq1wynqr3p7h" path="res://assets/pilots/npc/offscreen_indicator/offscreen_indicator.png" id="1_r1hd4"]
+[ext_resource type="Script" path="res://assets/pilots/npc/offscreen_indicator/offscreen_indicator.gd" id="2_on0c5"]
+
+[node name="OffscreenIndicator" type="Sprite2D"]
+texture = ExtResource("1_r1hd4")
+script = ExtResource("2_on0c5")

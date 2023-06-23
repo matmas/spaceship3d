@@ -2,6 +2,7 @@ class_name Player
 extends Pilot
 
 var steering_direction := Vector2()
+var detected_npcs := {}
 
 
 func _init() -> void:
@@ -48,3 +49,17 @@ func _get_steering_direction() -> Vector2:
 	else:
 		direction = direction.normalized() * ((magnitude - DEADZONE) / (1 - DEADZONE))
 	return direction
+
+
+func _on_detection_radar_area_entered(area: Area3D) -> void:
+	if area is NPC and area != self:
+		var npc := area as NPC
+		detected_npcs[npc] = true
+		npc.offscreen_indicator.visible = true
+
+
+func _on_tracking_radar_area_exited(area: Area3D) -> void:
+	if area is NPC:
+		var npc := area as NPC
+		detected_npcs.erase(npc)
+		npc.offscreen_indicator.visible = false
