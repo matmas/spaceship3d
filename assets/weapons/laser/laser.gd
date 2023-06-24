@@ -18,6 +18,7 @@ func _ready() -> void:
 	firing.volume_db = -INF
 	hitting.volume_db = -INF
 	can_focus = true
+	targetting_speed = 10.0
 
 
 func _process(delta: float) -> void:
