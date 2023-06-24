@@ -35,4 +35,4 @@ func _process(_delta: float) -> void:
 func set_color(color: Color):
 	selection.modulate = color
 	label.modulate = color
-	hull_integrity_bar.modulate = color
+	hull_integrity_bar.self_modulate = color

@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if target_value != current_value:
-		speed += delta * 50.0
+		speed += delta * 240.0
 	else:
 		speed = 0.0
 	current_value = move_toward(current_value, target_value, speed * delta)
