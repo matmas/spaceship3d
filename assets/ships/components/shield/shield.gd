@@ -32,8 +32,8 @@ func _process(delta: float) -> void:
 		set_process(false)
 
 
-func _process_hit(source: Node3D, impact_point: Vector3) -> void:
-	super._process_hit(source, impact_point)
+func _process_hit(weapon: Weapon, source: Node3D, impact_point: Vector3) -> void:
+	super._process_hit(weapon, source, impact_point)
 	var index := object_to_index.get_index(source)
 	last_impact_directions[index] = to_local(impact_point).normalized()
 	bubble_material.set_shader_parameter(&"impact_directions", last_impact_directions)

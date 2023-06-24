@@ -60,4 +60,8 @@ func _physics_process(delta: float) -> void:
 	if ray_cast.is_colliding() and power == 1.0:
 		if ray_cast.get_collider() is Hittable:
 			var hittable := ray_cast.get_collider() as Hittable
-			hittable.hit.emit(self, ray_cast.get_collision_point())
+			hittable.hit.emit(self, self, ray_cast.get_collision_point())
+
+
+func damage_per_hit() -> float:
+	return 60.0 * get_process_delta_time()

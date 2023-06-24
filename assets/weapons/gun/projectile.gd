@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		global_position = result.position
 		if result.collider is Hittable:
 			var hittable: Hittable = result.collider
-			hittable.hit.emit(self, result.position)
+			hittable.hit.emit(weapon, self, result.position)
 
 			if hittable is Shield:
 				impacting_shield.pitch_scale = randf_range(0.8, 2.0)

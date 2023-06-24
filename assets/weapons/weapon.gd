@@ -97,3 +97,7 @@ func _get_aiming_screen_position() -> Vector2:
 	var viewport_center := Mouse.viewport_size * 0.5
 	var max_distance_from_center := minf(viewport_center.x, viewport_center.y) * 0.75
 	return Mouse.get_limited_cursor_position(max_distance_from_center)
+
+
+func damage_per_hit() -> float:
+	return 1.0

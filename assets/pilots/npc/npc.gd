@@ -35,6 +35,6 @@ func _thrust_to_avoid(target_position: Vector3, avoid_distance: float) -> Vector
 	return -target_direction * linear_acceleration
 
 
-func _process_hit(source: Node3D, _impact_point: Vector3) -> void:
+func _process_hit(_weapon: Weapon, source: Node3D, _impact_point: Vector3) -> void:
 	last_hit_direction = global_position.direction_to(source.global_position)
 	last_hit_time = Time.get_ticks_msec()
