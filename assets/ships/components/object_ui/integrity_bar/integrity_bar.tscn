@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://5i3f5mvvguvp"]
+
+[ext_resource type="PackedScene" uid="uid://qbycg08mb57u" path="res://assets/ships/components/object_ui/integrity_bar/base.tscn" id="1_35irx"]
+[ext_resource type="Script" path="res://assets/ships/components/object_ui/integrity_bar/integrity_bar.gd" id="1_ywnih"]
+
+[node name="IntegrityBar" instance=ExtResource("1_35irx")]
+tint_progress = Color(1, 0.368627, 0.654902, 1)
+script = ExtResource("1_ywnih")
+
+[node name="RecentDamageBar" parent="." index="0" instance=ExtResource("1_35irx")]
+z_index = -1
+layout_mode = 1
+value = 100.0

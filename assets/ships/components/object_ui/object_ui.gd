@@ -6,8 +6,13 @@ extends Control
 @onready var camera := get_viewport().get_camera_3d() as InterpolatedCamera3D
 @onready var visual_instance_ancestor := Utils.get_visual_instance_ancestor(self)
 @onready var rigid_body_ancestor := Utils.get_rigid_body_ancestor(self)
-@onready var hull_integrity_bar := $HullIntegrityBar as ProgressBar
-@onready var shield_integrity_bar := $ShieldIntegrityBar as ProgressBar
+@onready var hull_integrity_bar := $HullIntegrityBar as TextureProgressBar
+@onready var shield_integrity_bar := $ShieldIntegrityBar as TextureProgressBar
+
+
+func _ready() -> void:
+	hull_integrity_bar.value = 100.0
+	shield_integrity_bar.value = 100.0
 
 
 func _process(_delta: float) -> void:

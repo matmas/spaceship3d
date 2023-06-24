@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://qbycg08mb57u"]
+
+[ext_resource type="Texture2D" uid="uid://c42bpqn73hbuw" path="res://assets/ships/components/object_ui/integrity_bar/transparent_circle.png" id="1_kjccf"]
+[ext_resource type="Texture2D" uid="uid://c7r0bc5irpr8h" path="res://assets/ships/components/object_ui/integrity_bar/white_circle.png" id="2_bbakk"]
+
+[node name="Base" type="TextureProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("1_kjccf")
+texture_progress = ExtResource("2_bbakk")
