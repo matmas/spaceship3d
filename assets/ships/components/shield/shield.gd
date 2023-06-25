@@ -2,6 +2,7 @@ class_name Shield
 extends Hittable
 
 @onready var bubble_material := $Bubble.get_surface_override_material(0) as ShaderMaterial
+@onready var collision_shape := $CollisionShape3D as CollisionShape3D
 @onready var object_to_index := ObjectToIndex.new(NUM_LAST_IMPACTS)
 
 const NUM_LAST_IMPACTS = 32
@@ -34,6 +35,8 @@ func _process(delta: float) -> void:
 
 func _process_hit(weapon: Weapon, source: Node3D, impact_point: Vector3) -> void:
 	super._process_hit(weapon, source, impact_point)
+	if integrity == 0.0:
+		collision_shape.disabled = true
 	var index := object_to_index.get_index(source)
 	last_impact_directions[index] = to_local(impact_point).normalized()
 	bubble_material.set_shader_parameter(&"impact_directions", last_impact_directions)
