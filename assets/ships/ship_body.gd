@@ -5,7 +5,6 @@ extends Hittable
 @onready var weapon_set := $Mesh/WeaponSet as WeaponSet
 @onready var shield := $Mesh/Components/Shield as Shield
 @onready var object_ui := $Mesh/Components/ObjectUI as ObjectUI
-@onready var integrity := $Mesh/Components/Integrity as Integrity
 
 var pilot: Pilot
 var linear_acceleration_to_apply := Vector3()

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://assets/ships/components/object_ui/integrity_bar/integrity_bar.gd" id="1_ywnih"]
 
 [node name="IntegrityBar" instance=ExtResource("1_35irx")]
-tint_progress = Color(1, 0.368627, 0.654902, 1)
+tint_progress = Color(0.231373, 0.580392, 0.819608, 1)
 script = ExtResource("1_ywnih")
 
 [node name="RecentDamageBar" parent="." index="0" instance=ExtResource("1_35irx")]
