@@ -117,18 +117,22 @@ func _ready() -> void:
 	# in case the user toggles the full debug menu just after starting the project.
 	information.text = "Loading hardware information...\n\n "
 	settings.text = "Loading project information..."
-#	thread.start(
-#		func():
-#			# Enable required time measurements to display CPU/GPU frame time information.
-#			# These lines are time-consuming operations, so run them in a separate thread.
-#			RenderingServer.viewport_set_measure_render_time(get_viewport().get_viewport_rid(), true)
-#			update_information_label()
-#			update_settings_label()
-#	)
-	RenderingServer.viewport_set_measure_render_time(get_viewport().get_viewport_rid(), true)
-	update_information_label()
-	update_settings_label()
+	thread.start(
+		func():
+			# Disable thread safety checks as they interfere with this add-on.
+			# This only affects this particular thread, not other thread instances in the project.
+			# See <https://github.com/godotengine/godot/pull/78000> for details.
+			# Use a Callable so that this can be ignored on Godot 4.0 without causing a script error
+			# (thread safety checks were added in Godot 4.1).
+			if Engine.get_version_info()["hex"] >= 0x040100:
+				Callable(Thread, "set_thread_safety_checks_enabled").call(false)
 
+			# Enable required time measurements to display CPU/GPU frame time information.
+			# These lines are time-consuming operations, so run them in a separate thread.
+			RenderingServer.viewport_set_measure_render_time(get_viewport().get_viewport_rid(), true)
+			update_information_label()
+			update_settings_label()
+	)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cycle_debug_menu"):
@@ -228,12 +232,12 @@ func update_information_label() -> void:
 		adapter_string = RenderingServer.get_video_adapter_vendor() + " - " + RenderingServer.get_video_adapter_name().trim_suffix("/PCIe/SSE2")
 
 	# Graphics driver version information isn't always availble.
-#	var driver_info := OS.get_video_adapter_driver_info()
+	var driver_info := OS.get_video_adapter_driver_info()
 	var driver_info_string := ""
-#	if driver_info.size() >= 2:
-#		driver_info_string = driver_info[1]
-#	else:
-#		driver_info_string = "(unknown)"
+	if driver_info.size() >= 2:
+		driver_info_string = driver_info[1]
+	else:
+		driver_info_string = "(unknown)"
 
 	var release_string := ""
 	if OS.has_feature("editor"):
@@ -332,7 +336,6 @@ func _process(_delta: float) -> void:
 
 		# Frametimes are colored following FPS logic (red = 10 FPS, yellow = 60 FPS, green = 110 FPS, cyan = 160 FPS).
 		# This makes the color gradient non-linear.
-
 		frametime_avg = frame_history_total.reduce(sum_func) / frame_history_total.size()
 		frame_history_total_avg.text = str(frametime_avg).pad_decimals(2)
 		frame_history_total_avg.modulate = frame_time_gradient.sample(remap(1000.0 / frametime_avg, GRAPH_MIN_FPS, GRAPH_MAX_FPS, 0.0, 1.0))
