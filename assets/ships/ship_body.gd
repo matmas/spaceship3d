@@ -5,9 +5,11 @@ extends Hittable
 @onready var weapon_set := $Mesh/WeaponSet as WeaponSet
 @onready var shield := $Mesh/Components/Shield as Shield
 @onready var object_ui := $Mesh/Components/ObjectUI as ObjectUI
+@onready var navigation_agent := $Mesh/Components/NavigationAgent3D as NavigationAgent3D
 
 var pilot: Pilot
 var linear_acceleration_to_apply := Vector3()
+var avoidance_thrust := Vector3()
 
 
 func _ready() -> void:
@@ -23,6 +25,11 @@ func _ready() -> void:
 		var sparks := preload("res://assets/shared/sparks/sparks.tscn").instantiate()
 		sparks.name = "Sparks%d" % i
 		add_child(sparks)
+	navigation_agent.velocity_computed.connect(_on_safe_velocity_computed)
+
+
+func _on_safe_velocity_computed(safe_velocity: Vector3) -> void:
+	avoidance_thrust = safe_velocity * max_linear_acceleration().z
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -39,8 +46,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	apply_central_force(to_global(to_local(linear_acceleration_to_apply).clamp(-max_linear_acceleration(), max_linear_acceleration())))
+	navigation_agent.velocity = linear_velocity
+	apply_central_force(to_global(to_local(linear_acceleration_to_apply + avoidance_thrust).clamp(-max_linear_acceleration(), max_linear_acceleration())))
 	linear_acceleration_to_apply = Vector3.ZERO
+	avoidance_thrust = Vector3.ZERO
 
 
 func max_linear_acceleration() -> Vector3:

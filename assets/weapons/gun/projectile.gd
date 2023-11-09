@@ -9,6 +9,7 @@ extends Node3D
 @onready var impacting := $Impacting as AudioStreamPlayer3D
 @onready var impacting_shield := $ImpactingShield as AudioStreamPlayer3D
 @onready var flying := $Flying as AudioStreamPlayer3D
+@onready var navigation_obstacle := $NavigationObstacle3D as NavigationObstacle3D
 
 var linear_velocity := Vector3()
 var excluded_rids: Array[RID] = []
@@ -20,6 +21,7 @@ var max_travel_distance: float
 
 func _ready() -> void:
 	flying.pitch_scale = randf_range(0.9, 1.1)
+	navigation_obstacle.velocity = linear_velocity
 
 
 func _process(delta: float) -> void:

@@ -49,3 +49,7 @@ stream = ExtResource("6_l3c54")
 [node name="ImpactingShield" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_8y1rm")
 max_db = 0.0
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 0.25
+use_3d_avoidance = true
