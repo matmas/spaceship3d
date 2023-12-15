@@ -3,7 +3,7 @@ extends Node3D
 @onready var indicator := $Indicator as Sprite2D
 @onready var camera := get_viewport().get_camera_3d() as InterpolatedCamera3D
 
-var selection: CollisionObject3D
+var selection: Node3D  # Can be CollisionObject3D or VoxelLodTerrain
 
 
 func _ready() -> void:

@@ -20,7 +20,7 @@ var targetting_speed := INF
 var can_focus := false
 var target_position_override := Vector3()
 var belongs_to_player := false
-var selection: CollisionObject3D
+var selection: Node3D
 
 
 func _enter_tree() -> void:

@@ -1,12 +1,12 @@
 extends Node
 
 
-func interpolated_global_position(collision_object: CollisionObject3D) -> Vector3:
-	for child in collision_object.get_children():
+func interpolated_global_position(node: Node3D) -> Vector3:
+	for child in node.get_children():
 		if child is MeshInstance3D:
 			# prefer physics interpolated mesh instance over jittery collision object
 			return (child as MeshInstance3D).global_position
-	return collision_object.global_position
+	return node.global_position
 
 
 func calculate_projectile_and_target_collision_point(target_position: Vector3, target_velocity: Vector3, ship_position: Vector3, ship_velocity: Vector3, projectile_speed: float, time: float = 0.01, max_recursion_depth: int = 2) -> Vector3:
