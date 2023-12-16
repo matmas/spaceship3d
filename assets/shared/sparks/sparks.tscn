@@ -19,9 +19,9 @@ curve = SubResource("Curve_vbb6c")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pyhqh"]
 lifetime_randomness = 0.5
 direction = Vector3(0, 0, -1)
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_g7ewq")
 color_ramp = SubResource("GradientTexture1D_6ulbp")
