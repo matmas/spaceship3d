@@ -17,10 +17,3 @@ volume_db = -12.0
 max_db = -3.0
 autoplay = true
 panning_strength = 0.0
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
-radius = 5.0
-max_speed = 27.0
-use_3d_avoidance = true
-avoidance_priority = 0.0
