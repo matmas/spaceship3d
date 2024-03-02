@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export var fps: Label
 @export var frame_time: Label
@@ -50,11 +50,11 @@ var style := Style.HIDDEN:
 			Style.VISIBLE_COMPACT, Style.VISIBLE_DETAILED:
 				visible = true
 				frame_number.visible = style == Style.VISIBLE_DETAILED
-				$VBoxContainer/FrameTimeHistory.visible = style == Style.VISIBLE_DETAILED
-				$VBoxContainer/FPSGraph.visible = style == Style.VISIBLE_DETAILED
-				$VBoxContainer/TotalGraph.visible = style == Style.VISIBLE_DETAILED
-				$VBoxContainer/CPUGraph.visible = style == Style.VISIBLE_DETAILED
-				$VBoxContainer/GPUGraph.visible = style == Style.VISIBLE_DETAILED
+				$DebugMenu/VBoxContainer/FrameTimeHistory.visible = style == Style.VISIBLE_DETAILED
+				$DebugMenu/VBoxContainer/FPSGraph.visible = style == Style.VISIBLE_DETAILED
+				$DebugMenu/VBoxContainer/TotalGraph.visible = style == Style.VISIBLE_DETAILED
+				$DebugMenu/VBoxContainer/CPUGraph.visible = style == Style.VISIBLE_DETAILED
+				$DebugMenu/VBoxContainer/GPUGraph.visible = style == Style.VISIBLE_DETAILED
 				information.visible = style == Style.VISIBLE_DETAILED
 				settings.visible = style == Style.VISIBLE_DETAILED
 
@@ -134,6 +134,7 @@ func _ready() -> void:
 			update_settings_label()
 	)
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cycle_debug_menu"):
 		style = wrapi(style + 1, 0, Style.MAX) as Style
@@ -152,8 +153,9 @@ func update_settings_label() -> void:
 	if ProjectSettings.has_setting("application/config/version"):
 		settings.text += "Project Version: %s\n" % ProjectSettings.get_setting("application/config/version")
 
-	var rendering_method_string := ""
-	match str(ProjectSettings.get_setting("rendering/renderer/rendering_method")):
+	var rendering_method := str(ProjectSettings.get_setting_with_override("rendering/renderer/rendering_method"))
+	var rendering_method_string := rendering_method
+	match rendering_method:
 		"forward_plus":
 			rendering_method_string = "Forward+"
 		"mobile":
@@ -177,17 +179,29 @@ func update_settings_label() -> void:
 
 	# Display 3D settings only if relevant.
 	if viewport.get_camera_3d():
+		var scaling_3d_mode_string := "(unknown)"
+		match viewport.scaling_3d_mode:
+			Viewport.SCALING_3D_MODE_BILINEAR:
+				scaling_3d_mode_string = "Bilinear"
+			Viewport.SCALING_3D_MODE_FSR:
+				scaling_3d_mode_string = "FSR 1.0"
+			Viewport.SCALING_3D_MODE_FSR2:
+				scaling_3d_mode_string = "FSR 2.2"
+
 		var antialiasing_3d_string := ""
-		if viewport.use_taa:
+		if viewport.scaling_3d_mode == Viewport.SCALING_3D_MODE_FSR2:
+			# The FSR2 scaling mode includes its own temporal antialiasing implementation.
+			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "FSR 2.2"
+		if viewport.scaling_3d_mode != Viewport.SCALING_3D_MODE_FSR2 and viewport.use_taa:
+			# Godot's own TAA is ignored when using FSR2 scaling mode, as FSR2 provides its own TAA implementation.
 			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "TAA"
 		if viewport.msaa_3d >= Viewport.MSAA_2X:
 			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "%d× MSAA" % pow(2, viewport.msaa_3d)
 		if viewport.screen_space_aa == Viewport.SCREEN_SPACE_AA_FXAA:
 			antialiasing_3d_string += (" + " if not antialiasing_3d_string.is_empty() else "") + "FXAA"
 
-		var environment := viewport.get_camera_3d().get_world_3d().environment
 		settings.text += "3D scale (%s): %d%% = %d×%d" % [
-				"Bilinear" if viewport.scaling_3d_mode == Viewport.SCALING_3D_MODE_BILINEAR else "FSR 1.0",
+				scaling_3d_mode_string,
 				viewport.scaling_3d_scale * 100,
 				viewport_render_size.x * viewport.scaling_3d_scale,
 				viewport_render_size.y * viewport.scaling_3d_scale,
@@ -196,22 +210,24 @@ func update_settings_label() -> void:
 		if not antialiasing_3d_string.is_empty():
 			settings.text += "\n3D Antialiasing: %s" % antialiasing_3d_string
 
-		if environment.ssr_enabled:
-			settings.text += "\nSSR: %d Steps" % environment.ssr_max_steps
+		var environment := viewport.get_camera_3d().get_world_3d().environment
+		if environment:
+			if environment.ssr_enabled:
+				settings.text += "\nSSR: %d Steps" % environment.ssr_max_steps
 
-		if environment.ssao_enabled:
-			settings.text += "\nSSAO: On"
-		if environment.ssil_enabled:
-			settings.text += "\nSSIL: On"
+			if environment.ssao_enabled:
+				settings.text += "\nSSAO: On"
+			if environment.ssil_enabled:
+				settings.text += "\nSSIL: On"
 
-		if environment.sdfgi_enabled:
-			settings.text += "\nSDFGI: %d Cascades" % environment.sdfgi_cascades
+			if environment.sdfgi_enabled:
+				settings.text += "\nSDFGI: %d Cascades" % environment.sdfgi_cascades
 
-		if environment.glow_enabled:
-			settings.text += "\nGlow: On"
+			if environment.glow_enabled:
+				settings.text += "\nGlow: On"
 
-		if environment.volumetric_fog_enabled:
-			settings.text += "\nVolumetric Fog: On"
+			if environment.volumetric_fog_enabled:
+				settings.text += "\nVolumetric Fog: On"
 	var antialiasing_2d_string := ""
 	if viewport.msaa_2d >= Viewport.MSAA_2X:
 		antialiasing_2d_string = "%d× MSAA" % pow(2, viewport.msaa_2d)
@@ -250,15 +266,27 @@ func update_information_label() -> void:
 		# Release export template build.
 		release_string = "release"
 
-	var graphics_api_string := ""
-	if str(ProjectSettings.get_setting("rendering/renderer/rendering_method")) != "gl_compatibility":
-		graphics_api_string = "Vulkan"
+	var rendering_method := str(ProjectSettings.get_setting_with_override("rendering/renderer/rendering_method"))
+	var rendering_driver := str(ProjectSettings.get_setting_with_override("rendering/rendering_device/driver"))
+	var graphics_api_string := rendering_driver
+	if rendering_method != "gl_compatibility":
+		if rendering_driver == "d3d12":
+			graphics_api_string = "Direct3D 12"
+		elif rendering_driver == "metal":
+			graphics_api_string = "Metal"
+		elif rendering_driver == "vulkan":
+			if OS.has_feature("macos") or OS.has_feature("ios"):
+				graphics_api_string = "Vulkan via MoltenVK"
+			else:
+				graphics_api_string = "Vulkan"
 	else:
-		if OS.has_feature("web"):
-			graphics_api_string = "WebGL"
-		elif OS.has_feature("mobile"):
+		if rendering_driver == "opengl3_angle":
+			graphics_api_string = "OpenGL via ANGLE"
+		elif OS.has_feature("mobile") or rendering_driver == "opengl3_es":
 			graphics_api_string = "OpenGL ES"
-		else:
+		elif OS.has_feature("web"):
+			graphics_api_string = "WebGL"
+		elif rendering_driver == "opengl3":
 			graphics_api_string = "OpenGL"
 
 	information.text = (
