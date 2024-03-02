@@ -35,17 +35,17 @@ enum Operators {
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	var left: Variant = _left_expression.execute([], blackboard)
-	
+
 	if _left_expression.has_execute_failed():
 		return FAILURE
-	
+
 	var right: Variant = _right_expression.execute([], blackboard)
-	
+
 	if _right_expression.has_execute_failed():
 		return FAILURE
-	
+
 	var result: bool = false
-	
+
 	match operator:
 		Operators.EQUAL:            result = left == right
 		Operators.NOT_EQUAL:        result = left != right
@@ -53,7 +53,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		Operators.LESS:             result = left < right
 		Operators.GREATER_EQUAL:    result = left >= right
 		Operators.LESS_EQUAL:       result = left <= right
-	
+
 	return SUCCESS if result else FAILURE
 
 

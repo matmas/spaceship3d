@@ -15,7 +15,7 @@ func _capture(message: String, data: Array, session_id: int) -> bool:
 	# in case the behavior tree has invalid setup this might be null
 	if debugger_tab == null:
 		return false
-	
+
 	if message == "beehave:register_tree":
 		debugger_tab.register_tree(data[0])
 		return true

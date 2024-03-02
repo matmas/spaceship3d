@@ -35,7 +35,7 @@ signal tree_disabled
 		return enabled
 
 
-## How often the tree should tick, in frames. The default value of 1 means 
+## How often the tree should tick, in frames. The default value of 1 means
 ## tick() runs every frame.
 @export var tick_rate: int = 1
 
@@ -58,7 +58,7 @@ signal tree_disabled
 		process_thread = value
 		set_physics_process(enabled and process_thread == ProcessThread.PHYSICS)
 		set_process(enabled and process_thread == ProcessThread.IDLE)
-		
+
 
 
 ## Custom blackboard node. An internal blackboard will be used
@@ -111,7 +111,7 @@ var _can_send_message: bool = false
 func _ready() -> void:
 	if not process_thread:
 		process_thread = ProcessThread.PHYSICS
-	
+
 	if actor_node_path:
 		actor = get_node(actor_node_path)
 	else:
@@ -120,13 +120,13 @@ func _ready() -> void:
 	if not blackboard:
 		# invoke setter to auto-initialise the blackboard.
 		self.blackboard = null
-	
+
 	# Get the name of the parent node name for metric
 	_process_time_metric_name = "beehave [microseconds]/process_time_%s-%s" % [actor.name, get_instance_id()]
 
 	set_physics_process(enabled and process_thread == ProcessThread.PHYSICS)
 	set_process(enabled and process_thread == ProcessThread.IDLE)
-	
+
 	# Register custom metric to the engine
 	if custom_monitor and not Engine.is_editor_hint():
 		Performance.add_custom_monitor(_process_time_metric_name, _get_process_time_metric_value)
@@ -144,8 +144,8 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	_process_internally()
-	
-	
+
+
 func _process(_delta: float) -> void:
 	_process_internally()
 
@@ -155,9 +155,9 @@ func _process_internally() -> void:
 		return
 
 	if last_tick < tick_rate - 1:
-		last_tick += 1 
+		last_tick += 1
 		return
-	
+
 	last_tick = 0
 
 	# Start timing for metric
@@ -200,7 +200,7 @@ func tick() -> int:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:PackedStringArray = []
-	
+
 	if actor == null:
 		warnings.append("Configure target node on tree")
 
