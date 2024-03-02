@@ -2,6 +2,8 @@
 extends EditorDebuggerPlugin
 
 const DebuggerTab := preload("debugger_tab.gd")
+const BeehaveUtils := preload("res://addons/beehave/utils/utils.gd")
+
 var debugger_tab := DebuggerTab.new()
 var floating_window: Window
 var session: EditorDebuggerSession
@@ -15,7 +17,7 @@ func _capture(message: String, data: Array, session_id: int) -> bool:
 	# in case the behavior tree has invalid setup this might be null
 	if debugger_tab == null:
 		return false
-
+	
 	if message == "beehave:register_tree":
 		debugger_tab.register_tree(data[0])
 		return true

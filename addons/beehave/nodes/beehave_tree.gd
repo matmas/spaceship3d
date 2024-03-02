@@ -35,7 +35,7 @@ signal tree_disabled
 		return enabled
 
 
-## How often the tree should tick, in frames. The default value of 1 means
+## How often the tree should tick, in frames. The default value of 1 means 
 ## tick() runs every frame.
 @export var tick_rate: int = 1
 
@@ -58,7 +58,7 @@ signal tree_disabled
 		process_thread = value
 		set_physics_process(enabled and process_thread == ProcessThread.PHYSICS)
 		set_process(enabled and process_thread == ProcessThread.IDLE)
-
+		
 
 
 ## Custom blackboard node. An internal blackboard will be used
@@ -88,17 +88,25 @@ signal tree_disabled
 		custom_monitor = b
 		if custom_monitor and _process_time_metric_name != '':
 			Performance.add_custom_monitor(_process_time_metric_name, _get_process_time_metric_value)
-			BeehaveGlobalMetrics.register_tree(self)
+			_get_global_metrics().register_tree(self)
 		else:
 			if _process_time_metric_name != '':
 				# Remove tree metric from the engine
 				Performance.remove_custom_monitor(_process_time_metric_name)
-				BeehaveGlobalMetrics.unregister_tree(self)
+				_get_global_metrics().unregister_tree(self)
 
 			BeehaveDebuggerMessages.unregister_tree(get_instance_id())
 
 
-var actor : Node
+@export var actor : Node:
+	set(a):
+		actor = a
+		if actor == null:
+			actor = get_parent()
+		if Engine.is_editor_hint():
+			update_configuration_warnings()
+
+
 var status : int = -1
 var last_tick : int = 0
 
@@ -111,7 +119,7 @@ var _can_send_message: bool = false
 func _ready() -> void:
 	if not process_thread:
 		process_thread = ProcessThread.PHYSICS
-
+	
 	if actor_node_path:
 		actor = get_node(actor_node_path)
 	else:
@@ -120,22 +128,22 @@ func _ready() -> void:
 	if not blackboard:
 		# invoke setter to auto-initialise the blackboard.
 		self.blackboard = null
-
+	
 	# Get the name of the parent node name for metric
 	_process_time_metric_name = "beehave [microseconds]/process_time_%s-%s" % [actor.name, get_instance_id()]
 
 	set_physics_process(enabled and process_thread == ProcessThread.PHYSICS)
 	set_process(enabled and process_thread == ProcessThread.IDLE)
-
+	
 	# Register custom metric to the engine
 	if custom_monitor and not Engine.is_editor_hint():
 		Performance.add_custom_monitor(_process_time_metric_name, _get_process_time_metric_value)
-		BeehaveGlobalMetrics.register_tree(self)
+		_get_global_metrics().register_tree(self)
 
 	if Engine.is_editor_hint():
 		update_configuration_warnings.call_deferred()
 	else:
-		BeehaveGlobalDebugger.register_tree(self)
+		_get_global_debugger().register_tree(self)
 		BeehaveDebuggerMessages.register_tree(_get_debugger_data(self))
 
 	# Randomize at what frames tick() will happen to avoid stutters
@@ -144,8 +152,8 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	_process_internally()
-
-
+	
+	
 func _process(_delta: float) -> void:
 	_process_internally()
 
@@ -155,9 +163,9 @@ func _process_internally() -> void:
 		return
 
 	if last_tick < tick_rate - 1:
-		last_tick += 1
+		last_tick += 1 
 		return
-
+	
 	last_tick = 0
 
 	# Start timing for metric
@@ -200,7 +208,7 @@ func tick() -> int:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:PackedStringArray = []
-
+	
 	if actor == null:
 		warnings.append("Configure target node on tree")
 
@@ -258,7 +266,7 @@ func _exit_tree() -> void:
 		if _process_time_metric_name != '':
 			# Remove tree metric from the engine
 			Performance.remove_custom_monitor(_process_time_metric_name)
-			BeehaveGlobalMetrics.unregister_tree(self)
+			_get_global_metrics().unregister_tree(self)
 
 		BeehaveDebuggerMessages.unregister_tree(get_instance_id())
 
@@ -283,3 +291,15 @@ func _get_debugger_data(node: Node) -> Dictionary:
 
 func get_class_name() -> Array[StringName]:
 	return [&"BeehaveTree"]
+	
+
+# required to avoid lifecycle issues on initial load
+# due to loading order problems with autoloads
+func _get_global_metrics() -> Node:
+	return get_tree().root.get_node("BeehaveGlobalMetrics")
+	
+	
+# required to avoid lifecycle issues on initial load
+# due to loading order problems with autoloads
+func _get_global_debugger() -> Node:
+	return get_tree().root.get_node("BeehaveGlobalDebugger")
