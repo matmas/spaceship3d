@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 			projectile.max_travel_distance = projectile_max_travel_distance
 			projectile.excluded_rids = [ship, ship.shield]
 			add_child(projectile)
+			projectile.global_position = global_position
 
 			fire.pitch_scale = randf_range(0.9, 1.1)
 			fire.play()
